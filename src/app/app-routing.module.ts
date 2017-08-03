@@ -6,7 +6,7 @@ import { RoomModule } from './room/room.module';
 import { ResidenceModule } from './residence/residence.module';
 import { ComponentModule } from './component/component.module';
 import { BoardModule } from './board/board.module';
-import { AccountModule } from './account/account.module';
+import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -14,8 +14,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
-    path: 'account',
-    loadChildren: 'app/account/account.module#AccountModule',
+    path: 'profile',
+    loadChildren: 'app/profile/profile.module#profileModule',
   },
   {
     path: 'residence',
@@ -36,6 +36,11 @@ const routes: Routes = [
   {
     path: 'board',
     loadChildren: 'app/board/board.module#BoardModule'
+  },
+  ,
+  {
+    path: 'login',
+    loadChildren: 'app/login/login.module#LoginModule'
   },
   {
     path: 'home',
