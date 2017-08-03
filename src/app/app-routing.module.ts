@@ -15,7 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {
     path: 'profile',
-    loadChildren: 'app/profile/profile.module#profileModule',
+    loadChildren: 'app/profile/profile.module#ProfileModule',
   },
   {
     path: 'residence',
@@ -37,7 +37,6 @@ const routes: Routes = [
     path: 'board',
     loadChildren: 'app/board/board.module#BoardModule'
   },
-  ,
   {
     path: 'login',
     loadChildren: 'app/login/login.module#LoginModule'
