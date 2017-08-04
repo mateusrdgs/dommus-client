@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { UserRoutingModule } from './user-routing.module';
-import { UserService } from './user.service';
-import { UserComponent } from './user.component';
+import { UsersRoutingModule } from './users-routing.module';
+import { UsersService } from './users.service';
+import { UsersResolver } from './resolvers/users.resolver.service';
+import { UsersComponent } from './users.component';
 import { NewUserComponent } from './new-user/new-user.component';
 
 @NgModule({
@@ -13,14 +14,15 @@ import { NewUserComponent } from './new-user/new-user.component';
     CommonModule,
     HttpModule,
     ReactiveFormsModule,
-    UserRoutingModule
+    UsersRoutingModule
   ],
   declarations: [
-    UserComponent,
+    UsersComponent,
     NewUserComponent
   ],
   providers: [
-    UserService
+    UsersResolver,
+    UsersService
   ]
 })
-export class UserModule { }
+export class UsersModule { }

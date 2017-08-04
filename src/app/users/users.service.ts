@@ -6,10 +6,10 @@ import 'rxjs/add/operator/toPromise';
 import { User } from './user';
 
 @Injectable()
-export class UserService {
+export class UsersService {
 
   private _id = '5984a2f632c9f33c0a3df156';
-  private _url = `http://localhost:3000/api/account/${this._id}/user`;
+  private _url = `http://localhost:3000/api/account/${this._id}/users`;
 
   constructor(
     private _http: Http
@@ -31,15 +31,15 @@ export class UserService {
   }
 
   createUser(user: User): Promise<User> {
-    return this._http.post(this._url, user)
+    const url = this._url.concat('/new');
+    return this._http.post(url, user)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
   updateUser(user: User): Promise<User> {
-    const id = user.Id,
-          url = this._url.concat(id);
+    const id = user.Id, url = this._url.concat(id);
     return this._http.put(url, user)
                .toPromise()
                .then(response => response.json())

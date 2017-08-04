@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { User } from './../user';
-import { UserService } from './../user.service';
+import { UsersService } from './../users.service';
 
 @Component({
   selector: 'app-new-user',
@@ -16,7 +16,7 @@ export class NewUserComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _userService: UserService
+    private _usersService: UsersService
   ) { }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class NewUserComponent implements OnInit {
   }
 
   private createNewUser(newUser: User) {
-    this._userService
+    this._usersService
       .createUser(newUser)
       .then(response => console.log(response))
       .catch(error => console.error(error._body));

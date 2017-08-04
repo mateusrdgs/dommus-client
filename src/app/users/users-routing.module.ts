@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Resolve } from '@angular/router';
 
-import { UserComponent } from './user.component';
+import { UsersComponent } from './users.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { UsersResolver } from './resolvers/users.resolver.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserComponent,
+    component: UsersComponent,
+    resolve: {
+      users: UsersResolver
+    },
     children: []
   },
   {
@@ -20,4 +24,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UserRoutingModule { }
+export class UsersRoutingModule { }

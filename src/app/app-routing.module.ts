@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserModule } from './user/user.module';
+import { UsersModule } from './users/users.module';
 import { RoomModule } from './room/room.module';
 import { ResidenceModule } from './residence/residence.module';
 import { ComponentModule } from './component/component.module';
@@ -18,23 +18,23 @@ const routes: Routes = [
     loadChildren: 'app/profile/profile.module#ProfileModule',
   },
   {
-    path: 'residence',
+    path: 'residences',
     loadChildren: 'app/residence/residence.module#ResidenceModule',
   },
   {
-    path: 'user',
-    loadChildren: 'app/user/user.module#UserModule'
+    path: 'users',
+    loadChildren: 'app/users/users.module#UsersModule'
   },
   {
-    path: 'room',
+    path: 'rooms',
     loadChildren: 'app/room/room.module#RoomModule'
   },
   {
-    path: 'component',
+    path: 'components',
     loadChildren: 'app/component/component.module#ComponentModule'
   },
   {
-    path: 'board',
+    path: 'boards',
     loadChildren: 'app/board/board.module#BoardModule'
   },
   {

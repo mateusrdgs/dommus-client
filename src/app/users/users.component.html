@@ -1,0 +1,10 @@
+<div class="users-container">  
+  <ul class="users-list" *ngIf="users.length else noUsers">
+    <li class="user-item" *ngFor="let user of users">
+      <a routerLink="{{ user?._id }}" [textContent]="user?.name"></a>
+    </li>
+  </ul>
+  <ng-template #noUsers>
+    <h1 class="users-container__warning">No users on this account!</h1>
+  </ng-template>
+</div>
