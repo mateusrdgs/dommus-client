@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UsersModule } from './users/users.module';
 import { RoomModule } from './room/room.module';
-import { ResidenceModule } from './residence/residence.module';
+import { ResidencesModule } from './residences/residences.module';
 import { ComponentModule } from './component/component.module';
 import { BoardModule } from './board/board.module';
 import { ProfileModule } from './profile/profile.module';
@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'residences',
-    loadChildren: 'app/residence/residence.module#ResidenceModule',
+    loadChildren: 'app/residences/residences.module#ResidencesModule',
   },
   {
     path: 'users',
