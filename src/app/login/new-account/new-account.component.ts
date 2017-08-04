@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { NewAccountService } from './new-account.service';
+
 @Component({
   selector: 'new-account',
   templateUrl: './new-account.component.html',
@@ -16,10 +18,13 @@ export class NewAccountComponent implements OnInit {
   accountFormValid: Boolean = false;
   accountFormSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _newAccountService: NewAccountService
+  ) { }
 
   ngOnInit() {
-    this.accountForm  = this.formBuilder.group({
+    this.accountForm  = this._formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -38,6 +43,16 @@ export class NewAccountComponent implements OnInit {
   onSubmit() {
     if (this.accountFormValid) {
       this.account = this.accountForm.value;
+      this._newAccountService
+        .postAccount(this.account)
+        .then(response => {
+          if (response) {
+            console.log(response);
+          }
+        })
+        .catch(error => {
+          console.error(error.message || error._body || error);
+        });
     }
   }
 
