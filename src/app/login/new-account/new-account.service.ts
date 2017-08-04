@@ -21,7 +21,6 @@ export class NewAccountService {
   }
 
   postAccount(data: Account): Promise<any> {
-
     return this._http.post(this.databaseURI, JSON.stringify(data))
                .toPromise()
                .then(response => response.json())
