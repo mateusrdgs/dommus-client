@@ -23,7 +23,8 @@ export class UsersService {
   }
 
   getUserById(id: string): Promise<User> {
-    const url = this._url.concat(id);
+    const url = this._url.concat(`/${id}`);
+    console.log(url);
     return this._http.get(url)
                .toPromise()
                .then(response => response.json())
@@ -39,7 +40,7 @@ export class UsersService {
   }
 
   updateUser(user: User): Promise<User> {
-    const id = user.Id, url = this._url.concat(id);
+    const id = user.Id, url = this._url.concat(`/${id}`);
     return this._http.put(url, user)
                .toPromise()
                .then(response => response.json())
@@ -47,7 +48,7 @@ export class UsersService {
   }
 
   deleteUser(id: string): Promise<string> {
-    const url = this._url.concat(id);
+    const url = this._url.concat(`/${id}`);
     return this._http.delete(url)
                .toPromise()
                .then(response => response.json())

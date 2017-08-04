@@ -6,8 +6,10 @@ import { HttpModule } from '@angular/http';
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersService } from './users.service';
 import { UsersResolver } from './resolvers/users.resolver.service';
+import { UserResolver } from './resolvers/user.resolver.service';
 import { UsersComponent } from './users.component';
 import { NewUserComponent } from './new-user/new-user.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -18,10 +20,12 @@ import { NewUserComponent } from './new-user/new-user.component';
   ],
   declarations: [
     UsersComponent,
-    NewUserComponent
+    NewUserComponent,
+    UserComponent
   ],
   providers: [
     UsersResolver,
+    UserResolver,
     UsersService
   ]
 })

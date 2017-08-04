@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Resolve } from '@angular/router';
 
-import { UsersComponent } from './users.component';
-import { NewUserComponent } from './new-user/new-user.component';
 import { UsersResolver } from './resolvers/users.resolver.service';
+import { UserResolver } from './resolvers/user.resolver.service';
+import { UsersComponent } from './users.component';
+import { UserComponent } from './user/user.component';
+import { NewUserComponent } from './new-user/new-user.component';
 
 const routes: Routes = [
   {
@@ -11,8 +13,14 @@ const routes: Routes = [
     component: UsersComponent,
     resolve: {
       users: UsersResolver
-    },
-    children: []
+    }
+  },
+  {
+    path: ':id',
+    component: UserComponent,
+    resolve: {
+      user: UserResolver
+    }
   },
   {
     path: 'new-user',

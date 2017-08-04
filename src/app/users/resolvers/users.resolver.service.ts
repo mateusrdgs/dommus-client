@@ -11,7 +11,6 @@ import { User } from './../user';
 import { UsersService } from './../users.service';
 
 @Injectable()
-
 export class UsersResolver implements Resolve<User> {
 
   constructor(
