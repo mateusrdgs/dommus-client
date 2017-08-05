@@ -5,7 +5,7 @@
   </a>
   <ul class="residences-list" *ngIf="residences.length else noResidences">
     <li class="residences-list__item" *ngFor="let residence of residences">
-      <a routerLink="{{ residence?._id }}" [textContent]="residence?.description"  class="residences-list__item-link"></a>
+      <a routerLink="{{ residence?._id }}" [textContent]="residence?.description" class="residences-list__item-link"></a>
     </li>
   </ul>
   <ng-template #noResidences>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UsersModule } from './users/users.module';
-import { RoomModule } from './room/room.module';
+import { RoomsModule } from './rooms/rooms.module';
 import { ResidencesModule } from './residences/residences.module';
 import { ComponentModule } from './component/component.module';
 import { BoardModule } from './board/board.module';
