@@ -26,16 +26,8 @@ const routes: Routes = [
     loadChildren: 'app/users/users.module#UsersModule'
   },
   {
-    path: 'rooms',
-    loadChildren: 'app/room/room.module#RoomModule'
-  },
-  {
     path: 'components',
     loadChildren: 'app/component/component.module#ComponentModule'
-  },
-  {
-    path: 'boards',
-    loadChildren: 'app/board/board.module#BoardModule'
   },
   {
     path: 'login',

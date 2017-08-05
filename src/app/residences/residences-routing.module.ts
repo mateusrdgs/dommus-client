@@ -24,7 +24,17 @@ const routes: Routes = [
     component: ResidenceComponent,
     resolve: {
       residence: ResidenceResolver
-    }
+    },
+    children: [
+      {
+        path: 'rooms',
+        loadChildren: 'app/room/room.module#RoomModule'
+      },
+      {
+        path: 'boards',
+        loadChildren: 'app/board/board.module#BoardModule'
+      }
+    ]
   }
 ];
 
