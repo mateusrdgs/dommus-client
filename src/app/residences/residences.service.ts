@@ -31,14 +31,15 @@ export class ResidencesService {
   }
 
   createResidence(residence: Residence) {
-    return this._http.post(this._url, residence)
+    const url = this._url.concat(`/new`);
+    return this._http.post(url, residence)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
   updateResidence(residence: Residence) {
-    const id = residence.Id,
+    const id = residence['Id'],
           url = this._url.concat(`/${id}`);
     return this._http.put(this._url, residence)
                .toPromise()

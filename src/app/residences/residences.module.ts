@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { ResidencesRoutingModule } from './residences-routing.module';
 import { ResidencesService } from './residences.service';
 import { ResidencesComponent } from './residences.component';
+import { NewResidenceComponent } from './new-residence/new-residence.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    HttpModule,
+    ReactiveFormsModule,
     ResidencesRoutingModule
   ],
   declarations: [
-    ResidencesComponent
+    ResidencesComponent,
+    NewResidenceComponent
   ],
   providers: [
     ResidencesService

@@ -6,7 +6,7 @@ export class Residence {
   private rooms: Array<any>;
   private boards: Array<any>;
 
-  constructor(_id: string, description: string, url: string, rooms: Array<any> = [], boards: Array<any> = []) {
+  constructor(description: string, url: string, _id?: string, rooms?: Array<any>, boards?: Array<any>) {
     this.Id = _id;
     this.Description = description;
     this.Url = url;

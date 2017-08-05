@@ -16,15 +16,15 @@ const routes: Routes = [
     }
   },
   {
+    path: 'new',
+    component: NewUserComponent
+  },
+  {
     path: ':id',
     component: UserComponent,
     resolve: {
       user: UserResolver
     }
-  },
-  {
-    path: 'new-user',
-    component: NewUserComponent
   }
 ];
 

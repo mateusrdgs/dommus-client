@@ -28,7 +28,7 @@ export class NewUserComponent implements OnInit {
 
   onSubmit() {
     if (this.newUserForm.valid) {
-      this._newUser = new User('', this.newUserForm.value['name'], this.newUserForm.value['type']);
+      this._newUser = new User(this.newUserForm.value['name'], this.newUserForm.value['type']);
       this.createNewUser(this._newUser);
     }
   }

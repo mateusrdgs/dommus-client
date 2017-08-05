@@ -4,7 +4,7 @@ export class User {
   private name: string;
   private type: boolean;
 
-  constructor(id: string = '', name: string, type: boolean) {
+  constructor(name: string, type: boolean, id?: string) {
     this.Id = id;
     this.Name = name;
     this.Type = type;
@@ -19,7 +19,7 @@ export class User {
   }
 
   get Name(): string {
-    return this.id;
+    return this.name;
   }
 
   set Name(value: string) {
