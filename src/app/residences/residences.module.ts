@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { ResidencesRoutingModule } from './residences-routing.module';
 import { ResidencesService } from './residences.service';
+import { ResidencesResolver } from './resolvers/residences.resolver.service';
+import { ResidenceResolver } from './resolvers/residence.resolver.service';
 import { ResidencesComponent } from './residences.component';
 import { NewResidenceComponent } from './new-residence/new-residence.component';
 
@@ -20,7 +22,9 @@ import { NewResidenceComponent } from './new-residence/new-residence.component';
     NewResidenceComponent
   ],
   providers: [
-    ResidencesService
+    ResidencesService,
+    ResidencesResolver,
+    ResidenceResolver
   ]
 })
 export class ResidencesModule { }

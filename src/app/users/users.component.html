@@ -1,7 +1,11 @@
-<div class="users-container">  
+<div class="users-container">
+  <h1 class="users-container__title">Users</h1>
+  <a [routerLink]="['new']" class="users-container__button">
+   New user
+  </a>
   <ul class="users-list" *ngIf="users.length else noUsers">
-    <li class="user-item" *ngFor="let user of users">
-      <a routerLink="{{ user?._id }}" [textContent]="user?.name"></a>
+    <li class="users-list__item" *ngFor="let user of users">
+      <a routerLink="{{ user?._id }}" [textContent]="user?.name" class="users-list__item-link"></a>
     </li>
   </ul>
   <ng-template #noUsers>

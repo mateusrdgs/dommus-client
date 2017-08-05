@@ -1,4 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+
+import { Residence } from './residence';
 
 @Component({
   selector: 'app-residences',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResidencesComponent implements OnInit {
 
-  constructor() { }
+  residences = [];
+
+  constructor(
+    private _route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.residences = this._route.snapshot.data['residences']['Residences'];
   }
 
 }
