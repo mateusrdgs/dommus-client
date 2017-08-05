@@ -24,7 +24,7 @@ export class ResidencesService {
 
   getResidenceById(id: string) {
     const url = this._url.concat(`/${id}`);
-    return this._http.get(this._url)
+    return this._http.get(url)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);

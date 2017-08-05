@@ -9,6 +9,7 @@ import { ResidencesResolver } from './resolvers/residences.resolver.service';
 import { ResidenceResolver } from './resolvers/residence.resolver.service';
 import { ResidencesComponent } from './residences.component';
 import { NewResidenceComponent } from './new-residence/new-residence.component';
+import { ResidenceComponent } from './residence/residence.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { NewResidenceComponent } from './new-residence/new-residence.component';
   ],
   declarations: [
     ResidencesComponent,
-    NewResidenceComponent
+    NewResidenceComponent,
+    ResidenceComponent
   ],
   providers: [
     ResidencesService,

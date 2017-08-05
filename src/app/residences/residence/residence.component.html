@@ -1,0 +1,23 @@
+<div class="residence-container">
+  <h1 class="residence-container__title">Residence</h1>
+  <div class="residence-content">
+    <h2 class="residence-content__label">Description</h2>
+    <h3 class="residence-content__data" [textContent]="residence?.description"></h3>
+    <h2 class="residence-content__label">URL</h2>
+    <h3 class="residence-content__data" [textContent]="residence?.url"></h3>
+    <h2 class="residence-content__label">Rooms</h2>
+    <ul class="residence-content__rooms-list" *ngIf="residence.rooms.length else noRooms">
+      <li class="residence-content__rooms-list-item"*ngFor="let room of residence.rooms"></li>
+    </ul>
+    <ng-template #noRooms>
+      <h3 class="residence-content__data">No rooms on this residence</h3>
+    </ng-template>
+    <h2 class="residence-content__label">Boards</h2>
+    <ul class="residence-content__boards-list" *ngIf="residence.boards.length else noBoards">
+      <li class="residence-content__boards-list-item"*ngFor="let board of residence.boardss"></li>
+    </ul>
+    <ng-template #noBoards>
+      <h3 class="residence-content__data">No boards on this residence</h3>
+    </ng-template>
+  </div>
+</div>
