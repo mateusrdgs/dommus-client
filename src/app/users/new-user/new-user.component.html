@@ -1,0 +1,16 @@
+<div class="new-user-container">
+  <h1 class="new-user-container__title">Create a new user</h1>
+  <form class="new-user-form" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+    <label for="name" class="new-user-form__label">Name</label>
+    <input type="text" formControlName="name" class="new-user-form__input">
+    <fieldset class="new-user-form__fieldset">
+      <legend class="new-user-form__legend">Admin</legend>
+      <label for="admin" class="new-user-form__label">No</label>
+      <input type="radio" formControlName="type" value="false" class="new-user-form__radio">
+      <label for="admin" class="new-user-form__label">Yes</label>
+      <input type="radio" formControlName="type" value="true" class="new-user-form__radio">
+    </fieldset>
+    <!--<input type="file">-->
+    <input type="submit" value="Create" [disabled]="newUserForm.invalid"  class="new-user-form__submit">
+  </form>
+</div>

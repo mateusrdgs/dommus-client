@@ -1,0 +1,10 @@
+<div class="new-residence-container">
+  <h1 class="new-residence-container__title">Create a new residence</h1>
+  <form [formGroup]="newResidenceForm" class="new-residence-form" (ngSubmit)="onSubmit()">
+    <label for="description" class="new-residence-form__label">Description</label>
+    <input type="text" formControlName="description" class="new-residence-form__input">
+    <label for="url" class="new-residence-form__label">Url</label>
+    <input type="text" formControlName="url" class="new-residence-form__input">
+    <input type="submit" value="Create" [disabled]="newResidenceForm.invalid" class="new-residence-form__submit">
+  </form>
+</div>
