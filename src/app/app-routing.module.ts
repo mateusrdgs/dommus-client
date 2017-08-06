@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UsersModule } from './users/users.module';
 import { ResidencesModule } from './residences/residences.module';
-import { ComponentModule } from './component/component.module';
 import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
@@ -25,7 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'components',
-    loadChildren: 'app/component/component.module#ComponentModule'
+    loadChildren: 'app/components/components.module#ComponentsModule'
   },
   {
     path: 'login',
