@@ -1,15 +1,13 @@
-<div class="residence-container">
-  <h1 class="residence-container__title">Residence</h1>
+<div class="residence-container" *ngIf="residence">
+  <h1 class="residence-container__title" [textContent]="residence?.description"></h1>
   <div class="residence-content">
-    <h2 class="residence-content__label">Description</h2>
-    <h3 class="residence-content__data" [textContent]="residence?.description"></h3>
     <h2 class="residence-content__label">URL</h2>
     <h3 class="residence-content__data" [textContent]="residence?.url"></h3>
     <div class="residence-content__container">
       <h2 class="residence-content__label">Rooms</h2>
       <ul class="residence-content__rooms-list" *ngIf="residence.rooms.length else noRooms">
         <li class="residence-content__rooms-list-item"*ngFor="let room of residence.rooms">
-          <a routerLink="rooms/{{room._id}}" [textContent]="room.description"></a>
+          <a [routerLink]="['rooms', room._id]" [textContent]="room.description"></a>
         </li>
       </ul>
       <a [routerLink]="['rooms','new']" class="residence-content__new-room">New room</a>
@@ -21,10 +19,10 @@
       <h2 class="residence-content__label">Boards</h2>
       <ul class="residence-content__boards-list" *ngIf="residence.boards.length else noBoards">
         <li class="residence-content__boards-list-item"*ngFor="let board of residence.boards">
-          <a routerLink="boards/{{board._id}}" [textContent]="board.description"></a>
+          <a [routerLink]="['boards', board._id]" [textContent]="board.description"></a>
         </li>
       </ul>
-      <a [routerLink]="['boards','new']" class="residence-content__new-board">New board</a>
+      <a [routerLink]="['boards', 'new']" class="residence-content__new-board">New board</a>
       <ng-template #noBoards>
         <h3 class="residence-content__data">No boards on this residence</h3>
       </ng-template>

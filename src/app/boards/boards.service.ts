@@ -18,7 +18,7 @@ export class BoardsService {
     const _url = this.mountUrl('GETALL', url, id, idResidence);
     return this._http.get(_url)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Boards)
                      .catch(error => this.handleError);
   }
 
@@ -26,7 +26,7 @@ export class BoardsService {
     const _url = this.mountUrl('BYID', url, id, idResidence, idBoard);
     return this._http.get(_url)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Board)
                      .catch(error => this.handleError);
   }
 

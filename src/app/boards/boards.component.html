@@ -1,3 +1,14 @@
-<p>
-  board works!
-</p>
+<div class="boards-container">
+  <h1 class="boards-container__title">Boards</h1>
+  <ul class="boards-list" *ngIf="boards.length else noBoards">
+    <li class="boards-list__item" *ngFor="let board of boards">
+      <a [routerLink]="[board._id]" [textContent]="board.description"></a>
+    </li>
+  </ul>
+  <a routerLink="new">New board</a>
+</div>
+<ng-template #noBoards>
+  <h2 class="boards-container__warning">
+    No boards on this residence
+  </h2>
+</ng-template>
