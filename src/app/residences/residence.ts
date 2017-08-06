@@ -1,12 +1,14 @@
+import { Room } from './../rooms/room';
+
 export class Residence {
 
   private _id: string;
   private description: string;
   private url: string;
-  private rooms: Array<any>;
+  private rooms: Array<Room>;
   private boards: Array<any>;
 
-  constructor(description: string, url: string, _id?: string, rooms?: Array<any>, boards?: Array<any>) {
+  constructor(description: string, url: string, _id?: string, rooms?: Array<Room>, boards?: Array<any>) {
     this.Id = _id;
     this.Description = description;
     this.Url = url;
@@ -38,11 +40,11 @@ export class Residence {
     this.url = value;
   }
 
-  get Rooms(): Array<any> {
+  get Rooms(): Array<Room> {
     return this.rooms;
   }
 
-  set Rooms(value: Array<any>) {
+  set Rooms(value: Array<Room>) {
     this.rooms = value;
   }
 

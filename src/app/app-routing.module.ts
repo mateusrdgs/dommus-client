@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { UsersModule } from './users/users.module';
-import { RoomModule } from './room/room.module';
 import { ResidencesModule } from './residences/residences.module';
 import { ComponentModule } from './component/component.module';
-import { BoardModule } from './board/board.module';
 import { ProfileModule } from './profile/profile.module';
 
 import { AppComponent } from './app.component';
@@ -26,16 +24,8 @@ const routes: Routes = [
     loadChildren: 'app/users/users.module#UsersModule'
   },
   {
-    path: 'rooms',
-    loadChildren: 'app/room/room.module#RoomModule'
-  },
-  {
     path: 'components',
     loadChildren: 'app/component/component.module#ComponentModule'
-  },
-  {
-    path: 'boards',
-    loadChildren: 'app/board/board.module#BoardModule'
   },
   {
     path: 'login',

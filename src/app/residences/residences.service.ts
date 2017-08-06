@@ -22,8 +22,8 @@ export class ResidencesService {
                .catch(this.handleError);
   }
 
-  getResidenceById(id: string) {
-    const url = this._url.concat(`/${id}`);
+  getResidenceById(idResidence: string) {
+    const url = this._url.concat(`/${idResidence}`);
     return this._http.get(url)
                .toPromise()
                .then(response => response.json())
@@ -39,16 +39,16 @@ export class ResidencesService {
   }
 
   updateResidence(residence: Residence) {
-    const id = residence['Id'],
-          url = this._url.concat(`/${id}`);
+    const idResidence = residence['Id'],
+          url = this._url.concat(`/${idResidence}`);
     return this._http.put(this._url, residence)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
-  deleteResidence(id: string) {
-    const url = this._url.concat(`/${id}`);
+  deleteResidence(idResidence: string) {
+    const url = this._url.concat(`/${idResidence}`);
     return this._http.delete(this._url)
                .toPromise()
                .then(response => response.json())

@@ -23,7 +23,7 @@ export class ResidenceResolver implements Resolve<Residence> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable <any> | Promise <any> | any {
-    const id = route.params['id'];
-    return this._residencesService.getResidenceById(id);
+    const { idResidence } = route.params;
+    return this._residencesService.getResidenceById(idResidence);
   }
 }
