@@ -20,18 +20,18 @@ const routes: Routes = [
     component: NewResidenceComponent
   },
   {
-    path: ':id',
+    path: ':idResidence',
     component: ResidenceComponent,
     resolve: {
       residence: ResidenceResolver
     }
   },
   {
-    path: ':id/rooms',
+    path: ':idResidence/rooms',
     loadChildren: 'app/rooms/rooms.module#RoomsModule'
   },
   {
-    path: ':id/boards',
+    path: ':idResidence/boards',
     loadChildren: 'app/board/board.module#BoardModule'
   }
 ];
