@@ -17,8 +17,8 @@ export class RoomComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const { _id, description, components } = this._route.snapshot.data['room']['Room'];
-    this.room = new Room(description, _id, components);
+    const { room } = this._route.snapshot.data;
+    this.room = room;
   }
 
 }

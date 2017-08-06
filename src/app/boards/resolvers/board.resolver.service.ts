@@ -19,7 +19,7 @@ export class BoardResolver implements Resolve<Board> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Board> | Promise<Board> | Board {
-    const{ idResidence, idBoard } = route.params;
+    const { idResidence, idBoard } = route.params;
     return this._boardsService.getBoardById(idResidence, idBoard);
   }
 }
