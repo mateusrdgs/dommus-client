@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: ':idResidence/boards',
-    loadChildren: 'app/board/board.module#BoardModule'
+    loadChildren: 'app/boards/boards.module#BoardsModule'
   }
 ];
 
