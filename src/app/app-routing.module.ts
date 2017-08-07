@@ -23,10 +23,6 @@ const routes: Routes = [
     loadChildren: 'app/users/users.module#UsersModule'
   },
   {
-    path: 'components',
-    loadChildren: 'app/components/components.module#ComponentsModule'
-  },
-  {
     path: 'login',
     loadChildren: 'app/login/login.module#LoginModule'
   },
