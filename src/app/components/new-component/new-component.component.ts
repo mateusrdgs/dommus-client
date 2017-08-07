@@ -1,5 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { Subscription } from 'rxjs/Subscription';
+
+import { BoardsService } from './../../boards/boards.service';
+import { ComponentsService } from './../components.service';
+
+import Switch from '../classes/switch';
+import Sensor from '../classes/sensor';
+import Servo from '../classes/servo';
 
 @Component({
   selector: 'app-new-component',
@@ -8,7 +18,12 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class NewComponentComponent implements OnInit {
 
-  private previousFormType = '0';
+  private previousFormType = 1;
+  private _routeSubscription: Subscription;
+  private idResidence: string;
+  private idRoom: string;
+
+  residenceBoards = [];
   newComponentForm: FormGroup;
 
   componentAllowed = [{
@@ -24,55 +39,61 @@ export class NewComponentComponent implements OnInit {
     type: 'Servo'
   }];
 
-  boardsAllowed = [
-    {
-      value: 1,
-      model: 'UNO'
-    },
-    {
-      value: 2,
-      model: 'MEGA'
-    }
-  ];
-
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _componentsService: ComponentsService,
+    private _route: ActivatedRoute
   ) { }
 
+  getResidenceRouteParams() {
+    this._routeSubscription =
+      this._route.params.subscribe((params: any) => {
+        this.idResidence = params['idResidence'];
+        this.idRoom = params['idRoom'];
+    });
+  }
+
   ngOnInit() {
-    const nextFormType = this.componentAllowed[0].value;
-    const boardsInitialValue = this.boardsAllowed[0].value;
+    this.residenceBoards = this._route.snapshot.data.boards;
+    this.getResidenceRouteParams();
+    this.createNewComponentForm(this.previousFormType);
+    this.createControls(this.previousFormType);
+  }
+
+  createNewComponentForm(nextFormType: number) {
     this.newComponentForm = this._formBuilder.group({
       description: ['', Validators.required],
       componentType: [nextFormType, Validators.required],
-      boardModel: [boardsInitialValue, Validators.required]
+      board: [nextFormType, Validators.required]
     });
-    this.onChange();
-    this.previousFormType = '1';
   }
 
   onChange() {
     let { componentType } = this.newComponentForm.value;
-    componentType = componentType.toString();
+    componentType = parseInt(componentType, 10);
     this.removeControls(this.previousFormType);
     this.createControls(componentType);
     this.previousFormType = componentType;
   }
 
   onSubmit() {
-    console.log(this.newComponentForm.value);
+    if(this.newComponentForm.valid) {
+      const { componentType } = this.newComponentForm.value;
+      console.log(this.newComponentForm.value, this.idResidence, this.idRoom);
+    }
+    // this._componentsService.createComponent(this.idResidence, this.idRoom);
   }
 
   createControls(nextFormType) {
     switch (nextFormType) {
-      case '1':
+      case 1:
         this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
       break;
-      case '2':
+      case 2:
         this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
       break;
-      case '3':
+      case 3:
         this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('rotation', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('minRange', new FormControl('', [Validators.required]));
@@ -83,14 +104,14 @@ export class NewComponentComponent implements OnInit {
 
   removeControls(previousFormType) {
      switch (previousFormType) {
-      case '1':
+      case 1:
         this.newComponentForm.removeControl('digitalPin');
       break;
-      case '2':
+      case 2:
         this.newComponentForm.removeControl('analogPin');
         this.newComponentForm.removeControl('frequency');
       break;
-      case '3':
+      case 3:
         this.newComponentForm.removeControl('digitalPin');
         this.newComponentForm.removeControl('rotation');
         this.newComponentForm.removeControl('minRange');

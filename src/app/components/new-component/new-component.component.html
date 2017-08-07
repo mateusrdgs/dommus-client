@@ -8,8 +8,8 @@
       <option *ngFor="let component of componentAllowed" textContent="{{ component.type }}" value="{{ component.value }}"></option>
     </select>
     <label for="board" class="new-component-form__label">Board</label>
-    <select formControlName="boardModel" class="new-component-form__input">
-      <option *ngFor="let board of boardsAllowed" textContent="{{ board.model }}" value="{{ board.value }}"></option>
+    <select formControlName="board" class="new-component-form__input">
+      <option *ngFor="let board of residenceBoards" textContent="{{ board.description }}" value="{{ board.model }}"></option>
     </select>
     <div [ngSwitch]="newComponentForm.value.componentType" class="new-component-form__container">
       <ng-container *ngSwitchCase="'1'">

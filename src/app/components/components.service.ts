@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
@@ -14,24 +14,45 @@ export class ComponentsService {
     private _http: Http
   ) { }
 
-  getComponents() {
-
+  getComponents(idResidence: string, idRoom: string) {
+    const _url = this.mountUrl('GETALL', url, id, idResidence, idRoom);
+    return this._http.get(_url)
+                     .toPromise()
+                     .then(response => response.json().Components)
+                     .catch(this.handleError);
   }
 
-  getComponentById() {
-
+  getComponentById(idResidence: string, idRoom: string, idComponent: string) {
+    const _url = this.mountUrl('BYID', url, id, idResidence, idRoom, idComponent)
+    return this._http.get(_url)
+                     .toPromise()
+                     .then(response => response.json().Component)
+                     .catch(this.handleError);
   }
 
-  createComponent() {
-
+  createComponent(idResidence: string, idRoom: string, component: any) {
+    const _url = this.mountUrl('CREATE', url, id, idResidence, idRoom);
+    return this._http.post(_url, component)
+                     .toPromise()
+                     .then(response => response.json())
+                     .catch(this.handleError);
   }
 
-  updateComponent() {
-
+  updateComponent(idResidence: string, idRoom: string, component: any) {
+    const { id } = component;
+    const _url = this.mountUrl('BYID', url, id, idRoom, id);
+    return this._http.put(_url, component)
+                     .toPromise()
+                     .then(response => response.json())
+                     .catch(this.handleError);
   }
 
-  deleteComponent() {
-
+  deleteComponent(idResidence: string, idRoom: string, idComponent: string) {
+    const _url = this.mountUrl('BYID', url, id, idResidence, idRoom, idComponent);
+    return this._http.delete(_url)
+                     .toPromise()
+                     .then(response => response.json())
+                     .catch(this.handleError);
   }
 
   handleError(error: Error): Promise<any> {
