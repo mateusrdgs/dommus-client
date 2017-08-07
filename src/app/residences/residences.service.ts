@@ -5,34 +5,34 @@ import 'rxjs/add/operator/toPromise';
 
 import { Residence } from './residence';
 
+import { id, url } from '../database';
+
 @Injectable()
 export class ResidencesService {
-
-  private _id = '5984a2f632c9f33c0a3df156';
-  private _url = `http://localhost:3000/api/account/${this._id}/residences`;
 
   constructor(
     private _http: Http
   ) { }
 
   getResidences() {
-    return this._http.get(this._url)
+    const _url = this.mount_Url('GETALL', url, id);
+    return this._http.get(_url)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
   getResidenceById(idResidence: string) {
-    const url = this._url.concat(`/${idResidence}`);
-    return this._http.get(url)
+    const _url = this.mount_Url('BYID', url, id, idResidence);
+    return this._http.get(_url)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
   createResidence(residence: Residence) {
-    const url = this._url.concat(`/new`);
-    return this._http.post(url, residence)
+    const _url = this.mount_Url('CREATE', url, id);
+    return this._http.post(_url, residence)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
@@ -40,16 +40,16 @@ export class ResidencesService {
 
   updateResidence(residence: Residence) {
     const idResidence = residence['Id'],
-          url = this._url.concat(`/${idResidence}`);
-    return this._http.put(this._url, residence)
+          _url = this.mount_Url('BYID', url, id, idResidence);
+    return this._http.put(_url, residence)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
   deleteResidence(idResidence: string) {
-    const url = this._url.concat(`/${idResidence}`);
-    return this._http.delete(this._url)
+    const _url = this.mount_Url('BYID', url, id, idResidence);
+    return this._http.delete(_url)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
@@ -57,6 +57,17 @@ export class ResidencesService {
 
   handleError(error: Error): Promise<any> {
     return Promise.reject(error.message || error);
+  }
+
+  mount_Url(type: string, _url: string, idAccount: string, idResidence?: string) {
+    switch (type) {
+      case 'CREATE':
+        return `${_url}/${idAccount}/residences/${idResidence}/new`;
+      case 'GETALL':
+        return `${_url}/${idAccount}/residences/`;
+      case 'BYID':
+        return `${_url}/${idAccount}/residences/${idResidence}`;
+    }
   }
 
 }
