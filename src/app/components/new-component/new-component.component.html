@@ -1,0 +1,38 @@
+<div class="new-component-container">
+  <h1 class="new-component-container__title">New component</h1>
+  <form [formGroup]="newComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
+    <label for="description" class="new-component-form__label">Description</label>
+    <input type="text" formControlName="description" class="new-component-form__input">
+    <label for="type" class="new-component-form__label">Type</label>
+    <select formControlName="componentType" class="new-component-form__input" (change)="onChange()">
+      <option *ngFor="let component of componentAllowed" textContent="{{ component.type }}" value="{{ component.value }}"></option>
+    </select>
+    <label for="board" class="new-component-form__label">Board</label>
+    <select formControlName="boardModel" class="new-component-form__input">
+      <option *ngFor="let board of boardsAllowed" textContent="{{ board.model }}" value="{{ board.value }}"></option>
+    </select>
+    <div [ngSwitch]="newComponentForm.value.componentType" class="new-component-form__container">
+      <ng-container *ngSwitchCase="'1'">
+        <label for="description" class="new-component-form__label">Digital Pin</label>
+        <input type="number" formControlName="digitalPin" class="new-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="'2'">
+        <label for="description" class="new-component-form__label">Analog Pin</label>
+        <input type="number" formControlName="analogPin" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Frequency</label>
+        <input type="number" formControlName="frequency" class="new-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="'3'">
+        <label for="description" class="new-component-form__label">Digital Pin</label>
+        <input type="number" formControlName="digitalPin" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Rotation</label>
+        <input type="number" formControlName="rotation" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Minimum Range</label>
+        <input type="number" formControlName="minRange" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Maximum Range</label>
+        <input type="number" formControlName="maxRange" class="new-component-form__input">
+      </ng-container>
+    </div>
+    <input type="submit" value="Create" class="new-component-form__submit" [disabled]="newComponentForm.invalid">
+  </form>
+</div>

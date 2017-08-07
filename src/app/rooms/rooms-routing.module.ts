@@ -25,6 +25,10 @@ const routes: Routes = [
     resolve: {
       room: RoomResolver
     }
+  },
+  {
+    path: ':idRoom/components',
+    loadChildren: 'app/components/components.module#ComponentsModule'
   }
 ];
 

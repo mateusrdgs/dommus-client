@@ -1,3 +1,16 @@
-<p>
-  board works!
-</p>
+<div class="board-container" *ngIf="board">
+  <h1 class="board-container__title" [textContent]="board?.description"></h1>
+  <div class="board-content">
+    <div class="board-content__container" [ngSwitch]="board?.model">
+      <h2 class="board-content__label">Model</h2>
+      <h3 class="board-content__data" *ngSwitchCase="1">UNO</h3>
+      <h3 class="board-content__data" *ngSwitchCase="2">MEGA</h3>
+    </div>
+    <h2 class="board-content__label">Port</h2>
+    <h3 class="board-content__data" [textContent]="board?.port"></h3>
+    <h2 class="board-content__label">Free analog pins</h2>
+    <h3 class="board-content__data" [textContent]="board?.analogPins"></h3>
+    <h2 class="board-content__label">Free digital pins</h2>
+    <h3 class="board-content__data" [textContent]="board?.digitalPins"></h3>
+  </div>
+</div>

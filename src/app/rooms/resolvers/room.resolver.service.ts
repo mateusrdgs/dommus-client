@@ -7,7 +7,7 @@ import { Room } from './../room';
 import { RoomsService } from './../rooms.service';
 
 @Injectable()
-export class RoomResolver implements Resolve<any> {
+export class RoomResolver implements Resolve<Room> {
 
   constructor(
     private _roomsService: RoomsService
@@ -18,7 +18,7 @@ export class RoomResolver implements Resolve<any> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<any> | Promise<any> | any {
+  ): Observable<Room> | Promise<Room> | Room {
     const { idResidence, idRoom } = route.params;
     return this._roomsService.getRoomById(idResidence, idRoom);
   }

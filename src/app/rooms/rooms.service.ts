@@ -21,7 +21,7 @@ export class RoomsService {
     const url = this.mountUrl('GETALL', this._url, this._id, idResidence);
     return this._http.get(url)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Rooms)
                      .catch(this.handleError);
   }
 
@@ -29,7 +29,7 @@ export class RoomsService {
     const url = this.mountUrl('BYID', this._url, this._id, idResidence, idRoom);
     return this._http.get(url)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Room)
                      .catch(this.handleError);
   }
 
