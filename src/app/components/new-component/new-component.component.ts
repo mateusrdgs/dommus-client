@@ -70,7 +70,7 @@ export class NewComponentComponent implements OnInit {
     this.newComponentForm = this._formBuilder.group({
       description: ['', Validators.required],
       componentType: [nextFormType, Validators.required],
-      board: [this.residenceBoards[0], Validators.required]
+      board: [this.residenceBoards[0]._id, Validators.required]
     });
   }
 
@@ -106,22 +106,19 @@ export class NewComponentComponent implements OnInit {
 
   createSwitch(formValue) {
     const { description, componentType, board, digitalPin } = formValue;
-    const { _id } = board;
-    this._component = new Switch(_id, description, componentType, digitalPin);
+    this._component = new Switch(board, description, componentType, digitalPin);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createSensor(formValue) {
     const { description, componentType, board, analogPin, frequency } = this.newComponentForm.value;
-    const { _id } = board;
-    this._component = new Sensor(_id, description, componentType, analogPin, frequency);
+    this._component = new Sensor(board, description, componentType, analogPin, frequency);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createServo(formValue) {
     const { description, componentType, board, digitalPin, rotation, minRange, maxRange } = this.newComponentForm.value;
-    const { _id } = board;
-    this._component = new Servo(_id, description, componentType, digitalPin, rotation, minRange, maxRange);
+    this._component = new Servo(board, description, componentType, digitalPin, rotation, minRange, maxRange);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
@@ -129,6 +126,7 @@ export class NewComponentComponent implements OnInit {
     this._componentsService
         .createComponent(_idResidence, _idRoom, component)
         .then(response => console.log(response.Component));
+        console.log(component);
   }
 
   createControls(nextFormType) {

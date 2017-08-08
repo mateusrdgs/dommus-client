@@ -33,6 +33,6 @@
         <input type="number" formControlName="maxRange" class="new-component-form__input">
       </ng-container>
     </div>
-    <input type="submit" value="Create" class="new-component-form__submit">
+    <input type="submit" value="Create" class="new-component-form__submit" [disabled]="newComponentForm.invalid" >
   </form>
 </div>

@@ -56,7 +56,7 @@ export class ComponentsService {
   }
 
   handleError(error: Error): Promise<any> {
-    return Promise.reject(error.message || error);
+    return Promise.reject(error['_body'] || error.message || error);
   }
 
   mountUrl(type: string, url: string, idAccount: string, idResidence: string, idRoom?: string, idComponent?: string) {

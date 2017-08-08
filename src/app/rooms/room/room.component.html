@@ -1,7 +1,12 @@
 <div class="room-container" *ngIf="room">
   <h1 class="room-container__title" [textContent]="room?.description"></h1>
   <h2 class="room-content__label">Components</h2>
-  <h3 class="room-content__data" *ngIf="room.components.length else noComponents" [textContent]="room?.components"></h3>
+  <ul>
+    <li *ngFor="let component of room.components">
+      <a [routerLink]="['component',component._id]" [textContent]="component.description"></a>
+    </li>
+  </ul>
+  <h3 class="room-content__data" *ngIf="room.components.length else noComponents"></h3>
   <ng-template #noComponents>
     <h3 class="room-content__data">No components on this room</h3>
   </ng-template>
