@@ -19,7 +19,7 @@ import { validateSet } from '../validators/setValidator';
 })
 export class NewComponentComponent implements OnInit {
 
-  private _previousFormType = 1;
+  private _previousFormType = '1';
   private _routeSubscription: Subscription;
   private _idResidence: string;
   private _idRoom: string;
@@ -66,7 +66,7 @@ export class NewComponentComponent implements OnInit {
     }
   }
 
-  createNewComponentForm(nextFormType: number) {
+  createNewComponentForm(nextFormType: string) {
     this.newComponentForm = this._formBuilder.group({
       description: ['', Validators.required],
       componentType: [nextFormType, Validators.required],
@@ -75,8 +75,7 @@ export class NewComponentComponent implements OnInit {
   }
 
   onChange() {
-    let { componentType } = this.newComponentForm.value;
-    componentType = parseInt(componentType, 10);
+    const { componentType } = this.newComponentForm.value;
     this.removeControls(this._previousFormType);
     this.createControls(componentType);
     this._previousFormType = componentType;
@@ -86,15 +85,15 @@ export class NewComponentComponent implements OnInit {
     if (this.newComponentForm.valid) {
       const { componentType } = this.newComponentForm.value;
       switch (componentType) {
-        case 1: {
+        case '1': {
           this.createSwitch(this.newComponentForm.value);
         }
         break;
-        case 2: {
+        case '2': {
           this.createSensor(this.newComponentForm.value);
         }
         break;
-        case 3: {
+        case '3': {
           this.createServo(this.newComponentForm.value);
         }
         break;
@@ -126,19 +125,18 @@ export class NewComponentComponent implements OnInit {
     this._componentsService
         .createComponent(_idResidence, _idRoom, component)
         .then(response => console.log(response.Component));
-        console.log(component);
   }
 
   createControls(nextFormType) {
     switch (nextFormType) {
-      case 1:
+      case '1':
           this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.residenceBoards[0]['digitalPins'])));
         break;
-      case 2:
+      case '2':
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         break;
-      case 3:
+      case '3':
           this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('rotation', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('minRange', new FormControl('', [Validators.required]));
@@ -149,14 +147,14 @@ export class NewComponentComponent implements OnInit {
 
   removeControls(previousFormType) {
     switch (previousFormType) {
-      case 1:
+      case '1':
           this.newComponentForm.removeControl('digitalPin');
         break;
-      case 2:
+      case '2':
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
         break;
-      case 3:
+      case '3':
           this.newComponentForm.removeControl('digitalPin');
           this.newComponentForm.removeControl('rotation');
           this.newComponentForm.removeControl('minRange');

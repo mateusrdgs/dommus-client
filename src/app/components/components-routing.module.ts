@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
+import { ComponentResolver } from './resolvers/component.resolver.service';
 import { ComponentsComponent } from './components.component';
 import { NewComponentComponent } from './new-component/new-component.component';
 import { ComponentComponent } from './component/component.component';
@@ -20,7 +21,10 @@ const routes: Routes = [
   },
   {
     path: ':idComponent',
-    component: ComponentComponent
+    component: ComponentComponent,
+    resolve: {
+      component: ComponentResolver
+    }
   }
 ];
 

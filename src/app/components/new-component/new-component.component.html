@@ -12,17 +12,17 @@
       <option *ngFor="let board of residenceBoards" [textContent]="board.description" [value]="board._id" [selected]="board.description == firstBoardName"></option>
     </select>
     <div [ngSwitch]="newComponentForm.value.componentType" class="new-component-form__container">
-      <ng-container *ngSwitchCase="'1'">
+      <ng-container *ngSwitchCase="1">
         <label for="description" class="new-component-form__label">Digital Pin</label>
         <input type="number" formControlName="digitalPin" class="new-component-form__input">
       </ng-container>
-      <ng-container *ngSwitchCase="'2'">
+      <ng-container *ngSwitchCase="2">
         <label for="description" class="new-component-form__label">Analog Pin</label>
         <input type="number" formControlName="analogPin" class="new-component-form__input">
         <label for="description" class="new-component-form__label">Frequency</label>
         <input type="number" formControlName="frequency" class="new-component-form__input">
       </ng-container>
-      <ng-container *ngSwitchCase="'3'">
+      <ng-container *ngSwitchCase="3">
         <label for="description" class="new-component-form__label">Digital Pin</label>
         <input type="number" formControlName="digitalPin" class="new-component-form__input">
         <label for="description" class="new-component-form__label">Rotation</label>
