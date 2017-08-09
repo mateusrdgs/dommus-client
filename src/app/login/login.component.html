@@ -1,6 +1,6 @@
 <div class="login-container">
   <h1 class="login__text">Login</h1>
-  <form [formGroup]="loginForm" class="login-form">
+  <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
     <label for="email" class="login-form__label">Email</label>
     <input type="text" formControlName="email" class="login-form__input">
     <label for="password" class="login-form__label">Password</label>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { LoginService } from './login.service';
+import { Account } from './new-account/account';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,9 +12,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  account: Account;
 
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -19,6 +24,13 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
+  }
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.account = this.loginForm.value;
+      this._loginService.loginAccount(this.account);
+    }
   }
 
 }

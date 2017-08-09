@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { NewAccountService } from './new-account.service';
+import { LoginService } from './../login.service';
 
 @Component({
   selector: 'new-account',
@@ -20,7 +20,7 @@ export class NewAccountComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _newAccountService: NewAccountService
+    private _newAccountService: LoginService
   ) { }
 
   ngOnInit() {
@@ -43,16 +43,7 @@ export class NewAccountComponent implements OnInit {
   onSubmit() {
     if (this.accountFormValid) {
       this.account = this.accountForm.value;
-      this._newAccountService
-        .postAccount(this.account)
-        .then(response => {
-          if (response) {
-            console.log(response);
-          }
-        })
-        .catch(error => {
-          console.error(error.message || error._body || error);
-        });
+      this._newAccountService.createNewAccount(this.account);
     }
   }
 

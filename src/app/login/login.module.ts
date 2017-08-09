@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { LoginService } from './login.service';
 import { NewAccountComponent } from './new-account/new-account.component';
-import { NewAccountService } from './new-account/new-account.service';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { NewAccountService } from './new-account/new-account.service';
     NewAccountComponent
   ],
   providers: [
-    NewAccountService
+    LoginService
   ]
 })
 export class LoginModule { }
