@@ -3,22 +3,23 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { url } from './../database';
-
 import { Account } from './new-account/account';
 
 @Injectable()
 export class LoginService {
 
   constructor(
-    private _http: Http
+    private _http: Http,
+    private _localStorageService: LocalStorageService
   ) { }
 
   createNewAccount(account: Account) {
     const _url = this.mount_Url('CREATE', url);
     this._http.post(_url, account)
               .toPromise()
-              .then(response => this.saveToken(response['_body']))
+              .then(response => this._localStorageService.saveToken('dommusRemote', response['_body']))
               .catch(this.handleError);
   }
 
@@ -26,37 +27,25 @@ export class LoginService {
     const _url = this.mount_Url('LOGIN', url);
     this._http.post(_url, account)
               .toPromise()
-              .then(response => {
-                console.log(response);
-                this.saveToken(response['_body']);
-                return response;
-              })
+              .then(response => this._localStorageService.saveToken('dommusRemote', response['_body']))
               .catch(this.handleError);
   }
 
   logoutAccount() {
-    window.localStorage.removeItem('dommus-token');
-  }
-
-  saveToken(token: string) {
-    window.localStorage['dommus-token'] = token;
+    this._localStorageService.removeToken('dommusRemote');
   }
 
   getToken() {
-    return window.localStorage.getItem('dommus-token');
+    this._localStorageService.getToken('dommusRemote');
   }
 
   isLoggedIn() {
-    const token = this.getToken();
+    const token = this._localStorageService.getToken('dommusRemote');
     if (token) {
       const payload = JSON.parse(window.atob(token.split('.')[1]));
       return payload.expiration > (Date.now() / 1000);
     }
   }
-
-  /*currentUser() {
-
-  }*/
 
   handleError(error: Error): Promise<any> {
     return Promise.reject(error.message || error);

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { LoginService } from './login.service';
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Account } from './new-account/account';
 
 @Component({
@@ -16,7 +18,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private _localStorageService: LocalStorageService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -30,7 +34,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.account = this.loginForm.value;
       this._loginService.loginAccount(this.account);
+      this.redirectToHome();
     }
   }
 
+  redirectToHome() {
+    if (this._localStorageService.getToken('dommusRemote')) {
+      this._router.navigateByUrl('/home');
+    }
+  }
 }
