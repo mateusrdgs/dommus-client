@@ -41,9 +41,17 @@ export class LoginService {
 
   isLoggedIn() {
     const token = this._localStorageService.getToken('dommusRemote');
-    if (token) {
+    if (token.length) {
       const payload = JSON.parse(window.atob(token.split('.')[1]));
       return payload.expiration > (Date.now() / 1000);
+    }
+  }
+
+  getIdAccount() {
+    const token = this._localStorageService.getToken('dommusRemote');
+    if (token.length) {
+      const payload = JSON.parse(window.atob(token.split('.')[1]));
+      return payload._id;
     }
   }
 

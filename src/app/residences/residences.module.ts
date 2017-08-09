@@ -10,6 +10,7 @@ import { ResidenceResolver } from './resolvers/residence.resolver.service';
 import { ResidencesComponent } from './residences.component';
 import { NewResidenceComponent } from './new-residence/new-residence.component';
 import { ResidenceComponent } from './residence/residence.component';
+import { AppGuard } from './../shared/guards/app.guards.service';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { ResidenceComponent } from './residence/residence.component';
   providers: [
     ResidencesService,
     ResidencesResolver,
-    ResidenceResolver
+    ResidenceResolver,
+    AppGuard
   ]
 })
 export class ResidencesModule { }

@@ -4,21 +4,25 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 
-import { id, url } from './../database';
+import { LoginService } from './../login/login.service';
 import { Room } from './room';
+import { url } from './../database';
 
 @Injectable()
 export class RoomsService {
 
-  private _id = id;
+  private _idAccount: string;
   private _url = url;
 
   constructor(
-    private _http: Http
-  ) { }
+    private _http: Http,
+    private _loginService: LoginService
+  ) {
+    this.getIdAccount();
+  }
 
   getRooms(idResidence: string) {
-    const url = this.mountUrl('GETALL', this._url, this._id, idResidence);
+    const url = this.mountUrl('GETALL', this._url, this._idAccount, idResidence);
     return this._http.get(url)
                      .toPromise()
                      .then(response => response.json().Rooms)
@@ -26,7 +30,7 @@ export class RoomsService {
   }
 
   getRoomById(idResidence: string, idRoom: string) {
-    const url = this.mountUrl('BYID', this._url, this._id, idResidence, idRoom);
+    const url = this.mountUrl('BYID', this._url, this._idAccount, idResidence, idRoom);
     return this._http.get(url)
                      .toPromise()
                      .then(response => response.json().Room)
@@ -34,7 +38,7 @@ export class RoomsService {
   }
 
   createRoom(idResidence: string, description: string) {
-    const url = this.mountUrl('CREATE', this._url, this._id, idResidence);
+    const url = this.mountUrl('CREATE', this._url, this._idAccount, idResidence);
     return this._http.post(url, { description })
                      .toPromise()
                      .then(response => response.json())
@@ -43,7 +47,7 @@ export class RoomsService {
 
   updateRoom(idResidence: string, room: Room) {
     const idRoom  = room.Id;
-    const url = this.mountUrl('BYID', this._url, this._id, idResidence, idRoom);
+    const url = this.mountUrl('BYID', this._url, this._idAccount, idResidence, idRoom);
     return this._http.put(url, room)
                      .toPromise()
                      .then(response => response.json())
@@ -51,11 +55,15 @@ export class RoomsService {
   }
 
   deleteRoom(idResidence: string, idRoom: string) {
-    const url = this.mountUrl('BYID', this._url, this._id, idResidence, idRoom);
+    const url = this.mountUrl('BYID', this._url, this._idAccount, idResidence, idRoom);
     return this._http.delete(url)
                      .toPromise()
                      .then(response => response.json())
                      .catch(this.handleError);
+  }
+
+  getIdAccount() {
+    this._idAccount = this._loginService.getIdAccount();
   }
 
   handleError(error: Error): Promise<any> {

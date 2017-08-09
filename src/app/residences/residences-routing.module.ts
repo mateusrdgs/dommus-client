@@ -1,3 +1,4 @@
+import { AppGuard } from './../shared/guards/app.guards.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -13,7 +14,8 @@ const routes: Routes = [
     component: ResidencesComponent,
     resolve: {
       residences: ResidencesResolver
-    }
+    },
+    canActivate: [AppGuard]
   },
   {
     path: 'new',

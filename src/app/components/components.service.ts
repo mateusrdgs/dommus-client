@@ -3,19 +3,25 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { id, url } from './../database';
+import { LoginService } from './../login/login.service';
+import { url } from './../database';
 
 // import { Component } from './board';
 
 @Injectable()
 export class ComponentsService {
 
+  private _idAccount: string;
+
   constructor(
-    private _http: Http
-  ) { }
+    private _http: Http,
+    private _loginService: LoginService
+  ) {
+    this.getIdAccount();
+  }
 
   getComponents(idResidence: string, idRoom: string) {
-    const _url = this.mountUrl('GETALL', url, id, idResidence, idRoom);
+    const _url = this.mountUrl('GETALL', url, this._idAccount, idResidence, idRoom);
     return this._http.get(_url)
                      .toPromise()
                      .then(response => response.json().Components)
@@ -23,7 +29,7 @@ export class ComponentsService {
   }
 
   getComponentById(idResidence: string, idRoom: string, idComponent: string) {
-    const _url = this.mountUrl('BYID', url, id, idResidence, idRoom, idComponent)
+    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom, idComponent)
     return this._http.get(_url)
                      .toPromise()
                      .then(response => response.json().Component)
@@ -31,7 +37,7 @@ export class ComponentsService {
   }
 
   createComponent(idResidence: string, idRoom: string, component: any) {
-    const _url = this.mountUrl('CREATE', url, id, idResidence, idRoom);
+    const _url = this.mountUrl('CREATE', url, this._idAccount, idResidence, idRoom);
     return this._http.post(_url, component)
                      .toPromise()
                      .then(response => response.json())
@@ -40,7 +46,7 @@ export class ComponentsService {
 
   updateComponent(idResidence: string, idRoom: string, component: any) {
     const { id } = component;
-    const _url = this.mountUrl('BYID', url, id, idRoom, id);
+    const _url = this.mountUrl('BYID', url, this._idAccount, idRoom, id);
     return this._http.put(_url, component)
                      .toPromise()
                      .then(response => response.json())
@@ -48,11 +54,15 @@ export class ComponentsService {
   }
 
   deleteComponent(idResidence: string, idRoom: string, idComponent: string) {
-    const _url = this.mountUrl('BYID', url, id, idResidence, idRoom, idComponent);
+    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom, idComponent);
     return this._http.delete(_url)
                      .toPromise()
                      .then(response => response.json())
                      .catch(this.handleError);
+  }
+
+  getIdAccount() {
+    this._idAccount = this._loginService.getIdAccount();
   }
 
   handleError(error: Error): Promise<any> {

@@ -3,19 +3,25 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { id, url } from './../database';
-
+import { LoginService } from './../login/login.service';
 import { Board } from './board';
+
+import { url } from './../database';
 
 @Injectable()
 export class BoardsService {
 
+  private _idAccount: string;
+
   constructor(
-    private _http: Http
-  ) { }
+    private _http: Http,
+    private _loginService: LoginService
+  ) {
+    this.getIdAccount();
+  }
 
   getBoards(idResidence: string) {
-    const _url = this.mountUrl('GETALL', url, id, idResidence);
+    const _url = this.mountUrl('GETALL', url, this._idAccount, idResidence);
     return this._http.get(_url)
                      .toPromise()
                      .then(response => response.json().Boards)
@@ -23,7 +29,7 @@ export class BoardsService {
   }
 
   getBoardById(idResidence: string, idBoard: string) {
-    const _url = this.mountUrl('BYID', url, id, idResidence, idBoard);
+    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idBoard);
     return this._http.get(_url)
                      .toPromise()
                      .then(response => response.json().Board)
@@ -31,7 +37,7 @@ export class BoardsService {
   }
 
   createBoard(idResidence: string, description: string, model: number, port: number) {
-    const _url = this.mountUrl('CREATE', url, id, idResidence);
+    const _url = this.mountUrl('CREATE', url, this._idAccount, idResidence);
     return this._http.post(_url, { description, model, port })
                      .toPromise()
                      .then(response => response.json())
@@ -39,7 +45,7 @@ export class BoardsService {
   }
 
   updateBoard(idResidence: string, board: Board) {
-    const idBoard = board.Id, _url = this.mountUrl('BYID', url, id, idResidence, idBoard);
+    const idBoard = board.Id, _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idBoard);
     return this._http.put(_url, board)
                      .toPromise()
                      .then(response => response.json())
@@ -47,11 +53,15 @@ export class BoardsService {
   }
 
   deleteBoard(idResidence: string, idBoard: string) {
-    const _url = this.mountUrl('BYID', url, id, idResidence, idBoard);
+    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idBoard);
     return this._http.delete(_url)
                      .toPromise()
                      .then(response => response.json())
                      .catch(this.handleError);
+  }
+
+  getIdAccount() {
+    this._idAccount = this._loginService.getIdAccount();
   }
 
   handleError(error: Error): Promise<any> {
