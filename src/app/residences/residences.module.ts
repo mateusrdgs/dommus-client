@@ -12,6 +12,8 @@ import { ResidenceResolver } from './resolvers/residence.resolver.service';
 import { ResidencesComponent } from './residences.component';
 import { NewResidenceComponent } from './new-residence/new-residence.component';
 import { ResidenceComponent } from './residence/residence.component';
+import { UpdateComponent } from './update/update.component';
+import { UpdateResidenceComponent } from './update-residence/update-residence.component';
 
 @NgModule({
   imports: [
@@ -23,7 +25,9 @@ import { ResidenceComponent } from './residence/residence.component';
   declarations: [
     ResidencesComponent,
     NewResidenceComponent,
-    ResidenceComponent
+    ResidenceComponent,
+    UpdateComponent,
+    UpdateResidenceComponent
   ],
   providers: [
     ResidencesService,

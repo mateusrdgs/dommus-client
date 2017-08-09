@@ -1,12 +1,14 @@
-import { AppGuard } from './../shared/guards/app.guards.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { AppGuard } from './../shared/guards/app.guards.service';
 import { ResidencesResolver } from './resolvers/residences.resolver.service';
 import { ResidenceResolver } from './resolvers/residence.resolver.service';
+
 import { ResidencesComponent } from './residences.component';
 import { NewResidenceComponent } from './new-residence/new-residence.component';
 import { ResidenceComponent } from './residence/residence.component';
+import { UpdateResidenceComponent } from './update-residence/update-residence.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,10 @@ const routes: Routes = [
     resolve: {
       residence: ResidenceResolver
     }
+  },
+  {
+    path: ':idResidence/update',
+    component: UpdateResidenceComponent
   },
   {
     path: ':idResidence/rooms',

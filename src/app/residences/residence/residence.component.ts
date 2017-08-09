@@ -17,7 +17,7 @@ export class ResidenceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.residence = this._route.snapshot.data['residence']['Residence'];
+    this.residence = this._route.snapshot.data['residence'];
   }
 
 }
