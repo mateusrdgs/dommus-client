@@ -14,15 +14,18 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   {
     path: 'profile',
-    loadChildren: 'app/profile/profile.module#ProfileModule'
+    loadChildren: 'app/profile/profile.module#ProfileModule',
+    canActivate: [AppGuard]
   },
   {
     path: 'residences',
     loadChildren: 'app/residences/residences.module#ResidencesModule',
+    canActivate: [AppGuard]
   },
   {
     path: 'users',
-    loadChildren: 'app/users/users.module#UsersModule'
+    loadChildren: 'app/users/users.module#UsersModule',
+    canActivate: [AppGuard]
   },
   {
     path: 'login',

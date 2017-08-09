@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { ComponentsRoutingModule } from './components-routing.module';
+
 import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
 import { BoardsService } from './../boards/boards.service';
-
-import { ComponentsRoutingModule } from './components-routing.module';
 import { ComponentsService } from './components.service';
 import { ComponentResolver } from './resolvers/component.resolver.service';
+
 import { ComponentsComponent } from './components.component';
-import { NewComponentComponent } from './new-component/new-component.component';
 import { ComponentComponent } from './component/component.component';
+import { NewComponentComponent } from './new-component/new-component.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,16 @@ import { ComponentComponent } from './component/component.component';
     ReactiveFormsModule,
     ComponentsRoutingModule
   ],
-  declarations: [ComponentsComponent, NewComponentComponent, ComponentComponent],
-  providers: [BoardsService, BoardsResolver, ComponentsService, ComponentResolver]
+  declarations: [
+    ComponentsComponent,
+    NewComponentComponent,
+    ComponentComponent
+  ],
+  providers: [
+    BoardsService,
+    BoardsResolver,
+    ComponentsService,
+    ComponentResolver
+  ]
 })
 export class ComponentsModule { }

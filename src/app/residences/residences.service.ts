@@ -24,7 +24,7 @@ export class ResidencesService {
     const _url = this.mount_Url('GETALL', url, this._id);
     return this._http.get(_url)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().Residences)
                .catch(this.handleError);
   }
 
@@ -32,7 +32,7 @@ export class ResidencesService {
     const _url = this.mount_Url('BYID', url, this._id, idResidence);
     return this._http.get(_url)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().Residence)
                .catch(this.handleError);
   }
 
@@ -40,7 +40,7 @@ export class ResidencesService {
     const _url = this.mount_Url('CREATE', url,  this._id);
     return this._http.post(_url, residence)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().Residence)
                .catch(this.handleError);
   }
 
@@ -49,7 +49,7 @@ export class ResidencesService {
           _url = this.mount_Url('BYID', url,  this._id, idResidence);
     return this._http.put(_url, residence)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().Residence)
                .catch(this.handleError);
   }
 

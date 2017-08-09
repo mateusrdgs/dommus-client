@@ -29,7 +29,7 @@ export class ComponentsService {
   }
 
   getComponentById(idResidence: string, idRoom: string, idComponent: string) {
-    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom, idComponent)
+    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom, idComponent);
     return this._http.get(_url)
                      .toPromise()
                      .then(response => response.json().Component)

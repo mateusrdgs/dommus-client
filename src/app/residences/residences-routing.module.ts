@@ -14,8 +14,7 @@ const routes: Routes = [
     component: ResidencesComponent,
     resolve: {
       residences: ResidencesResolver
-    },
-    canActivate: [AppGuard]
+    }
   },
   {
     path: 'new',
