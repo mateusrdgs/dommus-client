@@ -31,7 +31,10 @@ const routes: Routes = [
   },
   {
     path: ':idResidence/update',
-    component: UpdateResidenceComponent
+    component: UpdateResidenceComponent,
+    resolve: {
+      residence: ResidenceResolver
+    }
   },
   {
     path: ':idResidence/rooms',

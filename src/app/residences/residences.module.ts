@@ -12,7 +12,6 @@ import { ResidenceResolver } from './resolvers/residence.resolver.service';
 import { ResidencesComponent } from './residences.component';
 import { NewResidenceComponent } from './new-residence/new-residence.component';
 import { ResidenceComponent } from './residence/residence.component';
-import { UpdateComponent } from './update/update.component';
 import { UpdateResidenceComponent } from './update-residence/update-residence.component';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { UpdateResidenceComponent } from './update-residence/update-residence.co
     ResidencesComponent,
     NewResidenceComponent,
     ResidenceComponent,
-    UpdateComponent,
     UpdateResidenceComponent
   ],
   providers: [

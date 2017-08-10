@@ -11,6 +11,7 @@ import { Residence } from './../residence';
 export class ResidenceComponent implements OnInit {
 
   residence: Residence;
+  data: any;
 
   constructor(
     private _route: ActivatedRoute
