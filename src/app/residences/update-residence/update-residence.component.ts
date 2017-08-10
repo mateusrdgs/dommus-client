@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { ResidencesService } from './../residences.service';
+
 import { Residence } from './../residence';
 
 @Component({
@@ -11,19 +13,19 @@ import { Residence } from './../residence';
 })
 export class UpdateResidenceComponent implements OnInit {
 
-
-  private _residence: Residence;
+  residence: Residence;
   updateResidenceForm: FormGroup;
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _residencesService: ResidencesService
   ) { }
 
   ngOnInit() {
     const { _id, description, url, rooms, boards  } = this._route.snapshot.data['residence'];
-    this._residence = new Residence(description, url, _id, rooms, boards);
-    this.createUpdateResidenceForm(this._residence);
+    this.residence = new Residence(description, url, _id, rooms, boards);
+    this.createUpdateResidenceForm(this.residence);
   }
 
   createUpdateResidenceForm(residence: Residence) {
@@ -31,6 +33,15 @@ export class UpdateResidenceComponent implements OnInit {
       description: [residence.Description, Validators.required],
       url: [residence.Url, Validators.required]
     });
+  }
+
+  onSubmit() {
+    if (this.updateResidenceForm.valid) {
+      const { description, url } = this.updateResidenceForm.value;
+      const { Id, Rooms, Boards } = this.residence;
+      const updatedResidence = new Residence(description, url, Id, Rooms, Boards);
+      this._residencesService.updateResidence(updatedResidence);
+    }
   }
 
 }

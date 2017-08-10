@@ -15,6 +15,15 @@ export class NewBoardComponent implements OnInit {
   newBoardForm: FormGroup;
   idResidence: string;
 
+  boardsAllowed = [{
+    value: 1,
+    type: 'UNO'
+  },
+  {
+    value: 2,
+    type: 'MEGA'
+  }];
+
   constructor(
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
@@ -24,7 +33,7 @@ export class NewBoardComponent implements OnInit {
   ngOnInit() {
     this.newBoardForm = this._formBuilder.group({
       description: ['', Validators.required],
-      model: ['', [Validators.required, Validators.min(1), Validators.max(2)]],
+      model: [1, Validators.required],
       port: ['', Validators.required]
     });
     this.idResidence = this._route.snapshot.params['idResidence'];

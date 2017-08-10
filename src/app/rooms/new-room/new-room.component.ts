@@ -31,16 +31,15 @@ export class NewRoomComponent implements OnInit {
   }
 
   onSubmit() {
-    const description = this.newRoomForm.value['description'];
-    this._roomsService
-        .createRoom(this._idResidence, description)
-        .then(response => console.log(response['Room']))
-        .catch(error => console.error(error));
+    if (this.newRoomForm.valid) {
+      const { description } = this.newRoomForm.value;
+      this._roomsService.createRoom(this._idResidence, description);
+    }
   }
 
   getIdResidence() {
     this._routeSubscription = this._route.params.subscribe((params: any) => {
-      this._idResidence = params['id'];
+      this._idResidence = params['idResidence'];
     });
   }
 

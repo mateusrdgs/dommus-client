@@ -4,7 +4,9 @@
     <label for="description" class="new-board-form__label">Description</label>
     <input type="text" formControlName="description" class="new-board-form__input">
     <label for="model" class="new-board-form__label">Model</label>
-    <input type="number" formControlName="model" class="new-board-form__input">
+    <select formControlName="model" class="new-board-form__input">
+      <option *ngFor="let board of boardsAllowed" [value]="board.value" [textContent]="board.type"></option>
+    </select>
     <label for="port" class="new-board-form__label">Port</label>
     <input type="number" formControlName="port" class="new-board-form__input">
     <input type="submit" value="Create" class="new-board-form__submit" [disabled]="newBoardForm.invalid">
