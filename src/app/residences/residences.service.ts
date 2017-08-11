@@ -1,9 +1,9 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LocalStorageService } from './../shared/services/local-storage.service';
+import { AuthService } from './../shared/services/auth.service';
 import { Residence } from './residence';
 
 import { url } from '../database';
@@ -11,34 +11,46 @@ import { url } from '../database';
 @Injectable()
 export class ResidencesService {
 
-  private _id: string;
+  private _headers: Headers;
+  private _idAccount: string;
+  private _options: object;
+  private _token: string;
 
   constructor(
     private _http: Http,
-    private _localStorageService: LocalStorageService
+    private _authService: AuthService
   ) {
-    this.getIdAccount();
+    this.startServiceOptions();
+  }
+
+  startServiceOptions() {
+    this._headers = this._authService.createRequestHeaders();
+    this._idAccount = this._authService.getDataFromToken('_id');
+    this._token = this._authService.getTokenValue('dommusRemote', 'token');
+    this._authService.createAuthorizationHeader(this._headers, this._token);
+    this._options = this._authService.createRequestOptions(this._headers);
   }
 
   getResidences() {
-    const _url = this.mount_Url('GETALL', url, this._id);
-    return this._http.get(_url)
+    const _url = this.mount_Url('GETALL', url, this._idAccount);
+    return this._http.get(_url, this._options)
                .toPromise()
                .then(response => response.json().Residences)
                .catch(this.handleError);
   }
 
   getResidenceById(idResidence: string) {
-    const _url = this.mount_Url('BYID', url, this._id, idResidence);
-    return this._http.get(_url)
+    const _url = this.mount_Url('BYID', url, this._idAccount, idResidence);
+    const options = this._authService.createRequestOptions(this._headers);
+    return this._http.get(_url, this._options)
                .toPromise()
                .then(response => response.json().Residence)
                .catch(this.handleError);
   }
 
   createResidence(residence: Residence) {
-    const _url = this.mount_Url('CREATE', url,  this._id);
-    return this._http.post(_url, residence)
+    const _url = this.mount_Url('CREATE', url,  this._idAccount);
+    return this._http.post(_url, residence, this._options)
                .toPromise()
                .then(response => response.json().Residence)
                .catch(this.handleError);
@@ -46,23 +58,19 @@ export class ResidencesService {
 
   updateResidence(residence: Residence) {
     const idResidence = residence['Id'],
-          _url = this.mount_Url('BYID', url,  this._id, idResidence);
-    return this._http.put(_url, residence)
+          _url = this.mount_Url('BYID', url,  this._idAccount, idResidence);
+    return this._http.put(_url, residence, this._options)
                .toPromise()
                .then(response => response.json().Residence)
                .catch(this.handleError);
   }
 
   deleteResidence(idResidence: string) {
-    const _url = this.mount_Url('BYID', url,  this._id, idResidence);
-    return this._http.delete(_url)
+    const _url = this.mount_Url('BYID', url,  this._idAccount, idResidence);
+    return this._http.delete(_url, this._options)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
-  }
-
-  getIdAccount() {
-    this._id = this._localStorageService.getIdAccount();
   }
 
   handleError(error: Error) {
