@@ -1,17 +1,17 @@
-<ul>
-  <li>
-    <a [routerLink]="'/profile'">Profile</a>
+<ul class="menu-list">
+  <li class="menu-list__item">
+    <a [routerLink]="'/profile'" class="menu-list__item__link">Profile</a>
   </li>
-  <li>
-    <a [routerLink]="'/residences'">Residences</a>
+  <li class="menu-list__item">
+    <a [routerLink]="'/residences'" class="menu-list__item__link">Residences</a>
   </li>
-  <li>
-    <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [class.disabled]="!idResidence">Rooms</a>
+  <li class="menu-list__item">
+    <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [class.disabled]="!idResidence" class="menu-list__item__link">Rooms</a>
   </li>
-  <li>
-    <a [routerLink]="false ? '/boards' : null" class="disabled">Boards</a>
+  <li class="menu-list__item">
+    <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [class.disabled]="!idResidence" class="menu-list__item__link">Boards</a>
   </li>
-  <li>
-    <a [routerLink]="'/users'">Users</a>
+  <li class="menu-list__item">
+    <a [routerLink]="'/users'" class="menu-list__item__link">Users</a>
   </li>
 </ul>
