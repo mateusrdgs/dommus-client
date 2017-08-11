@@ -7,6 +7,7 @@ import { HttpModule } from '@angular/http';
 import { RoomsRoutingModule } from './rooms-routing.module';
 
 import { RoomsService } from './rooms.service';
+import { RoomsResolver } from './resolvers/rooms.resolver.service';
 import { RoomResolver } from './resolvers/room.resolver.service';
 
 import { RoomsComponent } from './rooms.component';
@@ -24,6 +25,7 @@ import { RoomComponent } from './room/room.component';
   declarations: [RoomsComponent, NewRoomComponent, RoomComponent],
   providers: [
     RoomsService,
+    RoomsResolver,
     RoomResolver
   ]
 })

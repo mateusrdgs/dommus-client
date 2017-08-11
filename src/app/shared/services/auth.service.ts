@@ -16,10 +16,14 @@ export class AuthService {
 
   getTokenValue(tokenName: string, tokenValue) {
     const token = this.getToken(tokenName);
-    try {
-      return JSON.parse(token)['token'];
-    } catch (error) {
+    if (token) {
+      try {
+        return JSON.parse(token)['token'];
+      } catch (error) {
         console.error(error);
+        return '';
+      }
+    } else {
       return '';
     }
   }

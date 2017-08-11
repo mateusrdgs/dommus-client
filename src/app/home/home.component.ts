@@ -10,6 +10,7 @@ import { AuthService } from './../shared/services/auth.service';
 export class HomeComponent implements OnInit {
 
   _id: string;
+  idResidence: string;
 
   constructor(
     private _authService: AuthService
@@ -17,10 +18,18 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getIdAccount();
+    this.getIdResidence();
   }
 
   getIdAccount() {
     this._id = this._authService.getDataFromToken('_id');
+  }
+
+  getIdResidence() {
+    const token = this._authService.getToken('lastEnteredResidence');
+    if (token) {
+      this.idResidence = token;
+    }
   }
 
 }

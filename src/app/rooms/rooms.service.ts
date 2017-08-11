@@ -34,7 +34,7 @@ export class RoomsService {
 
   getRooms(idResidence: string) {
     const _url = this.mountUrl('GETALL', url, this._idAccount, idResidence);
-    return this._http.get(_url)
+    return this._http.get(_url, this._options)
                      .toPromise()
                      .then(response => response.json().Rooms)
                      .catch(this.handleError);
@@ -42,7 +42,7 @@ export class RoomsService {
 
   getRoomById(idResidence: string, idRoom: string) {
     const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom);
-    return this._http.get(_url)
+    return this._http.get(_url, this._options)
                      .toPromise()
                      .then(response => response.json().Room)
                      .catch(this.handleError);
@@ -50,7 +50,7 @@ export class RoomsService {
 
   createRoom(idResidence: string, description: string) {
     const _url = this.mountUrl('CREATE', url, this._idAccount, idResidence);
-    return this._http.post(_url, { description })
+    return this._http.post(_url, { description }, this._options)
                      .toPromise()
                      .then(response => response.json())
                      .catch(this.handleError);
@@ -59,7 +59,7 @@ export class RoomsService {
   updateRoom(idResidence: string, room: Room) {
     const idRoom  = room.Id;
     const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom);
-    return this._http.put(_url, room)
+    return this._http.put(_url, room, this._options)
                      .toPromise()
                      .then(response => response.json())
                      .catch(this.handleError);
@@ -67,7 +67,7 @@ export class RoomsService {
 
   deleteRoom(idResidence: string, idRoom: string) {
     const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom);
-    return this._http.delete(_url)
+    return this._http.delete(_url, this._options)
                      .toPromise()
                      .then(response => response.json())
                      .catch(this.handleError);

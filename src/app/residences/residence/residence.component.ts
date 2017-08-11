@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { LocalStorageService } from './../../shared/services/local-storage.service';
 import { Residence } from './../residence';
 
 @Component({
@@ -14,11 +15,16 @@ export class ResidenceComponent implements OnInit {
   data: any;
 
   constructor(
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
-    this.residence = this._route.snapshot.data['residence'];
+    const { _id, url, description, rooms, boards } = this._route.snapshot.data['residence'];
+    this.residence = new Residence(description, url, _id, rooms, boards);
+    if (_id) {
+      this._localStorageService.saveToken('lastEnteredResidence', _id);
+    }
   }
 
 }
