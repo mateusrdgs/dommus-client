@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 
-import { LocalStorageService } from './shared/services/local-storage.service';
 import { AppGuard } from './shared/guards/app.guards.service';
 
 import { AppComponent } from './app.component';

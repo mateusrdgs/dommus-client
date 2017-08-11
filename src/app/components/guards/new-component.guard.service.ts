@@ -14,7 +14,8 @@ export class NewComponentGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {
+    state: RouterStateSnapshot
+  ) {
     return true;
   }
 }

@@ -9,20 +9,21 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
-import { LoginService } from './../../login/login.service';
+import { AuthService } from './../services/auth.service';
 
 @Injectable()
 export class AppGuard implements CanActivate, CanLoad {
 
   constructor(
-    private _loginService: LoginService,
+    private _authService: AuthService,
     private _router: Router
   ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if (this._loginService.isLoggedIn()) {
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+      if (this._authService.isLoggedIn('dommusRemote')) {
         return true;
       } else {
         this._router.navigate(['/login']);
@@ -33,7 +34,7 @@ export class AppGuard implements CanActivate, CanLoad {
   canLoad(
     route: Route
   ): Observable<boolean> | Promise<boolean> | boolean {
-      if (this._loginService.isLoggedIn()) {
+      if (this._authService.isLoggedIn('dommusRemote')) {
         return true;
       } else {
         this._router.navigate(['/login']);

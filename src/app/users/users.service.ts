@@ -3,7 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LocalStorageService } from './../shared/services/local-storage.service';
+import { AuthService } from './../shared/services/auth.service';
 
 import { User } from './user';
 import { url } from './../database';
@@ -11,47 +11,53 @@ import { url } from './../database';
 @Injectable()
 export class UsersService {
 
-  private _idAccount: string;
   private _headers: Headers;
+  private _idAccount: string;
+  private _token: string;
 
-  constructor(
+  constructor (
     private _http: Http,
-    private _localStorageService: LocalStorageService
+    private _authService: AuthService
   ) {
-    this.getIdAccount();
-    this._headers = this.createHeaders();
+    this.createRequestHeaders();
+    this.getDataFromToken('_id');
+    this.getTokenValue('dommusRemote', 'token');
+    this.createAuthorizationHeaders(this._headers, this._token);
   }
 
   getUsers(): Promise<User[]> {
     const _url = this.mount_Url('GETALL', url, this._idAccount);
-    const { token } = JSON.parse(this._localStorageService.getToken('dommusRemote'));
-    this.createAuthorizationHeader(this._headers, token);
-    const options = this.createOptions(this._headers);
-    return this._http.get(_url,  options)
+    const options = this._authService.createRequestOptions(this._headers);
+    return this._http.get(_url, options)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().Users)
                .catch(this.handleError);
   }
 
   getUserById(idUser: string): Promise<User> {
-    const _url = this.mount_Url('BYID', url, this._idAccount);
-    return this._http.get(_url)
+    const _url = this.mount_Url('BYID', url, this._idAccount, idUser);
+    const options = this._authService.createRequestOptions(this._headers);
+    return this._http.get(_url, options)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().User)
                .catch(this.handleError);
   }
 
   createUser(user: User): Promise<User> {
     const _url = this.mount_Url('CREATE', url, this._idAccount);
-    return this._http.post(_url, user)
+    const options = this._authService.createRequestOptions(this._headers);
+
+    return this._http.post(_url, user, options)
                .toPromise()
-               .then(response => response.json())
+               .then(response => response.json().User)
                .catch(this.handleError);
   }
 
   updateUser(user: User): Promise<User> {
     const { Id } = user, _url = this.mount_Url('BYID', url, this._idAccount, Id);
-    return this._http.put(url, user)
+    const options = this._authService.createRequestOptions(this._headers);
+
+    return this._http.put(url, user, options)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
@@ -59,26 +65,28 @@ export class UsersService {
 
   deleteUser(idUser: string): Promise<string> {
     const _url = this.mount_Url('BYID', url, this._idAccount, idUser);
-    return this._http.delete(url)
+    const options = this._authService.createRequestOptions(this._headers);
+
+    return this._http.delete(url, options)
                .toPromise()
                .then(response => response.json())
                .catch(this.handleError);
   }
 
-  getIdAccount() {
-    this._idAccount = this._localStorageService.getIdAccount();
+  createRequestHeaders() {
+    this._headers = this._authService.createRequestHeaders();
   }
 
-  createHeaders(): Headers {
-    return new Headers();
+  getDataFromToken(value: string) {
+    this._idAccount = this._authService.getDataFromToken(value);
   }
 
-  createAuthorizationHeader(header: Headers, token: string) {
-    header.append('Authorization', `Bearer ${token}`);
+  getTokenValue(tokenName: string, tokenValue: string) {
+    this._token = this._authService.getTokenValue(tokenName, tokenValue);
   }
 
-  createOptions(headers: Headers) {
-    return new RequestOptions({ headers });
+  createAuthorizationHeaders(headers: Headers, token: string) {
+    this._authService.createAuthorizationHeader(headers, token);
   }
 
   handleError(error): Promise<any> {

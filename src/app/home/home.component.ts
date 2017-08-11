@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LocalStorageService } from './../shared/services/local-storage.service';
+import { AuthService } from './../shared/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   _id: string;
 
   constructor(
-    private _localStorageService: LocalStorageService
+    private _authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   }
 
   getIdAccount() {
-    this._id = this._localStorageService.getIdAccount();
+    this._id = this._authService.getDataFromToken('_id');
   }
 
 }

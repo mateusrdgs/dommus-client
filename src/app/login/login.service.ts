@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LocalStorageService } from './../shared/services/local-storage.service';
+import { AuthService } from './../shared/services/auth.service';
 import { url } from './../database';
 import { Account } from './new-account/account';
 
@@ -12,14 +12,14 @@ export class LoginService {
 
   constructor(
     private _http: Http,
-    private _localStorageService: LocalStorageService
+    private _authService: AuthService
   ) { }
 
   createNewAccount(account: Account) {
     const _url = this.mount_Url('CREATE', url);
     this._http.post(_url, account)
               .toPromise()
-              .then(response => this._localStorageService.saveToken('dommusRemote', response['_body']))
+              .then(response => this._authService.saveToken('dommusRemote', response['_body']))
               .catch(this.handleError);
   }
 
@@ -27,28 +27,15 @@ export class LoginService {
     const _url = this.mount_Url('LOGIN', url);
     this._http.post(_url, account)
               .toPromise()
-              .then(response => this._localStorageService.saveToken('dommusRemote', response['_body']))
+              .then(response => this._authService.saveToken('dommusRemote', response['_body']))
               .catch(this.handleError);
   }
 
-  logoutAccount() {
-    this._localStorageService.removeToken('dommusRemote');
-  }
-
-  getToken() {
-    this._localStorageService.getToken('dommusRemote');
-  }
-
-  isLoggedIn() {
-    const token = this._localStorageService.getToken('dommusRemote');
-    if (token.length) {
-      const payload = JSON.parse(window.atob(token.split('.')[1]));
-      return payload.expiration > (Date.now() / 1000);
-    }
-  }
-
   handleError(error: Error): Promise<any> {
-    return Promise.reject(error.message || error);
+    return Promise.reject(error['_body'] || error.message || error)
+                  .catch(err => {
+                    console.error(err);
+                  });
   }
 
   mount_Url(type: string, _url: string) {
