@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppGuard } from './guards/app.guards.service';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
-import { MenuComponent } from './components/menu/menu.component';
+import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 
 @NgModule({
@@ -14,11 +14,11 @@ import { TopbarComponent } from './components/topbar/topbar.component';
     RouterModule
   ],
   exports: [
-    MenuComponent,
+    SideMenuComponent,
     TopbarComponent
   ],
   declarations: [
-    MenuComponent,
+    SideMenuComponent,
     TopbarComponent
   ],
   providers: [
