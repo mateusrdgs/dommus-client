@@ -47,14 +47,6 @@ export class LoginService {
     }
   }
 
-  getIdAccount() {
-    const token = this._localStorageService.getToken('dommusRemote');
-    if (token.length) {
-      const payload = JSON.parse(window.atob(token.split('.')[1]));
-      return payload._id;
-    }
-  }
-
   handleError(error: Error): Promise<any> {
     return Promise.reject(error.message || error);
   }

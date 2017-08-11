@@ -15,17 +15,20 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: 'app/profile/profile.module#ProfileModule',
-    canActivate: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'residences',
     loadChildren: 'app/residences/residences.module#ResidencesModule',
-    canActivate: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'users',
     loadChildren: 'app/users/users.module#UsersModule',
-    canActivate: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'login',
@@ -33,7 +36,9 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: '',

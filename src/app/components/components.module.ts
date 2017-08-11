@@ -13,7 +13,6 @@ import { ComponentResolver } from './resolvers/component.resolver.service';
 import { ComponentsComponent } from './components.component';
 import { ComponentComponent } from './component/component.component';
 import { NewComponentComponent } from './new-component/new-component.component';
-import NewComponentGuard from './guards/new-component.guard.service';
 
 @NgModule({
   imports: [
@@ -31,8 +30,7 @@ import NewComponentGuard from './guards/new-component.guard.service';
     BoardsService,
     BoardsResolver,
     ComponentsService,
-    ComponentResolver,
-    NewComponentGuard
+    ComponentResolver
   ]
 })
 export class ComponentsModule { }

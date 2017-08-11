@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 
-import { LoginService } from './../login/login.service';
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Room } from './room';
 import { url } from './../database';
 
@@ -16,7 +16,7 @@ export class RoomsService {
 
   constructor(
     private _http: Http,
-    private _loginService: LoginService
+    private _localStorageService: LocalStorageService
   ) {
     this.getIdAccount();
   }
@@ -63,7 +63,7 @@ export class RoomsService {
   }
 
   getIdAccount() {
-    this._idAccount = this._loginService.getIdAccount();
+    this._idAccount = this._localStorageService.getIdAccount();
   }
 
   handleError(error: Error): Promise<any> {

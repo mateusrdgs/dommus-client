@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LocalStorageService } from './../shared/services/local-storage.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  _id: string;
+
+  constructor(
+    private _localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit() {
+    this.getIdAccount();
+  }
+
+  getIdAccount() {
+    this._id = this._localStorageService.getIdAccount();
   }
 
 }

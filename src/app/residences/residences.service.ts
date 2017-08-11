@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LoginService } from './../login/login.service';
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Residence } from './residence';
 
 import { url } from '../database';
@@ -15,7 +15,7 @@ export class ResidencesService {
 
   constructor(
     private _http: Http,
-    private _loginService: LoginService
+    private _localStorageService: LocalStorageService
   ) {
     this.getIdAccount();
   }
@@ -62,11 +62,12 @@ export class ResidencesService {
   }
 
   getIdAccount() {
-    this._id = this._loginService.getIdAccount();
+    this._id = this._localStorageService.getIdAccount();
   }
 
-  handleError(error: Error): Promise<any> {
-    return Promise.reject(error['_body'] || error.message || error);
+  handleError(error: Error) {
+    return Promise.reject(error['_body'] || error.message || error)
+                  .catch(err => console.error(err));
   }
 
   mount_Url(type: string, _url: string, idAccount: string, idResidence?: string) {

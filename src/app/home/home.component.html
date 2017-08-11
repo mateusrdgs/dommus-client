@@ -1,3 +1,17 @@
-<p>
-  home works!
-</p>
+<ul>
+  <li>
+    <a [routerLink]="'/profile'">Profile</a>
+  </li>
+  <li>
+    <a [routerLink]="'/residences'">Residences</a>
+  </li>
+  <li>
+    <a [routerLink]="true ? ['/residences', _id, 'rooms'] : null" class="disabled">Rooms</a>
+  </li>
+  <li>
+    <a [routerLink]="false ? '/boards' : null" class="disabled">Boards</a>
+  </li>
+  <li>
+    <a [routerLink]="'/users'">Users</a>
+  </li>
+</ul>

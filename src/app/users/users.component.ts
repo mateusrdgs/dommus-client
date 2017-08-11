@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.users = this._route.snapshot.data['users']['Users'];
+    this.users = this._route.snapshot.data['users'];
   }
 
 }

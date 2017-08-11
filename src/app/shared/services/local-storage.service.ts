@@ -17,4 +17,12 @@ export class LocalStorageService {
     window.localStorage.removeItem(tokenName);
   }
 
+  getIdAccount() {
+    const token = this.getToken('dommusRemote');
+    if (token.length) {
+      const payload = JSON.parse(window.atob(token.split('.')[1]));
+      return payload._id;
+    }
+  }
+
 }
