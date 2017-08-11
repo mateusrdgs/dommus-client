@@ -1,0 +1,17 @@
+<ul class="menu-list">
+  <li class="menu-list__item">
+    <a [routerLink]="'/profile'" class="menu-list__item__link">Profile</a>
+  </li>
+  <li class="menu-list__item">
+    <a [routerLink]="'/residences'" class="menu-list__item__link">Residences</a>
+  </li>
+  <li class="menu-list__item">
+    <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [class.disabled]="!idResidence" class="menu-list__item__link">Rooms</a>
+  </li>
+  <li class="menu-list__item">
+    <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [class.disabled]="!idResidence" class="menu-list__item__link">Boards</a>
+  </li>
+  <li class="menu-list__item">
+    <a [routerLink]="'/users'" class="menu-list__item__link">Users</a>
+  </li>
+</ul>

@@ -1,6 +1,6 @@
 <div class="boards-container">
   <h1 class="boards-container__title">Boards</h1>
-  <ul class="boards-list" *ngIf="boards.length else noBoards">
+  <ul class="boards-list" *ngIf="boards else noBoards">
     <li class="boards-list__item" *ngFor="let board of boards">
       <a [routerLink]="[board._id]" [textContent]="board.description"></a>
     </li>

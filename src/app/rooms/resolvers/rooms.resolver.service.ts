@@ -17,7 +17,6 @@ export class RoomsResolver implements Resolve<Room[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Room[]> | Promise<Room[]> | Room[] {
-
     const { idResidence } = route.params;
     return this._roomsService.getRooms(idResidence);
   }

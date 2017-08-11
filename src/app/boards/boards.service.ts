@@ -36,7 +36,7 @@ export class BoardsService {
     return this._http.get(_url, this._options)
                      .toPromise()
                      .then(response => response.json().Boards)
-                     .catch(error => this.handleError);
+                     .catch(this.handleError);
   }
 
   getBoardById(idResidence: string, idBoard: string) {
@@ -44,14 +44,14 @@ export class BoardsService {
     return this._http.get(_url, this._options)
                      .toPromise()
                      .then(response => response.json().Board)
-                     .catch(error => this.handleError);
+                     .catch(this.handleError);
   }
 
   createBoard(idResidence: string, description: string, model: number, port: number) {
     const _url = this.mountUrl('CREATE', url, this._idAccount, idResidence);
     return this._http.post(_url, { description, model, port }, this._options)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Board)
                      .catch(this.handleError);
   }
 
@@ -59,7 +59,7 @@ export class BoardsService {
     const idBoard = board.Id, _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idBoard);
     return this._http.put(_url, board, this._options)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Board)
                      .catch(this.handleError);
   }
 
