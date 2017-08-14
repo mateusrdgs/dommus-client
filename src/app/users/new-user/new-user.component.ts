@@ -29,7 +29,8 @@ export class NewUserComponent implements OnInit {
 
   onSubmit() {
     if (this.newUserForm.valid) {
-      this._newUser = new User(this.newUserForm.value['name'], this.newUserForm.value['type']);
+      const { name, type, pin } = this.newUserForm.value;
+      this._newUser = new User(name, type, '', pin);
       this.createNewUser(this._newUser);
     }
   }
@@ -45,11 +46,11 @@ export class NewUserComponent implements OnInit {
   }
 
   generateAdminPinField() {
-    this.newUserForm.addControl('adminPin', new FormControl('', [Validators.required]));
+    this.newUserForm.addControl('pin', new FormControl('', [Validators.required]));
   }
 
   removeAdminPinField() {
-    this.newUserForm.removeControl('adminPin');
+    this.newUserForm.removeControl('pin');
   }
 
   private createNewUser(newUser: User) {
