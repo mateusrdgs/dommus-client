@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { User } from './../user';
 import { UsersService } from './../users.service';
@@ -13,6 +13,7 @@ export class NewUserComponent implements OnInit {
 
   newUserForm: FormGroup;
   private _newUser: User;
+  isUserAdmin = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -31,6 +32,24 @@ export class NewUserComponent implements OnInit {
       this._newUser = new User(this.newUserForm.value['name'], this.newUserForm.value['type']);
       this.createNewUser(this._newUser);
     }
+  }
+
+  onChange(value) {
+    if (value) {
+      this.isUserAdmin = true;
+      this.generateAdminPinField();
+    } else {
+      this.isUserAdmin = false;
+      this.removeAdminPinField();
+    }
+  }
+
+  generateAdminPinField() {
+    this.newUserForm.addControl('adminPin', new FormControl('', [Validators.required]));
+  }
+
+  removeAdminPinField() {
+    this.newUserForm.removeControl('adminPin');
   }
 
   private createNewUser(newUser: User) {
