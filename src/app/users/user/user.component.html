@@ -1,3 +1,10 @@
-<p>
-  user works!
-</p>
+<div class="user-container" *ngIf="user else noUser">
+  <h1 class="user-container__title" [textContent]="user.name"></h1>
+  <h2 class="user-container__data" *ngIf="user.isAdmin else isntAdmin" [textContent]="'Admin'"></h2>
+  <ng-template #isntAdmin>
+    <h2 class="user-container__data" [textContent]="'Common user'"></h2>
+  </ng-template>
+</div>
+<ng-template #noUser>
+  <h1 class="user-container__warning">No user on this account!</h1>
+</ng-template>

@@ -17,7 +17,8 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.user = this._route.snapshot.data['user']['User'];
+    const { _id, name, isAdmin } = this._route.snapshot.data['user'];
+    this.user = new User(name, isAdmin === 'true' ? true : false, _id);
   }
 
 }

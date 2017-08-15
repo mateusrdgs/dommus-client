@@ -6,9 +6,9 @@
     <fieldset class="new-user-form__fieldset">
       <legend class="new-user-form__legend">Admin</legend>
       <label for="admin" class="new-user-form__label">No</label>
-      <input type="radio" formControlName="type" value="false" (change)="onChange(0)" class="new-user-form__radio">
+      <input type="radio" formControlName="isAdmin" value="false" (change)="onChange(0)" class="new-user-form__radio">
       <label for="admin" class="new-user-form__label">Yes</label>
-      <input type="radio" formControlName="type" value="true" (change)="onChange(1)" class="new-user-form__radio">
+      <input type="radio" formControlName="isAdmin" value="true" (change)="onChange(1)" class="new-user-form__radio">
     </fieldset>
     <ng-container *ngIf="isUserAdmin">
       <label for="adminPin" class="new-user-form__label">Pin</label>

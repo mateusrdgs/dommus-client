@@ -2,13 +2,13 @@ export class User {
 
   private id: string;
   private name: string;
-  private type: boolean;
+  private isAdmin: boolean;
   private pin: number
 
-  constructor(name: string, type: boolean, id?: string, pin?: number) {
+  constructor(name: string, isAdmin: boolean, id?: string, pin?: number) {
     this.Id = id;
     this.Name = name;
-    this.Type = type;
+    this.IsAdmin = isAdmin;
     this.Pin = pin;
   }
 
@@ -28,12 +28,12 @@ export class User {
     this.name = value;
   }
 
-  get Type(): boolean {
-    return this.type;
+  get IsAdmin(): boolean {
+    return this.isAdmin;
   }
 
-  set Type(value: boolean) {
-    this.type = value;
+  set IsAdmin(value: boolean) {
+    this.isAdmin = value;
   }
 
   get Pin(): number {

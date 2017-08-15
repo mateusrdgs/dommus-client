@@ -23,14 +23,14 @@ export class NewUserComponent implements OnInit {
   ngOnInit() {
     this.newUserForm = this._formBuilder.group({
       name: ['', Validators.required],
-      type: ['false', Validators.required]
+      isAdmin: ['false', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.newUserForm.valid) {
-      const { name, type, pin } = this.newUserForm.value;
-      this._newUser = new User(name, type, '', pin);
+      const { name, isAdmin, pin } = this.newUserForm.value;
+      this._newUser = new User(name, isAdmin, '', pin);
       this.createNewUser(this._newUser);
     }
   }
