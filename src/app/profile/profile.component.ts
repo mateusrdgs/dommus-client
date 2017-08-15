@@ -15,11 +15,13 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.createProfileForm();
   }
 
   createProfileForm() {
     this.profileForm = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.email]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['a', Validators.required]
     });
   }
 

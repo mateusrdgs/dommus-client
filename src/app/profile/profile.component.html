@@ -1,10 +1,10 @@
 <div class="profile-container">
   <h1 class="profile-container__title">Update your profile</h1>
   <form [formGroup]="profileForm" class="profile-form" (ngSubmit)="onSubmit()">
-    <label for="description" class="profile-form__label">Description</label>
-    <input type="text" formControlName="description" class="profile-form__input">
-    <label for="url" class="profile-form__label">Url</label>
-    <input type="text" formControlName="url" class="profile-form__input">
-    <input type="submit" value="Create" [disabled]="newResidenceForm.invalid" class="profile-form__submit">
+    <label for="email" class="profile-form__label">Email</label>
+    <input type="text" formControlName="email" class="profile-form__input">
+    <label for="password" class="profile-form__label">Password</label>
+    <input type="password" name="password" formControlName="password" class="profile-form__input">
+    <input type="submit" value="Create" [disabled]="profileForm.invalid" class="profile-form__submit">
   </form>
 </div>
