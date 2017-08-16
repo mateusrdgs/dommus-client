@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Subscription } from 'rxjs/Subscription';
+
 import { AuthService } from './../shared/services/auth.service';
+import { SocketIoService } from './../shared/socket-io.service';
 
 @Component({
   selector: 'home',
@@ -11,14 +14,18 @@ export class HomeComponent implements OnInit {
 
   _id: string;
   idResidence: string;
+  private _socketSubscription: Subscription;
 
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _socketIo: SocketIoService
   ) { }
 
   ngOnInit() {
     this.getIdAccount();
     this.getIdResidence();
+    this.startSubscription();
+    this._socketIo.sendMessage();
   }
 
   getIdAccount() {
@@ -30,6 +37,14 @@ export class HomeComponent implements OnInit {
     if (token) {
       this.idResidence = token;
     }
+  }
+
+  startSubscription() {
+    this._socketSubscription =
+      this._socketIo.connect()
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
 }

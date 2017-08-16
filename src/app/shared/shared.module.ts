@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppGuard } from './guards/app.guards.service';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { SocketIoService } from './socket-io.service';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 
@@ -24,7 +25,8 @@ import { TopbarComponent } from './components/topbar/topbar.component';
   providers: [
     AppGuard,
     AuthService,
-    LocalStorageService
+    LocalStorageService,
+    SocketIoService
   ]
 })
 export class SharedModule { }
