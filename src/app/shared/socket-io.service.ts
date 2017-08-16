@@ -31,7 +31,7 @@ export class SocketIoService {
     return observable;
   }
 
-  sendMessage() {
-    this._socket.emit('message', 'teste');
+  sendMessage(messageName: string, data: any) {
+    this._socket.emit(messageName, data);
   }
 }

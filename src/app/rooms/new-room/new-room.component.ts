@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { RoomsService } from './../rooms.service';
+import { SocketIoService } from './../../shared/socket-io.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -20,7 +21,8 @@ export class NewRoomComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
-    private _roomsService: RoomsService
+    private _roomsService: RoomsService,
+    private _socketIoService: SocketIoService
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,10 @@ export class NewRoomComponent implements OnInit {
   onSubmit() {
     if (this.newRoomForm.valid) {
       const { description } = this.newRoomForm.value;
-      this._roomsService.createRoom(this._idResidence, description);
+      this._roomsService.createRoom(this._idResidence, description)
+                        .then(data => {
+                          this._socketIoService.sendMessage('createRoom', data);
+                        });
     }
   }
 

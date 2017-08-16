@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Board } from './../board';
 import { BoardsService } from './../boards.service';
+import { SocketIoService } from './../../shared/socket-io.service';
 
 @Component({
   selector: 'app-new-board',
@@ -27,7 +28,8 @@ export class NewBoardComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
-    private _boardsService: BoardsService
+    private _boardsService: BoardsService,
+    private _socketIoService: SocketIoService
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class NewBoardComponent implements OnInit {
     if (this.newBoardForm.valid) {
       const { description, model, port } = this.newBoardForm.value;
       this._boardsService.createBoard(this.idResidence, description, model, port)
-                         .then(response => console.log(response))
+                         .then(response => this._socketIoService.sendMessage('createBoard', response))
                          .catch(error => console.error(error));
     }
   }
