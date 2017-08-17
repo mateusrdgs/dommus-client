@@ -9,6 +9,7 @@ import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
 import { BoardsService } from './../boards/boards.service';
 import { ComponentsService } from './components.service';
 import { ComponentResolver } from './resolvers/component.resolver.service';
+import { NewComponentGuard } from './guards/new-component.guard.service';
 
 import { ComponentsComponent } from './components.component';
 import { ComponentComponent } from './component/component.component';
@@ -30,7 +31,8 @@ import { NewComponentComponent } from './new-component/new-component.component';
     BoardsService,
     BoardsResolver,
     ComponentsService,
-    ComponentResolver
+    ComponentResolver,
+    NewComponentGuard
   ]
 })
 export class ComponentsModule { }

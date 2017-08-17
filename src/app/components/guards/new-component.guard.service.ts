@@ -9,13 +9,14 @@ import { BoardsService } from './../../boards/boards.service';
 export class NewComponentGuard implements CanActivate {
 
   constructor(
-
+    private _boardsService: BoardsService
   ) { }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ) {
-    return true;
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    const { idResidence } = route.params;
+    return this._boardsService.getBoards(idResidence).then(boards => !!boards.length);
   }
 }

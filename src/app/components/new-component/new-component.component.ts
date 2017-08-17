@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { SocketIoService } from './../../shared/socket-io.service';
 import { BoardsService } from './../../boards/boards.service';
 import { ComponentsService } from './../components.service';
 
@@ -45,7 +46,8 @@ export class NewComponentComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _componentsService: ComponentsService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _socketIoService: SocketIoService
   ) { }
 
   getResidenceRouteParams() {
@@ -124,7 +126,9 @@ export class NewComponentComponent implements OnInit {
   saveNewComponent(_idResidence: string, _idRoom: string, component: any) {
     this._componentsService
         .createComponent(_idResidence, _idRoom, component)
-        .then(response => console.log(response.Component));
+        .then(response => {
+          this._socketIoService.sendMessage('createComponent', response);
+        });
   }
 
   createControls(nextFormType) {

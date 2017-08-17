@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     this.getIdAccount();
     this.getIdResidence();
     this.startSubscription();
-    this._socketIo.sendMessage();
+    this._socketIo.sendMessage('data', 'message');
   }
 
   getIdAccount() {
