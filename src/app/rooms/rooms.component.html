@@ -3,7 +3,7 @@
   <a [routerLink]="['new']" class="rooms-container__button">
    New room
   </a>
-  <ul class="rooms-list" *ngIf="rooms else noRooms">
+  <ul class="rooms-list" *ngIf="rooms.length else noRooms">
     <li class="rooms-list__item" *ngFor="let room of rooms">
       <a routerLink="{{ room?._id }}" [textContent]="room?.description" class="rooms-list__item-link"></a>
     </li>

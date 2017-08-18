@@ -127,7 +127,7 @@ export class NewComponentComponent implements OnInit {
     this._componentsService
         .createComponent(_idResidence, _idRoom, component)
         .then(response => {
-          this._socketIoService.sendMessage('createComponent', response);
+          this._socketIoService.sendMessage('create:Component', response);
         });
   }
 

@@ -52,7 +52,7 @@ export class RoomsService {
     const _url = this.mountUrl('CREATE', url, this._idAccount, idResidence);
     return this._http.post(_url, { description }, this._options)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Room)
                      .catch(this.handleError);
   }
 
@@ -61,7 +61,7 @@ export class RoomsService {
     const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom);
     return this._http.put(_url, room, this._options)
                      .toPromise()
-                     .then(response => response.json())
+                     .then(response => response.json().Room)
                      .catch(this.handleError);
   }
 
