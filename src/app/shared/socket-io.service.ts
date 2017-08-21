@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 import * as io from 'socket.io-client';
 
@@ -19,9 +20,9 @@ export class SocketIoService {
     this._socket = io(this._url);
   }
 
-  connect() {
+  listenToEvent(eventName: string) {
     const observable = new Observable(observer => {
-      this._socket.on('message', data => {
+      this._socket.on(eventName, data => {
         observer.next(data);
       });
       return () => {
@@ -31,7 +32,7 @@ export class SocketIoService {
     return observable;
   }
 
-  sendMessage(messageName: string, data: any) {
-    this._socket.emit(messageName, data);
+  emitMessage(messageName: string, data: any) {
+    return this._socket.emit(messageName, data);
   }
 }

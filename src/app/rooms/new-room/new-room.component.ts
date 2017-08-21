@@ -37,7 +37,7 @@ export class NewRoomComponent implements OnInit {
       const { description } = this.newRoomForm.value;
       this._roomsService.createRoom(this._idResidence, description)
                         .then(data => {
-                          this._socketIoService.sendMessage('create:Room', data);
+                          this._socketIoService.emitMessage('create:Room', data);
                         });
     }
   }

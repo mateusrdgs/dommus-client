@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   _id: string;
   idResidence: string;
-  private _socketSubscription: Subscription;
+  private _componentsSubscription: Subscription;
 
   constructor(
     private _authService: AuthService,
@@ -24,8 +24,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getIdAccount();
     this.getIdResidence();
-    this.startSubscription();
-    this._socketIo.sendMessage('data', 'message');
+    this.subscribeToComponents('get:Components');
+    this.emitMessage('get:Components', true);
   }
 
   getIdAccount() {
@@ -39,12 +39,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  startSubscription() {
-    this._socketSubscription =
-      this._socketIo.connect()
+  subscribeToComponents(eventName: string) {
+    this._componentsSubscription =
+      this._socketIo.listenToEvent(eventName)
       .subscribe(data => {
         console.log(data);
       });
+  }
+
+  emitMessage(eventName: string, eventData: any) {
+    this._socketIo.emitMessage('get:Components', true);
   }
 
 }
