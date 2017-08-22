@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Board } from './../board';
 import { BoardsService } from './../boards.service';
-import { SocketIoService } from './../../shared/socket-io.service';
+import { SocketIoService } from './../../shared/services/socket-io.service';
 
 @Component({
   selector: 'app-new-board',

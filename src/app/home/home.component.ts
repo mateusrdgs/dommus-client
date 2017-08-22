@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from './../shared/services/auth.service';
-import { SocketIoService } from './../shared/socket-io.service';
+import { SocketIoService } from './../shared/services/socket-io.service';
+import { SyncService } from './../shared/services/sync.service';
 
 @Component({
   selector: 'home',
@@ -15,16 +16,20 @@ export class HomeComponent implements OnInit {
   _id: string;
   idResidence: string;
   private _componentsSubscription: Subscription;
+  private _syncSubscription: Subscription;
 
   constructor(
     private _authService: AuthService,
-    private _socketIo: SocketIoService
+    private _socketIo: SocketIoService,
+    private _syncService: SyncService
   ) { }
 
   ngOnInit() {
     this.getIdAccount();
     this.getIdResidence();
-    this.subscribeToComponents('get:Components');
+    this.subscribeTo('app:Sync');
+    this._componentsSubscription = this.subscribeTo('get:Components');
+    this._syncSubscription = this.subscribeTo('app:Sync');
     this.emitMessage('get:Components', true);
   }
 
@@ -39,11 +44,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  subscribeToComponents(eventName: string) {
-    this._componentsSubscription =
-      this._socketIo.listenToEvent(eventName)
+  subscribeTo(eventName: string) {
+    return this._socketIo.listenToEvent(eventName)
       .subscribe(data => {
-        console.log(data);
+        if (eventName === 'app:Sync' && !data) {
+          this._syncService.syncApps(this.idResidence).then(residence => {
+            this.emitMessage('app:Sync', true);
+          });
+        } else {
+          console.log(data);
+        }
       });
   }
 

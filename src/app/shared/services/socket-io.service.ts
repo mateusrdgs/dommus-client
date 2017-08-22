@@ -22,7 +22,7 @@ export class SocketIoService {
 
   listenToEvent(eventName: string) {
     const observable = new Observable(observer => {
-      this._socket.on(eventName, data => {
+      this._socket.on(eventName, (data) => {
         observer.next(data);
       });
       return () => {

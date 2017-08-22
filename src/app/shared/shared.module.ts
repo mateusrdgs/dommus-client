@@ -2,17 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
+import { ResidencesModule } from './../residences/residences.module';
+
 import { AppGuard } from './guards/app.guards.service';
 import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
-import { SocketIoService } from './socket-io.service';
+import { SocketIoService } from './services/socket-io.service';
+import { SyncService } from './services/sync.service';
+
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/topbar/topbar.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ResidencesModule
   ],
   exports: [
     SideMenuComponent,
@@ -26,7 +31,8 @@ import { TopbarComponent } from './components/topbar/topbar.component';
     AppGuard,
     AuthService,
     LocalStorageService,
-    SocketIoService
+    SocketIoService,
+    SyncService
   ]
 })
 export class SharedModule { }

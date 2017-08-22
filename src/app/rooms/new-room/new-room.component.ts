@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { RoomsService } from './../rooms.service';
-import { SocketIoService } from './../../shared/socket-io.service';
+import { SocketIoService } from './../../shared/services/socket-io.service';
 
 import { Subscription } from 'rxjs/Subscription';
 
