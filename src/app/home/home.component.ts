@@ -46,10 +46,10 @@ export class HomeComponent implements OnInit {
 
   subscribeTo(eventName: string) {
     return this._socketIo.listenToEvent(eventName)
-      .subscribe(data => {
-        if (eventName === 'app:Sync' && !data) {
+      .subscribe((data: any) => {
+        if (eventName === 'app:Sync') {
           this._syncService.syncApps(this.idResidence).then(residence => {
-            this.emitMessage('app:Sync', true);
+            data(residence);
           });
         } else {
           console.log(data);
