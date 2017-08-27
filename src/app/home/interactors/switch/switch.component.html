@@ -1,0 +1,8 @@
+<div class="interactor" [class.isOn]="component.isOn" (click)="changeState()">
+  <div class="flipper">
+    <div class="flipper__front">
+        {{ component.custom.description }}
+    </div>
+    <div class="flipper__back"></div>
+  </div>
+</div>

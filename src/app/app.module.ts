@@ -10,12 +10,14 @@ import { AppGuard } from './shared/guards/app.guards.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { SwitchComponent } from './home/interactors/switch/switch.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SwitchComponent
   ],
   imports: [
     BrowserModule,

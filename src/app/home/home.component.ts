@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   _id: string;
   idResidence: string;
+  components;
   private _componentsSubscription: Subscription;
   private _syncSubscription: Subscription;
 
@@ -27,10 +28,11 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.getIdAccount();
     this.getIdResidence();
-    this.subscribeTo('app:Sync');
-    this._componentsSubscription = this.subscribeTo('get:Components');
-    this._syncSubscription = this.subscribeTo('app:Sync');
-    this.emitMessage('get:Components', true);
+    if (this.idResidence) {
+      this._componentsSubscription = this.subscribeTo('get:Components');
+      this._syncSubscription = this.subscribeTo('app:Sync');
+      this.emitMessage('get:Components', true);
+    }
   }
 
   getIdAccount() {
@@ -52,7 +54,8 @@ export class HomeComponent implements OnInit {
             data(residence);
           });
         } else {
-          console.log(data);
+          this.components = data;
+          console.log(this.components);
         }
       });
   }
