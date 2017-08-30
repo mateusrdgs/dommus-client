@@ -8,11 +8,12 @@ export default class Motion extends Component {
   constructor(
     idBoard: string,
     description: string,
+    type: number,
     controller: string,
     analogPin: number,
     id?: string
   ) {
-    super(idBoard, description, id);
+    super(idBoard, description, type, id);
     this.Controller = controller;
     this.AnalogPin = analogPin;
   }

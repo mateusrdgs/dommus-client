@@ -1,3 +1,4 @@
+import { Thermometer } from './../classes/thermometer';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +12,8 @@ import { ComponentsService } from './../components.service';
 import Switch from '../classes/switch';
 import Sensor from '../classes/sensor';
 import Servo from '../classes/servo';
+import Motion from '../classes/motion';
+
 import { validateSet } from '../validators/setValidator';
 
 @Component({
@@ -125,19 +128,30 @@ export class NewComponentComponent implements OnInit {
 
   createSwitch(formValue) {
     const { description, componentType, board, digitalPin } = formValue;
-    this._component = new Switch(board, description, componentType, digitalPin);
+    this._component = new Switch(board, description, 1, digitalPin);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
+  createThermometer(formValue) {
+    const { description, componentType, board, analogPin, frequency } = formValue;
+    this._component = new Thermometer(board, description, 2, analogPin, frequency);
+    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+  }
+
+  createMotion(formValue) {
+    const { description, componentType, board, analogPin, controller } = formValue;
+    this._component = new Motion(board, description, 3, controller, analogPin);
+  }
+
   createSensor(formValue) {
-    const { description, componentType, board, analogPin, frequency } = this.newComponentForm.value;
-    this._component = new Sensor(board, description, componentType, analogPin, frequency);
+    const { description, componentType, board, analogPin, frequency, controller, threshold } = this.newComponentForm.value;
+    this._component = new Sensor(board, description, 4, analogPin, frequency, controller, threshold);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createServo(formValue) {
-    const { description, componentType, board, digitalPin, rotation, minRange, maxRange } = this.newComponentForm.value;
-    this._component = new Servo(board, description, componentType, digitalPin, rotation, minRange, maxRange);
+    const { description, componentType, board, digitalPin, rotation, startAt, minRange, maxRange } = this.newComponentForm.value;
+    this._component = new Servo(board, description, 5, digitalPin, rotation, startAt, minRange, maxRange);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
@@ -159,8 +173,19 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         break;
       case '3':
+          this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
+        break;
+      case '4':
+          this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
+        break;
+      case '5':
           this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('rotation', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('startAt', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('minRange', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('maxRange', new FormControl('', [Validators.required]));
         break;
@@ -177,8 +202,19 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('frequency');
         break;
       case '3':
+          this.newComponentForm.removeControl('analogPin');
+          this.newComponentForm.removeControl('controller');
+        break;
+      case '4':
+          this.newComponentForm.removeControl('analogPin');
+          this.newComponentForm.removeControl('frequency');
+          this.newComponentForm.removeControl('threshold');
+          this.newComponentForm.removeControl('controller');
+        break;
+      case '5':
           this.newComponentForm.removeControl('digitalPin');
           this.newComponentForm.removeControl('rotation');
+          this.newComponentForm.removeControl('startAt');
           this.newComponentForm.removeControl('minRange');
           this.newComponentForm.removeControl('maxRange');
         break;

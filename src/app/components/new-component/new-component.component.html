@@ -23,10 +23,26 @@
         <input type="number" formControlName="frequency" class="new-component-form__input">
       </ng-container>
       <ng-container *ngSwitchCase="3">
+        <label for="description" class="new-component-form__label">Analog Pin</label>
+        <input type="number" formControlName="analogPin" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Controller</label>
+        <input type="number" formControlName="controller" class="new-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="4">
+        <label for="description" class="new-component-form__label">Analog Pin</label>
+        <input type="number" formControlName="analogPin" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Frequency</label>
+        <input type="number" formControlName="frequency" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Threshold</label>
+        <input type="number" formControlName="threshold" class="new-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="5">
         <label for="description" class="new-component-form__label">Digital Pin</label>
         <input type="number" formControlName="digitalPin" class="new-component-form__input">
         <label for="description" class="new-component-form__label">Rotation</label>
         <input type="number" formControlName="rotation" class="new-component-form__input">
+        <label for="description" class="new-component-form__label">Start At</label>
+        <input type="number" formControlName="startAt" class="new-component-form__input">
         <label for="description" class="new-component-form__label">Minimum Range</label>
         <input type="number" formControlName="minRange" class="new-component-form__input">
         <label for="description" class="new-component-form__label">Maximum Range</label>

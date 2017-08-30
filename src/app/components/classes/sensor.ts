@@ -10,6 +10,7 @@ export default class Sensor extends Component {
   constructor(
     idBoard: string,
     description: string,
+    type: number,
     analogPin: number,
     frequency: number,
     controller: string,
@@ -17,7 +18,7 @@ export default class Sensor extends Component {
     id?: string
   ) {
 
-    super(idBoard, description, id);
+    super(idBoard, description, type, id);
 
     this.AnalogPin = analogPin;
     this.Frequency =  frequency;

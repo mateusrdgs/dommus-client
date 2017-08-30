@@ -8,9 +8,10 @@ export default class Switch extends Component {
     idBoard: string,
     description: string,
     digitalPin: number,
+    type: number,
     id?: string
   ) {
-    super(idBoard, description, id);
+    super(idBoard, description, type, id);
     this.DigitalPin = digitalPin;
   }
 

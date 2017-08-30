@@ -13,7 +13,7 @@ export class Thermometer extends Component {
     frequency: number,
     id?: string
   ) {
-      super(idBoard, description, id);
+      super(idBoard, description, type, id);
       this.AnalogPin = analogPin;
       this.Frequency =  frequency;
     }

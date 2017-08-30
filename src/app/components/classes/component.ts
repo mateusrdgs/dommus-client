@@ -3,14 +3,17 @@ export default class Component {
   private id: string;
   private idBoard: string;
   private description: string;
+  private type: number;
 
   constructor(
     idBoard: string,
     description: string,
+    type: number,
     id?: string
   ) {
     this.IdBoard = idBoard;
     this.Description = description;
+    this.Type = type;
     this.Id = id;
   }
 
@@ -36,6 +39,14 @@ export default class Component {
 
   set Description(value: string) {
     this.description = value;
+  }
+
+  get Type(): number {
+    return this.type;
+  }
+
+  set Type(type: number) {
+    this.type = type;
   }
 
 }

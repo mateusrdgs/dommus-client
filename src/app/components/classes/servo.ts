@@ -10,6 +10,7 @@ export default class Servo extends Component {
   constructor(
     idBoard: string,
     description: string,
+    type: number,
     digitalPin: number,
     rotation: number,
     startAt: number,
@@ -18,7 +19,7 @@ export default class Servo extends Component {
     id?: string
   ) {
 
-    super(idBoard, description, id);
+    super(idBoard, description, type, id);
     this.DigitalPin = digitalPin;
     this.Rotation = rotation;
     this.MinRange = minRange;
