@@ -30,18 +30,28 @@ export class NewComponentComponent implements OnInit {
   firstBoardName: string;
   residenceBoards = [];
 
-  componentAllowed = [{
-    value: 1,
-    type: 'Switch'
-  },
-  {
-    value: 2,
-    type: 'Sensor'
-  },
-  {
-    value: 3,
-    type: 'Servo'
-  }];
+  componentAllowed = [
+    {
+      value: 1,
+      type: 'Switch'
+    },
+    {
+      value: 2,
+      type: 'Thermometer'
+    },
+    {
+      value: 3,
+      type: 'Motion'
+    },
+    {
+      value: 4,
+      type: 'Sensor'
+    },
+    {
+      value: 5,
+      type: 'Servo'
+    }
+  ];
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -96,6 +106,14 @@ export class NewComponentComponent implements OnInit {
         }
         break;
         case '3': {
+          this.createServo(this.newComponentForm.value);
+        }
+        break;
+        case '4': {
+          this.createSensor(this.newComponentForm.value);
+        }
+        break;
+        case '5': {
           this.createServo(this.newComponentForm.value);
         }
         break;

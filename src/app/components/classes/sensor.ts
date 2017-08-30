@@ -4,14 +4,25 @@ export default class Sensor extends Component {
 
   private analogPin: number;
   private frequency: number;
+  private controller: string;
+  private threshold: number;
 
-  constructor(idBoard: string, description: string, type: number,
-              analogPin: number, frequency: number, id?: string) {
+  constructor(
+    idBoard: string,
+    description: string,
+    analogPin: number,
+    frequency: number,
+    controller: string,
+    threshold: number,
+    id?: string
+  ) {
 
-    super(idBoard, description, type, id);
+    super(idBoard, description, id);
 
     this.AnalogPin = analogPin;
     this.Frequency =  frequency;
+    this.Controller = controller;
+    this.Threshold = threshold;
   }
 
   get AnalogPin(): number {
@@ -28,6 +39,22 @@ export default class Sensor extends Component {
 
   set Frequency(value: number) {
     this.frequency = value;
+  }
+
+  get Controller(): string {
+    return this.controller;
+  }
+
+  set Controller(controller: string) {
+    this.controller = controller;
+  }
+
+  get Threshold(): number {
+    return this.threshold;
+  }
+
+  set Threshold(threshold: number) {
+    this.threshold = threshold;
   }
 
 }

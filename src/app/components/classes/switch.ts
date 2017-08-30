@@ -4,10 +4,13 @@ export default class Switch extends Component {
 
   private digitalPin: number;
 
-  constructor(idBoard: string, description: string, type: number, digitalPin: number, id?: string) {
-
-    super(idBoard, description, type, id);
-
+  constructor(
+    idBoard: string,
+    description: string,
+    digitalPin: number,
+    id?: string
+  ) {
+    super(idBoard, description, id);
     this.DigitalPin = digitalPin;
   }
 

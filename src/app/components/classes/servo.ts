@@ -4,14 +4,21 @@ export default class Servo extends Component {
 
   private digitalPin: number;
   private rotation: number;
-  private minRange: number;
-  private maxRange: number;
+  private startAt: number;
+  private range: [number];
 
-  constructor(idBoard: string, description: string, type: number, digitalPin: number,
-              rotation: number, minRange: number, maxRange: number, id?: string) {
+  constructor(
+    idBoard: string,
+    description: string,
+    digitalPin: number,
+    rotation: number,
+    startAt: number,
+    minRange: number,
+    maxRange: number,
+    id?: string
+  ) {
 
-    super(idBoard, description, type, id);
-
+    super(idBoard, description, id);
     this.DigitalPin = digitalPin;
     this.Rotation = rotation;
     this.MinRange = minRange;
@@ -35,19 +42,28 @@ export default class Servo extends Component {
   }
 
   get MinRange(): number {
-    return this.minRange;
+    return this.range[0];
   }
 
   set MinRange(value: number) {
-    this.minRange = value;
+    this.range[0] = value;
   }
 
   get MaxRange(): number {
-    return this.maxRange;
+    return this.range[1];
   }
 
   set MaxRange(value: number) {
-    this.maxRange = value;
+    this.range[1] = value;
+  }
+
+  get Range(): [number] {
+    return this.range;
+  }
+
+  set Range(range: [number]) {
+    this.MinRange = range[0];
+    this.MaxRange = range[1];
   }
 
 }
