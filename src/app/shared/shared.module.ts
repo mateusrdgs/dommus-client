@@ -11,7 +11,7 @@ import { SocketIoService } from './services/socket-io.service';
 import { SyncService } from './services/sync.service';
 
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
-import { TopbarComponent } from './components/topbar/topbar.component';
+import { TopbarComponent } from './components/top-bar/top-bar.component';
 
 @NgModule({
   imports: [
