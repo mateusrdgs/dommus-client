@@ -13,6 +13,16 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadChildren: 'app/login/login.module#LoginModule'
+  },
+  {
+    path: 'home',
+    loadChildren: 'app/home/home.module#HomeModule',
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
+  },
+  {
     path: 'profile',
     loadChildren: 'app/profile/profile.module#ProfileModule',
     canActivate: [AppGuard],
@@ -27,16 +37,6 @@ const routes: Routes = [
   {
     path: 'users',
     loadChildren: 'app/users/users.module#UsersModule',
-    canActivate: [AppGuard],
-    canLoad: [AppGuard]
-  },
-  {
-    path: 'login',
-    loadChildren: 'app/login/login.module#LoginModule'
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
     canActivate: [AppGuard],
     canLoad: [AppGuard]
   },

@@ -2,14 +2,14 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SocketIoService } from './../../../shared/services/socket-io.service';
+import { SocketIoService } from './../../shared/services/socket-io.service';
 
 @Component({
-  selector: 'switch',
-  templateUrl: './switch.component.html',
-  styleUrls: ['./switch.component.styl']
+  selector: 'flipper',
+  templateUrl: './flipper.component.html',
+  styleUrls: ['./flipper.component.styl']
 })
-export class SwitchComponent implements OnInit {
+export class FlipperComponent implements OnInit {
 
   @Input() component;
   private componentSubscription: Subscription;

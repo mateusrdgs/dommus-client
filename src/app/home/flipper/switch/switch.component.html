@@ -1,0 +1,13 @@
+<div class="flipper__front">
+  <span>
+    {{ component.custom.description | uppercase}}
+  </span>
+  <i class="fa" [ngClass]="
+      {
+        'fa-lightbulb-o': component.custom.type === '1',
+        'fa-thermometer': component.custom.type === '2',
+        'fa-rss': component.custom.type === '3'
+      }
+      "></i>
+</div>
+<div class="flipper__back"></div>
