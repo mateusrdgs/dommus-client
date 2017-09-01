@@ -1,0 +1,18 @@
+.wrapper
+  display flex
+  min-height 100%
+
+.sidebar__container
+  position absolute
+  width 14rem
+
+.content__container
+  flex 1
+  background-color #eee
+  box-shadow 0 0 5px rgba(0,0,0,1)
+  margin-top 5rem
+  transform translateX(0)
+  transition all .3s ease-in-out
+
+.--open
+  transform translateX(14rem)

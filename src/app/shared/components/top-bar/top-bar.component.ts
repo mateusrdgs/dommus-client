@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { SideBarService } from './../../services/side-bar.service';
+
 @Component({
   selector: 'top-bar',
   templateUrl: './top-bar.component.html',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor() { }
+  private isMenuOpen = false;
+
+  constructor(
+    private _sidebarService: SideBarService
+  ) { }
 
   ngOnInit() {
+
+  }
+
+  onIconClick() {
+    this.isMenuOpen = !this.isMenuOpen;
+    this._sidebarService.showSidebar(this.isMenuOpen);
   }
 
 }

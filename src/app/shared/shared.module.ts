@@ -9,9 +9,11 @@ import { AuthService } from './services/auth.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { SocketIoService } from './services/socket-io.service';
 import { SyncService } from './services/sync.service';
+import { SideBarService } from './services/side-bar.service';
 
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
+import { WrapperComponent } from './components/wrapper/wrapper.component';
 
 @NgModule({
   imports: [
@@ -21,18 +23,21 @@ import { TopbarComponent } from './components/top-bar/top-bar.component';
   ],
   exports: [
     SideMenuComponent,
-    TopbarComponent
+    TopbarComponent,
+    WrapperComponent
   ],
   declarations: [
     SideMenuComponent,
-    TopbarComponent
+    TopbarComponent,
+    WrapperComponent
   ],
   providers: [
     AppGuard,
     AuthService,
     LocalStorageService,
     SocketIoService,
-    SyncService
+    SyncService,
+    SideBarService
   ]
 })
 export class SharedModule { }
