@@ -1,0 +1,33 @@
+.menu-toggle,
+.menu-toggle--open
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  position absolute
+  top 0
+  left 0
+  overflow hidden
+  width 4rem
+  height 100%
+  &:hover
+    cursor pointer
+
+.menu-toggle__item
+  background-color #FFF
+  height .2rem
+  transition all .3s ease-in-out
+  opacity 1
+  width 3rem
+
+.menu-toggle__item:nth-child(even)
+  margin .8rem 0
+
+.menu-toggle--open .menu-toggle__item:nth-child(2)
+  opacity 0
+  transform translateX(-5rem)
+
+@media screen and (min-width: 48rem)
+  .menu-toggle,
+  .menu-toggle--open
+    display none

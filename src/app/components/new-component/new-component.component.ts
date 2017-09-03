@@ -128,7 +128,7 @@ export class NewComponentComponent implements OnInit {
 
   createSwitch(formValue) {
     const { description, componentType, board, digitalPin } = formValue;
-    this._component = new Switch(board, description, 1, digitalPin);
+    this._component = new Switch(board, description, digitalPin, 1);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 

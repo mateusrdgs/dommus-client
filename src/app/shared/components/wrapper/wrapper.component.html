@@ -1,11 +1,8 @@
 <div class="wrapper">
-  <div class="sidebar__container">
+  <div class="sidebar__container" [class.isSidebarOpen]="isSidebarOpen">
     <side-menu></side-menu>
   </div>
-  <div class="content__container" [ngClass]="
-  {
-    '--open': isSidebarOpen
-  }">
+  <div class="router-outlet__container">
     <router-outlet></router-outlet>
   </div>
 </div>

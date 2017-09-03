@@ -19,9 +19,4 @@ export class TopbarComponent implements OnInit {
 
   }
 
-  onIconClick() {
-    this.isMenuOpen = !this.isMenuOpen;
-    this._sidebarService.showSidebar(this.isMenuOpen);
-  }
-
 }

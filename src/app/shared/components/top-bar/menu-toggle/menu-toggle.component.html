@@ -1,0 +1,11 @@
+<div [ngClass]="
+  {
+    'menu-toggle--open': isMenuOpen,
+    'menu-toggle': !isMenuOpen
+  }
+  "
+  (click)="toggleMenu()">
+  <span class="menu-toggle__item"></span>
+  <span class="menu-toggle__item"></span>
+  <span class="menu-toggle__item"></span>
+</div>
