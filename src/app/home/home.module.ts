@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 
 import { HomeComponent } from './home.component';
-import { FlipperComponent } from './flipper/flipper.component';
-import { SwitchComponent } from './flipper/switch/switch.component';
+import { SwitchComponent } from './switch/switch.component';
+import { ThermometerComponent } from './thermometer/thermometer.component';
 
 @NgModule({
   imports: [
@@ -15,8 +15,8 @@ import { SwitchComponent } from './flipper/switch/switch.component';
   exports: [],
   declarations: [
     HomeComponent,
-    FlipperComponent,
-    SwitchComponent
+    SwitchComponent,
+    ThermometerComponent
   ],
   providers: [],
 })

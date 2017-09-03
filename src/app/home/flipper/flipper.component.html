@@ -1,8 +1,0 @@
-<div class="interactor" [class.isOn]="component.isOn" (click)="changeState()">
-  <div class="flipper">
-    <ng-container [ngSwitch]="component?.custom?.type">
-      <switch *ngSwitchCase="1" [component]="component">
-      </switch>
-    </ng-container>
-  </div>
-</div>

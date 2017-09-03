@@ -1,0 +1,15 @@
+<div class="switch" [class.isOn]="component.isOn" (click)="changeState()">
+  <div class="switch__flipper">
+    <div class="switch__front">
+      <div class="switch__front-icons">
+        <i class="fa fa-tasks"></i>
+        <i class="fa fa-cog"></i>
+      </div>
+      <div class="switch__front-description">
+        <span class="switch__description">{{ component.custom.description | uppercase }}</span>
+        <i class="fa fa-lightbulb-o" ></i>
+      </div>
+    </div>
+    <div class="switch__back"></div>
+  </div>
+</div>
