@@ -105,11 +105,11 @@ export class NewComponentComponent implements OnInit {
         }
         break;
         case '2': {
-          this.createSensor(this.newComponentForm.value);
+          this.createThermometer(this.newComponentForm.value);
         }
         break;
         case '3': {
-          this.createServo(this.newComponentForm.value);
+          this.createMotion(this.newComponentForm.value);
         }
         break;
         case '4': {
@@ -160,7 +160,8 @@ export class NewComponentComponent implements OnInit {
         .createComponent(_idResidence, _idRoom, component)
         .then(response => {
           this._socketIoService.emitMessage('create:Component', response);
-        });
+        })
+        .catch(error => console.error(error));
   }
 
   createControls(nextFormType) {
