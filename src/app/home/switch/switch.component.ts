@@ -12,6 +12,7 @@ import { SocketIoService } from './../../shared/services/socket-io.service';
 export class SwitchComponent implements OnInit {
 
   @Input() component;
+  flipTo: string;
   private componentSubscription: Subscription;
 
   constructor(
@@ -30,10 +31,25 @@ export class SwitchComponent implements OnInit {
           });
   }
 
-  changeState() {
-    this._socketIoService.emitMessage('updateState:Component', {
-      id: this.component.id, isOn: !this.component.isOn
-    });
+  changeState(event) {
+    const { target } = event;
+    if (!target.classList.contains('fa')) {
+      this._socketIoService.emitMessage('updateState:Component', {
+        id: this.component.id, isOn: !this.component.isOn
+      });
+    }
+  }
+
+  flipToRight(event) {
+    this.flipTo = 'right';
+  }
+
+  flipToLeft(event) {
+    this.flipTo = 'left';
+  }
+
+  unflip() {
+    this.flipTo = '';
   }
 
 }

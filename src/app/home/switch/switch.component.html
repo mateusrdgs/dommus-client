@@ -1,15 +1,31 @@
-<div class="switch" [class.isOn]="component.isOn" (click)="changeState()">
-  <div class="switch__flipper">
-    <div class="switch__front">
-      <div class="switch__front-icons">
-        <i class="fa fa-tasks"></i>
-        <i class="fa fa-cog"></i>
-      </div>
-      <div class="switch__front-description">
-        <span class="switch__description">{{ component.custom.description | uppercase }}</span>
-        <i class="fa fa-lightbulb-o" ></i>
+<div class="switch flipped-left" [ngClass]="
+{
+  'flipped-right': flipTo === 'right',
+  'flipped-left': flipTo === 'left'
+}"
+>
+<div class="switch__flipper">
+  <div class="switch__front" [class.isOn]="component.isOn" (click)="changeState($event)">
+    <div class="switch__front-icons">
+      <i class="fa fa-tasks" (click)="flipToLeft()"></i>
+      <i class="fa fa-cog" (click)="flipToRight()"></i>
+    </div>
+    <div class="switch__front-description">
+      <span class="switch__description">{{ component.custom.description | uppercase }}</span>
+      <i class="fa fa-lightbulb-o" ></i>
+    </div>
+  </div>
+  <div class="switch__back">
+    <div class="switch__back-left" [class.isOpen]="flipTo === 'left'">
+      <div class="switch__back-left__icons">
+        <i class="fa fa-times" (click)="unflip()"></i>
       </div>
     </div>
-    <div class="switch__back"></div>
+    <div class="switch__back-right" [class.isOpen]="flipTo === 'right'">
+      <div class="switch__back-right__icons">
+        <i class="fa fa-times" (click)="unflip()"></i>
+      </div>
+    </div>
   </div>
+</div>
 </div>
