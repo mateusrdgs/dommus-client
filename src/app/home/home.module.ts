@@ -7,6 +7,7 @@ import { HomeComponent } from './home.component';
 import { SwitchComponent } from './switch/switch.component';
 import { ThermometerComponent } from './thermometer/thermometer.component';
 import { LightComponent } from './light/light.component';
+import { MotionComponent } from './motion/motion.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { LightComponent } from './light/light.component';
     HomeComponent,
     SwitchComponent,
     ThermometerComponent,
-    LightComponent
+    LightComponent,
+    MotionComponent
   ],
   providers: [],
 })

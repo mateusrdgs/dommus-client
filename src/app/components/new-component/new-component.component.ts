@@ -114,14 +114,18 @@ export class NewComponentComponent implements OnInit {
         }
         break;
         case '3': {
-          this.createMotion(this.newComponentForm.value);
+          this.createLight(this.newComponentForm.value);
         }
         break;
         case '4': {
-          this.createSensor(this.newComponentForm.value);
+          this.createMotion(this.newComponentForm.value);
         }
         break;
         case '5': {
+          this.createSensor(this.newComponentForm.value);
+        }
+        break;
+        case '6': {
           this.createServo(this.newComponentForm.value);
         }
         break;
@@ -227,17 +231,17 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('frequency');
           this.newComponentForm.removeControl('threshold');
         break;
-      case '3':
+      case '4':
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('controller');
         break;
-      case '4':
+      case '5':
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
           this.newComponentForm.removeControl('threshold');
           this.newComponentForm.removeControl('controller');
         break;
-      case '5':
+      case '6':
           this.newComponentForm.removeControl('digitalPin');
           this.newComponentForm.removeControl('rotation');
           this.newComponentForm.removeControl('startAt');

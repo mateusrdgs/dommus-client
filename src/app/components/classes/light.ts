@@ -2,10 +2,10 @@ import Component from './component';
 
 export default class Light extends Component {
 
-  private _controller: string;
-  private _analogPin: number;
-  private _frequency: number;
-  private _threshold: number;
+  private controller: string;
+  private analogPin: number;
+  private frequency: number;
+  private threshold: number;
 
   constructor(
     idBoard: string,
@@ -25,35 +25,35 @@ export default class Light extends Component {
   }
 
   get Controller(): string {
-    return this._controller;
+    return this.controller;
   }
 
   set Controller(controller: string) {
-    this._controller = controller;
+    this.controller = controller;
   }
 
   get AnalogPin(): number {
-    return this._analogPin;
+    return this.analogPin;
   }
 
   set AnalogPin(analogPin: number) {
-    this._analogPin = analogPin;
+    this.analogPin = analogPin;
   }
 
   get Frequency(): number {
-    return this._frequency;
+    return this.frequency;
   }
 
   set Frequency(frequency: number) {
-    this._frequency = frequency;
+    this.frequency = frequency;
   }
 
   get Threshold(): number {
-    return this._threshold;
+    return this.threshold;
   }
 
   set Threshold(threshold: number) {
-    this._threshold = threshold;
+    this.threshold = threshold;
   }
 
 }
