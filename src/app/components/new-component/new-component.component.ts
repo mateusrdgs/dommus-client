@@ -10,6 +10,7 @@ import { BoardsService } from './../../boards/boards.service';
 import { ComponentsService } from './../components.service';
 
 import Switch from '../classes/switch';
+import Light from '../classes/light';
 import Sensor from '../classes/sensor';
 import Servo from '../classes/servo';
 import Motion from '../classes/motion';
@@ -44,14 +45,18 @@ export class NewComponentComponent implements OnInit {
     },
     {
       value: 3,
-      type: 'Motion'
+      type: 'Light'
     },
     {
       value: 4,
-      type: 'Sensor'
+      type: 'Motion'
     },
     {
       value: 5,
+      type: 'Sensor'
+    },
+    {
+      value: 6,
       type: 'Servo'
     }
   ];
@@ -138,6 +143,12 @@ export class NewComponentComponent implements OnInit {
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
+  createLight(formValue) {
+    const { description, componentType, board, analogPin, threshold, frequency, controller } = formValue;
+    this._component = new Light(board, description, 3, controller, analogPin, frequency, threshold);
+    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+  }
+
   createMotion(formValue) {
     const { description, componentType, board, analogPin, controller } = formValue;
     this._component = new Motion(board, description, 3, controller, analogPin);
@@ -175,16 +186,22 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         break;
       case '3':
+        this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
+        this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
+        this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
+        this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
+      break;
+      case '4':
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
         break;
-      case '4':
+      case '5':
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
         break;
-      case '5':
+      case '6':
           this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('rotation', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('startAt', new FormControl('', [Validators.required]));
@@ -203,6 +220,12 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('controller');
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
+        break;
+      case '3':
+          this.newComponentForm.removeControl('controller');
+          this.newComponentForm.removeControl('analogPin');
+          this.newComponentForm.removeControl('frequency');
+          this.newComponentForm.removeControl('threshold');
         break;
       case '3':
           this.newComponentForm.removeControl('analogPin');
