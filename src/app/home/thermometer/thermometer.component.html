@@ -1,6 +1,9 @@
-<div class="thermometer">
+<div class="thermometer" (click)="changeTemperatureScale()">
   <div class="thermometer__description-container">
     <span class="thermometer__description">{{ component.custom.description | uppercase }}</span>
+  </div>
+  <div class="thermometer__data-container">
+    <span> {{ showCelsius ? (component?.celsius || 0) + '°C' : (component?.fahrenheit || 0)  + '°F' }}</span>
     <i class="fa fa-thermometer-half" ></i>
   </div>
 </div>

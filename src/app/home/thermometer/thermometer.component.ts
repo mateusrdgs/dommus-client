@@ -12,6 +12,7 @@ export class ThermometerComponent implements OnInit {
 
   @Input() component;
   private thermometerSubscription: Subscription;
+  private showCelsius = true;
 
   constructor(
     private _socketIoService: SocketIoService
@@ -22,10 +23,18 @@ export class ThermometerComponent implements OnInit {
   }
 
   startSubscription() {
+    console.log(this.component);
     this.thermometerSubscription =
       this._socketIoService
           .listenToEvent(`changed:${this.component.id}`)
-          .subscribe(data => console.log(data));
+          .subscribe(data => {
+            this.component.celsius = data['celsius'];
+            this.component.fahrenheit = data['fahrenheit'];
+          });
+  }
+
+  changeTemperatureScale() {
+    this.showCelsius = !this.showCelsius;
   }
 
 }

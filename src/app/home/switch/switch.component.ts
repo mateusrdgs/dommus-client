@@ -33,7 +33,7 @@ export class SwitchComponent implements OnInit {
 
   changeState(event) {
     const { target } = event;
-    if (!target.classList.contains('fa')) {
+    if (!target.classList.contains('fa-tasks') && !target.classList.contains('fa-cog')) {
       this._socketIoService.emitMessage('updateState:Component', {
         id: this.component.id, isOn: !this.component.isOn
       });
