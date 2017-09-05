@@ -1,11 +1,11 @@
-_grey-tone = #79857E
-_red-tone = #FF0000
+_orange-tone = #E67E22
+_orange-tone--hover = #E66E19
 _box-shadow = 0 .9rem 3rem #BBB
 _box-shadow--hover = 0 .9rem 3rem #999
 
-.motion
+.sensor
   display flex
-  background-color _grey-tone
+  background-color _orange-tone
   box-shadow _box-shadow
   color #FFF
   font 700 4rem 'Exo 2', sans-serif
@@ -13,45 +13,25 @@ _box-shadow--hover = 0 .9rem 3rem #999
   flex-direction column
   height 25rem
   margin 2rem 0 2rem 0
-  overflow hidden
   padding 1rem
   transition all .3s linear
   width 18rem
   &:hover
+    background-color _orange-tone--hover
     box-shadow _box-shadow--hover
     cursor pointer
 
-.isActive
-  background-color _red-tone
-  animation blink 1s linear infinite
-  & .fa.fa-rss
-    animation beating 1s linear infinite
-
-@keyframes blink
-  0%, 100%
-    background-color _grey-tone
-  50%
-    background-color _red-tone
-
-@keyframes beating
-  0%, 100%
-    color _red-tone
-    transform scale(1)
-  50%
-    color #FFF
-    transform scale(1.3)
-
-.motion__description-container
+.sensor__description-container
   display flex
   flex-direction column
   justify-content space-around
   text-align center
   word-break break-all
 
-.motion__description
+.sensor__description
   font-size 2rem
 
-.motion__data-container
+.sensor__data-container
   display flex
   flex-direction column
   flex-grow 2
@@ -60,6 +40,6 @@ _box-shadow--hover = 0 .9rem 3rem #999
   word-break break-all
 
 @media screen and (min-width: 26rem)
-  .motion
+  .sensor
     height 25rem;
     width 25rem;
