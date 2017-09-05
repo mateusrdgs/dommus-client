@@ -6,6 +6,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SwitchComponent } from './switch/switch.component';
 import { ThermometerComponent } from './thermometer/thermometer.component';
+import { LightComponent } from './light/light.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ThermometerComponent } from './thermometer/thermometer.component';
   declarations: [
     HomeComponent,
     SwitchComponent,
-    ThermometerComponent
+    ThermometerComponent,
+    LightComponent
   ],
   providers: [],
 })

@@ -1,14 +1,15 @@
-import { SocketIoService } from './../../shared/services/socket-io.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { SocketIoService } from './../../shared/services/socket-io.service';
+
 @Component({
-  selector: 'thermometer',
-  templateUrl: './thermometer.component.html',
-  styleUrls: ['./thermometer.component.styl']
+  selector: 'light',
+  templateUrl: './light.component.html',
+  styleUrls: ['./light.component.styl']
 })
-export class ThermometerComponent implements OnInit {
+export class LightComponent implements OnInit {
 
   @Input() component;
   private thermometerSubscription: Subscription;
@@ -23,17 +24,12 @@ export class ThermometerComponent implements OnInit {
   }
 
   startSubscription() {
+    console.log(this.component);
     this.thermometerSubscription =
       this._socketIoService
           .listenToEvent(`changed:${this.component.id}`)
           .subscribe(data => {
-            this.component.celsius = data['celsius'];
-            this.component.fahrenheit = data['fahrenheit'];
+            this.component.value = data['value'];
           });
   }
-
-  changeTemperatureScale() {
-    this.showCelsius = !this.showCelsius;
-  }
-
 }
