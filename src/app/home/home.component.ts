@@ -53,6 +53,8 @@ export class HomeComponent implements OnInit {
           this._syncService.syncApps(this.idResidence).then(residence => {
             data(residence);
           });
+        } else if (eventName === 'changed:Component') {
+          console.log(data);
         } else {
           this.components = data;
           console.log(this.components);

@@ -133,8 +133,8 @@ export class NewComponentComponent implements OnInit {
   }
 
   createThermometer(formValue) {
-    const { description, componentType, board, analogPin, frequency } = formValue;
-    this._component = new Thermometer(board, description, 2, analogPin, frequency);
+    const { description, componentType, board, analogPin, frequency, controller } = formValue;
+    this._component = new Thermometer(board, description, 2, controller, analogPin, frequency);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
@@ -170,6 +170,7 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.residenceBoards[0]['digitalPins'])));
         break;
       case '2':
+          this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         break;
@@ -199,6 +200,7 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('digitalPin');
         break;
       case '2':
+          this.newComponentForm.removeControl('controller');
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
         break;

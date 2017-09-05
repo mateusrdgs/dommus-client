@@ -1,4 +1,7 @@
+import { SocketIoService } from './../../shared/services/socket-io.service';
 import { Component, OnInit, Input } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'thermometer',
@@ -8,9 +11,21 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ThermometerComponent implements OnInit {
 
   @Input() component;
-  constructor() { }
+  private thermometerSubscription: Subscription;
+
+  constructor(
+    private _socketIoService: SocketIoService
+  ) { }
 
   ngOnInit() {
+    this.startSubscription();
+  }
+
+  startSubscription() {
+    this.thermometerSubscription =
+      this._socketIoService
+          .listenToEvent(`changed:${this.component.id}`)
+          .subscribe(data => console.log(data));
   }
 
 }
