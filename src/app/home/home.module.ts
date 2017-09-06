@@ -9,6 +9,7 @@ import { ThermometerComponent } from './thermometer/thermometer.component';
 import { LightComponent } from './light/light.component';
 import { MotionComponent } from './motion/motion.component';
 import { SensorComponent } from './sensor/sensor.component';
+import { ServoComponent } from './servo/servo.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { SensorComponent } from './sensor/sensor.component';
     ThermometerComponent,
     LightComponent,
     MotionComponent,
-    SensorComponent
+    SensorComponent,
+    ServoComponent
   ],
   providers: [],
 })
