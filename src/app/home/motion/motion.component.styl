@@ -23,7 +23,7 @@ _box-shadow--hover = 0 .9rem 3rem #999
 
 .isActive
   background-color _red-tone
-  animation blink 1s linear infinite
+  animation blink .5s linear infinite
   & .fa.fa-rss
     animation beating 1s linear infinite
 
@@ -35,11 +35,9 @@ _box-shadow--hover = 0 .9rem 3rem #999
 
 @keyframes beating
   0%, 100%
-    color _red-tone
     transform scale(1)
   50%
-    color #FFF
-    transform scale(1.3)
+    transform scale(1.5)
 
 .motion__description-container
   display flex
