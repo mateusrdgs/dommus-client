@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ResidencesService } from './../residences.service';
+import { TopBarEmitter } from './../../shared/emitters/top-bar.emitter';
 
 @Component({
   selector: 'app-new-residence',
@@ -15,7 +16,8 @@ export class NewResidenceComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _residencesService: ResidencesService
+    private _residencesService: ResidencesService,
+    private _topBarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
@@ -23,6 +25,7 @@ export class NewResidenceComponent implements OnInit {
       description: ['', Validators.required],
       url: ['', Validators.required]
     });
+    this._topBarEmitter.emitNewRouteTitle('Create residence');
   }
 
   onSubmit() {

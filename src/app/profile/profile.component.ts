@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -11,11 +13,13 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
 
   constructor(
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _topBarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
     this.createProfileForm();
+    this._topBarEmitter.emitNewRouteTitle('Profile');
   }
 
   createProfileForm() {

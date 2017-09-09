@@ -25,4 +25,17 @@ export class ResidencesResolver implements Resolve<Residence> {
   ): Observable<any> | Promise<any> | any {
     return this._residencesService.getResidences();
   }
+
+  /*resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<Residence[]> | Promise<Residence[]> | Residence[] {
+    return this._residencesService.getResidences()
+               .then(residences => {
+                 return residences.map(residence => {
+                   const { _id, description, url, boards, rooms } = residence;
+                   return new Residence(description, url, _id, rooms, boards);
+                 });
+               });
+  }*/
 }

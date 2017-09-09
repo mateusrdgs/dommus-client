@@ -1,6 +1,7 @@
 import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
@@ -18,6 +19,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     LoginModule,
     HomeModule,

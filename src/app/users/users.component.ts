@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
+
 @Component({
   selector: 'app-user',
   templateUrl: './users.component.html',
@@ -14,11 +16,13 @@ export class UsersComponent implements OnInit {
   routeSubscription: Subscription;
 
   constructor(
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _topBarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
     this.users = this._route.snapshot.data['users'];
+    this._topBarEmitter.emitNewRouteTitle('Users');
   }
 
 }

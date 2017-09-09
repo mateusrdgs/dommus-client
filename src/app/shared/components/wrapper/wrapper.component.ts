@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -9,7 +9,7 @@ import { SideBarService } from './../../services/side-bar.service';
   templateUrl: './wrapper.component.html',
   styleUrls: ['./wrapper.component.styl']
 })
-export class WrapperComponent implements OnInit {
+export class WrapperComponent implements OnInit, OnDestroy {
 
   sidebarSubscription: Subscription;
   isSidebarOpen = false;
@@ -25,6 +25,10 @@ export class WrapperComponent implements OnInit {
              .subscribe(data => {
                this.isSidebarOpen = data;
               });
+  }
+
+  ngOnDestroy() {
+    this.sidebarSubscription.unsubscribe();
   }
 
 }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from './../shared/services/auth.service';
 import { SocketIoService } from './../shared/services/socket-io.service';
 import { SyncService } from './../shared/services/sync.service';
+import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 @Component({
   selector: 'home',
@@ -22,7 +24,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private _authService: AuthService,
     private _socketIo: SocketIoService,
-    private _syncService: SyncService
+    private _syncService: SyncService,
+    private _topbarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
@@ -33,6 +36,7 @@ export class HomeComponent implements OnInit {
       this._syncSubscription = this.subscribeTo('app:Sync');
       this.emitMessage('get:Components', true);
     }
+    this._topbarEmitter.emitNewRouteTitle('Dashboard');
   }
 
   getIdAccount() {

@@ -10,6 +10,8 @@ import { LocalStorageService } from './services/local-storage.service';
 import { SocketIoService } from './services/socket-io.service';
 import { SyncService } from './services/sync.service';
 import { SideBarService } from './services/side-bar.service';
+import { TitleService } from './services/title.service';
+import { TopBarEmitter } from './emitters/top-bar.emitter';
 
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
@@ -39,7 +41,9 @@ import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggl
     LocalStorageService,
     SocketIoService,
     SyncService,
-    SideBarService
+    SideBarService,
+    TitleService,
+    TopBarEmitter
   ]
 })
 export class SharedModule { }
