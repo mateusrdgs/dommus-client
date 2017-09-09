@@ -1,20 +1,22 @@
-<ul class="menu-list">
-  <li class="menu-list__item">
-    <a [routerLink]="'/home'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="menu-list__item__link">Home</a>
-  </li>
-  <li class="menu-list__item">
-    <a [routerLink]="'/profile'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="menu-list__item__link">Profile</a>
-  </li>
-  <li class="menu-list__item">
-    <a [routerLink]="'/residences'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="menu-list__item__link">Residences</a>
-  </li>
-  <li class="menu-list__item">
-    <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="menu-list__item__link">Rooms</a>
-  </li>
-  <li class="menu-list__item">
-    <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="menu-list__item__link">Boards</a>
-  </li>
-  <li class="menu-list__item">
-    <a [routerLink]="'/users'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="menu-list__item__link">Users</a>
-  </li>
-</ul>
+<aside class="sidebar">
+  <ul class="sidebar-list">
+    <li class="sidebar-list__item">
+      <a [routerLink]="'/home'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Dashboard</a>
+    </li>
+    <li class="sidebar-list__item">
+      <a [routerLink]="'/residences'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Residences</a>
+    </li>
+    <li class="sidebar-list__item">
+      <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="sidebar-list__item-link">Rooms</a>
+    </li>
+    <li class="sidebar-list__item">
+      <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="sidebar-list__item-link">Boards</a>
+    </li>
+    <li class="sidebar-list__item">
+      <a [routerLink]="'/profile'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Profile</a>
+    </li>
+    <li class="sidebar-list__item">
+      <a [routerLink]="'/users'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Users</a>
+    </li>
+  </ul>
+</aside>

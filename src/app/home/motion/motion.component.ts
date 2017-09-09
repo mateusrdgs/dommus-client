@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+
+import { SocketIoService } from './../../shared/services/socket-io.service';
 
 @Component({
   selector: 'motion',
@@ -9,10 +13,26 @@ export class MotionComponent implements OnInit {
 
   isActive = false;
 
-  constructor() { }
+  @Input() component;
+  private thermometerSubscription: Subscription;
+  private showCelsius = true;
+
+  constructor(
+    private _socketIoService: SocketIoService
+  ) { }
 
   ngOnInit() {
+    this.startSubscription();
+  }
 
+  startSubscription() {
+    console.log(this.component);
+    this.thermometerSubscription =
+      this._socketIoService
+          .listenToEvent(`motion:${this.component.id}`)
+          .subscribe(data => {
+            this.isActive = data['detectedMotion'];
+          });
   }
 
 }

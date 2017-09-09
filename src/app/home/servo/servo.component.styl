@@ -53,7 +53,6 @@ $thumb-properties
   &::-webkit-slider-thumb
     -webkit-appearance none
     background-color #FFF
-    background #FFF url('/assets/double-arrow.svg') 50%/3.5rem no-repeat
     border-radius 50%
     margin-top -2rem
     height 5rem
@@ -61,8 +60,8 @@ $thumb-properties
     margin-top -2rem
     transition all .3s linear 
     &:hover
+      transform scale(1.1)
       cursor pointer
-      box-shadow 5px 5px 1rem #CCC inset
   &::-moz-range-thumb
     background-color #FFF
     border 0
@@ -70,13 +69,16 @@ $thumb-properties
     height 5rem
     width 5rem
     &:hover
+      transform scale(1.1)
       cursor pointer
   &::-ms-thumb
+    background-color #FFF
     border 0
     border-radius 50%
     height 5rem
     width 5rem
     &:hover
+      transform scale(1.1)
       cursor pointer
   &:focus
     outline none

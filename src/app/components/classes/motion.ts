@@ -2,36 +2,25 @@ import Component from './component';
 
 export default class Motion extends Component {
 
-  private controller: string;
-  private analogPin: number;
+  private digitalPin: number;
 
   constructor(
     idBoard: string,
     description: string,
     type: number,
-    controller: string,
-    analogPin: number,
+    digitalPin: number,
     id?: string
   ) {
     super(idBoard, description, type, id);
-    this.Controller = controller;
-    this.AnalogPin = analogPin;
+    this.digitalPin = digitalPin;
   }
 
-  get Controller(): string {
-    return this.controller;
+  get DigitalPin(): number {
+    return this.digitalPin;
   }
 
-  set Controller(controller: string) {
-    this.controller = controller;
-  }
-
-  get AnalogPin(): number {
-    return this.analogPin;
-  }
-
-  set AnalogPin(analogPin: number) {
-    this.analogPin = analogPin;
+  set DigitalPin(digitalPin: number) {
+    this.digitalPin = digitalPin;
   }
 
 }

@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+
+import { SocketIoService } from './../../shared/services/socket-io.service';
 
 @Component({
   selector: 'servo',
@@ -7,13 +11,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServoComponent implements OnInit {
 
-  constructor() { }
+  @Input() component;
+  flipTo: string;
+  private componentSubscription: Subscription;
+
+  constructor(
+    private _socketIoService: SocketIoService
+  ) { }
 
   ngOnInit() {
+    this.startSubscription();
+    console.log(this.component);
+  }
+
+  startSubscription() {
+    this.componentSubscription =
+      this._socketIoService.listenToEvent(`updateState:Component`)
+          .subscribe(component => {
+            this.component.position = component['id'] === this.component.id ? component['position'] : this.component.position;
+          });
+  }
+
+  flipToRight(event) {
+    this.flipTo = 'right';
+  }
+
+  flipToLeft(event) {
+    this.flipTo = 'left';
+  }
+
+  unflip() {
+    this.flipTo = '';
   }
 
   onRangeChange(event) {
-    console.log(event.srcElement.valueAsNumber);
+    console.log(event);
+    this._socketIoService
+        .emitMessage(`updateState:Component`, {
+          id: this.component.id,
+          position: event.target.valueAsNumber
+        });
   }
 
 }

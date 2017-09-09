@@ -1,27 +1,41 @@
-.menu-list
-  background-color #353C3E
+.sidebar
   display flex
   flex-direction column
-  font 400 1rem 'Open Sans', sans-serif;
   justify-content flex-end
-  list-style none
-  overflow auto
+  height 100%
+  user-select none
+  width 100%
+
+.sidebar-list
+  overflow-y scroll
   margin 0
   padding 0
   width 100%
-  height 100%
 
-.menu-list__item__link
-  background-color #353C3E
-  color #FFF
+.sidebar-list__item
   display block
-  flex 1
-  height 5rem
+  overflow auto
+
+.sidebar-list__item-link
+  align-items center
+  display flex
+  color #FFF
   padding 1.5rem
   text-decoration none
-  transition all .3s ease-in-out
+  transition all .3s linear
   &:hover
-    background-color #5991B1
-  &.active
-    background-color #EEE
-    color #1C2021
+    background-color #F27935
+    color #FFF
+    cursor pointer
+    padding-left 3rem
+
+.active
+  background-color #EEE
+  color #3F3F3F
+
+.disabled
+  opacity .5
+  &:hover
+    background-color #3f3f3f
+    cursor default
+    padding-left 1.5rem

@@ -154,19 +154,20 @@ export class NewComponentComponent implements OnInit {
   }
 
   createMotion(formValue) {
-    const { description, componentType, board, analogPin, controller } = formValue;
-    this._component = new Motion(board, description, 3, controller, analogPin);
+    const { description, componentType, board, digitalPin } = formValue;
+    this._component = new Motion(board, description, 4, digitalPin);
+    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createSensor(formValue) {
     const { description, componentType, board, analogPin, frequency, controller, threshold } = this.newComponentForm.value;
-    this._component = new Sensor(board, description, 4, analogPin, frequency, controller, threshold);
+    this._component = new Sensor(board, description, 5, analogPin, frequency, controller, threshold);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createServo(formValue) {
     const { description, componentType, board, digitalPin, rotation, startAt, minRange, maxRange } = this.newComponentForm.value;
-    this._component = new Servo(board, description, 5, digitalPin, rotation, startAt, minRange, maxRange);
+    this._component = new Servo(board, description, 6, digitalPin, rotation, startAt, minRange, maxRange);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
@@ -196,8 +197,7 @@ export class NewComponentComponent implements OnInit {
         this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
       break;
       case '4':
-          this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
-          this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
         break;
       case '5':
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
@@ -232,8 +232,7 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('threshold');
         break;
       case '4':
-          this.newComponentForm.removeControl('analogPin');
-          this.newComponentForm.removeControl('controller');
+          this.newComponentForm.removeControl('digitalPin');
         break;
       case '5':
           this.newComponentForm.removeControl('analogPin');

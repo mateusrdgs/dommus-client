@@ -3,6 +3,6 @@
     <span class="servo__description">{{ 'Servo' | uppercase }}</span>
   </div>
   <div class="servo__range-container">
-    <input type="range" (change)="onRangeChange($event)" class="servo__range">
+    <input type="range" (change)="onRangeChange($event)" class="servo__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">
   </div>
 </div>
