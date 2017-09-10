@@ -1,8 +1,42 @@
-<div class="servo">
+<!--<div class="servo">
   <div class="servo__description-container">
-    <span class="servo__description">{{ 'Servo' | uppercase }}</span>
+    <span class="servo__description">{{ component?.description | uppercase }}</span>
   </div>
   <div class="servo__range-container">
     <input type="range" (change)="onRangeChange($event)" class="servo__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">
+    <i class="fa fa-cogs" ></i>
   </div>
+</div>-->
+
+<div class="servo flipped-left" [ngClass]="
+{
+  'flipped-right': flipTo === 'right',
+  'flipped-left': flipTo === 'left'
+}"
+>
+<div class="servo__flipper">
+  <div class="servo__front" [class.isOn]="component.isOn">
+    <div class="servo__front-icons">
+      <i class="fa fa-tasks" aria-hidden="true" (click)="flipToLeft()"></i>
+      <i class="fa fa-cog" aria-hidden="true" (click)="flipToRight()"></i>
+    </div>
+    <div class="servo__front-description">
+      <span class="servo__description">{{ component?.description | uppercase }}</span>
+      <input type="range" (change)="onRangeChange($event)" class="servo__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">
+      <i class="fa fa-cogs" ></i>
+    </div>
+  </div>
+  <div class="servo__back">
+    <div class="servo__back-left" [class.isOpen]="flipTo === 'left'">
+      <div class="servo__back-left__icons">
+        <i class="fa fa-times" aria-hidden="true" (click)="unflip()"></i>
+      </div>
+    </div>
+    <div class="servo__back-right" [class.isOpen]="flipTo === 'right'">
+      <div class="servo__back-right__icons">
+        <i class="fa fa-times" aria-hidden="true" (click)="unflip()"></i>
+      </div>
+    </div>
+  </div>
+</div>
 </div>

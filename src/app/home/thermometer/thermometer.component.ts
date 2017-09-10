@@ -24,8 +24,7 @@ export class ThermometerComponent implements OnInit {
 
   startSubscription() {
     this.thermometerSubscription =
-      this._socketIoService
-          .listenToEvent(`changed:${this.component.id}`)
+      this._socketIoService.listenToEvent(`data:${this.component.id}`)
           .subscribe(data => {
             this.component.celsius = data['celsius'];
             this.component.fahrenheit = data['fahrenheit'];

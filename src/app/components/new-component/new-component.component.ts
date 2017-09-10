@@ -175,7 +175,9 @@ export class NewComponentComponent implements OnInit {
     this._componentsService
         .createComponent(_idResidence, _idRoom, component)
         .then(response => {
-          this._socketIoService.emitMessage('create:Component', response);
+          if (response['_id']) {
+            this._socketIoService.emitMessage('create:Component', response);
+          }
         })
         .catch(error => console.error(error));
   }
@@ -186,12 +188,10 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.residenceBoards[0]['digitalPins'])));
         break;
       case '2':
-          this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         break;
       case '3':
-        this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
@@ -203,7 +203,6 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
-          this.newComponentForm.addControl('controller', new FormControl('', [Validators.required]));
         break;
       case '6':
           this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
@@ -217,35 +216,38 @@ export class NewComponentComponent implements OnInit {
 
   removeControls(previousFormType) {
     switch (previousFormType) {
-      case '1':
+      case '1': {
           this.newComponentForm.removeControl('digitalPin');
+        }
         break;
-      case '2':
-          this.newComponentForm.removeControl('controller');
+      case '2': {
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
+        }
         break;
-      case '3':
-          this.newComponentForm.removeControl('controller');
+      case '3': {
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
           this.newComponentForm.removeControl('threshold');
+      }
         break;
-      case '4':
+      case '4': {
           this.newComponentForm.removeControl('digitalPin');
+      }
         break;
-      case '5':
+      case '5': {
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
           this.newComponentForm.removeControl('threshold');
-          this.newComponentForm.removeControl('controller');
+      }
         break;
-      case '6':
+      case '6': {
           this.newComponentForm.removeControl('digitalPin');
           this.newComponentForm.removeControl('rotation');
           this.newComponentForm.removeControl('startAt');
           this.newComponentForm.removeControl('minRange');
           this.newComponentForm.removeControl('maxRange');
+      }
         break;
     }
   }
