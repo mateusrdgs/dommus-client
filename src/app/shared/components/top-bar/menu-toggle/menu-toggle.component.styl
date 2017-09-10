@@ -12,23 +12,26 @@
   height 100%
   &:hover
     cursor pointer
+    & .menu-toggle__item
+      background-color #EEE
 
 .menu-toggle__item
+  border-radius 5px
   background-color #FFF
   height .2rem
-  transition all .3s ease-in-out
+  transition all .4s ease-in-out
   opacity 1
   width 3rem
 
 .menu-toggle__item:nth-child(even)
   margin .8rem 0
 
-.menu-toggle--open .menu-toggle__item:nth-child(2)
-  opacity 0
-  transform translateX(-5rem)
+.menu-toggle--open .menu-toggle__item:first-child
+  transform rotateZ(136deg) translate3d(23%, -400%, 0)
 
-/*@media screen and (min-width: 64rem)
-  .menu-toggle,
-  .menu-toggle--open
-    display none
-    */
+.menu-toggle--open .menu-toggle__item:nth-child(2)
+  height .3rem
+  transform translateX(-4rem)
+
+.menu-toggle--open .menu-toggle__item:last-child
+  transform rotateZ(-136deg) translate3d(23%, 400%, 0)
