@@ -1,14 +1,6 @@
 <div class="home">
   <ng-container *ngFor="let component of components">
-    <ng-container [ngSwitch]="component?.type">
-      <!--<switch *ngSwitchCase="1" [component]="component"></switch>
-      <thermometer *ngSwitchCase="2" [component]="component"></thermometer>
-      <light *ngSwitchCase="3" [component]="component"></light>
-      <motion *ngSwitchCase="4" [component]="component"></motion>
-      <servo *ngSwitchCase="6" [component]="component"></servo>-->
-      <card></card>
-    </ng-container>
+    <switch [component]="component"></switch>
+    <card [component]="component"></card>
   </ng-container>
-  <!--<sensor></sensor>
-  <servo></servo>-->
 </div>

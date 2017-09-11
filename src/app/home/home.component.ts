@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
           console.log(data);
         } else {
           this.components = data;
-          console.log(this.components);
+          //console.log(this.components);
         }
       });
   }

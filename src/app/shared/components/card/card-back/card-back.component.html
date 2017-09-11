@@ -1,4 +1,11 @@
-<div class="card__back">
+<div class="card__back"  [ngClass]="{
+  'is-switch': componentType === 1,
+  'is-thermometer': componentType === 2,
+  'is-light': componentType === 3,
+  'is-motion': componentType === 4,
+  'is-sensor': componentType === 5,
+  'is-servo': componentType === 6
+}">
   <!--<div class="card__back-left" [class.isOpen]="flippedTo === 'left'">
     <div class="card__back-left__icons">
       <i class="fa fa-times" aria-hidden="true" (click)="unflip()"></i>
@@ -9,6 +16,6 @@
       <i class="fa fa-times" aria-hidden="true" (click)="unflip()"></i>
     </div>
   </div>-->
-  <card-back-left></card-back-left>
-  <card-back-right></card-back-right>
+  <card-back-left [isOpen]="flippedTo === 'left'"></card-back-left>
+  <card-back-right [isOpen]="flippedTo === 'right'"></card-back-right>
 </div>

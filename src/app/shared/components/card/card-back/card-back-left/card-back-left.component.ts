@@ -1,13 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { CardEmitter } from './../../../../emitters/card.emitter';
 
 @Component({
   selector: 'card-back-left',
   templateUrl: './card-back-left.component.html',
-  styleUrls: ['./card-back-left.component.styl']
+  styleUrls: ['../../card.component.styl'],
 })
 export class CardBackLeftComponent implements OnInit {
 
-  constructor() { }
+  @Input() isOpen: boolean;
+
+  constructor(
+    private _cardEmitter: CardEmitter
+  ) { }
+
+  unflipCard() {
+    this._cardEmitter.cardEventEmitter.emit('');
+  }
+
 
   ngOnInit() {
   }

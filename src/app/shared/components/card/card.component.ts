@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+
+import { CardEmitter } from './../../emitters/card.emitter';
 
 @Component({
   selector: 'card',
@@ -8,11 +12,21 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
 
   @Input() component;
+  private componentFlipSubscription: Subscription;
   flippedTo: string;
 
-  constructor() { }
+  constructor(
+    private _cardEmitter: CardEmitter
+  ) { }
 
   ngOnInit() {
+    this.startFlipSubscription();
+  }
+
+  startFlipSubscription() {
+    this.componentFlipSubscription =
+      this._cardEmitter.cardEventEmitter
+          .subscribe(flippedTo => this.flippedTo = flippedTo);
   }
 
 }

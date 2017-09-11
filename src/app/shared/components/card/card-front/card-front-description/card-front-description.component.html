@@ -1,3 +1,8 @@
-<p>
-  card-front-description works!
-</p>
+<div class="card__front-description">
+  <span class="card__front-description__text" [textContent]="componentDescription | uppercase"></span>
+  <!--<input type="range" (change)="onRangeChange($event)" class="card__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">-->
+  <i class="card__front-description__icon fa" [ngClass]="{
+    'fa-lightbulb-o': componentType === 1,
+    'fa-cogs': componentType === 6
+  }"></i>
+</div>

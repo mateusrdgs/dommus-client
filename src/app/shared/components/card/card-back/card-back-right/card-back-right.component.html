@@ -1,3 +1,5 @@
-<p>
-  card-back-right works!
-</p>
+<div class="card__back-right" [class.isOpen]="isOpen">
+  <div class="card__back-right__icons">
+    <i class="fa fa-times" aria-hidden="true" (click)="unflipCard()"></i>
+  </div>
+</div>

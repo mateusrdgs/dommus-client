@@ -1,11 +1,19 @@
-<div class="card__front">
-  <div class="card__front-icons">
-    <i class="fa fa-tasks" aria-hidden="true"></i>
-    <i class="fa fa-cog" aria-hidden="true"></i>
-  </div>
-  <div class="card__front-description">
-    <span class="card__description">Descrição</span>
-    <!--<input type="range" (change)="onRangeChange($event)" class="card__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">
-    <i class="fa fa-cogs" ></i>-->
-  </div>
+<div class="card__front" [ngClass]="{
+  'is-switch': componentType === 1,
+  'is-thermometer': componentType === 2,
+  'is-light': componentType === 3,
+  'is-motion': componentType === 4,
+  'is-sensor': componentType === 5,
+  'is-servo': componentType === 6
+}">
+<card-front-icons></card-front-icons>
+<!--<card-front-description [componentType]="componentType" [componentDescription]="componentDescription"></card-front-description>-->
+<div class="card__front-description">
+  <span class="card__front-description__text" [textContent]="componentDescription | uppercase"></span>
+  <!--<input type="range" (change)="onRangeChange($event)" class="card__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">-->
+  <i class="card__front-description__icon fa" [ngClass]="{
+    'fa-lightbulb-o': componentType === 1,
+    'fa-cogs': componentType === 6
+  }"></i>
+</div>
 </div>

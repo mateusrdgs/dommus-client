@@ -11,7 +11,9 @@ import { SocketIoService } from './services/socket-io.service';
 import { SyncService } from './services/sync.service';
 import { SideBarService } from './services/side-bar.service';
 import { TitleService } from './services/title.service';
+
 import { TopBarEmitter } from './emitters/top-bar.emitter';
+import { CardEmitter } from './emitters/card.emitter';
 
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
@@ -58,7 +60,8 @@ import { CardBackRightComponent } from './components/card/card-back/card-back-ri
     SyncService,
     SideBarService,
     TitleService,
-    TopBarEmitter
+    TopBarEmitter,
+    CardEmitter
   ]
 })
 export class SharedModule { }

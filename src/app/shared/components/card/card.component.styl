@@ -1,3 +1,19 @@
+_switch-component-off = #EB6B56
+_switch-component-off--hover = #CE5E4C
+_switch-component-on = #21AD7A
+_switch-component-on--hover = #198A61
+_thermometer-component = #F1C40F
+_thermometer-component--hover = #FCCA05
+_light-component = #867198
+_light-component--hover = #67537A
+_motion-component = #79857E
+_motion-component--alert = #FF0000
+_sensor-component = #E67E22
+_sensor-component--hover = #E66E19
+_servo-component = #00A4B2
+_servo-component--hover = #0F8AB2
+_box-shadow = 0 .9rem 3rem #BBB
+_box-shadow--hover = 0 .9rem 3rem #999
 _global-transition = all .5s ease
 
 .card
@@ -13,12 +29,127 @@ _global-transition = all .5s ease
   &.flipped-left .card__flipper
     transform rotateY(-180deg)
 
-.card__flipper
+.card__flipper,
+.card__front,
+.card__back
   height 100%
+  width 100%
+
+.card__flipper
   position relative
   transition _global-transition
   transform-style preserve-3d
-  width 100%
+
+.card__front,
+.card__back
+  backface-visibility hidden
+  background-color _red-tone
+  box-shadow _box-shadow
+  color #FFF
+  display flex
+  flex-direction column
+  left 0
+  padding 1rem
+  position absolute
+  transition _global-transition
+  top 0
+
+.card__front
+  transform rotateY(0deg)
+  z-index 2
+  &:hover
+    cursor pointer
+
+.is-switch
+  background-color _switch-component-off
+  &:hover
+    background-color _switch-component-off--hover
+  & + .card__back
+    background-color _switch-component-off
+  &.isOn
+    background-color _switch-component-on
+    &:hover
+      background-color _switch-component-on--hover
+  &.isOn + .card__back
+    background-color _switch-component-on
+
+.is-thermometer
+  background-color _thermometer-component
+  &:hover
+    background-color _thermometer-component--hover
+  &.card__back
+    background-color _thermometer-component
+
+.is-light
+  background-color _light-component
+  &:hover
+    background-color _light-component--hover
+
+.is-motion
+  background-color _motion-component
+  &.is-alert
+    background-color _motion-component--alert
+
+.is-sensor
+  background-color _sensor-component
+  &:hover
+    background-color _sensor-component--hover
+
+.is-servo
+  background-color _servo-component
+  &:hover
+    background-color _servo-component--hover
+
+.card__front-icons,
+.card__back-left__icons,
+.card__back-right__icons,
+  display flex
+  justify-content space-between
+  font-size 2.5rem
+
+.fa-tasks,
+.fa-cog,
+.fa-times
+  transition _global-transition
+  backface-visibility hidden
+  &:hover
+    cursor pointer
+    transform rotate(90deg)
+
+.fa-tasks
+  transform translateX(3px)
+  &:hover
+    transform translateX(0)  
+
+.card__front-description
+  display flex
+  flex-direction column
+  flex 2 1 80%
+  font 700 4rem 'Exo 2', sans-serif
+  justify-content space-around
+  text-align center
+
+.card__back
+  display flex
+  flex-direction row
+  justify-content space-between
+  transform rotateY(180deg)
+
+.card__back-left,
+.card__back-right
+  color #FFF
+  flex 0 1 0%
+  max-width 0
+  opacity 0
+  transition _global-transition
+  &.isOpen
+    flex 2 0 100%
+    max-width 100%
+    opacity 1
+
+[class$="icons"]
+  display flex
+  overflow hidden
 
 @media screen and (min-width: 26rem)
   .card
