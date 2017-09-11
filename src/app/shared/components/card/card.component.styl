@@ -1,0 +1,26 @@
+_global-transition = all .5s ease
+
+.card
+  flex 1 1 100%
+  height 25rem
+  margin 2rem 0 2rem 0
+  perspective 62.5rem
+  transition _global-transition
+  user-select none
+  width 18rem
+  &.flipped-right .card__flipper
+    transform rotateY(180deg)
+  &.flipped-left .card__flipper
+    transform rotateY(-180deg)
+
+.card__flipper
+  height 100%
+  position relative
+  transition _global-transition
+  transform-style preserve-3d
+  width 100%
+
+@media screen and (min-width: 26rem)
+  .card
+    height 25rem;
+    width 25rem;

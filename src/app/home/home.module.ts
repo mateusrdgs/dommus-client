@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { SharedModule } from './../shared/shared.module';
 
 import { HomeComponent } from './home.component';
 import { SwitchComponent } from './switch/switch.component';
@@ -16,7 +17,8 @@ import { ServoComponent } from './servo/servo.component';
   imports: [
     CommonModule,
     RouterModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    SharedModule
   ],
   exports: [],
   declarations: [

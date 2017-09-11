@@ -17,6 +17,13 @@ import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
 import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggle.component';
+import { CardComponent } from './components/card/card.component';
+import { CardFrontComponent } from './components/card/card-front/card-front.component';
+import { CardFrontIconsComponent } from './components/card/card-front/card-front-icons/card-front-icons.component';
+import { CardFrontDescriptionComponent } from './components/card/card-front/card-front-description/card-front-description.component';
+import { CardBackComponent } from './components/card/card-back/card-back.component';
+import { CardBackLeftComponent } from './components/card/card-back/card-back-left/card-back-left.component';
+import { CardBackRightComponent } from './components/card/card-back/card-back-right/card-back-right.component';
 
 @NgModule({
   imports: [
@@ -27,13 +34,21 @@ import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggl
   exports: [
     SideMenuComponent,
     TopbarComponent,
-    WrapperComponent
+    WrapperComponent,
+    CardComponent
   ],
   declarations: [
     SideMenuComponent,
     TopbarComponent,
     WrapperComponent,
-    MenuToggleComponent
+    MenuToggleComponent,
+    CardComponent,
+    CardFrontComponent,
+    CardFrontIconsComponent,
+    CardFrontDescriptionComponent,
+    CardBackComponent,
+    CardBackLeftComponent,
+    CardBackRightComponent
   ],
   providers: [
     AppGuard,

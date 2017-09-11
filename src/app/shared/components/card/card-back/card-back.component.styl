@@ -1,0 +1,31 @@
+.card__back
+  backface-visibility hidden
+  background-color _red-tone
+  box-shadow _box-shadow
+  color #FFF
+  display flex
+  flex-direction column
+  justify-content space-between
+  height 100%
+  left 0
+  padding 1rem
+  position absolute
+  transition _global-transition
+  transform rotateY(180deg)
+  top 0
+  width 100%
+
+.card__back-left__icons,
+.card__back-right__icons,
+  display flex
+  justify-content space-between
+  font-size 2.5rem
+
+[class$="icons"]
+  display flex
+  overflow hidden
+
+@media screen and (min-width: 26rem)
+  .card
+    height 25rem;
+    width 25rem;

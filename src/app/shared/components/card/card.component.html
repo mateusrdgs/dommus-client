@@ -1,0 +1,11 @@
+<div class="card"
+     [ngClass]=" {
+      'flipped-right': flipTo === 'right',
+      'flipped-left': flipTo === 'left'
+     }"
+>
+  <div class="card__flipper">
+    <card-front></card-front>
+    <card-back></card-back>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+_light-component = #867198
+_light-component--hover = #67537A
+_motion-tone = #79857E
+_motion-tone--alert = #FF0000
+_sensor-tone = #E67E22
+_sensor-tone--hover = #E66E19
+_servo-component = #00A4B2
+_servo-component--hover = #0F8AB2
+_switch-tone-off = #EB6B56
+_switch-tone-off--hover = #CE5E4C
+_switch-tone-on = #21AD7A
+_switch-tone-on--hover = #198A61
+_box-shadow = 0 .9rem 3rem #BBB
+_box-shadow--hover = 0 .9rem 3rem #999
+_global-transition = all .5s ease
+
+.card__front
+  backface-visibility hidden
+  background-color _red-tone
+  box-shadow _box-shadow
+  color #FFF
+  display flex
+  flex-direction column
+  height 100%
+  left 0
+  padding 1rem
+  position absolute
+  transform rotateY(0deg)
+  transition _global-transition
+  top 0
+  width 100%
+  z-index 2
+  &:hover
+    background-color _servo-component--hover
+    box-shadow _box-shadow--hover
+    cursor pointer
+  &.isOn
+    background-color _switch-tone-on
+    &:hover
+      background-color _switch-tone-on--hover
+  &.isOn + .card__back
+    background-color _switch-tone-on
+
+.card__front-icons
+  display flex
+  justify-content space-between
+  font-size 2.5rem
+
+.fa-cogs
+  font-size 4rem
+
+.fa-tasks,
+.fa-cog,
+.fa-times
+  transition _global-transition
+  backface-visibility hidden
+
+.fa-tasks
+  transform translateX(3px)
+  &:hover
+    transform translateX(0)
+
+.fa-cog,
+.fa-times
+  &:hover
+    cursor pointer
+    transform rotate(90deg)
+
+.card__front-description
+  display flex
+  flex-direction column
+  flex 2 1 80%
+  font 700 2.5rem 'Exo 2', sans-serif
+  justify-content space-around
+  text-align center
