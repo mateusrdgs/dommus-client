@@ -1,4 +1,4 @@
-<div class="card__front" [ngClass]="{
+<div class="card__front" [class.isOn]="componentIsOn" [ngClass]="{
   'is-switch': componentType === 1,
   'is-thermometer': componentType === 2,
   'is-light': componentType === 3,
@@ -6,14 +6,14 @@
   'is-sensor': componentType === 5,
   'is-servo': componentType === 6
 }">
-<card-front-icons></card-front-icons>
-<!--<card-front-description [componentType]="componentType" [componentDescription]="componentDescription"></card-front-description>-->
-<div class="card__front-description">
+<card-front-icons [componentId]="componentId"></card-front-icons>
+<card-front-description [componentType]="componentType" [componentDescription]="componentDescription"></card-front-description>
+<!--<div class="card__front-description">
   <span class="card__front-description__text" [textContent]="componentDescription | uppercase"></span>
-  <!--<input type="range" (change)="onRangeChange($event)" class="card__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">-->
+  <input type="range" class="card__range" [min]="0" [max]="180" [value]="0">
   <i class="card__front-description__icon fa" [ngClass]="{
     'fa-lightbulb-o': componentType === 1,
     'fa-cogs': componentType === 6
   }"></i>
-</div>
+</div>-->
 </div>

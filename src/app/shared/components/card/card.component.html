@@ -3,9 +3,10 @@
       'flipped-right': flippedTo === 'right',
       'flipped-left': flippedTo === 'left'
      }"
+    (click)="changeState($event)"
 >
   <div class="card__flipper">
-    <card-front [componentType]="component?.type" [componentDescription]="component?.description"></card-front>
-    <card-back [componentType]="component?.type" [flippedTo]="flippedTo"></card-back>
+    <card-front [componentId]="component?.id" [componentIsOn]="component?.isOn" [componentType]="component?.type" [componentDescription]="component?.description"></card-front>
+    <card-back [componentIsOn]="component?.isOn" [componentType]="component?.type" [flippedTo]="flippedTo"></card-back>
   </div>
 </div>

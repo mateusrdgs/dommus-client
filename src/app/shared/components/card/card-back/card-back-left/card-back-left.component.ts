@@ -5,7 +5,11 @@ import { CardEmitter } from './../../../../emitters/card.emitter';
 @Component({
   selector: 'card-back-left',
   templateUrl: './card-back-left.component.html',
-  styleUrls: ['../../card.component.styl'],
+  styleUrls: [
+    '../../card.component.styl',
+    '../card-back.component.styl',
+    './card-back-left.component.styl'
+  ],
 })
 export class CardBackLeftComponent implements OnInit {
 

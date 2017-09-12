@@ -70,7 +70,7 @@ _global-transition = all .5s ease
     background-color _switch-component-on
     &:hover
       background-color _switch-component-on--hover
-  &.isOn + .card__back
+  &.isOn ~ .card__back
     background-color _switch-component-on
 
 .is-thermometer
@@ -115,37 +115,6 @@ _global-transition = all .5s ease
   &:hover
     cursor pointer
     transform rotate(90deg)
-
-.fa-tasks
-  transform translateX(3px)
-  &:hover
-    transform translateX(0)  
-
-.card__front-description
-  display flex
-  flex-direction column
-  flex 2 1 80%
-  font 700 4rem 'Exo 2', sans-serif
-  justify-content space-around
-  text-align center
-
-.card__back
-  display flex
-  flex-direction row
-  justify-content space-between
-  transform rotateY(180deg)
-
-.card__back-left,
-.card__back-right
-  color #FFF
-  flex 0 1 0%
-  max-width 0
-  opacity 0
-  transition _global-transition
-  &.isOpen
-    flex 2 0 100%
-    max-width 100%
-    opacity 1
 
 [class$="icons"]
   display flex

@@ -1,4 +1,4 @@
-<div class="card__back"  [ngClass]="{
+<div class="card__back" [class.isOn]="componentIsOn" [ngClass]="{
   'is-switch': componentType === 1,
   'is-thermometer': componentType === 2,
   'is-light': componentType === 3,
