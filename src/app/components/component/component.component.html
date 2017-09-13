@@ -1,5 +1,6 @@
 <div class="component-container" *ngIf="component">
   <h1 class="component-container__title" [textContent]="component?.description"></h1>
+  <a [routerLink]="['update']">Update component</a>
   <div class="component-content__data-container" [ngSwitch]="component?.type">
     <ng-container *ngSwitchCase="1">
       <h2 class="component-content__label">Digital Pin</h2>

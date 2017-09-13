@@ -7,10 +7,10 @@
       <a [routerLink]="'/residences'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Residences</a>
     </li>
     <li class="sidebar-list__item">
-      <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="sidebar-list__item-link">Rooms</a>
+      <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']" [class.disabled]="!idResidence" class="sidebar-list__item-link">Rooms</a>
     </li>
     <li class="sidebar-list__item">
-      <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="sidebar-list__item-link">Boards</a>
+      <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [class.disabled]="!idResidence" class="sidebar-list__item-link">Boards</a>
     </li>
     <li class="sidebar-list__item">
       <a [routerLink]="'/profile'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Profile</a>

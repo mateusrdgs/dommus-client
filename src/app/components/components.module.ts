@@ -14,6 +14,7 @@ import { NewComponentGuard } from './guards/new-component.guard.service';
 import { ComponentsComponent } from './components.component';
 import { ComponentComponent } from './component/component.component';
 import { NewComponentComponent } from './new-component/new-component.component';
+import { UpdateComponentComponent } from './update-component/update-component.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { NewComponentComponent } from './new-component/new-component.component';
   declarations: [
     ComponentsComponent,
     NewComponentComponent,
-    ComponentComponent
+    ComponentComponent,
+    UpdateComponentComponent
   ],
   providers: [
     BoardsService,

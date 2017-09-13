@@ -1,0 +1,56 @@
+<div class="update-component-container">
+  <h1 class="update-component-container__title">update component</h1>
+  <form [formGroup]="updateComponentForm" class="update-component-form" (ngSubmit)="onSubmit()">
+    <label for="description" class="update-component-form__label">Description</label>
+    <input type="text" formControlName="description" class="update-component-form__input">
+    <label for="board" class="update-component-form__label">Board</label>
+    <select formControlName="board" class="new-component-form__input">
+      <option *ngFor="let board of boards" [textContent]="board.description" [value]="board._id" [selected]="board._id == boards"></option>
+    </select>
+    <!--<div [ngSwitch]="updateComponentForm.value.componentType" class="update-component-form__container">
+      <ng-container *ngSwitchCase="1">
+        <label for="description" class="update-component-form__label">Digital Pin</label>
+        <input type="number" formControlName="digitalPin" class="update-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <label for="description" class="update-component-form__label">Analog Pin</label>
+        <input type="number" formControlName="analogPin" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Frequency</label>
+        <input type="number" formControlName="frequency" class="update-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="3">
+        <label for="description" class="update-component-form__label">Analog Pin</label>
+        <input type="number" formControlName="analogPin" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Frequency</label>
+        <input type="number" formControlName="frequency" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Threshold</label>
+        <input type="number" formControlName="threshold" class="update-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="4">
+        <label for="description" class="update-component-form__label">Digital Pin</label>
+        <input type="number" formControlName="digitalPin" class="update-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="5">
+        <label for="description" class="update-component-form__label">Analog Pin</label>
+        <input type="number" formControlName="analogPin" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Frequency</label>
+        <input type="number" formControlName="frequency" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Threshold</label>
+        <input type="number" formControlName="threshold" class="update-component-form__input">
+      </ng-container>
+      <ng-container *ngSwitchCase="6">
+        <label for="description" class="update-component-form__label">Digital Pin</label>
+        <input type="number" formControlName="digitalPin" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Rotation</label>
+        <input type="number" formControlName="rotation" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Start At</label>
+        <input type="number" formControlName="startAt" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Minimum Range</label>
+        <input type="number" formControlName="minRange" class="update-component-form__input">
+        <label for="description" class="update-component-form__label">Maximum Range</label>
+        <input type="number" formControlName="maxRange" class="update-component-form__input">
+      </ng-container>
+    </div>-->
+    <input type="submit" value="Create" class="update-component-form__submit" [disabled]="updateComponentForm.invalid" >
+  </form>
+</div>

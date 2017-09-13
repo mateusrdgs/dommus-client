@@ -11,11 +11,15 @@ export class ComponentComponent implements OnInit {
   component: any;
 
   constructor(
-    private _route: ActivatedRoute
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.component = this._route.snapshot.data.component;
+    this._activatedRoute.data
+        .subscribe(data => {
+          const { component } = data;
+          this.component = component;
+        });
   }
 
 }
