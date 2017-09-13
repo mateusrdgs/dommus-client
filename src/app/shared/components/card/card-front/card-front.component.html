@@ -1,19 +1,13 @@
-<div class="card__front" [class.isOn]="componentIsOn" [ngClass]="{
-  'is-switch': componentType === 1,
-  'is-thermometer': componentType === 2,
-  'is-light': componentType === 3,
-  'is-motion': componentType === 4,
-  'is-sensor': componentType === 5,
-  'is-servo': componentType === 6
+<div class="card__front" [class.isOn]="component?.isOn" [ngClass]="{
+  'is-switch': component?.type === 1,
+  'is-thermometer': component?.type === 2,
+  'is-light': component?.type === 3,
+  'is-motion': component?.type === 4,
+  'is-sensor': component?.type === 5,
+  'is-servo': component?.type === 6
 }">
-<card-front-icons [componentId]="componentId"></card-front-icons>
-<card-front-description [componentType]="componentType" [componentDescription]="componentDescription"></card-front-description>
-<!--<div class="card__front-description">
-  <span class="card__front-description__text" [textContent]="componentDescription | uppercase"></span>
-  <input type="range" class="card__range" [min]="0" [max]="180" [value]="0">
-  <i class="card__front-description__icon fa" [ngClass]="{
-    'fa-lightbulb-o': componentType === 1,
-    'fa-cogs': componentType === 6
-  }"></i>
-</div>-->
+  <card-front-icons [componentId]="component?.id">
+  </card-front-icons>
+  <card-front-description [componentType]="component?.type" [componentDescription]="component?.description" [componentMinRange]="component?.minRange" [componentMaxRange]="component?.maxRange" [componentPosition]="component?.position">
+  </card-front-description>
 </div>

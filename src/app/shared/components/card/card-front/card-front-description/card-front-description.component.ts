@@ -9,9 +9,18 @@ export class CardFrontDescriptionComponent implements OnInit {
 
   @Input() componentType = 0;
   @Input() componentDescription = '';
+  @Input() componentMinRange = 0;
+  @Input() componentMaxRange = 0;
+  @Input() componentPosition = 0;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onRangeChange(event) {
+    const { target } = event;
+    console.log(target.valueAsNumber);
   }
 
 }

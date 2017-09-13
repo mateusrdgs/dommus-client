@@ -7,14 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardFrontComponent implements OnInit {
 
-  @Input() componentId = '';
-  @Input() componentDescription = '';
-  @Input() componentIsOn = '';
-  @Input() componentType = 0;
+  @Input() component;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.component);
   }
 
 }

@@ -10,3 +10,63 @@
   font 700 4rem 'Exo 2', sans-serif
   justify-content space-around
   text-align center
+
+.card__range
+  display flex
+  -webkit-appearance none
+  background-color transparent
+  width 100%
+  &::-webkit-slider-thumb
+    -webkit-appearance none
+    background-color #FFF
+    border-radius 50%
+    margin-top -2rem
+    height 5rem
+    width 5rem
+    margin-top -2rem
+    transition all .3s linear 
+    &:hover
+      transform scale(1.1)
+      cursor pointer
+  &::-moz-range-thumb
+    background-color #FFF
+    border 0
+    border-radius 50%
+    height 5rem
+    width 5rem
+    &:hover
+      transform scale(1.1)
+      cursor pointer
+  &::-ms-thumb
+    background-color #FFF
+    border 0
+    border-radius 50%
+    height 5rem
+    width 5rem
+    &:hover
+      transform scale(1.1)
+      cursor pointer
+  &:focus
+    outline none
+  &::-moz-focus-inner,
+  &::-moz-focus-outer
+    border 0
+  &::-webkit-slider-runnable-track
+    border-color transparent
+    background-color #CCC
+    color transparent
+    cursor pointer
+    height .8rem
+    width 100%
+  &::-moz-range-track
+    border-color transparent
+    background-color #CCC
+    color transparent
+    cursor pointer
+    width 100%
+  &::-ms-track
+    border-color transparent
+    background-color transparent
+    color transparent
+    cursor pointer
+    width 100%

@@ -1,6 +1,8 @@
 <div class="card__front-description">
   <span class="card__front-description__text" [textContent]="componentDescription | uppercase"></span>
-  <!--<input type="range" (change)="onRangeChange($event)" class="card__range" [min]="component.minRange" [max]="component.maxRange" [value]="component.position">-->
+  <ng-container *ngIf="componentType === 6">
+    <input type="range" (change)="onRangeChange($event)" class="card__range" [min]="componentMinRange" [max]="componentMaxRange" [value]="componentPosition + 50">
+  </ng-container>
   <i class="card__front-description__icon fa" [ngClass]="{
     'fa-lightbulb-o': componentType === 1,
     'fa-cogs': componentType === 6

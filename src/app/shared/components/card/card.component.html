@@ -6,7 +6,7 @@
     (click)="changeState($event)"
 >
   <div class="card__flipper">
-    <card-front [componentId]="component?.id" [componentIsOn]="component?.isOn" [componentType]="component?.type" [componentDescription]="component?.description"></card-front>
+    <card-front [component]="component"></card-front>
     <card-back [componentIsOn]="component?.isOn" [componentType]="component?.type" [flippedTo]="flippedTo"></card-back>
   </div>
 </div>
