@@ -23,10 +23,24 @@
   padding 1rem
   position relative
   transition all .5s ease-in-out
+  &::after
+    content: ''
+    transition all .5s linear
+    height 100%
+    left 0
+    opacity .5
+    position absolute
+    top 0
+    width 100%
 
 .isSidebarOpen + .router-outlet__container
-  opacity .5
+  &::after
+    background-color #000
 
 @media screen and (min-width 48rem)
+  .router-outlet__container
+    &::after
+      content none
+
   .isSidebarOpen + .router-outlet__container
     opacity 1
