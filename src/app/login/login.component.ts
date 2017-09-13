@@ -33,8 +33,13 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.account = this.loginForm.value;
-      this._loginService.loginAccount(this.account);
-      this.redirectToHome();
+      this._loginService
+          .loginAccount(this.account)
+          .then(response => {
+            if (response) {
+              this.redirectToHome();
+            }
+          });
     }
   }
 

@@ -17,7 +17,7 @@ export class LoginService {
 
   createNewAccount(account: Account) {
     const _url = this.mount_Url('CREATE', url);
-    this._http.post(_url, account)
+    return this._http.post(_url, account)
               .toPromise()
               .then(response => this._authService.saveToken('dommusRemote', response['_body']))
               .catch(this.handleError);
@@ -25,7 +25,7 @@ export class LoginService {
 
   loginAccount(account: Account) {
     const _url = this.mount_Url('LOGIN', url);
-    this._http.post(_url, account)
+    return this._http.post(_url, account)
               .toPromise()
               .then(response => this._authService.saveToken('dommusRemote', response['_body']))
               .catch(this.handleError);

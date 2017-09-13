@@ -26,6 +26,7 @@ import { CardFrontDescriptionComponent } from './components/card/card-front/card
 import { CardBackComponent } from './components/card/card-back/card-back.component';
 import { CardBackLeftComponent } from './components/card/card-back/card-back-left/card-back-left.component';
 import { CardBackRightComponent } from './components/card/card-back/card-back-right/card-back-right.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { CardBackRightComponent } from './components/card/card-back/card-back-ri
     TopbarComponent,
     WrapperComponent,
     MenuToggleComponent,
+    NotFoundComponent,
     CardComponent,
     CardFrontComponent,
     CardFrontIconsComponent,

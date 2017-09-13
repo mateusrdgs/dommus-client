@@ -10,12 +10,10 @@ import { SharedModule } from './shared/shared.module';
 import { AppGuard } from './shared/guards/app.guards.service';
 
 import { AppComponent } from './app.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NotFoundComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ import { AppGuard } from './shared/guards/app.guards.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   {
