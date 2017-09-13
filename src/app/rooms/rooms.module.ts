@@ -13,6 +13,7 @@ import { RoomResolver } from './resolvers/room.resolver.service';
 import { RoomsComponent } from './rooms.component';
 import { NewRoomComponent } from './new-room/new-room.component';
 import { RoomComponent } from './room/room.component';
+import { UpdateRoomComponent } from './update-room/update-room.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,12 @@ import { RoomComponent } from './room/room.component';
     RouterModule,
     RoomsRoutingModule
   ],
-  declarations: [RoomsComponent, NewRoomComponent, RoomComponent],
+  declarations: [
+    RoomsComponent,
+    NewRoomComponent,
+    RoomComponent,
+    UpdateRoomComponent
+  ],
   providers: [
     RoomsService,
     RoomsResolver,

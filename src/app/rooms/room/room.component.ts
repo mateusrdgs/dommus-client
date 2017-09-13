@@ -13,12 +13,15 @@ export class RoomComponent implements OnInit {
   room: Room;
 
   constructor(
-    private _route: ActivatedRoute
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    const { room } = this._route.snapshot.data;
-    this.room = room;
+    this._activatedRoute.data
+        .subscribe(data => {
+          const { room } = data;
+          this.room = room;
+        });
   }
 
 }

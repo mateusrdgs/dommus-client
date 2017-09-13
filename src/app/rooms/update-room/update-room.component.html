@@ -1,0 +1,8 @@
+<div class="update-room-container">
+  <h1 class="update-room-container__title">Update an room</h1>
+  <form class="update-room-form" [formGroup]="updateRoomForm" (ngSubmit)="onSubmit()">
+    <label for="description" class="update-room-form__label">Description</label>
+    <input type="text" formControlName="description" class="update-room-form__input">
+    <input type="submit" value="Submit" [disabled]="updateRoomForm.invalid" class="update-room-form__submit">
+  </form>
+</div>

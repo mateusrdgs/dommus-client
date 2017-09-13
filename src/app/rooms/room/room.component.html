@@ -1,5 +1,6 @@
 <div class="room-container" *ngIf="room">
   <h1 class="room-container__title" [textContent]="room?.description"></h1>
+  <a [routerLink]="['update']">Update room</a>
   <h2 class="room-content__label">Components</h2>
   <ul>
     <li *ngFor="let component of room.components">

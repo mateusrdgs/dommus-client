@@ -6,6 +6,7 @@ import { RoomsResolver } from './resolvers/rooms.resolver.service';
 import { RoomResolver } from './resolvers/room.resolver.service';
 import { NewRoomComponent } from './new-room/new-room.component';
 import { RoomComponent } from './room/room.component';
+import { UpdateRoomComponent } from './update-room/update-room.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,13 @@ const routes: Routes = [
   {
     path: ':idRoom',
     component: RoomComponent,
+    resolve: {
+      room: RoomResolver
+    },
+  },
+  {
+    path: ':idRoom/update',
+    component: UpdateRoomComponent,
     resolve: {
       room: RoomResolver
     }
