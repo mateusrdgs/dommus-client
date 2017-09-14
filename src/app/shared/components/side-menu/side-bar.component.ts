@@ -6,11 +6,11 @@ import { AuthService } from './../../services/auth.service';
 import { ResidenceEmitter } from './../../emitters/residence.emitter';
 
 @Component({
-  selector: 'side-menu',
-  templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.styl']
+  selector: 'side-bar',
+  templateUrl: './side-bar.component.html',
+  styleUrls: ['./side-bar.component.styl']
 })
-export class SideMenuComponent implements OnInit, AfterContentInit {
+export class SideBarComponent implements OnInit, AfterContentInit {
 
   private _enteredResidenceSubscription: Subscription;
   _id: string;
