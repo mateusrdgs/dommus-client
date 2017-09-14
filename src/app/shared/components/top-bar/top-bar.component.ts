@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -12,11 +12,12 @@ import { TopBarEmitter } from './../../emitters/top-bar.emitter';
 })
 export class TopbarComponent implements OnInit, OnDestroy {
 
-  protected title = '';
+  @Input() currentTitle: '';
   protected titleSubscription: Subscription;
   private isMenuOpen = false;
 
   constructor(
+    private _cdr: ChangeDetectorRef,
     private _sidebarService: SideBarService,
     private _topbarEmitter: TopBarEmitter
   ) { }
@@ -25,11 +26,15 @@ export class TopbarComponent implements OnInit, OnDestroy {
     this.titleSubscription =
       this._topbarEmitter
           .titleEmitter
-          .subscribe(title => this.title = title);
+          .subscribe(title => {
+            setTimeout(() => {
+              this.currentTitle = title;
+            }, 100);
+          });
   }
 
   ngOnDestroy() {
-    this.titleSubscription.unsubscribe();
+    //this.titleSubscription.unsubscribe();
   }
 
 }

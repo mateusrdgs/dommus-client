@@ -12,12 +12,12 @@ import { SyncService } from './services/sync.service';
 import { SideBarService } from './services/side-bar.service';
 import { TitleService } from './services/title.service';
 
-import { TopBarEmitter } from './emitters/top-bar.emitter';
 import { CardEmitter } from './emitters/card.emitter';
+import { ResidenceEmitter } from './emitters/residence.emitter';
+import { TopBarEmitter } from './emitters/top-bar.emitter';
 
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
-import { WrapperComponent } from './components/wrapper/wrapper.component';
 import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggle.component';
 import { CardComponent } from './components/card/card.component';
 import { CardFrontComponent } from './components/card/card-front/card-front.component';
@@ -37,13 +37,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   exports: [
     SideMenuComponent,
     TopbarComponent,
-    WrapperComponent,
     CardComponent
   ],
   declarations: [
     SideMenuComponent,
     TopbarComponent,
-    WrapperComponent,
     MenuToggleComponent,
     NotFoundComponent,
     CardComponent,
@@ -63,7 +61,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     SideBarService,
     TitleService,
     TopBarEmitter,
-    CardEmitter
+    CardEmitter,
+    ResidenceEmitter
   ]
 })
 export class SharedModule { }

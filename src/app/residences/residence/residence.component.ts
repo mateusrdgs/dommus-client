@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { LocalStorageService } from './../../shared/services/local-storage.service';
+import { ResidenceEmitter } from './../../shared/emitters/residence.emitter';
 import { Residence } from './../residence';
 
 @Component({
@@ -16,7 +17,8 @@ export class ResidenceComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _localStorageService: LocalStorageService
+    private _localStorageService: LocalStorageService,
+    private _residenceEmitter: ResidenceEmitter
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class ResidenceComponent implements OnInit {
     this.residence = new Residence(description, url, _id, rooms, boards);
     if (_id) {
       this._localStorageService.saveToken('lastEnteredResidence', _id);
+      this._residenceEmitter.enteredResidence.emit(_id);
     }
   }
 
