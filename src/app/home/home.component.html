@@ -1,5 +1,10 @@
 <div class="home">
-  <ng-container *ngFor="let component of components">
-    <card [component]="component"></card>
+  <ng-container *ngIf="idResidence else noIdResidence">
+    <ng-container *ngFor="let component of components">
+      <card [component]="component"></card>
+    </ng-container>
   </ng-container>
+  <ng-template #noIdResidence>
+    <h1>To see your components, you should first create then</h1>
+  </ng-template>
 </div>
