@@ -56,7 +56,7 @@ export class ComponentsService {
 
   updateComponent(idResidence: string, idRoom: string, component: any) {
     const { id } = component;
-    const _url = this.mountUrl('BYID', url, this._idAccount, idRoom, id);
+    const _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idRoom, id);
     return this._http.put(_url, component, this._options)
                      .toPromise()
                      .then(response => response.json().Component)

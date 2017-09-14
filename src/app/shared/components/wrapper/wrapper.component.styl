@@ -24,7 +24,6 @@
   position relative
   transition all .5s ease-in-out
   &::after
-    content: ''
     transition all .5s linear
     height 100%
     left 0
@@ -35,6 +34,7 @@
 
 .isSidebarOpen + .router-outlet__container
   &::after
+    content: ''
     background-color #000
 
 @media screen and (min-width 48rem)

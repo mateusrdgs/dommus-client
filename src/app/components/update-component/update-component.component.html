@@ -1,13 +1,13 @@
-<div class="update-component-container">
-  <h1 class="update-component-container__title">update component</h1>
-  <form [formGroup]="updateComponentForm" class="update-component-form" (ngSubmit)="onSubmit()">
+<div class="update-component-container" *ngIf="component">
+  <h1 class="update-component-container__title" [textContent]="'Update ' + component.description"></h1>
+  <form [formGroup]="updateComponentForm" class="update-component-form" (ngSubmit)="onSubmit($event)">
     <label for="description" class="update-component-form__label">Description</label>
     <input type="text" formControlName="description" class="update-component-form__input">
     <label for="board" class="update-component-form__label">Board</label>
-    <select formControlName="board" class="new-component-form__input">
-      <option *ngFor="let board of boards" [textContent]="board.description" [value]="board._id" [selected]="board._id == boards"></option>
+    <select formControlName="board" class="update-component-form__input">
+      <option *ngFor="let board of boards" [textContent]="board.description" [value]="board._id" [selected]="board._id == component.idBoard"></option>
     </select>
-    <!--<div [ngSwitch]="updateComponentForm.value.componentType" class="update-component-form__container">
+    <div [ngSwitch]="component.type" class="update-component-form__container">
       <ng-container *ngSwitchCase="1">
         <label for="description" class="update-component-form__label">Digital Pin</label>
         <input type="number" formControlName="digitalPin" class="update-component-form__input">
@@ -50,7 +50,10 @@
         <label for="description" class="update-component-form__label">Maximum Range</label>
         <input type="number" formControlName="maxRange" class="update-component-form__input">
       </ng-container>
-    </div>-->
-    <input type="submit" value="Create" class="update-component-form__submit" [disabled]="updateComponentForm.invalid" >
+    </div>
+    <div class="update-component-form__buttons-container">
+      <a [routerLink]="['../']" class="update-component-form__buttons-container__button">Return</a>
+      <input type="submit" value="Save" class="update-component-form__buttons-container__submit" [disabled]="updateComponentForm.invalid">
+    </div>
   </form>
 </div>
