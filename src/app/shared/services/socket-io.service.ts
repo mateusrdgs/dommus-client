@@ -35,4 +35,17 @@ export class SocketIoService {
   emitMessage(messageName: string, data: any) {
     return this._socket.emit(messageName, data);
   }
+
+  emitMessageWithReturn(messageToSend: string, messageToListen: string, data: any): Observable<any> {
+    const observable = new Observable(observer => {
+      this._socket.on(messageToListen, returnedData => {
+        observer.next(returnedData);
+      });
+      this._socket.emit(messageToSend, data);
+      return () => {
+        this._socket.disconnect();
+      };
+    });
+    return observable;
+  }
 }

@@ -45,7 +45,7 @@ export class NewBoardComponent implements OnInit {
     if (this.newBoardForm.valid) {
       const { description, model, port } = this.newBoardForm.value;
       this._boardsService.createBoard(this.idResidence, description, model, port)
-                         .then(response => this._socketIoService.emitMessage('create:Board', response))
+                         .then(response => console.log(response))
                          .catch(error => console.error(error));
     }
   }

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 
 import { AuthService } from './../shared/services/auth.service';
+import { SocketIoService } from './../shared/services/socket-io.service';
+
 import { Board } from './board';
 
 import { url } from './../database';
@@ -15,10 +18,13 @@ export class BoardsService {
   private _idAccount: string;
   private _options: object;
   private _token: string;
+  private _createBoardSubscription: Subscription;
+  private _updateBoardSubscription: Subscription;
 
   constructor(
     private _http: Http,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _socketIoService: SocketIoService
   ) {
     this.startServiceOptions();
   }
@@ -51,7 +57,15 @@ export class BoardsService {
     const _url = this.mountUrl('CREATE', url, this._idAccount, idResidence);
     return this._http.post(_url, { description, model, port }, this._options)
                      .toPromise()
-                     .then(response => response.json().Board)
+                     .then(response => {
+                       if (response.status === 201) {
+                         response = response.json().Board;
+                         return this._socketIoService
+                                    .emitMessageWithReturn('create:Board', 'created:Board', response);
+                       } else {
+                         throw new Error(response.json());
+                       }
+                      })
                      .catch(this.handleError);
   }
 
@@ -59,7 +73,15 @@ export class BoardsService {
     const idBoard = board.Id, _url = this.mountUrl('BYID', url, this._idAccount, idResidence, idBoard);
     return this._http.put(_url, board, this._options)
                      .toPromise()
-                     .then(response => response.json().Board)
+                     .then(response => {
+                       if (response.status === 200) {
+                         response = response.json().Board;
+                         return this._socketIoService
+                                    .emitMessageWithReturn('update:Board', 'updated:Board', response);
+                       } else {
+                         throw new Error(response.json());
+                       }
+                     })
                      .catch(this.handleError);
   }
 
@@ -88,5 +110,4 @@ export class BoardsService {
         return `${url}/${idAccount}/residences/${idResidence}/boards/${idBoard}`;
     }
   }
-
 }
