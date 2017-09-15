@@ -1,7 +1,7 @@
 .update-room-container
   margin auto
   overflow auto
-  padding 1rem
+  transition all .5s ease-in-out
   width 100%
 
 .update-room-container__title
@@ -13,27 +13,30 @@
   font-size 1rem
 
 .update-room-form__input
+  font-size 1.5rem
   margin .5rem 0 1rem 0
 
-.update-room-form__input
-  font-size 1.5rem
+.update-room-form__container
+  display flex
+  flex-direction column
+  max-width 100%
 
-.update-room-form__submit
+.update-room-form__buttons-container
+  display flex
+  flex-direction column
+  width 100%
+
+[class$="button"],
+[class$="submit"]
   padding 1rem 0
   margin .5rem 0 1rem 0
+  width 100%
 
-@media screen and (min-width: 425px)
-  .update-room-container
-    width 80%
+@media screen and (min-width: 580px)
+  .update-room-form__buttons-container
+    flex-direction row
+    justify-content space-between
 
-@media screen and (min-width: 650px)
-  .update-room-container
-    width 75%
-
-@media screen and (min-width: 900px)
-  .update-room-container
-    width 50%
-
-@media screen and (min-width: 1000px)
-  .update-room-container
+  [class$="button"],
+  [class$="submit"]
     width 40%

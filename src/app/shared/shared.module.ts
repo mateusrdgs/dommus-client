@@ -16,7 +16,7 @@ import { CardEmitter } from './emitters/card.emitter';
 import { ResidenceEmitter } from './emitters/residence.emitter';
 import { TopBarEmitter } from './emitters/top-bar.emitter';
 
-import { SideBarComponent } from './components/side-menu/side-bar.component';
+import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
 import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggle.component';
 import { CardComponent } from './components/card/card.component';

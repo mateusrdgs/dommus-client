@@ -1,3 +1,4 @@
+import { UpdateBoardComponent } from './update-board/update-board.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -22,6 +23,13 @@ const routes: Routes = [
   {
     path: ':idBoard',
     component: BoardComponent,
+    resolve: {
+      board: BoardResolver
+    }
+  },
+  {
+    path: ':idBoard/update',
+    component: UpdateBoardComponent,
     resolve: {
       board: BoardResolver
     }
