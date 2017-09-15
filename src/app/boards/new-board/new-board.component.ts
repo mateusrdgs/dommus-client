@@ -1,10 +1,10 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Board } from './../board';
 import { BoardsService } from './../boards.service';
-import { SocketIoService } from './../../shared/services/socket-io.service';
 
 @Component({
   selector: 'app-new-board',
@@ -28,8 +28,7 @@ export class NewBoardComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _route: ActivatedRoute,
-    private _boardsService: BoardsService,
-    private _socketIoService: SocketIoService
+    private _boardsService: BoardsService
   ) { }
 
   ngOnInit() {
@@ -44,9 +43,11 @@ export class NewBoardComponent implements OnInit {
   onSubmit() {
     if (this.newBoardForm.valid) {
       const { description, model, port } = this.newBoardForm.value;
-      this._boardsService.createBoard(this.idResidence, description, model, port)
-                         .then(response => console.log(response))
-                         .catch(error => console.error(error));
+      this._boardsService
+          .createBoard(this.idResidence, description, model, port)
+          .then((observable: Observable<any>) => {
+            observable.subscribe(response => console.log(response));
+          });
     }
   }
 }
