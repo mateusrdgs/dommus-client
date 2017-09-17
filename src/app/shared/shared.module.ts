@@ -15,6 +15,7 @@ import { TitleService } from './services/title.service';
 import { CardEmitter } from './emitters/card.emitter';
 import { ResidenceEmitter } from './emitters/residence.emitter';
 import { TopBarEmitter } from './emitters/top-bar.emitter';
+import { SocketIoEmitter } from './emitters/socket-io.emitter';
 
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
@@ -62,7 +63,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     TitleService,
     TopBarEmitter,
     CardEmitter,
-    ResidenceEmitter
+    ResidenceEmitter,
+    SocketIoEmitter
   ]
 })
 export class SharedModule { }

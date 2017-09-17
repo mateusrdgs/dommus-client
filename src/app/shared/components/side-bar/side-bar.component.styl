@@ -8,13 +8,15 @@
 
 .sidebar-list
   overflow-y scroll
-  margin 0
+  margin 5rem 0 0 0
   padding 0
+  transition all .3s linear
   width 100%
 
 .sidebar-list__item
   display block
   overflow auto
+  width 320px
 
 .sidebar-list__item-link
   align-items center
@@ -45,3 +47,7 @@
     color #3F3F3F
     cursor default
     padding-left 1.5rem
+
+@media screen and (min-height: 500px)
+  .sidebar-list
+    margin 0

@@ -28,7 +28,7 @@ export class SideBarComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.getIdAccount();
-    this.idResidence = this._authService.getToken('lastEnteredResidence');
+    this.idResidence = this._authService.getToken('currentResidence');
     if (this.idResidence === '') {
       this.startResidenceSubscription();
     }

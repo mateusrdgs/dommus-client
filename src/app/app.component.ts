@@ -1,3 +1,4 @@
+import { SocketIoEmitter } from './shared/emitters/socket-io.emitter';
 import { Residence } from './residences/residence';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   // private _routeSubscription: Subscription;
   private _idResidence: string;
   private _enteredResidenceSubscription: Subscription;
+  private _socketIoSubscription: Subscription;
   private _syncSubscription: Subscription;
   private _sidebarSubscription: Subscription;
 
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _residenceEmitter: ResidenceEmitter,
     private _sidebarService: SideBarService,
+    private _socketIoEmitter: SocketIoEmitter,
     private _socketIoService: SocketIoService,
     private _syncService: SyncService,
     private _titleService: TitleService
@@ -48,27 +51,8 @@ export class AppComponent implements OnInit, OnDestroy {
           .isLoggedIn('dommusRemote');
 
     if (this.isUserLoggedIn) {
-        this._sidebarSubscription =
-          this._sidebarService
-              .sideBarEventEmitter
-              .subscribe(data => this.isSidebarOpen = data);
-          this._enteredResidenceSubscription =
-            this._residenceEmitter
-                .enteredResidence
-                .subscribe(idResidence => {
-                  if (idResidence.length > 0) {
-                    this._syncSubscription =
-                      this._socketIoService
-                        .listenToEvent('app:Sync')
-                        .subscribe((callback: any) => {
-                          this._syncService
-                              .syncApps(idResidence)
-                              .then(residence => {
-                                callback(residence);
-                              });
-                        });
-                  }
-                });
+      this.startSocketIoSubscription();
+      this.startSideBarSubscription();
     }
           /*this._routeSubscription =
         this._router.events
@@ -85,6 +69,44 @@ export class AppComponent implements OnInit, OnDestroy {
           .subscribe(event => {
 
           });*/
+  }
+
+  startSocketIoSubscription() {
+    this._socketIoService
+        .checkLocalModuleConnectionState('')
+        .then(connectionEstablished => {
+          if (connectionEstablished) {
+            this.startEnteredResidenceSubscription();
+          }
+        })
+        .catch(err => console.log(err));
+  }
+
+  startSideBarSubscription() {
+    this._sidebarSubscription =
+      this._sidebarService
+        .sideBarEventEmitter
+        .subscribe(data => this.isSidebarOpen = data);
+  }
+
+  startEnteredResidenceSubscription() {
+    const lastEnteredResidence = this._authService.getToken('lastEnteredResidence');
+    if (lastEnteredResidence !== '' && lastEnteredResidence !== undefined) {
+      this.startSyncSubscription(lastEnteredResidence);
+    }
+  }
+
+  startSyncSubscription(idResidence: string) {
+    this._syncSubscription =
+      this._socketIoService
+          .listenToEvent('app:Sync')
+          .subscribe((callback: any) => {
+            this._syncService
+                .syncApps(idResidence)
+                .then(residence => {
+                  callback(residence);
+                });
+        });
   }
 
   ngOnDestroy() {
