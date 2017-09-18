@@ -8,6 +8,7 @@ import { ComponentsService } from './../components.service';
 import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 
 import { validateSet } from '../validators/setValidator';
+import { availableOrEqualValidator } from '../validators/availableOrEqualValidator';
 
 import Switch from '../classes/switch';
 import { Thermometer } from './../classes/thermometer';
@@ -72,23 +73,39 @@ export class UpdateComponentComponent implements OnInit {
     switch (type) {
       case '1':
       case '4': {
-          this.updateComponentForm.addControl('digitalPin', new FormControl(component.digitalPin, validateSet(board['digitalPins'])));
+          this.updateComponentForm
+              .addControl('digitalPin',
+                new FormControl(
+                  component.digitalPin, [availableOrEqualValidator(component.digitalPin, board['digitalPins'])]
+              ));
         break;
       }
       case '2': {
-          this.updateComponentForm.addControl('analogPin', new FormControl(component.analogPin, [Validators.required]));
+          this.updateComponentForm
+              .addControl('analogPin',
+                new FormControl(
+                  component.digitalPin, [availableOrEqualValidator(component.digitalPin, board['analogPins'])]
+              ));
           this.updateComponentForm.addControl('frequency', new FormControl(component.frequency, [Validators.required]));
         break;
       }
       case '3':
       case '5': {
-          this.updateComponentForm.addControl('analogPin', new FormControl(component.analogPin, [Validators.required]));
+          this.updateComponentForm
+              .addControl('analogPin',
+                new FormControl(
+                  component.digitalPin, [availableOrEqualValidator(component.digitalPin, board['analogPins'])]
+              ));
           this.updateComponentForm.addControl('frequency', new FormControl(component.frequency, [Validators.required]));
           this.updateComponentForm.addControl('threshold', new FormControl(component.threshold, [Validators.required]));
         break;
       }
       case '6': {
-          this.updateComponentForm.addControl('digitalPin', new FormControl(component.digitalPin, [Validators.required]));
+          this.updateComponentForm
+              .addControl('digitalPin',
+                new FormControl(
+                  component.digitalPin, [availableOrEqualValidator(component.digitalPin, board['digitalPins'])]
+              ));
           this.updateComponentForm.addControl('rotation', new FormControl(component.range[1], [Validators.required]));
           this.updateComponentForm.addControl('startAt', new FormControl(component.startAt, [Validators.required]));
           this.updateComponentForm.addControl('minRange', new FormControl(component.range[0], [Validators.required]));
