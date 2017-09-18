@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('teste');
-    /*const residenceUrl = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
+    const residenceUrl = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
     if (residenceUrl !== '') {
       this.connectToModule(residenceUrl);
-    }*/
+    }
   }
 
   connectToModule(url: string) {

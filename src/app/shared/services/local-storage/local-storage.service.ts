@@ -56,7 +56,7 @@ export class LocalStorageService implements LocalStorageInterface {
         if (isJwt) {
           payload = JSON.parse(window.atob(token.split('.')[1]));
         } else {
-          payload = JSON.parse(window.atob(token));
+          payload = this.getDecodedToken(tokenName);
         }
         return payload[property];
       } catch (error) {

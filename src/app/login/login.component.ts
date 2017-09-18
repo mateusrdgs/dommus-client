@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { AuthService } from './../shared/services/auth/auth.service';
 import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
 import { LoginService } from './login.service';
+
+import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 import { Account } from './new-account/account';
 
@@ -18,9 +21,11 @@ export class LoginComponent implements OnInit {
   account: Account;
 
   constructor(
+    private _authService: AuthService,
     private _formBuilder: FormBuilder,
     private _loginService: LoginService,
     private _localStorageService: LocalStorageService,
+    private _topbarEmitter: TopBarEmitter,
     private _router: Router
   ) { }
 
@@ -45,8 +50,9 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome() {
-    const token = this._localStorageService.getToken('Dommus')
-    if (token.length) {
+    const isUserLoggedIn = this._authService.isLoggedIn('Dommus');
+    if (isUserLoggedIn) {
+      this._topbarEmitter.stateEmitter.emit(isUserLoggedIn);
       this._router.navigateByUrl('/home');
     }
   }
