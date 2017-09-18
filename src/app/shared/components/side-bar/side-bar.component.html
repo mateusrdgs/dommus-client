@@ -4,7 +4,7 @@
       <a [routerLink]="'/home'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Dashboard <i class="fa fa-terminal"></i></a>
     </li>
     <li class="sidebar-list__item">
-      <a [routerLink]="'/residences'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }" class="sidebar-list__item-link">Residences <i class="fa fa-home"></i></a>
+      <a [routerLink]="'/residences'" [routerLinkActive]="['active']" class="sidebar-list__item-link">Residences <i class="fa fa-home"></i></a>
     </li>
     <li class="sidebar-list__item">
       <a [routerLink]="idResidence ? ['/residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']"  [class.disabled]="!idResidence" class="sidebar-list__item-link">Rooms <i class="fa fa-television"></i></a>
