@@ -1,3 +1,4 @@
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 
@@ -22,8 +23,9 @@ export class BoardsService {
   private _updateBoardSubscription: Subscription;
 
   constructor(
-    private _http: Http,
     private _authService: AuthService,
+    private _http: Http,
+    private _localStorageService: LocalStorageService,
     private _socketIoService: SocketIoService
   ) {
     this.startServiceOptions();
@@ -31,8 +33,8 @@ export class BoardsService {
 
   startServiceOptions() {
     this._headers = this._authService.createRequestHeaders();
-    this._idAccount = this._authService.getDataFromToken('_id');
-    this._token = this._authService.getTokenValue('dommusRemote', 'token');
+    this._idAccount = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
+    this._token = this._localStorageService.getTokenValue('Dommus');
     this._authService.createAuthorizationHeader(this._headers, this._token);
     this._options = this._authService.createRequestOptions(this._headers);
   }

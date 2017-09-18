@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from './shared/services/auth.service';
 import { ResidenceEmitter } from './shared/emitters/residence.emitter';
 import { SideBarService } from './shared/services/side-bar.service';
+import { LocalStorageService } from './shared/services/local-storage.service';
 import { SocketIoService } from './shared/services/socket-io.service';
 import { SyncService } from './shared/services/sync.service';
 import { TitleService } from './shared/services/title.service';
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private _authService: AuthService,
+    private _localStorageService: LocalStorageService,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _residenceEmitter: ResidenceEmitter,
@@ -48,10 +50,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isUserLoggedIn =
       this._authService
-          .isLoggedIn('dommusRemote');
+          .isLoggedIn('Dommus');
 
     if (this.isUserLoggedIn) {
-      this.startSocketIoSubscription();
+      const data = this._localStorageService.getDecodedToken('currentResidence');
+      if (data !== '') {
+        this.startSocketIoSubscription(data);
+        console.log('connecting');
+      }
       this.startSideBarSubscription();
     }
           /*this._routeSubscription =
@@ -71,12 +77,13 @@ export class AppComponent implements OnInit, OnDestroy {
           });*/
   }
 
-  startSocketIoSubscription() {
+  startSocketIoSubscription(data: any) {
+    const { id, url } = data;
     this._socketIoService
-        .checkLocalModuleConnectionState('')
+        .checkLocalModuleConnectionState(url)
         .then(connectionEstablished => {
           if (connectionEstablished) {
-            this.startEnteredResidenceSubscription();
+            this.startEnteredResidenceSubscription(id);
           }
         })
         .catch(err => console.log(err));
@@ -89,10 +96,10 @@ export class AppComponent implements OnInit, OnDestroy {
         .subscribe(data => this.isSidebarOpen = data);
   }
 
-  startEnteredResidenceSubscription() {
-    const lastEnteredResidence = this._authService.getToken('lastEnteredResidence');
-    if (lastEnteredResidence !== '' && lastEnteredResidence !== undefined) {
-      this.startSyncSubscription(lastEnteredResidence);
+  startEnteredResidenceSubscription(idResidence: string) {
+    //const lastEnteredResidence = this._localStorageService.getToken('currentResidence');
+    if (idResidence) {
+      this.startSyncSubscription(idResidence);
     }
   }
 

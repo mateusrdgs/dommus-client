@@ -10,32 +10,6 @@ export class AuthService {
     private _localStorageService: LocalStorageService
   ) { }
 
-  getToken(tokenName: string) {
-    return this._localStorageService.getToken(tokenName);
-  }
-
-  getTokenValue(tokenName: string, tokenValue) {
-    const token = this.getToken(tokenName);
-    if (token) {
-      try {
-        return JSON.parse(token)['token'];
-      } catch (error) {
-        console.error(error);
-        return '';
-      }
-    } else {
-      return '';
-    }
-  }
-
-  saveToken(tokenName: string, value: string) {
-    this._localStorageService.saveToken(tokenName, value);
-  }
-
-  logoutAccount(tokenName: string) {
-    this._localStorageService.removeToken(tokenName);
-  }
-
   isLoggedIn(tokenName: string) {
     const token = this._localStorageService.getToken(tokenName);
     if (token.length) {
@@ -44,12 +18,8 @@ export class AuthService {
     }
   }
 
-  getDataFromToken(property: string) {
-    const token = this.getToken('dommusRemote');
-    if (token.length) {
-      const payload = JSON.parse(window.atob(token.split('.')[1]));
-      return payload[property];
-    }
+  logoutAccount(tokenName: string) {
+    this._localStorageService.removeToken(tokenName);
   }
 
   createRequestHeaders(): Headers {

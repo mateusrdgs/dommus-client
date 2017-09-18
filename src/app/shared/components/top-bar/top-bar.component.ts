@@ -27,9 +27,8 @@ export class TopbarComponent implements OnInit, OnDestroy {
       this._topbarEmitter
           .titleEmitter
           .subscribe(title => {
-            setTimeout(() => {
-              this.currentTitle = title;
-            }, 100);
+            this.currentTitle = title;
+            this._cdr.detectChanges();
           });
   }
 

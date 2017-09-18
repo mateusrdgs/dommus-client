@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { AuthService } from './../shared/services/auth.service';
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { url } from './../database';
 import { Account } from './new-account/account';
 
@@ -12,14 +12,18 @@ export class LoginService {
 
   constructor(
     private _http: Http,
-    private _authService: AuthService
+    private _localStorageService: LocalStorageService
   ) { }
 
   createNewAccount(account: Account) {
     const _url = this.mount_Url('CREATE', url);
     return this._http.post(_url, account)
               .toPromise()
-              .then(response => this._authService.saveToken('dommusRemote', response['_body']))
+              .then(response => {
+                if (response['status'] === 200) {
+                  this._localStorageService.saveToken('Dommus', response['_body']);
+                }
+              })
               .catch(this.handleError);
   }
 
@@ -27,7 +31,7 @@ export class LoginService {
     const _url = this.mount_Url('LOGIN', url);
     return this._http.post(_url, account)
               .toPromise()
-              .then(response => this._authService.saveToken('dommusRemote', response['_body']))
+              .then(response => this._localStorageService.saveToken('Dommus', response['_body']))
               .catch(this.handleError);
   }
 

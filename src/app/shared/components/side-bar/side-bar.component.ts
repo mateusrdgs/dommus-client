@@ -2,7 +2,7 @@ import { AfterContentInit, ChangeDetectorRef, Component, OnInit, OnChanges } fro
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from './../../services/auth.service';
+import { LocalStorageService } from './../../services/local-storage.service';
 import { ResidenceEmitter } from './../../emitters/residence.emitter';
 
 @Component({
@@ -17,7 +17,7 @@ export class SideBarComponent implements OnInit, AfterContentInit {
   idResidence: string;
 
   constructor(
-    private _authService: AuthService,
+    private _localStorageService: LocalStorageService,
     private _cdr: ChangeDetectorRef,
     private _residenceEmitter: ResidenceEmitter
   ) { }
@@ -28,14 +28,14 @@ export class SideBarComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.getIdAccount();
-    this.idResidence = this._authService.getToken('currentResidence');
+    this.idResidence = this._localStorageService.getTokenPropertyValue('currentResidence', 'id', false);
     if (this.idResidence === '') {
       this.startResidenceSubscription();
     }
   }
 
   getIdAccount() {
-    this._id = this._authService.getDataFromToken('_id');
+    this._id = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
   }
 
   startResidenceSubscription() {

@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 
 import { AuthService } from './../shared/services/auth.service';
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { Room } from './room';
 
 import { url } from './../database';
@@ -18,16 +19,17 @@ export class RoomsService {
   private _token: string;
 
   constructor(
+    private _authService: AuthService,
     private _http: Http,
-    private _authService: AuthService
+    private _localStorageService: LocalStorageService
   ) {
     this.startServiceOptions();
   }
 
   startServiceOptions() {
     this._headers = this._authService.createRequestHeaders();
-    this._idAccount = this._authService.getDataFromToken('_id');
-    this._token = this._authService.getTokenValue('dommusRemote', 'token');
+    this._idAccount = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
+    this._token = this._localStorageService.getTokenValue('Dommus');
     this._authService.createAuthorizationHeader(this._headers, this._token);
     this._options = this._authService.createRequestOptions(this._headers);
   }

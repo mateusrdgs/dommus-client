@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome() {
-    if (this._localStorageService.getToken('dommusRemote')) {
+    if (this._localStorageService.getToken('Dommus')) {
       this._router.navigateByUrl('/home');
     }
   }

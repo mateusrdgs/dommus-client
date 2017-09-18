@@ -23,7 +23,7 @@ export class AppGuard implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-      if (this._authService.isLoggedIn('dommusRemote')) {
+      if (this._authService.isLoggedIn('Dommus')) {
         return true;
       } else {
         this._router.navigate(['/login']);
@@ -34,7 +34,7 @@ export class AppGuard implements CanActivate, CanLoad {
   canLoad(
     route: Route
   ): Observable<boolean> | Promise<boolean> | boolean {
-      if (this._authService.isLoggedIn('dommusRemote')) {
+      if (this._authService.isLoggedIn('Dommus')) {
         return true;
       } else {
         this._router.navigate(['/login']);

@@ -10,7 +10,6 @@ import { SocketIoEmitter } from './../emitters/socket-io.emitter';
 @Injectable()
 export class SocketIoService {
 
-  private _url = 'http://localhost:4000';
   private _connectionStarted = false;
   private _socket;
 
@@ -21,7 +20,7 @@ export class SocketIoService {
 
   connectToLocalModule(url: string) {
     return new Promise((resolve, reject) => {
-      this._socket = io(this._url);
+      this._socket = io(url);
       this._socket.on('connect', () => {
         resolve(this._socket['connected']);
       });
@@ -31,7 +30,7 @@ export class SocketIoService {
   checkLocalModuleConnectionState(url: string) {
     return new Promise((resolve, reject) => {
       if (this._socket === undefined || (this._socket && this._socket['disconnected'])) {
-        resolve(this.connectToLocalModule(this._url));
+        resolve(this.connectToLocalModule(url));
       } else {
         resolve(this._socket['connected']);
       }

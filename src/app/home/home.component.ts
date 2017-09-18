@@ -4,9 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from './../shared/services/auth.service';
-import { SocketIoEmitter } from './../shared/emitters/socket-io.emitter';
+import { LocalStorageService } from './../shared/services/local-storage.service';
 import { SocketIoService } from './../shared/services/socket-io.service';
-import { SyncService } from './../shared/services/sync.service';
 import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 @Component({
@@ -17,27 +16,27 @@ import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 export class HomeComponent implements OnInit {
 
   private _componentsSubscription: Subscription;
-  private _socketIoSubscription: Subscription;
-  private _syncSubscription: Subscription;
   protected components: any;
   protected connectedToLocalModule = false;
 
   constructor(
     private _authService: AuthService,
-    private _socketIoEmitter: SocketIoEmitter,
+    private _localStorageService: LocalStorageService,
     private _socketIoService: SocketIoService,
-    private _syncService: SyncService,
     private _topbarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
-    this.connectToModule();
-    this._topbarEmitter.emitNewRouteTitle('Dashboard');
+    this._topbarEmitter.emitNewRouteTitle('teste');
+    const residenceUrl = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
+    if (residenceUrl !== '') {
+      this.connectToModule(residenceUrl);
+    }
   }
 
-  connectToModule() {
+  connectToModule(url: string) {
     this._socketIoService
-        .checkLocalModuleConnectionState('')
+        .checkLocalModuleConnectionState(url)
         .then(connectionEstablished => {
           if (connectionEstablished) {
             this._componentsSubscription = this.subscribeToEvent('get:Components');

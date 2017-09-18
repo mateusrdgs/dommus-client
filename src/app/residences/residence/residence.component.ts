@@ -25,7 +25,8 @@ export class ResidenceComponent implements OnInit {
     const { _id, url, description, rooms, boards } = this._route.snapshot.data['residence'];
     this.residence = new Residence(description, url, _id, rooms, boards);
     if (_id) {
-      this._localStorageService.saveToken('currentResidence', JSON.stringify({ id: _id, url }));
+      const token = { id: _id, url };
+      this._localStorageService.encodeAndSaveToken('currentResidence', JSON.stringify({ id: _id, url }));
       this._residenceEmitter.enteredResidence.emit(_id);
     }
   }
