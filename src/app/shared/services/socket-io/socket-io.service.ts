@@ -5,7 +5,7 @@ import { Subject } from 'rxjs/Subject';
 
 import * as io from 'socket.io-client';
 
-import { SocketIoEmitter } from './../emitters/socket-io.emitter';
+import { SocketIoEmitter } from './../../emitters/socket-io.emitter';
 
 @Injectable()
 export class SocketIoService {

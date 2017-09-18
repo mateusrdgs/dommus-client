@@ -3,8 +3,8 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { AuthService } from './../shared/services/auth.service';
-import { LocalStorageService } from './../shared/services/local-storage.service';
+import { AuthService } from './../shared/services/auth/auth.service';
+import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
 import { Residence } from './residence';
 
 import { url } from '../database';

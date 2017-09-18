@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LocalStorageInterface } from './../interfaces/local-storage.interface';
+import { LocalStorageInterface } from './../../interfaces/local-storage.interface';
 
 @Injectable()
 export class LocalStorageService implements LocalStorageInterface {
@@ -19,13 +19,15 @@ export class LocalStorageService implements LocalStorageInterface {
   }
 
   getToken(tokenName: string): string {
-    return window.localStorage.getItem(tokenName)['token'] || '';
+    return window.localStorage.getItem(tokenName) || '';
   }
 
   getDecodedToken(tokenName: string): string {
-    const token = this.getToken(tokenName);
-    if (token.length) {
-      return JSON.parse(window.atob(JSON.parse(token)));
+    const stringfyiedToken = this.getToken(tokenName);
+    if (stringfyiedToken.length) {
+      const parsedToken = JSON.parse(stringfyiedToken),
+            { token } = parsedToken;
+      return JSON.parse(window.atob(token));
     } else {
       return '';
     }
@@ -35,7 +37,8 @@ export class LocalStorageService implements LocalStorageInterface {
     const token = this.getToken(tokenName);
     if (token.length) {
       try {
-        return JSON.parse(token);
+        const parsedToken = JSON.parse(token);
+        return parsedToken['token'];
       } catch (error) {
         console.error(error);
         return '';
@@ -46,7 +49,7 @@ export class LocalStorageService implements LocalStorageInterface {
   }
 
   getTokenPropertyValue(tokenName: string, property: string, isJwt: boolean): string {
-    const token = this.getTokenValue(tokenName);
+    const token = this.getToken(tokenName);
     if (token.length) {
       try {
         let payload;

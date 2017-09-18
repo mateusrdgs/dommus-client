@@ -1,7 +1,8 @@
-import { SocketIoService } from './../../shared/services/socket-io.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
+
+import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 
 @Component({
   selector: 'thermometer',

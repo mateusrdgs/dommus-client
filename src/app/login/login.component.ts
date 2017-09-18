@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
 import { LoginService } from './login.service';
-import { LocalStorageService } from './../shared/services/local-storage.service';
+
 import { Account } from './new-account/account';
 
 @Component({
@@ -44,7 +45,8 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome() {
-    if (this._localStorageService.getToken('Dommus')) {
+    const token = this._localStorageService.getToken('Dommus')
+    if (token.length) {
       this._router.navigateByUrl('/home');
     }
   }

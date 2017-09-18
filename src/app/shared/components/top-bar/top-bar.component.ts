@@ -2,7 +2,7 @@ import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SideBarService } from './../../services/side-bar.service';
+import { SideBarService } from './../../services/side-bar/side-bar.service';
 import { TopBarEmitter } from './../../emitters/top-bar.emitter';
 
 @Component({

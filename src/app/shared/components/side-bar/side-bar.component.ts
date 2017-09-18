@@ -2,7 +2,7 @@ import { AfterContentInit, ChangeDetectorRef, Component, OnInit, OnChanges } fro
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { LocalStorageService } from './../../services/local-storage.service';
+import { LocalStorageService } from './../../services/local-storage/local-storage.service';
 import { ResidenceEmitter } from './../../emitters/residence.emitter';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SideBarService } from './../../../services/side-bar.service';
+import { SideBarService } from './../../../services/side-bar/side-bar.service';
 
 @Component({
   selector: 'menu-toggle',

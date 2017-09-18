@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, RequestOptions, RequestMethod } from '@angular/http';
 
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from './../local-storage/local-storage.service';
 
 @Injectable()
 export class AuthService {

@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from './../shared/services/auth.service';
-import { LocalStorageService } from './../shared/services/local-storage.service';
-import { SocketIoService } from './../shared/services/socket-io.service';
+import { AuthService } from './../shared/services/auth/auth.service';
+import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
+import { SocketIoService } from './../shared/services/socket-io/socket-io.service';
 import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 @Component({
@@ -28,10 +28,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('teste');
-    const residenceUrl = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
+    /*const residenceUrl = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
     if (residenceUrl !== '') {
       this.connectToModule(residenceUrl);
-    }
+    }*/
   }
 
   connectToModule(url: string) {

@@ -3,7 +3,7 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CardEmitter } from './../../emitters/card.emitter';
-import { SocketIoService } from './../../services/socket-io.service';
+import { SocketIoService } from './../../services/socket-io/socket-io.service';
 
 @Component({
   selector: 'card',

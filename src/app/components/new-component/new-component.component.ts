@@ -5,9 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SocketIoService } from './../../shared/services/socket-io.service';
 import { BoardsService } from './../../boards/boards.service';
 import { ComponentsService } from './../components.service';
+import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 
 import Switch from '../classes/switch';
 import Light from '../classes/light';

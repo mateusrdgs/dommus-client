@@ -8,13 +8,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { Subscription } from 'rxjs/Subscription';
 
-import { AuthService } from './shared/services/auth.service';
+import { AuthService } from './shared/services/auth/auth.service';
 import { ResidenceEmitter } from './shared/emitters/residence.emitter';
-import { SideBarService } from './shared/services/side-bar.service';
-import { LocalStorageService } from './shared/services/local-storage.service';
-import { SocketIoService } from './shared/services/socket-io.service';
-import { SyncService } from './shared/services/sync.service';
-import { TitleService } from './shared/services/title.service';
+import { SideBarService } from './shared/services/side-bar/side-bar.service';
+import { LocalStorageService } from './shared/services/local-storage/local-storage.service';
+import { SocketIoService } from './shared/services/socket-io/socket-io.service';
+import { SyncService } from './shared/services/sync/sync.service';
+import { TitleService } from './shared/services/title/title.service';
 
 @Component({
   selector: 'app-root',

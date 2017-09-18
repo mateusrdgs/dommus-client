@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { LocalStorageService } from './../shared/services/local-storage.service';
+import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
 import { url } from './../database';
 import { Account } from './new-account/account';
 
@@ -22,6 +22,7 @@ export class LoginService {
               .then(response => {
                 if (response['status'] === 200) {
                   this._localStorageService.saveToken('Dommus', response['_body']);
+                  return true;
                 }
               })
               .catch(this.handleError);
@@ -31,7 +32,12 @@ export class LoginService {
     const _url = this.mount_Url('LOGIN', url);
     return this._http.post(_url, account)
               .toPromise()
-              .then(response => this._localStorageService.saveToken('Dommus', response['_body']))
+              .then(response => {
+                if (response['status'] === 200) {
+                  this._localStorageService.saveToken('Dommus', response['_body']);
+                  return true;
+                }
+              })
               .catch(this.handleError);
   }
 
