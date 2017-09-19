@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 import { RoomsRoutingModule } from './rooms-routing.module';
+import { SharedModule } from './../shared/shared.module';
 
 import { RoomsService } from './rooms.service';
 import { RoomsResolver } from './resolvers/rooms.resolver.service';
@@ -21,7 +22,8 @@ import { UpdateRoomComponent } from './update-room/update-room.component';
     ReactiveFormsModule,
     HttpModule,
     RouterModule,
-    RoomsRoutingModule
+    RoomsRoutingModule,
+    SharedModule
   ],
   declarations: [
     RoomsComponent,

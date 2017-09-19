@@ -27,7 +27,7 @@ import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggl
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
-import { ButtonBackComponent } from './button-back/button-back.component';
+import { ButtonBackComponent } from './components/button-back/button-back.component';
 
 @NgModule({
   imports: [

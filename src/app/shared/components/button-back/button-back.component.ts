@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'button-back',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonBackComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _location: Location
+  ) { }
 
   ngOnInit() {
+  }
+
+  goBack() {
+    this._location.back();
   }
 
 }
