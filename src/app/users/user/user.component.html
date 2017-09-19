@@ -1,3 +1,4 @@
+<button-back></button-back>
 <div class="user-container" *ngIf="user else noUser">
   <h1 class="user-container__title" [textContent]="user.name"></h1>
   <h2 class="user-container__data" *ngIf="user.isAdmin else isntAdmin" [textContent]="'Admin'"></h2>

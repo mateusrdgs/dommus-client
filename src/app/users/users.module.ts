@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { SharedModule } from './../shared/shared.module';
+
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersService } from './users.service';
 import { UsersResolver } from './resolvers/users.resolver.service';
@@ -16,7 +18,8 @@ import { UserComponent } from './user/user.component';
     CommonModule,
     HttpModule,
     ReactiveFormsModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    SharedModule
   ],
   declarations: [
     UsersComponent,

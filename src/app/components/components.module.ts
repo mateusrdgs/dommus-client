@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { ComponentsRoutingModule } from './components-routing.module';
+import { SharedModule } from './../shared/shared.module';
 
 import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
 import { BoardsService } from './../boards/boards.service';
@@ -21,7 +22,8 @@ import { UpdateComponentComponent } from './update-component/update-component.co
     CommonModule,
     HttpModule,
     ReactiveFormsModule,
-    ComponentsRoutingModule
+    ComponentsRoutingModule,
+    SharedModule
   ],
   declarations: [
     ComponentsComponent,

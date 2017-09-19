@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { BoardsRoutingModule } from './boards-routing.module';
+import { SharedModule } from './../shared/shared.module';
+
 import { BoardsService } from './boards.service';
 import { BoardsResolver } from './resolvers/boards.resolver.service';
 import { BoardResolver } from './resolvers/board.resolver.service';
@@ -19,7 +21,8 @@ import { UpdateBoardComponent } from './update-board/update-board.component';
     HttpModule,
     ReactiveFormsModule,
     RouterModule,
-    BoardsRoutingModule
+    BoardsRoutingModule,
+    SharedModule
   ],
   declarations: [
     BoardsComponent,
