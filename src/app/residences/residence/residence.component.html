@@ -12,7 +12,8 @@
           <a [routerLink]="['rooms', room._id]" [textContent]="room.description"></a>
         </li>
       </ul>
-      <a [routerLink]="['rooms','new']" class="residence-content__new-room">New room</a>
+      <button-new [routePath]="'rooms'"></button-new>
+      <!--<a [routerLink]="['rooms','new']" class="residence-content__new-room">New room</a>-->
       <ng-template #noRooms>
         <h3 class="residence-content__data">No rooms on this residence</h3>
       </ng-template>
@@ -24,7 +25,7 @@
           <a [routerLink]="['boards', board._id]" [textContent]="board.description"></a>
         </li>
       </ul>
-      <a [routerLink]="['boards', 'new']" class="residence-content__new-board">New board</a>
+      <button-new [routePath]="'boards'"></button-new>
       <ng-template #noBoards>
         <h3 class="residence-content__data">No boards on this residence</h3>
       </ng-template>

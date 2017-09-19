@@ -1,0 +1,4 @@
+<a class="update-residence-form__button"
+   [routerLink]=" routePath ? [routePath, 'new'] : ['new']"
+   [textContent]=" routePath ? 'New ' + routePath.slice(0, routePath.length - 1) : 'New ' + routeName">
+</a>

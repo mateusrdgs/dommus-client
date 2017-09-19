@@ -6,9 +6,7 @@
       <a routerLink="{{ residence?._id }}" [textContent]="residence?.description" class="residences-list__item-link"></a>
     </li>
   </ul>
-  <a [routerLink]="['new']" class="residences-container__button">
-    New residence
-  </a>
+  <button-new></button-new>
   <ng-template #noResidences>
     <h1 class="residences-container__warning">No residences on this account!</h1>
   </ng-template>

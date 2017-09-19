@@ -28,6 +28,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
 import { ButtonBackComponent } from './components/button-back/button-back.component';
+import { ButtonNewComponent } from './components/button-new/button-new.component';
 
 @NgModule({
   imports: [
@@ -46,13 +47,15 @@ import { ButtonBackComponent } from './components/button-back/button-back.compon
     CardBackComponent,
     CardBackLeftComponent,
     CardBackRightComponent,
-    ButtonBackComponent
+    ButtonBackComponent,
+    ButtonNewComponent
   ],
   exports: [
     SideBarComponent,
     TopbarComponent,
     CardComponent,
-    ButtonBackComponent
+    ButtonBackComponent,
+    ButtonNewComponent
   ],
   providers: [
     AppGuard,

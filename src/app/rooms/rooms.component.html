@@ -1,14 +1,12 @@
 <button-back></button-back>
 <div class="rooms-container">
   <h1 class="rooms-container__title">rooms</h1>
-  <a [routerLink]="['new']" class="rooms-container__button">
-   New room
-  </a>
   <ul class="rooms-list" *ngIf="rooms.length else noRooms">
     <li class="rooms-list__item" *ngFor="let room of rooms">
       <a routerLink="{{ room?._id }}" [textContent]="room?.description" class="rooms-list__item-link"></a>
     </li>
   </ul>
+  <button-new></button-new>
   <ng-template #noRooms>
     <h1 class="rooms-container__warning">No rooms on this account!</h1>
   </ng-template>
