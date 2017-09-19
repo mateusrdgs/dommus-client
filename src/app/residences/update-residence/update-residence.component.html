@@ -1,3 +1,4 @@
+<button-back></button-back>
 <div class="update-residence-container" *ngIf="residence">
   <h1 class="update-residence-container__title">Update {{ residence?.description }}</h1>
   <form [formGroup]="updateResidenceForm" class="update-residence-form" (ngSubmit)="onSubmit()">
