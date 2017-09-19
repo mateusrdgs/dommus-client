@@ -7,7 +7,7 @@ import { Board } from './../board';
 import { BoardsService } from './../boards.service';
 
 @Component({
-  selector: 'app-new-board',
+  selector: 'new-board',
   templateUrl: './new-board.component.html',
   styleUrls: ['./new-board.component.styl']
 })

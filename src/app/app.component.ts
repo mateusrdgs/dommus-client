@@ -19,7 +19,7 @@ import { TopBarEmitter } from './shared/emitters/top-bar.emitter';
 import { Residence } from './residences/residence';
 
 @Component({
-  selector: 'app-root',
+  selector: 'root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.styl']
 })

@@ -5,7 +5,7 @@ import { Room } from './room';
 import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 @Component({
-  selector: 'app-rooms',
+  selector: 'rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.styl']
 })

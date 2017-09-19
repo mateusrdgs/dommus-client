@@ -8,7 +8,7 @@ import { SocketIoService } from './../../shared/services/socket-io/socket-io.ser
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'app-new-room',
+  selector: 'new-room',
   templateUrl: './new-room.component.html',
   styleUrls: ['./new-room.component.styl']
 })

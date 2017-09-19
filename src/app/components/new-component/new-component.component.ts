@@ -18,7 +18,7 @@ import Motion from '../classes/motion';
 import { validateSet } from '../validators/setValidator';
 
 @Component({
-  selector: 'app-new-component',
+  selector: 'new-component',
   templateUrl: './new-component.component.html',
   styleUrls: ['./new-component.component.styl']
 })

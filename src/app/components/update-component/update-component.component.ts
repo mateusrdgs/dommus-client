@@ -18,7 +18,7 @@ import Sensor from '../classes/sensor';
 import Servo from '../classes/servo';
 
 @Component({
-  selector: 'app-update-component',
+  selector: 'update-component',
   templateUrl: './update-component.component.html',
   styleUrls: ['./update-component.component.styl']
 })

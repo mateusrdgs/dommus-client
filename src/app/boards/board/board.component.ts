@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Board } from './../board';
 
 @Component({
-  selector: 'app-board',
+  selector: 'board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.styl']
 })

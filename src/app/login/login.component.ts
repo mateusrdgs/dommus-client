@@ -11,7 +11,7 @@ import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 import { Account } from './new-account/account';
 
 @Component({
-  selector: 'app-login',
+  selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.styl']
 })

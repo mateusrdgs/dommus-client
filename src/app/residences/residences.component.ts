@@ -5,7 +5,7 @@ import { Residence } from './residence';
 import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 @Component({
-  selector: 'app-residences',
+  selector: 'residences',
   templateUrl: './residences.component.html',
   styleUrls: ['./residences.component.styl']
 })

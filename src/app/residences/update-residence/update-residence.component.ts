@@ -7,7 +7,7 @@ import { ResidencesService } from './../residences.service';
 import { Residence } from './../residence';
 
 @Component({
-  selector: 'app-update-residence',
+  selector: 'update-residence',
   templateUrl: './update-residence.component.html',
   styleUrls: ['./update-residence.component.styl']
 })

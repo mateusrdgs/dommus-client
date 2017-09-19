@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
 
 @Component({
-  selector: 'app-user',
+  selector: 'user',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.styl']
 })

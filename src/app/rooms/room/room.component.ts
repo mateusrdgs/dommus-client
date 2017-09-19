@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Room } from './../room';
 
 @Component({
-  selector: 'app-room',
+  selector: 'room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.styl']
 })

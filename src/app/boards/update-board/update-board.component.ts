@@ -8,7 +8,7 @@ import { Board } from './../board';
 import { BoardsService } from './../boards.service';
 
 @Component({
-  selector: 'app-update-board',
+  selector: 'update-board',
   templateUrl: './update-board.component.html',
   styleUrls: ['./update-board.component.styl']
 })

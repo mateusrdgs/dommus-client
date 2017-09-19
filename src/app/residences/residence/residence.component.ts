@@ -6,7 +6,7 @@ import { ResidenceEmitter } from './../../shared/emitters/residence.emitter';
 import { Residence } from './../residence';
 
 @Component({
-  selector: 'app-residence',
+  selector: 'residence',
   templateUrl: './residence.component.html',
   styleUrls: ['./residence.component.styl']
 })
