@@ -1,13 +1,14 @@
 <div class="residences-container">
+  <button-back></button-back>
   <h1 class="residences-container__title">Residences</h1>
-  <a [routerLink]="['new']" class="residences-container__button">
-   New residence
-  </a>
   <ul class="residences-list" *ngIf="residences else noResidences">
     <li class="residences-list__item" *ngFor="let residence of residences">
       <a routerLink="{{ residence?._id }}" [textContent]="residence?.description" class="residences-list__item-link"></a>
     </li>
   </ul>
+  <a [routerLink]="['new']" class="residences-container__button">
+    New residence
+  </a>
   <ng-template #noResidences>
     <h1 class="residences-container__warning">No residences on this account!</h1>
   </ng-template>

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { ResidencesModule } from './../residences/residences.module';
-
 import { AuthService } from './services/auth/auth.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { SideBarService } from './services/side-bar/side-bar.service';
@@ -29,17 +27,12 @@ import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggl
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
 import { TopbarComponent } from './components/top-bar/top-bar.component';
+import { ButtonBackComponent } from './button-back/button-back.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
-    ResidencesModule
-  ],
-  exports: [
-    SideBarComponent,
-    TopbarComponent,
-    CardComponent
+    RouterModule
   ],
   declarations: [
     SideBarComponent,
@@ -52,7 +45,14 @@ import { TopbarComponent } from './components/top-bar/top-bar.component';
     CardFrontDescriptionComponent,
     CardBackComponent,
     CardBackLeftComponent,
-    CardBackRightComponent
+    CardBackRightComponent,
+    ButtonBackComponent
+  ],
+  exports: [
+    SideBarComponent,
+    TopbarComponent,
+    CardComponent,
+    ButtonBackComponent
   ],
   providers: [
     AppGuard,
