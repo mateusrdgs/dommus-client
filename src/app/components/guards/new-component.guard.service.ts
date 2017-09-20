@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angul
 
 import { Observable } from 'rxjs/Observable';
 
-import { BoardsService } from './../../boards/boards.service';
+import { BoardsService } from './../../boards/services/boards.service';
 
 @Injectable()
 export class NewComponentGuard implements CanActivate {

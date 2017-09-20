@@ -5,9 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { ComponentsRoutingModule } from './components-routing.module';
 import { SharedModule } from './../shared/shared.module';
+import { BoardsModule } from './../boards/boards.module';
 
-import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
-import { BoardsService } from './../boards/boards.service';
 import { ComponentsService } from './components.service';
 import { ComponentResolver } from './resolvers/component.resolver.service';
 import { NewComponentGuard } from './guards/new-component.guard.service';
@@ -23,7 +22,8 @@ import { UpdateComponentComponent } from './update-component/update-component.co
     HttpModule,
     ReactiveFormsModule,
     ComponentsRoutingModule,
-    SharedModule
+    SharedModule,
+    BoardsModule
   ],
   declarations: [
     ComponentsComponent,
@@ -32,8 +32,6 @@ import { UpdateComponentComponent } from './update-component/update-component.co
     UpdateComponentComponent
   ],
   providers: [
-    BoardsService,
-    BoardsResolver,
     ComponentsService,
     ComponentResolver,
     NewComponentGuard

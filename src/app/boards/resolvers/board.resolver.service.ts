@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 
 import { Board } from './../board';
-import { BoardsService } from './../boards.service';
+import { BoardsService } from './../services/boards.service';
 
 @Injectable()
 export class BoardResolver implements Resolve<Board> {

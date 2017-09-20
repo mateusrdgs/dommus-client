@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { BoardsRoutingModule } from './boards-routing.module';
 import { SharedModule } from './../shared/shared.module';
 
-import { BoardsService } from './boards.service';
+import { BoardsService } from './services/boards.service';
 import { BoardsResolver } from './resolvers/boards.resolver.service';
 import { BoardResolver } from './resolvers/board.resolver.service';
 import { BoardsComponent } from './boards.component';

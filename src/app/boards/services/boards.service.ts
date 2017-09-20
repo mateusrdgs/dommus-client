@@ -4,13 +4,13 @@ import { Http, Headers } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 
-import { AuthService } from './../shared/services/auth/auth.service';
-import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
-import { SocketIoService } from './../shared/services/socket-io/socket-io.service';
+import { AuthService } from './../../shared/services/auth/auth.service';
+import { LocalStorageService } from './../../shared/services/local-storage/local-storage.service';
+import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 
-import { Board } from './board';
+import { Board } from './../board';
 
-import { url } from './../database';
+import { url } from './../../database';
 
 @Injectable()
 export class BoardsService {
