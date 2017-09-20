@@ -1,11 +1,6 @@
 <button-back></button-back>
 <div class="users-container">
-  <h1 class="users-container__title">Users</h1>
-  <ul class="users-list" *ngIf="users else noUsers">
-    <li class="users-list__item" *ngFor="let user of users">
-      <a routerLink="{{ user?._id }}" [textContent]="user?.name" class="users-list__item-link"></a>
-    </li>
-  </ul>
+  <list [set]="users" *ngIf="users else noUsers"></list>
   <button-new></button-new>
   <ng-template #noUsers>
     <h1 class="users-container__warning">No users on this account!</h1>

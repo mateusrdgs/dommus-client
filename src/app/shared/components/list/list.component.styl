@@ -1,7 +1,7 @@
 .list
   display flex
+  flex-direction column
   justify-content space-between
-  margin 1rem 0
   padding 0
   width 100%
 
@@ -11,6 +11,9 @@
   list-style none
   width 100%
   box-shadow 0 .5rem 1.5rem #999
+
+.list__item:not(:last-child)
+  margin 0 0 1rem 0
 
 .list__item-link
   align-items center
@@ -38,4 +41,5 @@
   font 400 2.5rem 'Exo 2', sans-serif
 
 .list__item-link__subdescription
+  font-size 1.5rem
   transform translate3d(0, 10rem, 0)
