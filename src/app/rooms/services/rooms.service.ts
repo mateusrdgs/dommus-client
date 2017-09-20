@@ -4,11 +4,12 @@ import { Http, Headers } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 
-import { AuthService } from './../shared/services/auth/auth.service';
-import { LocalStorageService } from './../shared/services/local-storage/local-storage.service';
-import { Room } from './room';
+import { AuthService } from './../../shared/services/auth/auth.service';
+import { LocalStorageService } from './../../shared/services/local-storage/local-storage.service';
 
-import { url } from './../database';
+import { Room } from './../room';
+
+import { url } from './../../database';
 
 @Injectable()
 export class RoomsService {

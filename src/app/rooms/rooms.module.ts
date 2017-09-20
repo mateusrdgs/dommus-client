@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { RoomsRoutingModule } from './rooms-routing.module';
 import { SharedModule } from './../shared/shared.module';
 
-import { RoomsService } from './rooms.service';
+import { RoomsService } from './services/rooms.service';
 import { RoomsResolver } from './resolvers/rooms.resolver.service';
 import { RoomResolver } from './resolvers/room.resolver.service';
 
