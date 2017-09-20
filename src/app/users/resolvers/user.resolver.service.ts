@@ -4,7 +4,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 
 import { User } from './../user';
-import { UsersService } from './../users.service';
+import { UsersService } from './../services/users.service';
 
 @Injectable()
 export class UserResolver implements Resolve<User> {

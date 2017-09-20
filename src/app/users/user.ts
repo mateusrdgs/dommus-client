@@ -3,7 +3,7 @@ export class User {
   private id: string;
   private name: string;
   private isAdmin: boolean;
-  private pin: number
+  private pin: number;
 
   constructor(name: string, isAdmin: boolean, id?: string, pin?: number) {
     this.Id = id;
