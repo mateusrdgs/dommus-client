@@ -1,9 +1,11 @@
 <button-back></button-back>
 <div class="residences-container">
-  <h1 class="residences-container__title">Residences</h1>
   <ul class="residences-list" *ngIf="residences else noResidences">
     <li class="residences-list__item" *ngFor="let residence of residences">
-      <a routerLink="{{ residence?._id }}" [textContent]="residence?.description" class="residences-list__item-link"></a>
+      <a routerLink="{{ residence?._id }}" class="residences-list__item-link">
+        <h1 [textContent]="residence?.description"></h1>
+        <span [textContent]="residence?.url"></span>
+      </a>
     </li>
   </ul>
   <button-new></button-new>
