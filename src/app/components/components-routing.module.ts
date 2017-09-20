@@ -5,10 +5,10 @@ import { NewComponentGuard } from './guards/new-component.guard.service';
 import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
 import { ComponentResolver } from './resolvers/component.resolver.service';
 
-import { ComponentsComponent } from './components.component';
-import { ComponentComponent } from './component/component.component';
-import { NewComponentComponent } from './new-component/new-component.component';
-import { UpdateComponentComponent } from './update-component/update-component.component';
+import { ComponentsComponent } from './components/components/components.component';
+import { ComponentComponent } from './components/component/component.component';
+import { NewComponentComponent } from './components/new-component/new-component.component';
+import { UpdateComponentComponent } from './components/update-component/update-component.component';
 
 const routes: Routes = [
   {

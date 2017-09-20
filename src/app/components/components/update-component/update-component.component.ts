@@ -4,18 +4,18 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { ComponentsService } from './../services/components.service';
-import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
+import { ComponentsService } from './../../services/components.service';
+import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
 
-import { validateSet } from '../validators/setValidator';
-import { availableOrEqualValidator } from '../validators/availableOrEqualValidator';
+import { validateSet } from '../../validators/setValidator';
+import { availableOrEqualValidator } from '../../validators/availableOrEqualValidator';
 
-import Switch from '../classes/switch';
-import { Thermometer } from './../classes/thermometer';
-import Light from '../classes/light';
-import Motion from '../classes/motion';
-import Sensor from '../classes/sensor';
-import Servo from '../classes/servo';
+import Switch from '../../classes/switch';
+import Thermometer from './../../classes/thermometer';
+import Light from '../../classes/light';
+import Motion from '../../classes/motion';
+import Sensor from '../../classes/sensor';
+import Servo from '../../classes/servo';
 
 @Component({
   selector: 'update-component',

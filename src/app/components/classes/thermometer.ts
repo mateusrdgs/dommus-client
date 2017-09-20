@@ -1,6 +1,6 @@
 import Component from './component';
 
-export class Thermometer extends Component {
+export default class Thermometer extends Component {
 
   private controller: string;
   private analogPin: number;

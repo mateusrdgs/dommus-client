@@ -1,21 +1,21 @@
-import { Thermometer } from './../classes/thermometer';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { BoardsService } from './../../boards/services/boards.service';
-import { ComponentsService } from './../services/components.service';
-import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
+import { BoardsService } from './../../../boards/services/boards.service';
+import { ComponentsService } from './../../services/components.service';
+import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
 
-import Switch from '../classes/switch';
-import Light from '../classes/light';
-import Sensor from '../classes/sensor';
-import Servo from '../classes/servo';
-import Motion from '../classes/motion';
+import Switch from '../../classes/switch';
+import Thermometer from './../../classes/thermometer';
+import Light from '../../classes/light';
+import Motion from '../../classes/motion';
+import Sensor from '../../classes/sensor';
+import Servo from '../../classes/servo';
 
-import { validateSet } from '../validators/setValidator';
+import { validateSet } from '../../validators/setValidator';
 
 @Component({
   selector: 'new-component',
