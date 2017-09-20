@@ -1,4 +1,4 @@
-import { Room } from './../../rooms/room';
+import Room from './../../rooms/classes/room';
 
 export default class Residence {
 

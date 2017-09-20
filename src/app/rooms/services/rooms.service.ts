@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 import { AuthService } from './../../shared/services/auth/auth.service';
 import { LocalStorageService } from './../../shared/services/local-storage/local-storage.service';
 
-import { Room } from './../room';
+import Room from './../classes/room';
 
 import { url } from './../../database';
 

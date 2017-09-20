@@ -1,4 +1,4 @@
-export class Room {
+export default class Room {
 
   private _id: string;
   private description: string;

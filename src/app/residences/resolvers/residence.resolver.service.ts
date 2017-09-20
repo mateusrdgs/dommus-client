@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  Resolve,
-  RouterStateSnapshot
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Residence } from './../residence';
 import { ResidencesService } from './../services/residences.service';
+import Residence from './../classes/residence';
 
 @Injectable()
 export class ResidenceResolver implements Resolve<Residence> {

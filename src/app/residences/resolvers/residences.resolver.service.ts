@@ -7,7 +7,7 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { Residence } from './../residence';
+import Residence from './../classes/residence';
 import { ResidencesService } from './../services/residences.service';
 
 @Injectable()

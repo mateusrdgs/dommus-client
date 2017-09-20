@@ -3,8 +3,8 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 
 import { Observable } from 'rxjs/Observable';
 
-import { Room } from './../room';
 import { RoomsService } from './../services/rooms.service';
+import Room from './../classes/room';
 
 @Injectable()
 export class RoomsResolver implements Resolve<Room[]> {

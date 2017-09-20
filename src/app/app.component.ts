@@ -16,8 +16,6 @@ import { SyncService } from './shared/services/sync/sync.service';
 import { TitleService } from './shared/services/title/title.service';
 import { TopBarEmitter } from './shared/emitters/top-bar.emitter';
 
-import { Residence } from './residences/residence';
-
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
