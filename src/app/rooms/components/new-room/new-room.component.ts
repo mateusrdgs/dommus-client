@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { RoomsService } from './../services/rooms.service';
-import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
+import { RoomsService } from './../../services/rooms.service';
+import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
 
 import { Subscription } from 'rxjs/Subscription';
 

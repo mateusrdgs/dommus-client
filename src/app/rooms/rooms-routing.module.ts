@@ -1,12 +1,13 @@
-import { RoomsComponent } from './rooms.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RoomsResolver } from './resolvers/rooms.resolver.service';
 import { RoomResolver } from './resolvers/room.resolver.service';
-import { NewRoomComponent } from './new-room/new-room.component';
-import { RoomComponent } from './room/room.component';
-import { UpdateRoomComponent } from './update-room/update-room.component';
+
+import { RoomsComponent } from './components/rooms/rooms.component';
+import { NewRoomComponent } from './components/new-room/new-room.component';
+import { RoomComponent } from './components/room/room.component';
+import { UpdateRoomComponent } from './components/update-room/update-room.component';
 
 const routes: Routes = [
   {

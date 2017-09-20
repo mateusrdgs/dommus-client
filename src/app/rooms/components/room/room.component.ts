@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Room } from './../room';
+import { Room } from './../../room';
 
 @Component({
   selector: 'room',
