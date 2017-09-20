@@ -1,13 +1,6 @@
 <button-back></button-back>
 <div class="residences-container">
-  <ul class="residences-list" *ngIf="residences else noResidences">
-    <li class="residences-list__item" *ngFor="let residence of residences">
-      <a routerLink="{{ residence?._id }}" class="residences-list__item-link">
-        <h1 [textContent]="residence?.description"></h1>
-        <span [textContent]="residence?.url"></span>
-      </a>
-    </li>
-  </ul>
+  <list [set]="residences" *ngIf="residences else noResidences"></list>
   <button-new></button-new>
   <ng-template #noResidences>
     <h1 class="residences-container__warning">No residences on this account!</h1>

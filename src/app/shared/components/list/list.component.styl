@@ -1,0 +1,41 @@
+.list
+  display flex
+  justify-content space-between
+  margin 1rem 0
+  padding 0
+  width 100%
+
+.list__item
+  display flex
+  height 15rem
+  list-style none
+  width 100%
+  box-shadow 0 .5rem 1.5rem #999
+
+.list__item-link
+  align-items center
+  background-color #1C2021
+  color #EEE
+  display flex
+  flex-direction column
+  height 100%
+  justify-content flex-start
+  overflow hidden
+  text-decoration none
+  width 100%
+  &:hover
+    cursor pointer
+    padding 0 0 3rem 0
+  &:hover .list__item-link__description
+    transform scale(1.2)
+  &:hover .list__item-link__subdescription
+    transform translate3d(0, 4rem, 0)
+
+.list__item-link__description, .list__item-link__subdescription
+  transition all .5s ease-in-out
+
+.list__item-link__description
+  font 400 2.5rem 'Exo 2', sans-serif
+
+.list__item-link__subdescription
+  transform translate3d(0, 10rem, 0)

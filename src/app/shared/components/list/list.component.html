@@ -1,0 +1,8 @@
+<ul class="list">
+  <li class="list__item" *ngFor="let item of set">
+    <a [routerLink]="[item?._id]" class="list__item-link">
+      <h1 class="list__item-link__description" [textContent]="item?.description"></h1>
+      <span class="list__item-link__subdescription" [textContent]="item?.url"></span>
+    </a>
+  </li>
+</ul>
