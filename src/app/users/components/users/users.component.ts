@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
 
 @Component({
   selector: 'user',
