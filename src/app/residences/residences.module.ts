@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { ResidencesRoutingModule } from './residences-routing.module';
 import { SharedModule } from './../shared/shared.module';
 
-import { ResidencesService } from './residences.service';
+import { ResidencesService } from './services/residences.service';
 import { ResidencesResolver } from './resolvers/residences.resolver.service';
 import { ResidenceResolver } from './resolvers/residence.resolver.service';
 

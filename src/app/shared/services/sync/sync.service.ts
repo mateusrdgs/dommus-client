@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ResidencesService } from './../../../residences/residences.service';
+import { ResidencesService } from './../../../residences/services/residences.service';
 
 @Injectable()
 export class SyncService {

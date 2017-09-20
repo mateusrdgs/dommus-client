@@ -8,7 +8,7 @@ import {
 import { Observable } from 'rxjs/Observable';
 
 import { Residence } from './../residence';
-import { ResidencesService } from './../residences.service';
+import { ResidencesService } from './../services/residences.service';
 
 @Injectable()
 export class ResidencesResolver implements Resolve<Residence> {

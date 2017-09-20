@@ -2,7 +2,7 @@ import { Residence } from './../residence';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ResidencesService } from './../residences.service';
+import { ResidencesService } from './../services/residences.service';
 import { TopBarEmitter } from './../../shared/emitters/top-bar.emitter';
 
 @Component({
