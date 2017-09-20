@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { ComponentsService } from './../components.service';
+import { ComponentsService } from './../services/components.service';
 import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 
 import { validateSet } from '../validators/setValidator';

@@ -7,7 +7,7 @@ import { ComponentsRoutingModule } from './components-routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { BoardsModule } from './../boards/boards.module';
 
-import { ComponentsService } from './components.service';
+import { ComponentsService } from './services/components.service';
 import { ComponentResolver } from './resolvers/component.resolver.service';
 import { NewComponentGuard } from './guards/new-component.guard.service';
 

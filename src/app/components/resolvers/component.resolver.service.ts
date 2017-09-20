@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
-import { ComponentsService } from './../components.service';
 
 import { Observable } from 'rxjs/Observable';
+
+import { ComponentsService } from './../services/components.service';
 
 @Injectable()
 export class ComponentResolver implements Resolve<any> {
