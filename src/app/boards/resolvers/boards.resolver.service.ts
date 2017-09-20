@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve  } from '@angular/
 
 import { Observable } from 'rxjs/Observable';
 
-import { Board } from './../board';
+import Board from './../classes/board';
 import { BoardsService } from './../services/boards.service';
 
 @Injectable()

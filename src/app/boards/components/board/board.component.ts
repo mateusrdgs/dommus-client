@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Board } from './../../board';
+import Board from './../../classes/board';
 
 @Component({
   selector: 'board',

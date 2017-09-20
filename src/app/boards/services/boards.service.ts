@@ -8,7 +8,7 @@ import { AuthService } from './../../shared/services/auth/auth.service';
 import { LocalStorageService } from './../../shared/services/local-storage/local-storage.service';
 import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 
-import { Board } from './../board';
+import Board from './../classes/board';
 
 import { url } from './../../database';
 
