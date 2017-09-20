@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResidencesService } from './../../services/residences.service';
 import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
 
-import { Residence } from './../../residence';
+import Residence from './../../classes/residence';
 
 @Component({
   selector: 'new-residence',

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
 
-import { Residence } from './../../residence';
+import Residence from './../../classes/residence';
 
 @Component({
   selector: 'residences',

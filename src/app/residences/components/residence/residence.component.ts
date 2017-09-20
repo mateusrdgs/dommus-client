@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from './../../../shared/services/local-storage/local-storage.service';
 import { ResidenceEmitter } from './../../../shared/emitters/residence.emitter';
 
-import { Residence } from './../../residence';
+import Residence from './../../classes/residence';
 
 @Component({
   selector: 'residence',

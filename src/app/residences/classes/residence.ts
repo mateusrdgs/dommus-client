@@ -1,6 +1,6 @@
-import { Room } from './../rooms/room';
+import { Room } from './../../rooms/room';
 
-export class Residence {
+export default class Residence {
 
   private _id: string;
   private description: string;
