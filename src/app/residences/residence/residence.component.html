@@ -4,7 +4,7 @@
   <div class="residence-content">
     <h2 class="residence-content__label">URL</h2>
     <h3 class="residence-content__data" [textContent]="residence?.url"></h3>
-    <a [routerLink]="['update']">Update residence</a>
+    <button-update [routePath]="'residences'"></button-update>
     <div class="residence-content__container">
       <h2 class="residence-content__label">Rooms</h2>
       <ul class="residence-content__rooms-list" *ngIf="residence.rooms.length else noRooms">
@@ -13,7 +13,6 @@
         </li>
       </ul>
       <button-new [routePath]="'rooms'"></button-new>
-      <!--<a [routerLink]="['rooms','new']" class="residence-content__new-room">New room</a>-->
       <ng-template #noRooms>
         <h3 class="residence-content__data">No rooms on this residence</h3>
       </ng-template>
