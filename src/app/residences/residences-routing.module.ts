@@ -5,10 +5,10 @@ import { AppGuard } from './../shared/guards/app.guards.service';
 import { ResidencesResolver } from './resolvers/residences.resolver.service';
 import { ResidenceResolver } from './resolvers/residence.resolver.service';
 
-import { ResidencesComponent } from './residences.component';
-import { NewResidenceComponent } from './new-residence/new-residence.component';
-import { ResidenceComponent } from './residence/residence.component';
-import { UpdateResidenceComponent } from './update-residence/update-residence.component';
+import { ResidencesComponent } from './components/residences/residences.component';
+import { NewResidenceComponent } from './components/new-residence/new-residence.component';
+import { ResidenceComponent } from './components/residence/residence.component';
+import { UpdateResidenceComponent } from './components/update-residence/update-residence.component';
 
 const routes: Routes = [
   {

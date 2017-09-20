@@ -1,8 +1,9 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { Residence } from './residence';
-import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
+
+import { Residence } from './../../residence';
 
 @Component({
   selector: 'residences',

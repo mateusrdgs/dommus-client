@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { LocalStorageService } from './../../shared/services/local-storage/local-storage.service';
-import { ResidenceEmitter } from './../../shared/emitters/residence.emitter';
-import { Residence } from './../residence';
+import { LocalStorageService } from './../../../shared/services/local-storage/local-storage.service';
+import { ResidenceEmitter } from './../../../shared/emitters/residence.emitter';
+
+import { Residence } from './../../residence';
 
 @Component({
   selector: 'residence',

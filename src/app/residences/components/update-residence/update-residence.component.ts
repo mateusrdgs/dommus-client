@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ResidencesService } from './../services/residences.service';
+import { ResidencesService } from './../../services/residences.service';
 
-import { Residence } from './../residence';
+import { Residence } from './../../residence';
 
 @Component({
   selector: 'update-residence',
