@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { Board } from './../board';
-import { BoardsService } from './../services/boards.service';
+import { Board } from './../../board';
+import { BoardsService } from './../../services/boards.service';
 
 @Component({
   selector: 'update-board',

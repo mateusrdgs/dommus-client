@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { Board } from './../board';
-import { BoardsService } from './../services/boards.service';
+import { Board } from './../../board';
+import { BoardsService } from './../../services/boards.service';
 
 @Component({
   selector: 'new-board',

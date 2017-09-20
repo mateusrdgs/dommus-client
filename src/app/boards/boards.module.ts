@@ -10,10 +10,10 @@ import { SharedModule } from './../shared/shared.module';
 import { BoardsService } from './services/boards.service';
 import { BoardsResolver } from './resolvers/boards.resolver.service';
 import { BoardResolver } from './resolvers/board.resolver.service';
-import { BoardsComponent } from './boards.component';
-import { BoardComponent } from './board/board.component';
-import { NewBoardComponent } from './new-board/new-board.component';
-import { UpdateBoardComponent } from './update-board/update-board.component';
+import { BoardsComponent } from './components/boards/boards.component';
+import { BoardComponent } from './components/board/board.component';
+import { NewBoardComponent } from './components/new-board/new-board.component';
+import { UpdateBoardComponent } from './components/update-board/update-board.component';
 
 @NgModule({
   imports: [

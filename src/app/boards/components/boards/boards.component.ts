@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TopBarEmitter } from './../shared/emitters/top-bar.emitter';
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
 
 @Component({
   selector: 'boards',
