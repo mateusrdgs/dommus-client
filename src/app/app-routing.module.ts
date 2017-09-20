@@ -17,10 +17,13 @@ const routes: Routes = [
     loadChildren: 'app/login/login.module#LoginModule'
   },
   {
-    path: 'home',
+    path: 'dashboard',
     loadChildren: 'app/home/home.module#HomeModule',
     canActivate: [AppGuard],
-    canLoad: [AppGuard]
+    canLoad: [AppGuard],
+    data: {
+      title: 'Dashboard'
+    }
   },
   {
     path: 'profile',
@@ -47,7 +50,10 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    data: {
+      title: 'Not found'
+    }
   }
 ];
 

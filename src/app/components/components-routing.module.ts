@@ -13,7 +13,10 @@ import { UpdateComponentComponent } from './update-component/update-component.co
 const routes: Routes = [
   {
     path: '',
-    component: ComponentsComponent
+    component: ComponentsComponent,
+    data: {
+      title: 'Components'
+    }
   },
   {
     path: 'new',
@@ -21,13 +24,19 @@ const routes: Routes = [
     resolve: {
       boards: BoardsResolver
     },
-    canActivate: [NewComponentGuard]
+    canActivate: [NewComponentGuard],
+    data: {
+      title: 'New component'
+    }
   },
   {
     path: ':idComponent',
     component: ComponentComponent,
     resolve: {
       component: ComponentResolver
+    },
+    data: {
+      title: 'Component'
     }
   },
   {
@@ -36,6 +45,9 @@ const routes: Routes = [
     resolve: {
       component: ComponentResolver,
       boards: BoardsResolver
+    },
+    data: {
+      title: 'Update component'
     }
   }
 ];

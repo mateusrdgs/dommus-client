@@ -16,17 +16,26 @@ const routes: Routes = [
     component: ResidencesComponent,
     resolve: {
       residences: ResidencesResolver
+    },
+    data: {
+      title: 'Residences'
     }
   },
   {
     path: 'new',
-    component: NewResidenceComponent
+    component: NewResidenceComponent,
+    data: {
+      title: 'New residence'
+    }
   },
   {
     path: ':idResidence',
     component: ResidenceComponent,
     resolve: {
       residence: ResidenceResolver
+    },
+    data: {
+      title: 'Residence'
     }
   },
   {
@@ -34,6 +43,9 @@ const routes: Routes = [
     component: UpdateResidenceComponent,
     resolve: {
       residence: ResidenceResolver
+    },
+    data: {
+      title: 'Update residence'
     }
   },
   {

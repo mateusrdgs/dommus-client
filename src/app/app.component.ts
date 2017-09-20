@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public isSidebarOpen = false;
   public isUserLoggedIn: boolean;
-  // private _routeSubscription: Subscription;
+  private _routeSubscription: Subscription;
   private _idResidence: string;
   private _topbarSubscription: Subscription;
   private _enteredResidenceSubscription: Subscription;
@@ -56,6 +56,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this._authService
           .isLoggedIn('Dommus');
 
+    this.startRouteSubscription();
     this.startTopBarSubscription();
     this.startSideBarSubscription();
 
@@ -65,21 +66,22 @@ export class AppComponent implements OnInit, OnDestroy {
         this.connectToLocalModule(data);
       }
     }
-          /*this._routeSubscription =
-        this._router.events
-          .filter(event => event instanceof NavigationEnd)
-          .map(() => this._activatedRoute)
-          .map(route => {
-            while (route.firstChild) {
-              route = route.firstChild;
-            };
-            return route;
-          })
-          .filter(route => route.outlet === 'primary')
-          .mergeMap(route => route.data)
-          .subscribe(event => {
+  }
 
-          });*/
+  startRouteSubscription() {
+    this._routeSubscription =
+      this._router.events
+        .filter(event => event instanceof NavigationEnd)
+        .map(() => this._activatedRoute)
+        .map(route => {
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+          return route;
+        })
+        .filter(route => route.outlet === 'primary')
+        .mergeMap(route => route.data)
+        .subscribe(event => this._titleService.setTitle(event['title']));
   }
 
   startTopBarSubscription() {
@@ -135,7 +137,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this._sidebarSubscription.unsubscribe();
     this._enteredResidenceSubscription.unsubscribe();
     this._syncSubscription.unsubscribe();
-    // this._routeSubscription.unsubscribe();
+    this._routeSubscription.unsubscribe();
   }
 
 }

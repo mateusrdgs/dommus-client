@@ -14,17 +14,26 @@ const routes: Routes = [
     component: BoardsComponent,
     resolve: {
       boards: BoardsResolver
+    },
+    data: {
+      title: 'Boards'
     }
   },
   {
     path: 'new',
-    component: NewBoardComponent
+    component: NewBoardComponent,
+    data: {
+      title: 'New board'
+    }
   },
   {
     path: ':idBoard',
     component: BoardComponent,
     resolve: {
       board: BoardResolver
+    },
+    data: {
+      title: 'Board'
     }
   },
   {
@@ -32,6 +41,9 @@ const routes: Routes = [
     component: UpdateBoardComponent,
     resolve: {
       board: BoardResolver
+    },
+    data: {
+      title: 'Update board'
     }
   }
 ];

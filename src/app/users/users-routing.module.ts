@@ -13,17 +13,26 @@ const routes: Routes = [
     component: UsersComponent,
     resolve: {
       users: UsersResolver
+    },
+    data: {
+      title: 'Users'
     }
   },
   {
     path: 'new',
-    component: NewUserComponent
+    component: NewUserComponent,
+    data: {
+      title: 'New user'
+    }
   },
   {
     path: ':id',
     component: UserComponent,
     resolve: {
       user: UserResolver
+    },
+    data: {
+      title: 'User'
     }
   }
 ];

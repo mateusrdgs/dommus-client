@@ -14,11 +14,17 @@ const routes: Routes = [
     component: RoomsComponent,
     resolve: {
       rooms: RoomsResolver
+    },
+    data: {
+      title: 'Rooms'
     }
   },
   {
     path: 'new',
-    component: NewRoomComponent
+    component: NewRoomComponent,
+    data: {
+      title: 'New room'
+    }
   },
   {
     path: ':idRoom',
@@ -26,12 +32,18 @@ const routes: Routes = [
     resolve: {
       room: RoomResolver
     },
+    data: {
+      title: 'Room'
+    }
   },
   {
     path: ':idRoom/update',
     component: UpdateRoomComponent,
     resolve: {
       room: RoomResolver
+    },
+    data: {
+      title: 'Update room'
     }
   },
   {

@@ -15,7 +15,7 @@ export class TitleService {
   }
 
   setTitle(newTitle: string) {
-    this._title.setTitle(`Dommus - ${newTitle}`);
+    this._title.setTitle(`Dommus | ${newTitle}`);
   }
 
 }
