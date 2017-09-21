@@ -1,4 +1,5 @@
-import { AfterContentInit, ChangeDetectorRef, Component, OnInit, OnChanges } from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -19,7 +20,8 @@ export class SideBarComponent implements OnInit, AfterContentInit {
   constructor(
     private _localStorageService: LocalStorageService,
     private _cdr: ChangeDetectorRef,
-    private _residenceEmitter: ResidenceEmitter
+    private _residenceEmitter: ResidenceEmitter,
+    private _router: Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,10 @@ export class SideBarComponent implements OnInit, AfterContentInit {
     if (this.idResidence === '') {
       this.startResidenceSubscription();
     }
+  }
+
+  isActive(instruction: any[]): boolean {
+    return this._router.isActive(this._router.createUrlTree(instruction), true);
   }
 
   getIdAccount() {
