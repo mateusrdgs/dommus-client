@@ -12,16 +12,31 @@ import Residence from './../../classes/residence';
 })
 export class ResidencesComponent implements OnInit {
 
-  residences = [];
+  residences;
 
   constructor(
-    private _route: ActivatedRoute,
+    private _activatedRoute: ActivatedRoute,
     private _topbarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
-    this.residences = this._route.snapshot.data['residences'];
     this._topbarEmitter.emitNewRouteTitle('Residences');
+    this.extractDataFromResolver();
+  }
+
+  extractDataFromResolver() {
+    this._activatedRoute.data
+        .map(response => response['residences'])
+        .subscribe(response => {
+          if (response.status === 200) {
+            this.residences = response.json()['Residences'];
+          } else {
+            console.log('error');
+          }
+        }, error => {
+          console.log(error);
+        })
+        .unsubscribe();
   }
 
 }

@@ -8,6 +8,7 @@ import { SideBarService } from './services/side-bar/side-bar.service';
 import { SocketIoService } from './services/socket-io/socket-io.service';
 import { SyncService } from './services/sync/sync.service';
 import { TitleService } from './services/title/title.service';
+import { RemoteService } from './services/remote/remote.service';
 
 import { CardEmitter } from './emitters/card.emitter';
 import { ResidenceEmitter } from './emitters/residence.emitter';
@@ -74,7 +75,8 @@ import { ButtonUpdateComponent } from './components/button-update/button-update.
     TopBarEmitter,
     CardEmitter,
     ResidenceEmitter,
-    SocketIoEmitter
+    SocketIoEmitter,
+    RemoteService
   ]
 })
 export class SharedModule { }
