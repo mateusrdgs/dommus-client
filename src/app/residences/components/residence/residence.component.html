@@ -7,7 +7,7 @@
     <button-update [routePath]="'residences'"></button-update>
     <div class="residence-content__container">
       <h2 class="residence-content__label">Rooms</h2>
-      <ul class="residence-content__rooms-list" *ngIf="residence.rooms.length else noRooms">
+      <ul class="residence-content__rooms-list" *ngIf="residence?.rooms?.length else noRooms">
         <li class="residence-content__rooms-list-item"*ngFor="let room of residence.rooms">
           <a [routerLink]="['rooms', room._id]" [textContent]="room.description"></a>
         </li>
@@ -19,7 +19,7 @@
     </div>
     <div class="residence-content__container">
       <h2 class="residence-content__label">Boards</h2>
-      <ul class="residence-content__boards-list" *ngIf="residence.boards.length else noBoards">
+      <ul class="residence-content__boards-list" *ngIf="residence?.boards?.length else noBoards">
         <li class="residence-content__boards-list-item"*ngFor="let board of residence.boards">
           <a [routerLink]="['boards', board._id]" [textContent]="board.description"></a>
         </li>

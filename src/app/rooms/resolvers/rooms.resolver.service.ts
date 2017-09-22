@@ -6,18 +6,22 @@ import { Observable } from 'rxjs/Observable';
 import { RoomsService } from './../services/rooms.service';
 import Room from './../classes/room';
 
+import { RemoteService } from './../../shared/services/remote/remote.service';
+import { UrlCreatorService } from './../../shared/services/url-creator/url-creator.service';
+
 @Injectable()
 export class RoomsResolver implements Resolve<Room[]> {
 
   constructor(
-    private _roomsService: RoomsService
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) {
   }
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Room[]> | Promise<Room[]> | Room[] {
-    const { idResidence } = route.params;
-    return this._roomsService.getRooms(idResidence);
+    const _url = this._urlCreatorService.createUrl('rooms', 'get', route.params);
+    return this._remoteService.getResources(_url);
   }
 }

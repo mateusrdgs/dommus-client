@@ -24,9 +24,8 @@ export class ResidencesResolver implements Resolve<Residence> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    console.log(this._urlCreatorService.createResidenceUrl());
-    const id = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
-    const _url = `http://localhost:3000/api/account/${id}/residences`;
+    const idResidence = this._localStorageService.getTokenPropertyValue('currentResidence', 'id', false),
+          _url = this._urlCreatorService.createUrl('residences', 'get', { idResidence: idResidence });
     return this._remoteService.getResources(_url);
   }
 }

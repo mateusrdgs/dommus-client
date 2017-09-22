@@ -1,3 +1,4 @@
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -17,19 +18,35 @@ export class ResidenceComponent implements OnInit {
   data: any;
 
   constructor(
-    private _route: ActivatedRoute,
+    private _activatedRoute: ActivatedRoute,
     private _localStorageService: LocalStorageService,
-    private _residenceEmitter: ResidenceEmitter
+    private _residenceEmitter: ResidenceEmitter,
+    private _topbarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
-    const { _id, url, description, rooms, boards } = this._route.snapshot.data['residence'];
-    this.residence = new Residence(description, url, _id, rooms, boards);
-    if (_id) {
-      const token = { id: _id, url };
-      this._localStorageService.encodeAndSaveToken('currentResidence', JSON.stringify({ id: _id, url }));
-      this._residenceEmitter.enteredResidence.emit(_id);
-    }
+    this._topbarEmitter.emitNewRouteTitle('Residences');
+    this.extractDataFromResolver();
   }
 
+  extractDataFromResolver() {
+    this._activatedRoute.data
+    .map(response => response['residence'])
+    .subscribe(response => {
+      if (response.status === 200) {
+        const { description, url, _id, rooms, boards } = response.json()['Residence'];
+        this.residence = new Residence(description, url, _id, rooms, boards);
+        if (_id) {
+          const token = { id: _id, url };
+          this._localStorageService.encodeAndSaveToken('currentResidence', JSON.stringify({ id: _id, url }));
+          this._residenceEmitter.enteredResidence.emit(_id);
+        }
+      } else {
+        console.log('error');
+      }
+    }, error => {
+      console.log(error);
+    })
+    .unsubscribe();
+  }
 }
