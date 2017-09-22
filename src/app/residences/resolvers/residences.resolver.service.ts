@@ -1,3 +1,4 @@
+import { UrlCreatorService } from './../../shared/services/url-creator/url-creator.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 
@@ -13,7 +14,8 @@ export class ResidencesResolver implements Resolve<Residence> {
 
   constructor(
     private _localStorageService: LocalStorageService,
-    private _remoteService: RemoteService
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) {
 
   }
@@ -22,11 +24,9 @@ export class ResidencesResolver implements Resolve<Residence> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    /*const id = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
-    const url = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
-    const _url = `${url}/api/account/${id}/residences`;
-    console.log(_url);*/
-    const url = `http://localhost:3000/api/account/599583e8b92e392ce8653f5d/residences/`;
-    return this._remoteService.getResources(url);
+    console.log(this._urlCreatorService.createResidenceUrl());
+    const id = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
+    const _url = `http://localhost:3000/api/account/${id}/residences`;
+    return this._remoteService.getResources(_url);
   }
 }

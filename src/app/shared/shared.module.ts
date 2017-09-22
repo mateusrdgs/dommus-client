@@ -32,6 +32,8 @@ import { ButtonBackComponent } from './components/button-back/button-back.compon
 import { ButtonNewComponent } from './components/button-new/button-new.component';
 import { ListComponent } from './components/list/list.component';
 import { ButtonUpdateComponent } from './components/button-update/button-update.component';
+import { UrlCreatorService } from './services/url-creator/url-creator.service';
+import { WindowService } from './services/window/window.service';
 
 @NgModule({
   imports: [
@@ -76,7 +78,9 @@ import { ButtonUpdateComponent } from './components/button-update/button-update.
     CardEmitter,
     ResidenceEmitter,
     SocketIoEmitter,
-    RemoteService
+    RemoteService,
+    WindowService,
+    UrlCreatorService
   ]
 })
 export class SharedModule { }
