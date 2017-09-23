@@ -5,11 +5,16 @@ import { Observable } from 'rxjs/Observable';
 
 import { ComponentsService } from './../services/components.service';
 
+import { UrlCreatorService } from './../../shared/services/url-creator/url-creator.service';
+import { RemoteService } from './../../shared/services/remote/remote.service';
+
 @Injectable()
 export class ComponentResolver implements Resolve<any> {
 
   constructor(
-    private _componentsService: ComponentsService
+    private _componentsService: ComponentsService,
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) {
 
   }
@@ -18,7 +23,7 @@ export class ComponentResolver implements Resolve<any> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    const { idResidence, idRoom, idComponent } = route.params;
-    return this._componentsService.getComponentById(idResidence, idRoom, idComponent);
+    const url = this._urlCreatorService.createUrl('components', 'id', route.params);
+    return this._remoteService.getResources(url);
   }
 }

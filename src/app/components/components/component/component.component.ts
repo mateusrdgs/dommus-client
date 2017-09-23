@@ -8,17 +8,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ComponentComponent implements OnInit {
 
-  component: any;
+  component;
 
   constructor(
     private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this._activatedRoute.data
-        .subscribe(data => {
-          const { component } = data;
-          this.component = component;
+    this._activatedRoute
+        .data
+        .map(response => response['component'])
+        .subscribe(response => {
+          if (response.status === 200) {
+            this.component = response.json()['Component'];
+          }
         });
   }
 

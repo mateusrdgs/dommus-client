@@ -6,7 +6,7 @@
         [textContent]="
           (item?.url) ||
           ((item?.components?.length) ? (item?.components?.length > 1 ? item?.components?.length + ' Components' : null) : (item?.components?.length === 1 ? item?.components?.length + ' Component' : null)) ||
-          ((item?.model === 1 || item?.model === 2) ? (item?.model === 1 ? 'Arduino UNO' : null ) : (item?.model === 2 ? 'Arduino MEGA' : null )) ||
+          (item.model === 1 ? 'Arduino UNO' : (item.model === 2 ? 'Arduino MEGA' : null)) ||
           ((item?.isAdmin === 'true' || item?.isAdmin === 'false') ? (item?.isAdmin === 'true' ? 'Admin': 'User') : (item?.isAdmin === 'false' ? 'User': 'Admin'))">
         </span>
     </a>

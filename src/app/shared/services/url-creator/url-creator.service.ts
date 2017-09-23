@@ -28,9 +28,7 @@ export class UrlCreatorService {
   }
 
   private appendSuffixesToUrl(url: string, suffixes: Array<string>): string {
-    return url.concat(suffixes.reduce((prevSuffix, currSuffix) => {
-                        return `${prevSuffix}${currSuffix || ''}`;
-                     }));
+    return url.concat(suffixes.reduce((prevSuffix, currSuffix) => `${prevSuffix}${currSuffix || ''}`));
   }
 
   private mountAccountUrl(method: string) {
@@ -79,6 +77,21 @@ export class UrlCreatorService {
     }
   }
 
+  private mountComponentsUrl(method: string, idResidence?: string, idRoom?: string, idComponent?: string) {
+    const url = this.mountRoomsUrl('id', idResidence, idRoom);
+    switch (method) {
+      case 'new': {
+        return `${ this.appendSuffixesToUrl(url, ['components/', 'new']) }`;
+      }
+      case 'get': {
+        return `${ this.appendSuffixesToUrl(url, ['components/']) }`;
+      }
+      case 'id': {
+        return `${ this.appendSuffixesToUrl(url, ['components/', `${ idComponent }/`]) }`;
+      }
+    }
+  }
+
   public createUrl(path: string, method: string, routeParams?: any): string {
     const { idResidence, idRoom, idComponent } = routeParams;
     switch (path) {
@@ -88,6 +101,8 @@ export class UrlCreatorService {
         return this.mountResidencesUrl(method, idResidence);
       case 'rooms':
         return this.mountRoomsUrl(method, idResidence, idRoom);
+      case 'components':
+        return this.mountComponentsUrl(method, idResidence, idRoom, idComponent);
     }
   }
 
