@@ -24,9 +24,12 @@ export class UpdateRoomComponent implements OnInit {
 
   ngOnInit() {
     this._activatedRoute.data
-        .subscribe(data => {
-          const { room } = data;
-          this.startUpdateRoomForm(room.description);
+        .map(response => response['room'])
+        .subscribe(response => {
+          if (response.status === 200) {
+            const room = response.json()['Room'];
+            this.startUpdateRoomForm(room.description);
+          }
         });
   }
 

@@ -18,9 +18,11 @@ export class RoomComponent implements OnInit {
 
   ngOnInit() {
     this._activatedRoute.data
-        .subscribe(data => {
-          const { room } = data;
-          this.room = room;
+        .map(response => response['room'])
+        .subscribe(response => {
+          if (response.status === 200) {
+            this.room = response.json()['Room'];
+          }
         });
   }
 

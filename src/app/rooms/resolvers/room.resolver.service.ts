@@ -3,14 +3,18 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 
 import { Observable } from 'rxjs/Observable';
 
-import { RoomsService } from './../services/rooms.service';
+import { UrlCreatorService } from './../../shared/services/url-creator/url-creator.service';
+import { RemoteService } from './../../shared/services/remote/remote.service';
+
+//import { RoomsService } from './../services/rooms.service';
 import Room from './../classes/room';
 
 @Injectable()
 export class RoomResolver implements Resolve<Room> {
 
   constructor(
-    private _roomsService: RoomsService
+    private _urlCreatorService: UrlCreatorService,
+    private _remoteService: RemoteService
   ) {
 
   }
@@ -19,7 +23,9 @@ export class RoomResolver implements Resolve<Room> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Room> | Promise<Room> | Room {
-    const { idResidence, idRoom } = route.params;
-    return this._roomsService.getRoomById(idResidence, idRoom);
+    const { idResidence, idRoom } = route.params,
+          _url = this._urlCreatorService.createUrl('rooms', 'id', route.params);
+          console.log(_url);
+    return this._remoteService.getResources(_url);
   }
 }

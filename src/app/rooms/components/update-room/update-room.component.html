@@ -5,7 +5,6 @@
     <label for="description" class="update-room-form__label">Description</label>
     <input type="text" formControlName="description" class="update-room-form__input">
     <div class="update-room-form__buttons-container">
-      <a [routerLink]="['../']" class="update-component-form__buttons-container__button">Return</a>
       <input type="submit" value="Submit" [disabled]="updateRoomForm.invalid" class="update-room-form__submit">
     </div>
   </form>
