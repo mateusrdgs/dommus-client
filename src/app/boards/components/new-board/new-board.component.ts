@@ -1,10 +1,12 @@
-import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { RemoteService } from './../../../shared/services/remote/remote.service';
+import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
+import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
+
 import Board from './../../classes/board';
-import { BoardsService } from './../../services/boards.service';
 
 @Component({
   selector: 'new-board',
@@ -14,7 +16,6 @@ import { BoardsService } from './../../services/boards.service';
 export class NewBoardComponent implements OnInit {
 
   newBoardForm: FormGroup;
-  idResidence: string;
 
   boardsAllowed = [{
     value: 1,
@@ -26,28 +27,52 @@ export class NewBoardComponent implements OnInit {
   }];
 
   constructor(
+    private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
-    private _route: ActivatedRoute,
-    private _boardsService: BoardsService
+    private _urlCreatorService: UrlCreatorService,
+    private _socketIoService: SocketIoService,
+    private _remoteService: RemoteService
   ) { }
 
   ngOnInit() {
+    this.startNewBoardForm();
+  }
+
+  startNewBoardForm() {
     this.newBoardForm = this._formBuilder.group({
       description: ['', Validators.required],
       model: [1, Validators.required],
       port: ['', Validators.required]
     });
-    this.idResidence = this._route.snapshot.params['idResidence'];
   }
 
   onSubmit() {
     if (this.newBoardForm.valid) {
       const { description, model, port } = this.newBoardForm.value;
-      this._boardsService
-          .createBoard(this.idResidence, description, model, port)
-          .then((observable: Observable<any>) => {
-            observable.subscribe(response => console.log(response));
-          });
+            this._activatedRoute.params
+                .subscribe(params => {
+                  const { idResidence } = params,
+                        board = new Board(description, model, port),
+                        url = this._urlCreatorService.createUrl('boards', 'new', { idResidence });
+                  this.createBoard(url, board);
+                });
     }
+  }
+  createBoard(url: string, board: Board) {
+    this._remoteService
+        .postResources(url, board)
+        .subscribe(response => {
+          if (response.status === 201) {
+            this._socketIoService
+                .emitMessageWithReturn('create:Board', 'created:Board', board)
+                .subscribe(created => {
+                  if (created) {
+                    console.log('Created!');
+                  } else {
+                    console.error('Error!');
+                  }
+                }, error => console.error(error));
+          }
+        }, error => console.error(error));
   }
 }

@@ -63,8 +63,8 @@ export class UrlCreatorService {
     }
   }
 
-  private mountRoomsUrl(method: string, idResidence?: string, idRoom?: string) {
-    const url = this.mountResidencesUrl('id', idResidence);
+  private mountRoomsUrl(method: string, routeParams?: any) {
+    const url = this.mountResidencesUrl('id', routeParams);
     switch (method) {
       case 'new': {
         return `${ this.appendSuffixesToUrl(url, ['rooms/', 'new']) }`;
@@ -73,13 +73,30 @@ export class UrlCreatorService {
         return `${ this.appendSuffixesToUrl(url, ['rooms/']) }`;
       }
       case 'id': {
+        const { idRoom } = routeParams;
         return `${ this.appendSuffixesToUrl(url, ['rooms/', `${ idRoom }/`]) }`;
       }
     }
   }
 
-  private mountComponentsUrl(method: string, idResidence?: string, idRoom?: string, idComponent?: string) {
-    const url = this.mountRoomsUrl('id', idResidence, idRoom);
+  private mountBoardsUrl(method: string, routeParams?: any) {
+    const url = this.mountResidencesUrl('id', routeParams);
+    switch (method) {
+      case 'new': {
+        return `${ this.appendSuffixesToUrl(url, ['boards/', 'new']) }`;
+      }
+      case 'get': {
+        return `${ this.appendSuffixesToUrl(url, ['boards/']) }`;
+      }
+      case 'id': {
+        const { idBoard } = routeParams;
+        return `${ this.appendSuffixesToUrl(url, ['boards/', `${ idBoard }/`]) }`;
+      }
+    }
+  }
+
+  private mountComponentsUrl(method: string, routeParams?: any) {
+    const url = this.mountRoomsUrl('id', routeParams);
     switch (method) {
       case 'new': {
         return `${ this.appendSuffixesToUrl(url, ['components/', 'new']) }`;
@@ -88,6 +105,7 @@ export class UrlCreatorService {
         return `${ this.appendSuffixesToUrl(url, ['components/']) }`;
       }
       case 'id': {
+        const { idComponent } = routeParams;
         return `${ this.appendSuffixesToUrl(url, ['components/', `${ idComponent }/`]) }`;
       }
     }
@@ -102,12 +120,13 @@ export class UrlCreatorService {
         return this.mountResidencesUrl(method, routeParams);
       }
       case 'rooms': {
-        const { idResidence, idRoom } = routeParams;
-        return this.mountRoomsUrl(method, idResidence, idRoom);
+        return this.mountRoomsUrl(method, routeParams);
+      }
+      case 'boards': {
+        return this.mountBoardsUrl(method, routeParams);
       }
       case 'components': {
-        const { idResidence, idRoom, idComponent } = routeParams;
-        return this.mountComponentsUrl(method, idResidence, idRoom, idComponent);
+        return this.mountComponentsUrl(method, routeParams);
       }
     }
   }
