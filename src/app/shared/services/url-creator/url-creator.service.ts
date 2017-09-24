@@ -47,7 +47,7 @@ export class UrlCreatorService {
     }
   }
 
-  private mountResidencesUrl(method: string, idResidence?: string) {
+  private mountResidencesUrl(method: string, routeParams?: any) {
     const url = this.mountAccountUrl('id');
     switch (method) {
       case 'new': {
@@ -57,6 +57,7 @@ export class UrlCreatorService {
         return `${ this.appendSuffixesToUrl(url, ['residences/']) }`;
       }
       case 'id': {
+        const { idResidence } = routeParams;
         return `${ this.appendSuffixesToUrl(url, ['residences/', `${ idResidence }/`]) }`;
       }
     }
@@ -98,8 +99,7 @@ export class UrlCreatorService {
         return this.mountAccountUrl(method);
       }
       case 'residences': {
-        const { idResidence } = routeParams;
-        return this.mountResidencesUrl(method, idResidence);
+        return this.mountResidencesUrl(method, routeParams);
       }
       case 'rooms': {
         const { idResidence, idRoom } = routeParams;

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
-import { RoomsService } from './../../services/rooms.service';
-import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
+import { RemoteService } from './../../../shared/services/remote/remote.service';
+import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
 
-import { Subscription } from 'rxjs/Subscription';
+import Room from '../../classes/room';
 
 @Component({
   selector: 'new-room',
@@ -14,38 +14,47 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class NewRoomComponent implements OnInit {
 
+  room: Room;
   newRoomForm: FormGroup;
-  private _routeSubscription: Subscription;
-  private _idResidence: string;
 
   constructor(
+    private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
-    private _route: ActivatedRoute,
-    private _roomsService: RoomsService,
-    private _socketIoService: SocketIoService
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) { }
 
   ngOnInit() {
+    this.startNewRoomForm();
+  }
+
+  startNewRoomForm() {
     this.newRoomForm = this._formBuilder.group({
       description: ['', Validators.required]
     });
-    this.getIdResidence();
   }
 
   onSubmit() {
     if (this.newRoomForm.valid) {
-      const { description } = this.newRoomForm.value;
-      this._roomsService.createRoom(this._idResidence, description)
-                        .then(data => {
-                          this._socketIoService.emitMessage('create:Room', data);
-                        });
+      this._activatedRoute.params
+          .subscribe(params => {
+            const { idResidence } = params,
+                  { description } = this.newRoomForm.value,
+                  url = this._urlCreatorService.createUrl('rooms', 'new', { idResidence });
+            this.room = new Room(description);
+            this.createRoom(url, this.room);
+          });
     }
   }
 
-  getIdResidence() {
-    this._routeSubscription = this._route.params.subscribe((params: any) => {
-      this._idResidence = params['idResidence'];
-    });
+  createRoom(url: string, room: Room) {
+    this._remoteService
+        .postResources(url, room)
+        .subscribe(response => {
+          if (response.status === 201) {
+            console.log(response.json()['Room']);
+          }
+        }, error => console.error(error));
   }
 
 }
