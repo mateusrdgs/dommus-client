@@ -5,29 +5,27 @@
     <h2 class="residence-content__label">URL</h2>
     <h3 class="residence-content__data" [textContent]="residence?.url"></h3>
     <button-update [routePath]="'residences'"></button-update>
-    <div class="residence-content__container">
-      <h2 class="residence-content__label">Rooms</h2>
-      <ul class="residence-content__rooms-list" *ngIf="residence?.rooms?.length else noRooms">
-        <li class="residence-content__rooms-list-item"*ngFor="let room of residence.rooms">
-          <a [routerLink]="['rooms', room._id]" [textContent]="room.description"></a>
-        </li>
-      </ul>
-      <button-new [routePath]="'rooms'"></button-new>
-      <ng-template #noRooms>
-        <h3 class="residence-content__data">No rooms on this residence</h3>
-      </ng-template>
-    </div>
-    <div class="residence-content__container">
-      <h2 class="residence-content__label">Boards</h2>
-      <ul class="residence-content__boards-list" *ngIf="residence?.boards?.length else noBoards">
-        <li class="residence-content__boards-list-item"*ngFor="let board of residence.boards">
-          <a [routerLink]="['boards', board._id]" [textContent]="board.description"></a>
-        </li>
-      </ul>
-      <button-new [routePath]="'boards'"></button-new>
-      <ng-template #noBoards>
-        <h3 class="residence-content__data">No boards on this residence</h3>
-      </ng-template>
+    <div class="residence-list__container">
+      <div class="residence-content__container">
+        <h2 class="residence-content__label">Rooms</h2>
+        <ng-container *ngIf="residence?.rooms?.length else noRooms">
+          <list [set]="residence?.rooms"></list>
+        </ng-container>
+        <ng-template #noRooms>
+          <h3 class="residence-content__data">No rooms on this residence</h3>
+        </ng-template>
+        <button-new [routePath]="'rooms'"></button-new>
+      </div>
+      <div class="residence-content__container">
+        <h2 class="residence-content__label">Boards</h2>
+        <ng-container *ngIf="residence?.boards?.length else noBoards">
+          <list [set]="residence?.boards"></list>
+        </ng-container>
+        <button-new [routePath]="'boards'"></button-new>
+        <ng-template #noBoards>
+          <h3 class="residence-content__data">No boards on this residence</h3>
+        </ng-template>
+      </div>
     </div>
   </div>
 </div>

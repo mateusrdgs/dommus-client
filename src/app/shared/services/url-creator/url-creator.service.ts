@@ -93,16 +93,22 @@ export class UrlCreatorService {
   }
 
   public createUrl(path: string, method: string, routeParams?: any): string {
-    const { idResidence, idRoom, idComponent } = routeParams;
     switch (path) {
-      case 'account':
+      case 'account': {
         return this.mountAccountUrl(method);
-      case 'residences':
+      }
+      case 'residences': {
+        const { idResidence } = routeParams;
         return this.mountResidencesUrl(method, idResidence);
-      case 'rooms':
+      }
+      case 'rooms': {
+        const { idResidence, idRoom } = routeParams;
         return this.mountRoomsUrl(method, idResidence, idRoom);
-      case 'components':
+      }
+      case 'components': {
+        const { idResidence, idRoom, idComponent } = routeParams;
         return this.mountComponentsUrl(method, idResidence, idRoom, idComponent);
+      }
     }
   }
 
