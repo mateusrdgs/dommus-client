@@ -1,11 +1,14 @@
-import { LocalStorageService } from './../../../shared/services/local-storage/local-storage.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import 'rxjs/add/operator/pairwise';
+
 import { ResidencesService } from './../../services/residences.service';
-import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
 import { RemoteService } from './../../../shared/services/remote/remote.service';
+
+import { LocalStorageService } from './../../../shared/services/local-storage/local-storage.service';
+import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
 
 import Residence from './../../classes/residence';
 
@@ -20,12 +23,13 @@ export class UpdateResidenceComponent implements OnInit {
   updateResidenceForm: FormGroup;
 
   constructor(
-    private _formBuilder: FormBuilder,
     private _activatedRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder,
     private _localStorageService: LocalStorageService,
-    private _residencesService: ResidencesService,
     private _urlCreatorService: UrlCreatorService,
-    private _remoteService: RemoteService
+    private _remoteService: RemoteService,
+    private _residencesService: ResidencesService,
+    private _router: Router
   ) { }
 
   ngOnInit() {

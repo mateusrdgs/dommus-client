@@ -39,25 +39,25 @@ export class RemoteService implements IRemote {
   getResources(url: string): Observable<any> {
     return this._http.get(url, this._options)
                      .map((response: any) => response)
-                     .catch((error: any) => Observable.throw(error.json().error));
+                     .catch((error: any) => Observable.throw(error.json()));
   }
 
   postResources(url: string, object: any): Observable<any> {
     return this._http.post(url, object, this._options)
                      .map((response: any) => response)
-                     .catch((error: any) => Observable.throw(error.json().error));
+                     .catch((error: any) => Observable.throw(error.json()));
   }
 
   putResources(url: string, object: any): Observable<any> {
     return this._http.put(url, object, this._options)
                      .map((response: any) => response)
-                     .catch((error: any) => Observable.throw(error.json().error));
+                     .catch((error: any) => Observable.throw(error.json()));
   }
 
   deleteResources(url: string): Observable<any> {
     return this._http.delete(url, this._options)
                      .map((response: any) => response)
-                     .catch((error: any) => Observable.throw(error.json().error));
+                     .catch((error: any) => Observable.throw(error.json()));
   }
 
 }
