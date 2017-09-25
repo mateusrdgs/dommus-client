@@ -13,6 +13,7 @@ import { UserResolver } from './resolvers/user.resolver.service';
 import { UsersComponent } from './components/users/users.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { UserComponent } from './components/user/user.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { UserComponent } from './components/user/user.component';
   declarations: [
     UsersComponent,
     NewUserComponent,
-    UserComponent
+    UserComponent,
+    UpdateUserComponent
   ],
   providers: [
     UsersResolver,

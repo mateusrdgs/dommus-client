@@ -1,3 +1,4 @@
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, Resolve } from '@angular/router';
 
@@ -33,6 +34,16 @@ const routes: Routes = [
     },
     data: {
       title: 'User'
+    }
+  },
+  {
+    path: ':idUser/update',
+    component: UpdateUserComponent,
+    resolve: {
+      user: UserResolver
+    },
+    data: {
+      title: 'Update user'
     }
   }
 ];
