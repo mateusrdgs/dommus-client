@@ -47,6 +47,22 @@ export class UrlCreatorService {
     }
   }
 
+  private mountUsersUrl(method: string, routeParams?: any) {
+    const url = this.mountAccountUrl('id');
+    switch (method) {
+      case 'new': {
+        return `${ this.appendSuffixesToUrl(url, ['users/', 'new']) }`;
+      }
+      case 'get': {
+        return `${ this.appendSuffixesToUrl(url, ['users/']) }`;
+      }
+      case 'id': {
+        const { idUser } = routeParams;
+        return `${ this.appendSuffixesToUrl(url, ['users/', `${ idUser }/`]) }`;
+      }
+    }
+  }
+
   private mountResidencesUrl(method: string, routeParams?: any) {
     const url = this.mountAccountUrl('id');
     switch (method) {
@@ -115,6 +131,9 @@ export class UrlCreatorService {
     switch (path) {
       case 'account': {
         return this.mountAccountUrl(method);
+      }
+      case 'users': {
+        return this.mountUsersUrl(method, routeParams);
       }
       case 'residences': {
         return this.mountResidencesUrl(method, routeParams);

@@ -3,15 +3,17 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 
 import { Observable } from 'rxjs/Observable';
 
-import { UsersService } from './../services/users.service';
+import { UrlCreatorService } from './../../shared/services/url-creator/url-creator.service';
+import { RemoteService } from './../../shared/services/remote/remote.service';
 
-import { User } from './../user';
+import { User } from './../classes/user';
 
 @Injectable()
 export class UsersResolver implements Resolve<User> {
 
   constructor(
-    private _userService: UsersService
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) {
   }
 
@@ -19,7 +21,11 @@ export class UsersResolver implements Resolve<User> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
-    return this._userService.getUsers();
+    const url = this._urlCreatorService.createUrl('users', 'get');
+    return this._remoteService
+               .getResources(url)
+               .map(response => response)
+               .catch(error => Observable.of(error));
   }
 
 }

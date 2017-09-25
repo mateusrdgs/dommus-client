@@ -7,7 +7,7 @@ import { AuthService } from './../../shared/services/auth/auth.service';
 
 import { LocalStorageService } from './../../shared/services/local-storage/local-storage.service';
 
-import { User } from './../user';
+import { User } from './../classes/user';
 import { url } from './../../database';
 
 @Injectable()
