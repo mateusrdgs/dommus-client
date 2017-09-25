@@ -21,7 +21,12 @@ export class RoomsResolver implements Resolve<Room[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Room[]> | Promise<Room[]> | Room[] {
-    const _url = this._urlCreatorService.createUrl('rooms', 'get', route.params);
-    return this._remoteService.getResources(_url);
+
+    const { idResidence } = route.params,
+          _url = this._urlCreatorService.createUrl('rooms', 'get', { idResidence });
+    return this._remoteService
+               .getResources(_url)
+               .map(response => response)
+               .catch(error => Observable.of(error));
   }
 }

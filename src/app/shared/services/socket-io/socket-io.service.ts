@@ -21,6 +21,9 @@ export class SocketIoService {
   connectToLocalModule(url: string) {
     return new Promise((resolve, reject) => {
       this._socket = io(url);
+      this._socket.on('connect_error', (error) => {
+        reject(error);
+      });
       this._socket.on('connect', () => {
         resolve(this._socket['connected']);
       });

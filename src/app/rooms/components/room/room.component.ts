@@ -20,9 +20,15 @@ export class RoomComponent implements OnInit {
     this._activatedRoute.data
         .map(response => response['room'])
         .subscribe(response => {
-          if (response.status === 200) {
-            this.room = response.json()['Room'];
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            const room = response.json()['Room'],
+                  { description, _id, components } = room;
+            this.room = new Room(description, _id, components);
+          } else {
+            console.error(response);
           }
+        }, error => {
+          console.error(error);
         });
   }
 

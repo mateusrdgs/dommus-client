@@ -25,7 +25,9 @@ export class RoomResolver implements Resolve<Room> {
   ): Observable<Room> | Promise<Room> | Room {
     const { idResidence, idRoom } = route.params,
           _url = this._urlCreatorService.createUrl('rooms', 'id', route.params);
-          console.log(_url);
-    return this._remoteService.getResources(_url);
+    return this._remoteService
+               .getResources(_url)
+               .map(response => response)
+               .catch(error => Observable.of(error));
   }
 }

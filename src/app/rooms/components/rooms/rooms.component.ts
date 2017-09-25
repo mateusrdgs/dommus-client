@@ -12,7 +12,8 @@ import Room from './../../classes/room';
 })
 export class RoomsComponent implements OnInit {
 
-  rooms;
+  rooms: Array<Room>;
+  message = 'Loading...';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -28,15 +29,24 @@ export class RoomsComponent implements OnInit {
     this._activatedRoute.data
         .map(response => response['rooms'])
         .subscribe(response => {
-          if (response.status === 200) {
-            this.rooms = response.json()['Rooms'];
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            const rooms = response.json()['Rooms'];
+            this.rooms = this.iterateOverRooms(rooms);
           } else {
-            console.log('error');
+            if (response.hasOwnProperty('Message')) {
+              this.message = response['Message'];
+            }
           }
         }, error => {
           console.log(error);
-        })
-        .unsubscribe();
+        });
+  }
+
+  iterateOverRooms(rooms: Array<any>): Array<Room> {
+    return rooms.map(room => {
+      const { description } = room;
+      return new Room(description);
+    });
   }
 
 }

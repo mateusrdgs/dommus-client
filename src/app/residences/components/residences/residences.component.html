@@ -3,6 +3,6 @@
   <list [set]="residences" *ngIf="residences else noResidences"></list>
   <button-new></button-new>
   <ng-template #noResidences>
-    <h1 class="residences-container__warning">No residences on this account!</h1>
+    <h1 class="residences-container__warning" [textContent]="message"></h1>
   </ng-template>
 </div>

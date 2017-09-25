@@ -1,8 +1,8 @@
 <button-back></button-back>
 <div class="rooms-container">
-  <list [set]="rooms"></list>
+  <list [set]="rooms" *ngIf="rooms else noRooms"></list>
   <button-new></button-new>
   <ng-template #noRooms>
-    <h1 class="rooms-container__warning">No rooms on this account!</h1>
+    <h1 class="rooms-container__warning" [textContent]="message"></h1>
   </ng-template>
 </div>

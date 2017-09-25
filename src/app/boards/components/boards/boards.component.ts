@@ -13,6 +13,7 @@ import Board from '../../classes/board';
 export class BoardsComponent implements OnInit {
 
   boards: Array<Board>;
+  message = 'Loading...';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -32,7 +33,9 @@ export class BoardsComponent implements OnInit {
             const boards = response.json()['Boards'];
             this.boards = this.iterateOverBoards(boards);
           } else {
-            console.error(response);
+            if (response.hasOwnProperty('Message')) {
+              this.message = response['Message'];
+            }
           }
         });
   }

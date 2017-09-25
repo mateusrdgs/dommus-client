@@ -24,7 +24,7 @@ export class ResidenceResolver implements Resolve<Residence> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable <any> | Promise <any> | any {
-    const idResidence = route.params['idResidence'],
+    const { idResidence } = route.params,
           _url = this._urlCreatorService.createUrl('residences', 'id', { idResidence });
     return this._remoteService
                .getResources(_url)

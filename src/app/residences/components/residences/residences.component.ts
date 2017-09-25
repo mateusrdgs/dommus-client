@@ -14,6 +14,7 @@ import Residence from './../../classes/residence';
 export class ResidencesComponent implements OnInit {
 
   residences: Residence[];
+  message = 'Loading...';
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -33,7 +34,9 @@ export class ResidencesComponent implements OnInit {
             const residences = response.json()['Residences'];
             this.residences = this.iterateOverResidences(residences);
           } else {
-            console.error(response);
+            if (response.hasOwnProperty('Message')) {
+              this.message = response['Message'];
+            }
           }
         }, error => console.error(error));
   }

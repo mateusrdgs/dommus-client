@@ -4,7 +4,7 @@
   <button-new></button-new>
 </div>
 <ng-template #noBoards>
-  <h2 class="boards-container__warning">
-    No boards on this residence
+  <h2 class="boards-container__warning" [textContent]="message">
+    
   </h2>
 </ng-template>
