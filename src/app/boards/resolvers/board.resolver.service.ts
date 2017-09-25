@@ -4,13 +4,16 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/r
 import { Observable } from 'rxjs/Observable';
 
 import Board from './../classes/board';
-import { BoardsService } from './../services/boards.service';
+
+import { UrlCreatorService } from './../../shared/services/url-creator/url-creator.service';
+import { RemoteService } from './../../shared/services/remote/remote.service';
 
 @Injectable()
 export class BoardResolver implements Resolve<Board> {
 
   constructor(
-    private _boardsService: BoardsService
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) {
 
   }
@@ -19,7 +22,11 @@ export class BoardResolver implements Resolve<Board> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Board> | Promise<Board> | Board {
-    const { idResidence, idBoard } = route.params;
-    return this._boardsService.getBoardById(idResidence, idBoard);
+    const { idResidence, idBoard } = route.params,
+          url = this._urlCreatorService.createUrl('boards', 'id', { idResidence, idBoard });
+    return this._remoteService
+               .getResources(url)
+               .map(response => response)
+               .catch(error => Observable.of(error));
   }
 }

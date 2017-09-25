@@ -24,8 +24,11 @@ export class ResidenceResolver implements Resolve<Residence> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable <any> | Promise <any> | any {
-    const idResidence = this._localStorageService.getTokenPropertyValue('currentResidence', 'id', false),
+    const idResidence = route.params['idResidence'],
           _url = this._urlCreatorService.createUrl('residences', 'id', { idResidence });
-    return this._remoteService.getResources(_url);
+    return this._remoteService
+               .getResources(_url)
+               .map(response => response)
+               .catch(error => Observable.of(error));
   }
 }
