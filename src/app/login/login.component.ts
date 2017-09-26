@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     const isUserLoggedIn = this._authService.isLoggedIn('Dommus');
     if (isUserLoggedIn) {
       this._topbarEmitter.stateEmitter.emit(isUserLoggedIn);
-      this._router.navigateByUrl('/home');
+      this._router.navigateByUrl('/dashboard');
     }
   }
 }

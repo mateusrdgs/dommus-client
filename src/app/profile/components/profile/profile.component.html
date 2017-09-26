@@ -1,0 +1,9 @@
+<button-back></button-back>
+<div class="update-profile-container">
+  <h1 class="update-profile-container__title">Update your profile</h1>
+  <form [formGroup]="updateProfileForm" class="update-profile__form" (ngSubmit)="onSubmit()">
+    <label for="email" class="update-profile__form__label">Email</label>
+    <input type="text" formControlName="email" class="update-profile__form__input">
+    <input type="submit" value="Save" [disabled]="updateProfileForm.invalid" class="update-profile__form__submit">
+  </form>
+</div>

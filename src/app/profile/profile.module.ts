@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ProfileRoutingModule } from './profile-routing.module';
-import { ProfileComponent } from './profile.component';
 import { SharedModule } from './../shared/shared.module';
+
+import { ProfileRoutingModule } from './profile-routing.module';
+
+import { ProfileResolver } from './resolvers/profile.resolver.service';
+
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -15,6 +19,9 @@ import { SharedModule } from './../shared/shared.module';
   ],
   declarations: [
     ProfileComponent
+  ],
+  providers: [
+    ProfileResolver
   ]
 })
 export class ProfileModule { }

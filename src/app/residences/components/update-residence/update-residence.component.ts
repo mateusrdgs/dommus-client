@@ -56,6 +56,7 @@ export class UpdateResidenceComponent implements OnInit {
       const { description, url } = this.updateResidenceForm.value,
             { Id, Rooms, Boards } = this.residence,
             updatedResidence = new Residence(description, url, Id, Rooms, Boards);
+      this.updateResidence(updatedResidence);
     }
   }
 
