@@ -1,0 +1,20 @@
+<div class="form-control">
+    <label for="{{ formControlName }}" class="form-control__label" 
+     [ngClass]="
+     {
+       'label-email': formControlName=== 'email',
+       'label-link': formControlName=== 'url',
+       'label-input': formControlName=== 'description'
+     }"
+     [textContent]="formControlName"
+    >
+    </label>
+    <input type="text" formControlName="formControlName" class="form-control__input"
+      [ngClass]="
+      {
+        'invalid': !isValid,
+        'valid': isValid
+      }"
+    [value]="value"
+    >
+</div>

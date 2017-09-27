@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
     if (this.updateProfileForm.valid) {
       const { email } = this.updateProfileForm.value;
       this.profile.Email = email;
+      console.log(email);
     } else {
       console.log('Invalid');
     }
