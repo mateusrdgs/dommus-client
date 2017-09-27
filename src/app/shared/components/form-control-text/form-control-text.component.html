@@ -1,20 +1,20 @@
 <div class="form-control">
-    <label for="{{ formControlName }}" class="form-control__label" 
+    <label for="{{ controlName }}" class="form-control__label" 
      [ngClass]="
      {
-       'label-email': formControlName=== 'email',
-       'label-link': formControlName=== 'url',
-       'label-input': formControlName=== 'description'
+       'label-email': controlName === 'email',
+       'label-link': controlName=== 'url',
+       'label-input': controlName=== 'description'
      }"
-     [textContent]="formControlName | capitalize"
+     [textContent]="controlName | capitalize"
     >
     </label>
-    <input type="text" formControlName="formControlName" class="form-control__input"
+    <input type="text" formControlName="formControl" class="form-control__input"
       [ngClass]="
       {
         'invalid': !isValid,
         'valid': isValid
       }"
-    [value]="value"
+      [value]="value"
     >
 </div>
