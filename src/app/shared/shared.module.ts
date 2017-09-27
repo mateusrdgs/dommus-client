@@ -34,6 +34,7 @@ import { ListComponent } from './components/list/list.component';
 import { ButtonUpdateComponent } from './components/button-update/button-update.component';
 import { UrlCreatorService } from './services/url-creator/url-creator.service';
 import { WindowService } from './services/window/window.service';
+import { ButtonSubmitComponent } from './components/button-submit/button-submit.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { WindowService } from './services/window/window.service';
     ButtonBackComponent,
     ButtonNewComponent,
     ButtonUpdateComponent,
+    ButtonSubmitComponent,
     ListComponent
   ],
   exports: [
@@ -64,6 +66,7 @@ import { WindowService } from './services/window/window.service';
     ButtonBackComponent,
     ButtonNewComponent,
     ButtonUpdateComponent,
+    ButtonSubmitComponent,
     ListComponent
   ],
   providers: [

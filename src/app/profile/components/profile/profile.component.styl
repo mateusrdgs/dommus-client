@@ -11,9 +11,38 @@
   flex-direction column
   font-size 1rem
 
+.update-profile__form-control
+  max-width 100%
+  display flex
+  flex-direction column
+  position relative
+
 .update-profile__form__input
+  border none
+  background-color transparent
+  color #0A0A0A
   font-size 1.5rem
   margin .5rem 0 1rem 0
+  max-width 100%
+  outline none
+  padding .5rem 0 .5rem 3rem
+  transition all .5s linear
+  border-bottom .2rem solid #0A0A0A
+
+.label-email
+  &::before
+    content '\f1fa'
+    font-family 'FontAwesome'
+    font-size 2rem
+    position absolute
+    top 2.5rem
+    left .5rem
+
+.input-invalid
+  border-color #F31D2F
+
+.input-valid
+  border-color #3BC391
 
 .update-profile__form__submit
   padding 1rem 0
