@@ -36,6 +36,7 @@ import { UrlCreatorService } from './services/url-creator/url-creator.service';
 import { WindowService } from './services/window/window.service';
 import { ButtonSubmitComponent } from './components/button-submit/button-submit.component';
 import { FormControlTextComponent } from './components/form-control-text/form-control-text.component';
+import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { FormControlTextComponent } from './components/form-control-text/form-co
     ButtonUpdateComponent,
     ButtonSubmitComponent,
     ListComponent,
-    FormControlTextComponent
+    FormControlTextComponent,
+    CapitalizePipe
   ],
   exports: [
     SideBarComponent,
@@ -86,7 +88,8 @@ import { FormControlTextComponent } from './components/form-control-text/form-co
     SocketIoEmitter,
     RemoteService,
     WindowService,
-    UrlCreatorService
+    UrlCreatorService,
+    CapitalizePipe
   ]
 })
 export class SharedModule { }

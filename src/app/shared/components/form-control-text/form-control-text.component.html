@@ -6,7 +6,7 @@
        'label-link': formControlName=== 'url',
        'label-input': formControlName=== 'description'
      }"
-     [textContent]="formControlName"
+     [textContent]="formControlName | capitalize"
     >
     </label>
     <input type="text" formControlName="formControlName" class="form-control__input"
