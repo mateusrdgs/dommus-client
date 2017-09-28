@@ -41,7 +41,7 @@ export class NewBoardComponent implements OnInit {
   startNewBoardForm() {
     this.newBoardForm = this._formBuilder.group({
       description: ['', Validators.required],
-      model: [1, Validators.required],
+      model: ['', Validators.required],
       port: ['', Validators.required]
     });
   }

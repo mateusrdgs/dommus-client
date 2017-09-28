@@ -2,14 +2,25 @@
 <div class="new-board-container">
   <h1 class="new-board-container__title">New Board</h1>
   <form [formGroup]="newBoardForm" class="new-board-form" (ngSubmit)="onSubmit()">
-    <label for="description" class="new-board-form__label">Description</label>
-    <input type="text" formControlName="description" class="new-board-form__input">
+    <form-control-text
+      formControlName="description"
+      [controlName]="'description'"
+      [control]="newBoardForm.controls['description']"
+      [placeholder]="'Enter with your board description'"
+    >
+    </form-control-text>
     <label for="model" class="new-board-form__label">Model</label>
     <select formControlName="model" class="new-board-form__input">
+      <option value="" disabled selected>Choose your board model</option>
       <option *ngFor="let board of boardsAllowed" [value]="board.value" [textContent]="board.type"></option>
     </select>
-    <label for="port" class="new-board-form__label">Port</label>
-    <input type="number" formControlName="port" class="new-board-form__input">
-    <input type="submit" value="Create" class="new-board-form__submit" [disabled]="newBoardForm.invalid">
+    <form-control-text
+      formControlName="port"
+      [controlName]="'port'"
+      [control]="newBoardForm.controls['port']"
+      [placeholder]="'Enter your board port on your network'"
+    >
+    </form-control-text>
+  <button-submit [disabled]="newBoardForm.invalid"></button-submit>
   </form>
 </div>

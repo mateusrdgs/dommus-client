@@ -3,18 +3,19 @@
     [ngClass]="
       {
         'label-email': controlName === 'email',
-        'label-link': controlName=== 'url',
-        'label-input': controlName=== 'description'
+        'label-link': controlName === 'url',
+        'label-input': controlName === 'description',
+        'label-numeric': controlName === 'port'
       }"
     [textContent]="controlName | capitalize"
   >
   </label>
-  <input type="text" class="form-control__input"
+  <input [type]="controlName === 'port' ? 'number' : 'text'" class="form-control__input"
     [ngClass]="
-    {
-      'invalid': !control?.valid,
-      'valid': control?.valid
-    }"
+      {
+        'invalid': !control?.valid,
+        'valid': control?.valid
+      }"
     (change)="onChange($event)"
     (keyup)="onChange($event)"
     (blur)="onTouched()"
