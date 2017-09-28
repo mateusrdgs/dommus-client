@@ -8,10 +8,16 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
+    data: {
+      title: 'Login'
+    }
   },
   {
     path: 'new-account',
-    component: NewAccountComponent
+    component: NewAccountComponent,
+    data: {
+      title: 'Create account'
+    }
   }
 ];
 

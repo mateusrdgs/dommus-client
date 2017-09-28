@@ -1,28 +1,24 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
+
 
 @Component({
-  selector: 'form-control-text',
-  templateUrl: './form-control-text.component.html',
-  styleUrls: ['./form-control-text.component.styl'],
+  selector: 'form-control-select',
+  templateUrl: './form-control-select.component.html',
+  styleUrls: ['./form-control-select.component.styl'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => FormControlTextComponent)
-    },
-    {
-      provide: NG_VALIDATORS,
-      multi: true,
-      useExisting: forwardRef(() => FormControlTextComponent)
+      useExisting: forwardRef(() => FormControlSelectComponent)
     }
   ]
 })
-export class FormControlTextComponent implements ControlValueAccessor {
+export class FormControlSelectComponent implements ControlValueAccessor {
 
   @Input() controlName: string;
   @Input() control: FormControl;
-  @Input() placeholder = 'Enter here...';
+  @Input() items: Array<any>;
   private _self = this;
   private _value: string;
 

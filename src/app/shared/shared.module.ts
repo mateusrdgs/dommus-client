@@ -36,6 +36,7 @@ import { UrlCreatorService } from './services/url-creator/url-creator.service';
 import { WindowService } from './services/window/window.service';
 import { ButtonSubmitComponent } from './components/button-submit/button-submit.component';
 import { FormControlTextComponent } from './components/form-control-text/form-control-text.component';
+import { FormControlSelectComponent } from './components/form-control-select/form-control-select.component';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
 
 @NgModule({
@@ -61,6 +62,7 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     ButtonSubmitComponent,
     ListComponent,
     FormControlTextComponent,
+    FormControlSelectComponent,
     CapitalizePipe
   ],
   exports: [
@@ -72,6 +74,7 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     ButtonUpdateComponent,
     ButtonSubmitComponent,
     FormControlTextComponent,
+    FormControlSelectComponent,
     ListComponent
   ],
   providers: [

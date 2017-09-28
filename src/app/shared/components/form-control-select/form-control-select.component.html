@@ -1,16 +1,13 @@
 <div class="form-control">
-  <label for="{{ controlName }}" class="form-control__label" 
+  <label for="{{ controlName }}" class="form-control__label"
     [ngClass]="
       {
-        'label-email': controlName === 'email',
-        'label-link': controlName === 'url',
-        'label-input': controlName === 'description',
-        'label-numeric': controlName === 'port'
+        'label-board': controlName === 'board'
       }"
     [textContent]="controlName | capitalize"
   >
   </label>
-  <input [type]="controlName === 'port' ? 'number' : 'text'" class="form-control__input"
+  <select class="form-control__select"
     [ngClass]="
       {
         'invalid': !control?.valid,
@@ -19,9 +16,10 @@
     (change)="onChange($event)"
     (keyup)="onChange($event)"
     (blur)="onTouched()"
-    [value]="_value"
-    [placeholder]="placeholder"
   >
+    <option disabled selected="selected" class="form-control__select-option">Choose your board model</option>
+    <option class="form-control__select-option" *ngFor="let item of items" [value]="item.value" [textContent]="item.model"></option>
+  </select>
   <span class="form-control__warning" *ngIf="control?.invalid && control?.touched">
     Invalid input
   </span>

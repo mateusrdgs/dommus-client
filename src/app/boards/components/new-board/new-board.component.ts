@@ -17,13 +17,13 @@ export class NewBoardComponent implements OnInit {
 
   newBoardForm: FormGroup;
 
-  boardsAllowed = [{
+  boards = [{
     value: 1,
-    type: 'UNO'
+    model: 'UNO'
   },
   {
     value: 2,
-    type: 'MEGA'
+    model: 'MEGA'
   }];
 
   constructor(

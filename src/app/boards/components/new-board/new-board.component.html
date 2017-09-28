@@ -9,11 +9,13 @@
       [placeholder]="'Enter with your board description'"
     >
     </form-control-text>
-    <label for="model" class="new-board-form__label">Model</label>
-    <select formControlName="model" class="new-board-form__input">
-      <option value="" disabled selected>Choose your board model</option>
-      <option *ngFor="let board of boardsAllowed" [value]="board.value" [textContent]="board.type"></option>
-    </select>
+    <form-control-select
+      formControlName="model"
+      [controlName]="'board'"
+      [control]="newBoardForm.controls['model']"
+      [items]="boards"
+    >
+    </form-control-select>
     <form-control-text
       formControlName="port"
       [controlName]="'port'"
