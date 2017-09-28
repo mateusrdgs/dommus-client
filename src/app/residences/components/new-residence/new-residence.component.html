@@ -5,11 +5,13 @@
     <form-control-text
       formControlName="description"
       [controlName]="'description'"
+      [control]="newResidenceForm.controls['description']"
     >
     </form-control-text>
     <form-control-text
       formControlName="url"
       [controlName]="'url'"
+      [control]="newResidenceForm.controls['url']"
     >
     </form-control-text>
     <button-submit [disabled]="newResidenceForm.invalid"></button-submit>
