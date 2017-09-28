@@ -44,8 +44,8 @@ export class RoomsComponent implements OnInit {
 
   iterateOverRooms(rooms: Array<any>): Array<Room> {
     return rooms.map(room => {
-      const { description } = room;
-      return new Room(description);
+      const { description, _id, components } = room;
+      return new Room(description, _id, components);
     });
   }
 

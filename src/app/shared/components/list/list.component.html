@@ -5,7 +5,7 @@
       <span class="list__item-link__subdescription"
         [textContent]="
           (item?.url) ||
-          ((item?.components?.length) ? (item?.components?.length > 1 ? item?.components?.length + ' Components' : null) : (item?.components?.length === 1 ? item?.components?.length + ' Component' : null)) ||
+          ((item?.components?.length) ? (item?.components?.length > 1 ? item?.components?.length + ' Components' : '0 Components' ) : (item?.components?.length === 1 ? item?.components?.length + ' Component' : '0 Components')) ||
           (item.model === 1 ? 'Arduino UNO' : (item.model === 2 ? 'Arduino MEGA' : null)) ||
           ((item?.isAdmin === 'true' || item?.isAdmin === 'false') ? (item?.isAdmin === 'true' ? 'Admin': 'User') : (item?.isAdmin === 'false' ? 'User': 'Admin'))">
         </span>
