@@ -19,6 +19,7 @@
     (keyup)="onChange($event)"
     (blur)="onTouched()"
     [value]="_value"
+    [placeholder]="placeholder"
   >
   <span *ngIf="control?.invalid && control?.touched">
     Invalid input

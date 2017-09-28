@@ -2,8 +2,12 @@
 <div class="new-room-container">
   <h1 class="new-room-container__title">Create an new room</h1>
   <form class="new-room-form" [formGroup]="newRoomForm" (ngSubmit)="onSubmit()">
-    <label for="description" class="new-room-form__label">Description</label>
-    <input type="text" formControlName="description" class="new-room-form__input">
-    <input type="submit" value="Submit" [disabled]="newRoomForm.invalid" class="new-room-form__submit">
+    <form-control-text
+      formControlName="description"
+      [controlName]="'description'"
+      [control]="newRoomForm.controls['description']"
+    >
+    </form-control-text>
+    <button-submit [disabled]="newRoomForm.invalid"></button-submit>
   </form>
 </div>

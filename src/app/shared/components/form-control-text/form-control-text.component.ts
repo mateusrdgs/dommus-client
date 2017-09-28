@@ -22,6 +22,7 @@ export class FormControlTextComponent implements ControlValueAccessor {
 
   @Input() controlName: string;
   @Input() control: FormControl;
+  @Input() placeholder = 'Enter here...';
   private _self = this;
   private _value: string;
 
