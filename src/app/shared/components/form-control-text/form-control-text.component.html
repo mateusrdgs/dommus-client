@@ -1,20 +1,26 @@
 <div class="form-control">
-    <label for="{{ controlName }}" class="form-control__label" 
-     [ngClass]="
-     {
-       'label-email': controlName === 'email',
-       'label-link': controlName=== 'url',
-       'label-input': controlName=== 'description'
-     }"
-     [textContent]="controlName | capitalize"
-    >
-    </label>
-    <input type="text" formControlName="formControl" class="form-control__input"
-      [ngClass]="
+  <label for="{{ controlName }}" class="form-control__label" 
+    [ngClass]="
       {
-        'invalid': !isValid,
-        'valid': isValid
+        'label-email': controlName === 'email',
+        'label-link': controlName=== 'url',
+        'label-input': controlName=== 'description'
       }"
-      [value]="value"
-    >
+    [textContent]="controlName | capitalize"
+  >
+  </label>
+  <input type="text" class="form-control__input"
+    [ngClass]="
+    {
+      'invalid': !control?.valid,
+      'valid': control?.valid
+    }"
+    (change)="onChange($event)"
+    (keyup)="onChange($event)"
+    (blur)="onTouched()"
+    [value]="_value"
+  >
+  <span *ngIf="control?.invalid && control?.touched">
+    Invalid input
+  </span>
 </div>

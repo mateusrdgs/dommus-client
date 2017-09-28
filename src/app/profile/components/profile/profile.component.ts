@@ -44,6 +44,7 @@ export class ProfileComponent implements OnInit {
     this.updateProfileForm = this._formBuilder.group({
       email: [profile.Email, [Validators.required, Validators.email]]
     });
+    console.log(this.updateProfileForm);
   }
 
   onSubmit() {

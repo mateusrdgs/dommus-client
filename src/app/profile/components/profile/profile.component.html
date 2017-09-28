@@ -2,10 +2,10 @@
 <div class="update-profile-container">
   <h1 class="update-profile-container__title">Update your profile</h1>
   <form [formGroup]="updateProfileForm" class="update-profile__form" (ngSubmit)="onSubmit()">
-    <form-control-text
-      [formControlName]="'email'"
-      [isValid]="updateProfileForm.controls.email.valid"
-      [value]="updateProfileForm.controls.email.value" ngDefaultControl
+    <form-control-text 
+      formControlName="email"
+      [controlName]="'email'"
+      [control]="updateProfileForm.controls['email']"
     >
     </form-control-text>
     <button-submit [disabled]="updateProfileForm.invalid"></button-submit>

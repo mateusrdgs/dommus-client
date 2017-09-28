@@ -1,5 +1,5 @@
-import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, Input, OnChanges } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'form-control-text',
@@ -10,30 +10,56 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
       provide: NG_VALUE_ACCESSOR,
       multi: true,
       useExisting: forwardRef(() => FormControlTextComponent)
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: forwardRef(() => FormControlTextComponent)
     }
   ]
 })
 export class FormControlTextComponent implements ControlValueAccessor {
 
   @Input() controlName: string;
-  @Input() value: string;
-  @Input() isValid: boolean;
+  @Input() control: FormControl;
+  private _self = this;
+  private _value: string;
 
   constructor() { }
 
-  writeValue(value: string): void {
-    console.log(value);
+  public writeValue(value: string) {
     if (value !== undefined) {
-      this.value = value;
+      this._value = value;
     }
   }
 
-  propagateChange = (_: any) => {};
-
-  registerOnChange(fn) {
+  public registerOnChange(fn) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  public registerOnTouched(fn) {
+    this.propagateTouch = fn;
+  }
+
+  public validate(c: FormControl) {
+    return (c.valid) ? null : {
+      valid: {
+        valid: false
+      }
+    };
+  }
+
+  private propagateChange = (_: any) => {};
+
+  private propagateTouch = (_: any) => {};
+
+  private onTouched() {
+    this.propagateTouch(null);
+  }
+
+  private onChange(event) {
+    this._value = event.target.value;
+    this.propagateChange(this._value);
+  }
 
 }
