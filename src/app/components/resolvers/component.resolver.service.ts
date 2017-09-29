@@ -24,6 +24,8 @@ export class ComponentResolver implements Resolve<any> {
     state: RouterStateSnapshot
   ): Observable<any> | Promise<any> | any {
     const url = this._urlCreatorService.createUrl('components', 'id', route.params);
-    return this._remoteService.getResources(url);
+    return this._remoteService.getResources(url)
+                              .map(response => response)
+                              .catch(error => Observable.of(error));
   }
 }

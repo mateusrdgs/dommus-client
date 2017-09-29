@@ -63,6 +63,8 @@ export class NewBoardComponent implements OnInit {
         .postResources(url, board)
         .subscribe(response => {
           if (response.status === 201) {
+            const { _id } = response.json()['Board'];
+            board.Id = _id;
             this._socketIoService
                 .emitMessageWithReturn('create:Board', 'created:Board', board)
                 .subscribe(created => {

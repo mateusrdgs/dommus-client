@@ -7,6 +7,8 @@ import { ResidenceEmitter } from './../../../shared/emitters/residence.emitter';
 import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
 
 import Residence from './../../classes/residence';
+import Board from '../../../boards/classes/board';
+import Room from '../../../rooms/classes/room';
 
 @Component({
   selector: 'residence',
@@ -37,7 +39,8 @@ export class ResidenceComponent implements OnInit {
     .subscribe(response => {
       if (response.status === 200) {
         const { description, url, _id, rooms, boards } = response.json()['Residence'];
-        this.residence = new Residence(description, url, _id, rooms, boards);
+        console.log(rooms);
+        this.residence = new Residence(description, url, _id, rooms, this.iterateOverBoards(boards));
         if (_id) {
           const token = { id: _id, url };
           this._residenceEmitter.enteredResidence.emit(_id);
@@ -66,5 +69,23 @@ export class ResidenceComponent implements OnInit {
         .catch(error => {
           console.error(error);
         });
+  }
+
+  iterateOverBoards(boards: any): Array<Board> {
+    return boards.map(board => {
+      const { _id, port, model, digitalPins, description, analogPins } = board;
+      return new Board(description, model, port, analogPins, digitalPins, _id);
+    });
+  }
+
+  iterateOverRooms(rooms: any): Array<Room> {
+    return rooms.map(room => {
+      const { _id, description, components } = room;
+      return new Room(description, _id, components);
+    });
+  }
+
+  iterateOverComponents(components: any): Array<any> {
+    return components.map(component => component);
   }
 }

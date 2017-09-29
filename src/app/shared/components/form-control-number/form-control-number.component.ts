@@ -1,24 +1,16 @@
 import { Component, forwardRef, Input } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
-
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'form-control-select',
-  templateUrl: './form-control-select.component.html',
-  styleUrls: ['./form-control-select.component.styl'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => FormControlSelectComponent)
-    }
-  ]
+  selector: 'form-control-number',
+  templateUrl: './form-control-number.component.html',
+  styleUrls: ['./form-control-number.component.styl']
 })
-export class FormControlSelectComponent implements ControlValueAccessor {
+export class FormControlNumberComponent implements ControlValueAccessor {
 
   @Input() controlName: string;
   @Input() control: FormControl;
-  @Input() items: Array<any>;
+  @Input() placeholder = 'Enter here...';
   private _self = this;
   private _value: string;
 
@@ -55,10 +47,8 @@ export class FormControlSelectComponent implements ControlValueAccessor {
   }
 
   private onChange(event) {
-    if (event.target.selectedIndex > 0) {
-      this._value = event.target.value;
-      this.propagateChange(this._value);
-    }
+    this._value = event.target.value;
+    this.propagateChange(this._value);
   }
 
 }

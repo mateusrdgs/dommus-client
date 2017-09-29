@@ -11,12 +11,7 @@
     position absolute
     top 2.5rem
 
-.label-board
-  &::before
-    content '\f2db'
-    transform rotate(90deg)
-
-.form-control__select
+.form-control__input
   border none
   background-color transparent
   color #0A0A0A
@@ -27,16 +22,25 @@
   padding 1rem 0 .5rem 2.8rem
   transition all .5s linear
   border-bottom .2rem solid #0A0A0A
-  &:hover
-    cursor pointer
 
-.form-control__select-option
-   color gray
-   outline none
+.label-email
+  &::before
+    content '\f1fa'
 
-.form-control__select-option
-  &:not(:first-child)
-    color #0A0A0A
+.label-link
+  &::before
+    content '\f0c1'
+
+.label-input
+  &::before
+    content '\f031'
+
+.label-numeric
+  &::before
+    content '1'
+    font-size 2.6rem
+    font-weight 700
+    transform translate(.2rem, -.6rem)
 
 .invalid
   border-color #F31D2F

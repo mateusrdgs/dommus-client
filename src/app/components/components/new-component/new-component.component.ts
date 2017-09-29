@@ -15,6 +15,8 @@ import Motion from '../../classes/motion';
 import Sensor from '../../classes/sensor';
 import Servo from '../../classes/servo';
 
+import Board from '../../../boards/classes/board';
+
 import { validateSet } from '../../validators/setValidator';
 
 @Component({
@@ -24,7 +26,7 @@ import { validateSet } from '../../validators/setValidator';
 })
 export class NewComponentComponent implements OnInit {
 
-  private _previousFormType = '1';
+  private _previousFormType = '0';
   private _routeSubscription: Subscription;
   private _idResidence: string;
   private _idRoom: string;
@@ -32,79 +34,97 @@ export class NewComponentComponent implements OnInit {
 
   newComponentForm: FormGroup;
   firstBoardName: string;
-  residenceBoards = [];
+  boards: Array<Board>;
 
-  componentAllowed = [
+  components = [
     {
       value: 1,
-      type: 'Switch'
+      component: 'Switch'
     },
     {
       value: 2,
-      type: 'Thermometer'
+      component: 'Thermometer'
     },
     {
       value: 3,
-      type: 'Light'
+      component: 'Light'
     },
     {
       value: 4,
-      type: 'Motion'
+      component: 'Motion'
     },
     {
       value: 5,
-      type: 'Sensor'
+      component: 'Sensor'
     },
     {
       value: 6,
-      type: 'Servo'
+      component: 'Servo'
     }
   ];
 
   constructor(
     private _formBuilder: FormBuilder,
     private _componentsService: ComponentsService,
-    private _route: ActivatedRoute,
+    private _activatedRoute: ActivatedRoute,
     private _socketIoService: SocketIoService
   ) { }
 
   getResidenceRouteParams() {
-    this._routeSubscription =
-    this._route.params.subscribe((params: any) => {
+    this.extractDataFromResolver();
+    this._activatedRoute.params.subscribe((params: any) => {
       this._idResidence = params['idResidence'];
       this._idRoom = params['idRoom'];
     });
   }
 
   ngOnInit() {
-    this.residenceBoards = this._route.snapshot.data.boards;
+    this.extractDataFromResolver();
     this.getResidenceRouteParams();
     this.createNewComponentForm(this._previousFormType);
     this.createControls(this._previousFormType);
-    if (this.residenceBoards.length) {
-      this.firstBoardName = this.residenceBoards[0].description;
+    if (this.boards.length) {
+      this.firstBoardName = this.boards[0].Description;
     }
+  }
+
+  extractDataFromResolver() {
+    this._activatedRoute.data
+        .map(response => response['boards'])
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            const boards = response.json()['Boards'];
+            this.boards = this.iterateOverBoards(boards);
+          }
+        });
+  }
+
+  iterateOverBoards(boards: any): Array<Board> {
+    return boards.map(board => {
+      const { _id, port, model, digitalPins, description, analogPins } = board;
+      return new Board(description, model, port, analogPins, digitalPins, _id);
+    });
   }
 
   createNewComponentForm(nextFormType: string) {
     this.newComponentForm = this._formBuilder.group({
       description: ['', Validators.required],
-      componentType: [nextFormType, Validators.required],
-      board: [this.residenceBoards[0]._id, Validators.required]
+      component: [nextFormType, Validators.required],
+      board: [this.boards[0].Id, Validators.required]
     });
   }
 
   onChange() {
-    const { componentType } = this.newComponentForm.value;
+    const { component } = this.newComponentForm.value;
     this.removeControls(this._previousFormType);
-    this.createControls(componentType);
-    this._previousFormType = componentType;
+    this.createControls(component);
+    this._previousFormType = component;
   }
 
   onSubmit() {
     if (this.newComponentForm.valid) {
-      const { componentType } = this.newComponentForm.value;
-      switch (componentType) {
+      const { component } = this.newComponentForm.value;
+      switch (component) {
         case '1': {
           this.createSwitch(this.newComponentForm.value);
         }
@@ -136,37 +156,37 @@ export class NewComponentComponent implements OnInit {
   }
 
   createSwitch(formValue) {
-    const { description, componentType, board, digitalPin } = formValue;
+    const { description, component, board, digitalPin } = formValue;
     this._component = new Switch(board, description, digitalPin, 1);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createThermometer(formValue) {
-    const { description, componentType, board, analogPin, frequency, controller } = formValue;
+    const { description, component, board, analogPin, frequency, controller } = formValue;
     this._component = new Thermometer(board, description, 2, controller, analogPin, frequency);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createLight(formValue) {
-    const { description, componentType, board, analogPin, threshold, frequency, controller } = formValue;
+    const { description, component, board, analogPin, threshold, frequency, controller } = formValue;
     this._component = new Light(board, description, 3, controller, analogPin, frequency, threshold);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createMotion(formValue) {
-    const { description, componentType, board, digitalPin } = formValue;
+    const { description, component, board, digitalPin } = formValue;
     this._component = new Motion(board, description, 4, digitalPin);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createSensor(formValue) {
-    const { description, componentType, board, analogPin, frequency, controller, threshold } = this.newComponentForm.value;
+    const { description, component, board, analogPin, frequency, controller, threshold } = this.newComponentForm.value;
     this._component = new Sensor(board, description, 5, analogPin, frequency, controller, threshold);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
 
   createServo(formValue) {
-    const { description, componentType, board, digitalPin, rotation, startAt, minRange, maxRange } = this.newComponentForm.value;
+    const { description, component, board, digitalPin, rotation, startAt, minRange, maxRange } = this.newComponentForm.value;
     this._component = new Servo(board, description, 6, digitalPin, rotation, startAt, minRange, maxRange);
     this.saveNewComponent(this._idResidence, this._idRoom, this._component);
   }
@@ -185,7 +205,7 @@ export class NewComponentComponent implements OnInit {
   createControls(nextFormType) {
     switch (nextFormType) {
       case '1':
-          this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.residenceBoards[0]['digitalPins'])));
+          this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.boards[0]['digitalPins'])));
         break;
       case '2':
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
@@ -211,7 +231,10 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('minRange', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('maxRange', new FormControl('', [Validators.required]));
         break;
+      default:
+        break;
     }
+    console.log(this.newComponentForm.controls);
   }
 
   removeControls(previousFormType) {
@@ -248,6 +271,8 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('minRange');
           this.newComponentForm.removeControl('maxRange');
       }
+        break;
+      default:
         break;
     }
   }

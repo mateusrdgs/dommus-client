@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -38,6 +38,7 @@ import { ButtonSubmitComponent } from './components/button-submit/button-submit.
 import { FormControlTextComponent } from './components/form-control-text/form-control-text.component';
 import { FormControlSelectComponent } from './components/form-control-select/form-control-select.component';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
+import { FormControlNumberComponent } from './components/form-control-number/form-control-number.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     ListComponent,
     FormControlTextComponent,
     FormControlSelectComponent,
-    CapitalizePipe
+    CapitalizePipe,
+    FormControlNumberComponent
   ],
   exports: [
     SideBarComponent,
@@ -75,24 +77,31 @@ import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
     ButtonSubmitComponent,
     FormControlTextComponent,
     FormControlSelectComponent,
+    FormControlNumberComponent,
     ListComponent
-  ],
-  providers: [
-    AppGuard,
-    AuthService,
-    LocalStorageService,
-    SocketIoService,
-    SyncService,
-    SideBarService,
-    TitleService,
-    TopBarEmitter,
-    CardEmitter,
-    ResidenceEmitter,
-    SocketIoEmitter,
-    RemoteService,
-    WindowService,
-    UrlCreatorService,
-    CapitalizePipe
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [
+        AppGuard,
+        AuthService,
+        LocalStorageService,
+        SocketIoService,
+        SyncService,
+        SideBarService,
+        TitleService,
+        TopBarEmitter,
+        CardEmitter,
+        ResidenceEmitter,
+        SocketIoEmitter,
+        RemoteService,
+        WindowService,
+        UrlCreatorService,
+        CapitalizePipe
+      ]
+    };
+  }
+}

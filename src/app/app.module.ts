@@ -1,5 +1,3 @@
-import { ResidencesModule } from './residences/residences.module';
-import { HomeModule } from './home/home.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -7,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
+import { ResidencesModule } from './residences/residences.module';
+import { HomeModule } from './home/home.module';
 
 import { AppGuard } from './shared/guards/app.guards.service';
 
@@ -22,7 +22,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     LoginModule,
     HomeModule,
-    SharedModule,
+    SharedModule.forRoot(),
     ResidencesModule
   ],
   providers: [
