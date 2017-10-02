@@ -26,7 +26,6 @@ import { validateSet } from '../../validators/setValidator';
 })
 export class NewComponentComponent implements OnInit {
 
-  private _previousFormType = '0';
   private _routeSubscription: Subscription;
   private _idResidence: string;
   private _idRoom: string;
@@ -35,6 +34,8 @@ export class NewComponentComponent implements OnInit {
   newComponentForm: FormGroup;
   firstBoardName: string;
   boards: Array<Board>;
+
+  currentFormat = '0';
 
   components = [
     {
@@ -81,8 +82,8 @@ export class NewComponentComponent implements OnInit {
   ngOnInit() {
     this.extractDataFromResolver();
     this.getResidenceRouteParams();
-    this.createNewComponentForm(this._previousFormType);
-    this.createControls(this._previousFormType);
+    this.createNewComponentForm(this.currentFormat);
+    this.createControls(this.currentFormat);
     if (this.boards.length) {
       this.firstBoardName = this.boards[0].Description;
     }
@@ -109,16 +110,16 @@ export class NewComponentComponent implements OnInit {
   createNewComponentForm(nextFormType: string) {
     this.newComponentForm = this._formBuilder.group({
       description: ['', Validators.required],
-      component: [nextFormType, Validators.required],
-      board: [this.boards[0].Id, Validators.required]
+      component: ['', Validators.required],
+      board: ['', Validators.required]
     });
   }
 
   onChange() {
     const { component } = this.newComponentForm.value;
-    this.removeControls(this._previousFormType);
+    this.removeControls(this.currentFormat);
     this.createControls(component);
-    this._previousFormType = component;
+    this.currentFormat = component;
   }
 
   onSubmit() {

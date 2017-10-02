@@ -4,35 +4,27 @@
   <form [formGroup]="newComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'Description'"
+      [controlName]="'description'"
       [control]="newComponentForm.controls['description']"
     >
     </form-control-text>
+    <form-control-select
+    formControlName="board"
+      [controlName]="'board'"
+      [control]="newComponentForm.controls['board']"
+      [defaultOption]="'Choose the board'"
+      [items]="boards"
+    >
+    </form-control-select>
     <form-control-select (change)="onChange()"
       formControlName="component"
       [controlName]="'component'"
       [control]="newComponentForm.controls['component']"
+      [defaultOption]="'Choose the component'"
       [items]="components"
     >
     </form-control-select>
-    <form-control-select
-      formControlName="board"
-      [controlName]="'board'"
-      [control]="newComponentForm.controls['board']"
-      [items]="boards"
-    >
-    </form-control-select>
-    <div [ngSwitch]="newComponentForm.value.component" class="new-component-form__container">
-      <ng-container *ngSwitchCase="'1'">
-        <form-control-number
-          formControlName="digitalPin"
-          [controlName]="'Digital Pin'"
-          [control]="newComponentForm.controls['digitalPin']"
-        >
-        </form-control-number>
-      </ng-container>
-    </div>
-    <!--<div [ngSwitch]="newComponentForm.value.component" class="new-component-form__container">
+    <div [ngSwitch]="currentFormat" class="new-component-form__container">
       <ng-container *ngSwitchCase="1">
         <form-control-number
           formControlName="digitalPin"
@@ -42,51 +34,100 @@
         </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="2">
-        <form-control-text
+        <form-control-number
           formControlName="analogPin"
           [controlName]="'Analog Pin'"
           [control]="newComponentForm.controls['analogPin']"
         >
-        </form-control-text>
-        <form-control-text
+        </form-control-number>
+        <form-control-number
           formControlName="frequency"
           [controlName]="'Frequency'"
           [control]="newComponentForm.controls['frequency']"
         >
-        </form-control-text>
+        </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="3">
-        <label for="description" class="new-component-form__label">Analog Pin</label>
-        <input type="number" formControlName="analogPin" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Frequency</label>
-        <input type="number" formControlName="frequency" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Threshold</label>
-        <input type="number" formControlName="threshold" class="new-component-form__input">
+        <form-control-number
+          formControlName="analogPin"
+          [controlName]="'Analog Pin'"
+          [control]="newComponentForm.controls['analogPin']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="frequency"
+          [controlName]="'Frequency'"
+          [control]="newComponentForm.controls['frequency']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="threshold"
+          [controlName]="'Threshold'"
+          [control]="newComponentForm.controls['threshold']"
+        >
+        </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="4">
-        <label for="description" class="new-component-form__label">Digital Pin</label>
-        <input type="number" formControlName="digitalPin" class="new-component-form__input">
+        <form-control-number
+          formControlName="digitalPin"
+          [controlName]="'Digital Pin'"
+          [control]="newComponentForm.controls['digitalPin']"
+        >
+        </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="5">
-        <label for="description" class="new-component-form__label">Analog Pin</label>
-        <input type="number" formControlName="analogPin" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Frequency</label>
-        <input type="number" formControlName="frequency" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Threshold</label>
-        <input type="number" formControlName="threshold" class="new-component-form__input">
+        <form-control-number
+          formControlName="analogPin"
+          [controlName]="'Analog Pin'"
+          [control]="newComponentForm.controls['analogPin']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="frequency"
+          [controlName]="'Frequency'"
+          [control]="newComponentForm.controls['frequency']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="threshold"
+          [controlName]="'Threshold'"
+          [control]="newComponentForm.controls['threshold']"
+        >
+        </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="6">
-        <label for="description" class="new-component-form__label">Digital Pin</label>
-        <input type="number" formControlName="digitalPin" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Rotation</label>
-        <input type="number" formControlName="rotation" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Start At</label>
-        <input type="number" formControlName="startAt" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Minimum Range</label>
-        <input type="number" formControlName="minRange" class="new-component-form__input">
-        <label for="description" class="new-component-form__label">Maximum Range</label>
-        <input type="number" formControlName="maxRange" class="new-component-form__input">
+          <form-control-number
+          formControlName="digitalPin"
+          [controlName]="'Digital Pin'"
+          [control]="newComponentForm.controls['digitalPin']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="rotation"
+          [controlName]="'Rotation'"
+          [control]="newComponentForm.controls['rotation']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="startAt"
+          [controlName]="'Start at'"
+          [control]="newComponentForm.controls['startAt']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="minRange"
+          [controlName]="'Minimum range'"
+          [control]="newComponentForm.controls['minRange']"
+        >
+        </form-control-number>
+        <form-control-number
+          formControlName="maxRange"
+          [controlName]="'Maximum range'"
+          [control]="newComponentForm.controls['maxRange']"
+        >
+        </form-control-number>
       </ng-container>
-    </div>-->
+    </div>
+    <button-submit [disabled]="newComponentForm.invalid"></button-submit>
   </form>
 </div>

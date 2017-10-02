@@ -4,8 +4,7 @@
       {
         'label-email': controlName === 'email',
         'label-link': controlName === 'url',
-        'label-input': controlName === 'description',
-        'label-numeric': controlName === 'port'
+        'label-input': controlName === 'description'
       }"
     [textContent]="controlName | capitalize"
   >
@@ -13,7 +12,7 @@
   <input [type]="controlName === 'port' ? 'number' : 'text'" class="form-control__input"
     [ngClass]="
       {
-        'invalid': !control?.valid,
+        'invalid': control?.invalid && control?.touched,
         'valid': control?.valid
       }"
     (change)="onChange($event)"

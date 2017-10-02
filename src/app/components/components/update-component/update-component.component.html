@@ -1,7 +1,7 @@
 <button-back></button-back>
 <div class="update-component-container" *ngIf="component">
   <h1 class="update-component-container__title" [textContent]="'Update ' + component.description"></h1>
-  <form [formGroup]="updateComponentForm" class="update-component-form" (ngSubmit)="onSubmit($event)">
+  <!--<form [formGroup]="updateComponentForm" class="update-component-form" (ngSubmit)="onSubmit($event)">
     <label for="description" class="update-component-form__label">Description</label>
     <input type="text" formControlName="description" class="update-component-form__input">
     <label for="board" class="update-component-form__label">Board</label>
@@ -56,5 +56,134 @@
       <a [routerLink]="['../']" class="update-component-form__buttons-container__button">Return</a>
       <input type="submit" value="Save" class="update-component-form__buttons-container__submit" [disabled]="updateComponentForm.invalid">
     </div>
-  </form>
+  </form>-->
+  <form [formGroup]="updateComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
+      <form-control-text
+        formControlName="description"
+        [controlName]="'description'"
+        [control]="updateComponentForm.controls['description']"
+      >
+      </form-control-text>
+      <form-control-select
+      formControlName="board"
+        [controlName]="'board'"
+        [control]="updateComponentForm.controls['board']"
+        [defaultOption]="'Choose the board'"
+        [items]="boards"
+      >
+      </form-control-select>
+      <form-control-select (change)="onChange()"
+        formControlName="component"
+        [controlName]="'component'"
+        [control]="updateComponentForm.controls['component']"
+        [defaultOption]="'Choose the component'"
+        [items]="components"
+      >
+      </form-control-select>
+      <div [ngSwitch]="component.type" class="new-component-form__container">
+        <ng-container *ngSwitchCase="1">
+          <form-control-number
+            formControlName="digitalPin"
+            [controlName]="'Digital Pin'"
+            [control]="updateComponentForm.controls['digitalPin']"
+          >
+          </form-control-number>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+          <form-control-number
+            formControlName="analogPin"
+            [controlName]="'Analog Pin'"
+            [control]="updateComponentForm.controls['analogPin']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="frequency"
+            [controlName]="'Frequency'"
+            [control]="updateComponentForm.controls['frequency']"
+          >
+          </form-control-number>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+          <form-control-number
+            formControlName="analogPin"
+            [controlName]="'Analog Pin'"
+            [control]="updateComponentForm.controls['analogPin']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="frequency"
+            [controlName]="'Frequency'"
+            [control]="updateComponentForm.controls['frequency']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="threshold"
+            [controlName]="'Threshold'"
+            [control]="updateComponentForm.controls['threshold']"
+          >
+          </form-control-number>
+        </ng-container>
+        <ng-container *ngSwitchCase="4">
+          <form-control-number
+            formControlName="digitalPin"
+            [controlName]="'Digital Pin'"
+            [control]="updateComponentForm.controls['digitalPin']"
+          >
+          </form-control-number>
+        </ng-container>
+        <ng-container *ngSwitchCase="5">
+          <form-control-number
+            formControlName="analogPin"
+            [controlName]="'Analog Pin'"
+            [control]="updateComponentForm.controls['analogPin']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="frequency"
+            [controlName]="'Frequency'"
+            [control]="updateComponentForm.controls['frequency']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="threshold"
+            [controlName]="'Threshold'"
+            [control]="updateComponentForm.controls['threshold']"
+          >
+          </form-control-number>
+        </ng-container>
+        <ng-container *ngSwitchCase="6">
+            <form-control-number
+            formControlName="digitalPin"
+            [controlName]="'Digital Pin'"
+            [control]="updateComponentForm.controls['digitalPin']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="rotation"
+            [controlName]="'Rotation'"
+            [control]="updateComponentForm.controls['rotation']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="startAt"
+            [controlName]="'Start at'"
+            [control]="updateComponentForm.controls['startAt']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="minRange"
+            [controlName]="'Minimum range'"
+            [control]="updateComponentForm.controls['minRange']"
+          >
+          </form-control-number>
+          <form-control-number
+            formControlName="maxRange"
+            [controlName]="'Maximum range'"
+            [control]="updateComponentForm.controls['maxRange']"
+          >
+          </form-control-number>
+        </ng-container>
+      </div>
+      <button-submit [disabled]="updateComponentForm.invalid"></button-submit>
+    </form>
 </div>

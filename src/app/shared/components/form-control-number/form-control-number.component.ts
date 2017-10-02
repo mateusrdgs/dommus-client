@@ -4,7 +4,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, NG_VALIDATORS, FormControl } f
 @Component({
   selector: 'form-control-number',
   templateUrl: './form-control-number.component.html',
-  styleUrls: ['./form-control-number.component.styl']
+  styleUrls: ['./form-control-number.component.styl'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      multi: true,
+      useExisting: forwardRef(() => FormControlNumberComponent)
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: forwardRef(() => FormControlNumberComponent)
+    }
+  ]
 })
 export class FormControlNumberComponent implements ControlValueAccessor {
 
@@ -12,11 +24,11 @@ export class FormControlNumberComponent implements ControlValueAccessor {
   @Input() control: FormControl;
   @Input() placeholder = 'Enter here...';
   private _self = this;
-  private _value: string;
+  private _value: number;
 
   constructor() { }
 
-  public writeValue(value: string) {
+  public writeValue(value: number) {
     if (value !== undefined) {
       this._value = value;
     }
@@ -47,7 +59,10 @@ export class FormControlNumberComponent implements ControlValueAccessor {
   }
 
   private onChange(event) {
-    this._value = event.target.value;
+    const { value } = event.target;
+    if (value !== '' && (value !== null || value !== undefined)) {
+      this._value = parseInt(event.target.value, 10);
+    }
     this.propagateChange(this._value);
   }
 

@@ -11,6 +11,11 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NG_VALIDATORS } f
       provide: NG_VALUE_ACCESSOR,
       multi: true,
       useExisting: forwardRef(() => FormControlSelectComponent)
+    },
+    {
+      provide: NG_VALIDATORS,
+      multi: true,
+      useExisting: forwardRef(() => FormControlSelectComponent)
     }
   ]
 })
@@ -18,6 +23,7 @@ export class FormControlSelectComponent implements ControlValueAccessor {
 
   @Input() controlName: string;
   @Input() control: FormControl;
+  @Input() defaultOption: string;
   @Input() items: Array<any>;
   private _self = this;
   private _value: string;
