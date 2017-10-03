@@ -5,7 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { ComponentsService } from './../../services/components.service';
+import { RemoteService } from './../../../shared/services/remote/remote.service';
 import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
+import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
 
 import { validateSet } from '../../validators/setValidator';
 import { availableOrEqualValidator } from '../../validators/availableOrEqualValidator';
@@ -16,6 +18,7 @@ import Light from '../../classes/light';
 import Motion from '../../classes/motion';
 import Sensor from '../../classes/sensor';
 import Servo from '../../classes/servo';
+import Board from '../../../boards/classes/board';
 
 @Component({
   selector: 'update-component',
@@ -25,44 +28,94 @@ import Servo from '../../classes/servo';
 export class UpdateComponentComponent implements OnInit {
 
   private _routeSubscription: Subscription;
-  private _idResidence: string;
-  private _idRoom: string;
+  routeParams: any;
   updateComponentForm: FormGroup;
   component: any;
   boards: any;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _formBuilder: FormBuilder,
     private _componentsService: ComponentsService,
+    private _formBuilder: FormBuilder,
+    private _urlCreator: UrlCreatorService,
+    private _remoteService: RemoteService,
     private _socketIoService: SocketIoService
   ) { }
 
   ngOnInit() {
-    this._activatedRoute.data
-        .subscribe(data => {
-          const { boards, component } = data;
-          this.boards = boards;
-          this.component = component;
-          this.getResidenceRouteParams();
-          this.startUpdateComponentForm(boards, component);
-        });
+    this.extractRouteParams();
+    this.extractDataFromResolver();
   }
 
-  getResidenceRouteParams() {
-    this._routeSubscription =
-      this._activatedRoute.params
-        .subscribe((params: any) => {
-          this._idResidence = params['idResidence'];
-          this._idRoom = params['idRoom'];
+  extractDataFromResolver() {
+    this._activatedRoute.data
+        .map(response => response['component'])
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            this.component = this.extractDataFromRawComponent(response.json()['Component']);
+          }
         });
+    this._activatedRoute.data
+        .map(response => response['boards'])
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            this.boards = this.iterateOverBoards( response.json()['Boards']);
+          }
+        });
+    this.startUpdateComponentForm(this.boards, this.component);
+  }
+
+  extractDataFromRawComponent(component: any) {
+    const { type } = component;
+      switch (type) {
+        case '1': {
+          const { description, digitalPin, idBoard, _id } = component;
+          return new Switch(idBoard, description, digitalPin, type, _id);
+        }
+        case '2': {
+          const { description, analogPin, frequency, idBoard, _id } = component;
+          return new Thermometer(idBoard, description, type, '', analogPin, frequency, _id);
+        }
+        case '3': {
+          const { description, analogPin, frequency, threshold, idBoard, _id } = component;
+          return new Light(idBoard, description, type, '', analogPin, frequency, threshold, _id);
+        }
+        case '4': {
+          const { description, digitalPin, idBoard, _id } = component;
+          return new Motion(idBoard, description, type, digitalPin, _id);
+        }
+        case '5': {
+          const { description, analogPin, frequency, threshold, idBoard, _id } = component;
+          return new Sensor(idBoard, description, type, analogPin, frequency, '', threshold, _id);
+        }
+        case '6': {
+          const { description, digitalPin, rotation, startAt, minRange, maxRange, idBoard, _id } = component;
+          return new Servo(idBoard, description, type, digitalPin, rotation, startAt, minRange, maxRange, _id);
+        }
+      };
+  }
+
+  iterateOverBoards(boards: Array<any>): Array<Board> {
+    return boards.map(board => {
+      const { _id, model, description, port, digitalPins, analogPins } = board;
+      return new Board(description, model, port, analogPins, digitalPins, _id);
+    });
+  }
+
+  extractRouteParams() {
+    this._activatedRoute.params
+        .subscribe(params => {
+          const idResidence = params;
+          const idRoom = params;
+          this.routeParams = { idResidence, idRoom };
+    });
   }
 
   startUpdateComponentForm(boards: any, component: any): void {
-    const { description } = component,
-          board = boards.filter(_board => _board._id === component.idBoard)[0];
+    const { Description } = component,
+          board = boards.filter(_board => _board.Id === component.idBoard)[0];
       this.updateComponentForm = this._formBuilder.group({
-        description: [description, Validators.required],
+        description: [Description, Validators.required],
         board: [board, Validators.required]
       });
       this.createControls(board, component);
@@ -152,48 +205,57 @@ export class UpdateComponentComponent implements OnInit {
   createSwitch(formValue) {
     const { description, componentType, board, digitalPin } = formValue,
           updatedComponent = new Switch(board._id, description, digitalPin, 1, this.component._id);
-    this.updateComponent(this._idResidence, this._idRoom, updatedComponent);
+    this.updateComponent(updatedComponent);
   }
 
   createThermometer(formValue) {
     const { description, componentType, board, analogPin, frequency, controller } = formValue,
           updatedComponent = new Thermometer(board._id, description, 2, controller, analogPin, frequency, this.component._id);
-    this.updateComponent(this._idResidence, this._idRoom, updatedComponent);
+    this.updateComponent(updatedComponent);
   }
 
   createLight(formValue) {
     const { description, componentType, board, analogPin, threshold, frequency, controller } = formValue,
           updatedComponent = new Light(board._id, description, 3, controller, analogPin, frequency, threshold, this.component._id);
-    this.updateComponent(this._idResidence, this._idRoom, updatedComponent);
+    this.updateComponent(updatedComponent);
   }
 
   createMotion(formValue) {
     const { description, componentType, board, digitalPin } = formValue,
           updatedComponent = new Motion(board._id, description, 4, digitalPin);
-    this.updateComponent(this._idResidence, this._idRoom, updatedComponent);
+    this.updateComponent(updatedComponent);
   }
 
   createSensor(formValue) {
     const { description, componentType, board, analogPin, frequency, controller, threshold } = this.updateComponentForm.value,
           updatedComponent = new Sensor(board._id, description, 5, analogPin, frequency, controller, threshold, this.component._id);
-    this.updateComponent(this._idResidence, this._idRoom, updatedComponent);
+    this.updateComponent(updatedComponent);
   }
 
   createServo(formValue) {
     const { description, componentType, board, digitalPin, rotation, startAt, minRange, maxRange } = this.updateComponentForm.value,
           updatedComponent = new Servo(board._id, description, 6, digitalPin, rotation, startAt, minRange, maxRange, this.component._id);
-    this.updateComponent(this._idResidence, this._idRoom, updatedComponent);
+    this.updateComponent(updatedComponent);
   }
 
-  updateComponent(_idResidence: string, _idRoom: string, component: any) {
-    this._componentsService
-        .updateComponent(_idResidence, _idRoom, component)
-        .then(response => {
-          if (response['_id']) {
-            this._socketIoService.emitMessage('update:Component', response);
+  updateComponent(component: any) {
+    const url = this._urlCreator.createUrl('components', 'id', this.routeParams);
+    this._remoteService
+        .putResources(url, component)
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status >= 200) {
+            this._socketIoService
+                .emitMessageWithReturn('update:Component', 'updated:Component', component)
+                .subscribe(updated => {
+                  if (updated) {
+                    console.log('Updated!');
+                  } else {
+                    console.error('Error!');
+                  }
+                }, error => console.error(error))
+                .unsubscribe();
           }
-        })
-        .catch(error => console.error(error));
+        }, error => console.error(error));
   }
 
 }

@@ -25,6 +25,7 @@ export class SocketIoService {
         reject(error);
       });
       this._socket.on('connect', () => {
+        this._connectionStarted = true;
         resolve(this._socket['connected']);
       });
     });
@@ -32,7 +33,7 @@ export class SocketIoService {
 
   checkLocalModuleConnectionState(url: string) {
     return new Promise((resolve, reject) => {
-      if (this._socket === undefined || (this._socket && this._socket['disconnected'])) {
+      if (this._socket === undefined) {
         resolve(this.connectToLocalModule(url));
       } else {
         resolve(this._socket['connected']);

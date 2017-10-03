@@ -62,7 +62,7 @@ export class NewBoardComponent implements OnInit {
     this._remoteService
         .postResources(url, board)
         .subscribe(response => {
-          if (response.status === 201) {
+          if (response.hasOwnProperty('status') && response.status === 201) {
             const { _id } = response.json()['Board'];
             board.Id = _id;
             this._socketIoService
@@ -73,7 +73,8 @@ export class NewBoardComponent implements OnInit {
                   } else {
                     console.error('Error!');
                   }
-                }, error => console.error(error));
+                }, error => console.error(error))
+                .unsubscribe();
           }
         }, error => console.error(error));
   }

@@ -1,62 +1,6 @@
 <button-back></button-back>
 <div class="update-component-container" *ngIf="component">
   <h1 class="update-component-container__title" [textContent]="'Update ' + component.description"></h1>
-  <!--<form [formGroup]="updateComponentForm" class="update-component-form" (ngSubmit)="onSubmit($event)">
-    <label for="description" class="update-component-form__label">Description</label>
-    <input type="text" formControlName="description" class="update-component-form__input">
-    <label for="board" class="update-component-form__label">Board</label>
-    <select formControlName="board" class="update-component-form__input">
-      <option *ngFor="let board of boards" [textContent]="board.description" [value]="board._id" [selected]="board._id == component.idBoard"></option>
-    </select>
-    <div [ngSwitch]="component.type" class="update-component-form__container">
-      <ng-container *ngSwitchCase="1">
-        <label for="description" class="update-component-form__label">Digital Pin</label>
-        <input type="number" formControlName="digitalPin" class="update-component-form__input">
-      </ng-container>
-      <ng-container *ngSwitchCase="2">
-        <label for="description" class="update-component-form__label">Analog Pin</label>
-        <input type="number" formControlName="analogPin" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Frequency</label>
-        <input type="number" formControlName="frequency" class="update-component-form__input">
-      </ng-container>
-      <ng-container *ngSwitchCase="3">
-        <label for="description" class="update-component-form__label">Analog Pin</label>
-        <input type="number" formControlName="analogPin" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Frequency</label>
-        <input type="number" formControlName="frequency" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Threshold</label>
-        <input type="number" formControlName="threshold" class="update-component-form__input">
-      </ng-container>
-      <ng-container *ngSwitchCase="4">
-        <label for="description" class="update-component-form__label">Digital Pin</label>
-        <input type="number" formControlName="digitalPin" class="update-component-form__input">
-      </ng-container>
-      <ng-container *ngSwitchCase="5">
-        <label for="description" class="update-component-form__label">Analog Pin</label>
-        <input type="number" formControlName="analogPin" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Frequency</label>
-        <input type="number" formControlName="frequency" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Threshold</label>
-        <input type="number" formControlName="threshold" class="update-component-form__input">
-      </ng-container>
-      <ng-container *ngSwitchCase="6">
-        <label for="description" class="update-component-form__label">Digital Pin</label>
-        <input type="number" formControlName="digitalPin" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Rotation</label>
-        <input type="number" formControlName="rotation" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Start At</label>
-        <input type="number" formControlName="startAt" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Minimum Range</label>
-        <input type="number" formControlName="minRange" class="update-component-form__input">
-        <label for="description" class="update-component-form__label">Maximum Range</label>
-        <input type="number" formControlName="maxRange" class="update-component-form__input">
-      </ng-container>
-    </div>
-    <div class="update-component-form__buttons-container">
-      <a [routerLink]="['../']" class="update-component-form__buttons-container__button">Return</a>
-      <input type="submit" value="Save" class="update-component-form__buttons-container__submit" [disabled]="updateComponentForm.invalid">
-    </div>
-  </form>-->
   <form [formGroup]="updateComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
       <form-control-text
         formControlName="description"
@@ -70,14 +14,6 @@
         [control]="updateComponentForm.controls['board']"
         [defaultOption]="'Choose the board'"
         [items]="boards"
-      >
-      </form-control-select>
-      <form-control-select (change)="onChange()"
-        formControlName="component"
-        [controlName]="'component'"
-        [control]="updateComponentForm.controls['component']"
-        [defaultOption]="'Choose the component'"
-        [items]="components"
       >
       </form-control-select>
       <div [ngSwitch]="component.type" class="new-component-form__container">
