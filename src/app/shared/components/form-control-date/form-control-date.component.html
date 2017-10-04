@@ -1,0 +1,20 @@
+<div class="form-control">
+  <label for="{{ controlName }}" class="form-control__label"
+    [textContent]="controlName | capitalize"
+  >
+  </label>
+    <input type="date" class="form-control__input"
+      [ngClass]="
+        {
+          'invalid': control?.invalid && control?.touched,
+          'valid': control?.valid
+        }"
+      (change)="onChange($event)"
+      (keyup)="onChange($event)"
+      (blur)="onTouched()"
+      [value]="_value"
+    >
+  <span class="form-control__warning" *ngIf="control?.invalid && control?.touched">
+    Invalid input
+  </span>
+</div>

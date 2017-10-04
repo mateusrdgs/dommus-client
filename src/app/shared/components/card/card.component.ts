@@ -15,7 +15,8 @@ export class CardComponent implements OnInit {
   @Input() component;
   private componentFlipSubscription: Subscription;
   private componentSubscription: Subscription;
-  flippedTo: string;
+  //flippedTo: string;
+  flippedTo = 'left';
 
   constructor(
     private _cardEmitter: CardEmitter,

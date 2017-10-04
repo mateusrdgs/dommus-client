@@ -1,0 +1,13 @@
+<form [formGroup]="taskForm" (submit)="onSubmit()">
+  <div class="input-container">
+    <form-control-date
+      formControlName="date"
+      [controlName]="'Date'">
+    </form-control-date>
+    <form-control-hour
+      formControlName="hour"
+      [controlName]="'Hour'">
+    </form-control-hour>
+  </div>
+  <form-control-switch></form-control-switch>
+</form>

@@ -1,0 +1,33 @@
+.switch
+  display inline-block
+  position relative
+  width 6rem
+  height 3rem
+
+.input
+  display none
+  &:checked
+  &:checked + .slider
+    background-color red
+    &:before
+      transform translateX(26px)
+
+.slider
+  top 0
+  left 0
+  right 0
+  bottom 0
+  background-color #CCC
+  transition all .5s ease
+  position absolute
+  &:before
+    position absolute
+    content ''
+    height 2rem
+    width 2rem
+    left 4px
+    bottom 4px
+    background-color #FFF
+    transition all .5s ease
+  &:hover
+    cursor pointer

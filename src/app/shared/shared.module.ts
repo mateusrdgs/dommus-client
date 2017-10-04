@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthService } from './services/auth/auth.service';
 import { LocalStorageService } from './services/local-storage/local-storage.service';
@@ -39,11 +40,16 @@ import { FormControlTextComponent } from './components/form-control-text/form-co
 import { FormControlSelectComponent } from './components/form-control-select/form-control-select.component';
 import { CapitalizePipe } from './pipes/capitalize/capitalize.pipe';
 import { FormControlNumberComponent } from './components/form-control-number/form-control-number.component';
+import { TaskFormComponent } from './components/card/card-back/card-back-left/task-form/task-form.component';
+import { FormControlDateComponent } from './components/form-control-date/form-control-date.component';
+import { FormControlHourComponent } from './components/form-control-hour/form-control-hour.component';
+import { FormControlSwitchComponent } from './components/form-control-switch/form-control-switch.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   declarations: [
     SideBarComponent,
@@ -65,7 +71,11 @@ import { FormControlNumberComponent } from './components/form-control-number/for
     FormControlTextComponent,
     FormControlSelectComponent,
     CapitalizePipe,
-    FormControlNumberComponent
+    FormControlNumberComponent,
+    TaskFormComponent,
+    FormControlDateComponent,
+    FormControlHourComponent,
+    FormControlSwitchComponent
   ],
   exports: [
     SideBarComponent,
@@ -78,6 +88,8 @@ import { FormControlNumberComponent } from './components/form-control-number/for
     FormControlTextComponent,
     FormControlSelectComponent,
     FormControlNumberComponent,
+    FormControlDateComponent,
+    FormControlHourComponent,
     ListComponent
   ]
 })

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 import { CardEmitter } from './../../../../emitters/card.emitter';
 
@@ -11,7 +11,7 @@ import { CardEmitter } from './../../../../emitters/card.emitter';
     './card-back-left.component.styl'
   ],
 })
-export class CardBackLeftComponent implements OnInit {
+export class CardBackLeftComponent implements OnInit, OnChanges {
 
   @Input() isOpen: boolean;
 
@@ -23,8 +23,11 @@ export class CardBackLeftComponent implements OnInit {
     this._cardEmitter.cardEventEmitter.emit('');
   }
 
-
   ngOnInit() {
+  }
+
+  ngOnChanges() {
+    console.log(this.isOpen);
   }
 
 }

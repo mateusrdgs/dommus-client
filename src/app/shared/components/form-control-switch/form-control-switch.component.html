@@ -1,0 +1,15 @@
+<div class="form-control">
+  <label for="{{ controlName }}" class="form-control__label"
+    [ngClass]="
+      {
+        'label-board': controlName === 'board',
+        'label-gears': controlName === 'component'
+      }"
+    [textContent]="controlName | capitalize"
+  >
+  </label>
+  <span class="switch">
+    <input type="checkbox" class="input">
+    <span class="slider"></span>
+  </span>
+</div>
