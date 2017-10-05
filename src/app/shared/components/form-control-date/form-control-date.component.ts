@@ -22,13 +22,12 @@ export class FormControlDateComponent {
 
   @Input() controlName: string;
   @Input() control: FormControl;
-  @Input() placeholder = 'Enter here...';
   private _self = this;
-  private _value: number;
+  private _value: string;
 
   constructor() { }
 
-  public writeValue(value: number) {
+  public writeValue(value: string) {
     if (value !== undefined) {
       this._value = value;
     }
@@ -61,7 +60,7 @@ export class FormControlDateComponent {
   private onChange(event) {
     const { value } = event.target;
     if (value !== '' && (value !== null || value !== undefined)) {
-      this._value = parseInt(event.target.value, 10);
+      this._value = event.target.value;
     }
     this.propagateChange(this._value);
   }

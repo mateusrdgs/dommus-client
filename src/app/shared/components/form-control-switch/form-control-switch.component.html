@@ -8,8 +8,8 @@
     [textContent]="controlName | capitalize"
   >
   </label>
-  <span class="switch">
-    <input type="checkbox" class="input">
-    <span class="slider"></span>
-  </span>
+  <label class="form-control__switch">
+    <input type="checkbox" class="form-control__switch__input" [checked]="_value" (change)="onChange($event)">
+    <span class="form-control__switch__slider"></span>
+  </label>
 </div>

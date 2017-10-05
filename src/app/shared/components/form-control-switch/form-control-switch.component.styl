@@ -1,33 +1,46 @@
-.switch
+.form-control
+  display flex
+  flex-direction column
+
+.form-control__switch
   display inline-block
+  height 2.5rem
+  margin 1.5rem 0 1rem 0
   position relative
-  width 6rem
-  height 3rem
-
-.input
-  display none
-  &:checked
-  &:checked + .slider
-    background-color red
-    &:before
-      transform translateX(26px)
-
-.slider
-  top 0
-  left 0
-  right 0
-  bottom 0
-  background-color #CCC
   transition all .5s ease
+  width 6.25rem
+
+.form-control__switch__slider
+  background-color #FFF
+  bottom 0
+  left 0
   position absolute
-  &:before
-    position absolute
-    content ''
-    height 2rem
-    width 2rem
-    left 4px
-    bottom 4px
-    background-color #FFF
-    transition all .5s ease
+  right 0
+  top 0
+  transition all .5s ease
   &:hover
     cursor pointer
+  &:before
+    align-items center
+    background-color #CE5E4C
+    content 'OFF'
+    display flex
+    height 2rem
+    justify-content center
+    left 50%
+    position absolute
+    top 50%
+    transform translate(-110%, -50%)
+    transition all .5s ease
+    width 2.5rem
+
+.form-control__switch__input
+  display none
+  &:checked
+  &:checked + .form-control__switch__slider
+    &:before
+      content 'ON'
+      background-color #198A61
+      transform translate(10%, -50%)
+  &:focus + .form-control__switch__slider
+    box-shadow 0 0 .1rem #2196F3

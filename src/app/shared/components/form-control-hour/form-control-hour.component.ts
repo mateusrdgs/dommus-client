@@ -61,9 +61,9 @@ export class FormControlHourComponent {
   private onChange(event) {
     const { value } = event.target;
     if (value !== '' && (value !== null || value !== undefined)) {
-      this._value = parseInt(event.target.value, 10);
+      this._value = event.target.value;
+      this.propagateChange(this._value);
     }
-    this.propagateChange(this._value);
   }
 
 }

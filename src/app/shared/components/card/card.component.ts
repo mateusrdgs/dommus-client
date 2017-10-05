@@ -99,7 +99,7 @@ export class CardComponent implements OnInit {
   }
 
   componentClassIncludes(classList: string, searchString: string) {
-    return classList.includes(searchString);
+    return classList !== undefined && classList.includes(searchString);
   }
 
 }
