@@ -33,11 +33,29 @@ export class TaskFormComponent implements OnInit {
     const _id = '59d251db07c24b12852d1bde';
     if (this.taskForm.valid) {
       const { date, hour, state } = this.taskForm.value,
-            [ hours, mins ] = hour.split(':'),
-            now = Date.now(),
-            time = new Date(date).setHours(parseInt(hours, 10), parseInt(mins, 10));
-      this._socketIoService.emitMessage('create:Task', { _id, state, milliseconds: 2000 });
+            [day, month, year] = date.replace(/-/g, '/').split('/').reverse(),
+            datetime = this.extractDate(`${[month, day, year].join('/')},${hour}`),
+            now = this.extractDate(new Date().toLocaleString()),
+            milliseconds = datetime.getTime() - now.getTime();
+      this._socketIoService.emitMessage('create:Task', { _id, state, milliseconds });
     }
+  }
+
+  extractDate(datetime: string) {
+    const [date, time ] = datetime.split(','),
+          splittedDate = date.split('/'),
+          splittedTime = time.split(':'),
+          dt = new Date(
+            this.returnParsedInteger(splittedDate[2]),
+            this.returnParsedInteger(splittedDate[0]) - 1,
+            this.returnParsedInteger(splittedDate[1]),
+            this.returnParsedInteger(splittedTime[0]),
+            this.returnParsedInteger(splittedTime[1]));
+    return dt;
+  }
+
+  returnParsedInteger(number: string) {
+    return parseInt(number.trim(), 10);
   }
 
 }

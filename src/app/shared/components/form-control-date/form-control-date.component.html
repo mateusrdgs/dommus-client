@@ -3,7 +3,7 @@
     [textContent]="controlName | capitalize"
   >
   </label>
-    <input type="date" class="form-control__input"
+    <input type="date" date-format="dd/mm/yyyy" class="form-control__input"
       [ngClass]="
         {
           'invalid': control?.invalid && control?.touched,
