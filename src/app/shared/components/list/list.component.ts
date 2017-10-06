@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ListComponent implements OnInit {
 
   @Input() set: Array<any>;
+  @Input() subroute: string;
 
   constructor() { }
 

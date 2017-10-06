@@ -9,7 +9,7 @@
       <div class="residence-content__container">
         <h2 class="residence-content__label">Rooms</h2>
         <ng-container *ngIf="residence?.rooms?.length else noRooms">
-          <list [set]="residence?.rooms"></list>
+          <list [set]="residence?.rooms" [subroute]="'rooms'"></list>
         </ng-container>
         <ng-template #noRooms>
           <h3 class="residence-content__data">No rooms on this residence</h3>
@@ -19,7 +19,7 @@
       <div class="residence-content__container">
         <h2 class="residence-content__label">Boards</h2>
         <ng-container *ngIf="residence?.boards?.length else noBoards">
-          <list [set]="residence?.boards"></list>
+          <list [set]="residence?.boards" [subroute]="'boards'"></list>
         </ng-container>
         <button-new [routePath]="'boards'"></button-new>
         <ng-template #noBoards>
