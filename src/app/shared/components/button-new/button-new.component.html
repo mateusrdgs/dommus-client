@@ -1,4 +1,11 @@
 <a class="button-new"
    [routerLink]=" routePath ? [routePath, 'new'] : ['new']"
-   [textContent]=" routePath ? 'New ' + routePath.slice(0, routePath.length - 1) : 'New ' + routeName">
+   >
+   <i class="fa fa-plus"></i>
 </a>
+
+<!--<a class="button-new"
+   [routerLink]=" routePath ? [routePath, 'new'] : ['new']"
+   [textContent]=" routePath ? 'New ' + routePath.slice(0, routePath.length - 1) : 'New ' + routeName">
+</a>-->
+
