@@ -1,7 +1,9 @@
-<button-back></button-back>
+<div class="button-container">
+  <button-back></button-back>
+  <button-new></button-new>
+</div>
 <div class="rooms-container">
   <list [set]="rooms" *ngIf="rooms else noRooms"></list>
-  <button-new></button-new>
   <ng-template #noRooms>
     <h1 class="rooms-container__warning" [textContent]="message"></h1>
   </ng-template>
