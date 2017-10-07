@@ -1,7 +1,9 @@
-<button-back></button-back>
+<div class="button-container">
+    <button-back></button-back>
+    <button-update [routePath]="'rooms'"></button-update>
+  </div>
 <div class="room-container" *ngIf="room">
   <h1 class="room-container__title" [textContent]="room?.description"></h1>
-  <button-update [routePath]="'rooms'"></button-update>
   <!--<a [routerLink]="['update']">Update room</a>-->
   <h2 class="room-content__label">Components</h2>
   <ul>

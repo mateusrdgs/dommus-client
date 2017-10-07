@@ -2,8 +2,11 @@
 <div class="update-user-container">
   <h1 class="update-user-container__title">Update an user</h1>
   <form class="update-user-form" [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
-    <label for="name" class="update-user-form__label">Name</label>
-    <input type="text" formControlName="name" class="update-user-form__input">
+    <form-control-text
+      formControlName="name"
+      [controlName]="'name'"
+      [control]="updateUserForm.controls['name']"
+    ></form-control-text>
     <fieldset class="update-user-form__fieldset">
       <legend class="update-user-form__legend">Admin</legend>
       <label for="admin" class="update-user-form__label">No</label>
@@ -15,6 +18,6 @@
       <label for="adminPin" class="update-user-form__label">Pin</label>
       <input type="number" formControlName="pin" class="update-user-form__input">
     </ng-container>
-    <input type="submit" value="Update" [disabled]="updateUserForm.invalid"  class="update-user-form__submit">
+    <button-submit></button-submit>
   </form>
 </div>

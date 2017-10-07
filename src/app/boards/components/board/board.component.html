@@ -1,4 +1,7 @@
-<button-back></button-back>
+<div class="button-container">
+  <button-back></button-back>
+  <button-update [routePath]="'boards'"></button-update>
+</div>
 <div class="board-container" *ngIf="board">
   <h1 class="board-container__title" [textContent]="board?.description"></h1>
   <div class="board-content">
@@ -32,5 +35,4 @@
       </div>
     </div>
   </div>
-  <button-update [routePath]="'boards'"></button-update>
 </div>
