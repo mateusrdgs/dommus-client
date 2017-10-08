@@ -1,20 +1,19 @@
-<form [formGroup]="taskForm" (submit)="onSubmit()">
+<form class="task-form" [formGroup]="taskForm" (submit)="onSubmit()">
   <div class="input-container">
     <form-control-date
       formControlName="date"
       [controlName]="'Date'">
     </form-control-date>
     <form-control-hour
-      formControlName="hour"
-      [controlName]="'Hour'">
-    </form-control-hour>
+    formControlName="hour"
+    [controlName]="'Hour'">
+  </form-control-hour>
   </div>
   <div class="input-container">
     <form-control-switch
       formControlName="state"
-      [controlName]="'Value'"
-    >
+      [controlName]="'Value'">
     </form-control-switch>
   </div>
-  <input type="submit" value="Save">
+  <input type="submit" value="Save" class="sbt">
 </form>

@@ -7,6 +7,8 @@ import { Observable } from 'rxjs/Observable';
 import Board from './../../classes/board';
 import { BoardsService } from './../../services/boards.service';
 
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
+
 @Component({
   selector: 'update-board',
   templateUrl: './update-board.component.html',
@@ -29,20 +31,30 @@ export class UpdateBoardComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _boardsService: BoardsService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _topBarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
-    this._idResidence = this._activatedRoute.snapshot.params['idResidence'];
+    this.extractDataFromResolver();
+  }
+
+  extractDataFromResolver() {
     this._activatedRoute.data
-        .subscribe(data => {
-          if (data) {
-            const { board } = data,
-                  { _id, analogPins, description, digitalPins, model, port } = board;
-            this.board = new Board(description, model, port, analogPins, digitalPins, _id);
+        .map(response => response['board'])
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            const board = response.json()['Board'];
+            this.board = this.iterateOverProperties(board);
             this.startUpdateBoardForm(this.board);
+            this._topBarEmitter.emitNewRouteTitle(this.board.Description);
           }
         });
+  }
+
+  iterateOverProperties(board: any): Board {
+    const { _id, analogPins, description, digitalPins, model, port } = board;
+    return new Board(description, model, port, analogPins, digitalPins, _id);
   }
 
   startUpdateBoardForm(board: Board): void {

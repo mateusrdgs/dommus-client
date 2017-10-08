@@ -1,19 +1,21 @@
 <div class="button-container">
-    <button-back></button-back>
-    <button-update [routePath]="'rooms'"></button-update>
-  </div>
+  <button-back></button-back>
+  <button-update [routePath]="'rooms'"></button-update>
+</div>
 <div class="room-container" *ngIf="room">
-  <h1 class="room-container__title" [textContent]="room?.description"></h1>
-  <!--<a [routerLink]="['update']">Update room</a>-->
-  <h2 class="room-content__label">Components</h2>
-  <ul>
-    <li *ngFor="let component of room.components">
-      <a [routerLink]="['components',component._id]" [textContent]="component.description"></a>
-    </li>
-  </ul>
-  <h3 class="room-content__data" *ngIf="room.components.length else noComponents"></h3>
-  <ng-template #noComponents>
-    <h3 class="room-content__data">No components on this room</h3>
-  </ng-template>
-  <button-new [routePath]="'components'"></button-new>
+  <div class="room-content__container">
+    <div class="room-content__container-top">
+      <h2 class="room-content__label">Components</h2>
+      <button-new [routePath]="'components'"></button-new>
+    </div>
+    <ul>
+      <li *ngFor="let component of room.components">
+        <a [routerLink]="['components', component._id]" [textContent]="component.description"></a>
+      </li>
+    </ul>
+    <h3 class="room-content__data" *ngIf="room.components.length else noComponents"></h3>
+    <ng-template #noComponents>
+      <h3 class="room-content__data">No components on this room</h3>
+    </ng-template>
+  </div>
 </div>

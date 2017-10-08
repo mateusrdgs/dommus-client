@@ -44,6 +44,7 @@ import { TaskFormComponent } from './components/card/card-back/card-back-left/ta
 import { FormControlDateComponent } from './components/form-control-date/form-control-date.component';
 import { FormControlHourComponent } from './components/form-control-hour/form-control-hour.component';
 import { FormControlSwitchComponent } from './components/form-control-switch/form-control-switch.component';
+import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
 
 @NgModule({
   imports: [
@@ -75,13 +76,15 @@ import { FormControlSwitchComponent } from './components/form-control-switch/for
     TaskFormComponent,
     FormControlDateComponent,
     FormControlHourComponent,
-    FormControlSwitchComponent
+    FormControlSwitchComponent,
+    ButtonDeleteComponent
   ],
   exports: [
     SideBarComponent,
     TopbarComponent,
     CardComponent,
     ButtonBackComponent,
+    ButtonDeleteComponent,
     ButtonNewComponent,
     ButtonUpdateComponent,
     ButtonSubmitComponent,

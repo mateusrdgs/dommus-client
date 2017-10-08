@@ -1,14 +1,22 @@
-<button-back></button-back>
+<div class="button-container">
+  <button-back></button-back>
+  <button-delete></button-delete>
+</div>
 <div class="update-board-container">
   <h1 class="update-board-container__title">Update {{ board?.Description }}</h1>
   <form [formGroup]="updateBoardForm" class="update-board-form" (ngSubmit)="onSubmit()">
-    <label for="description" class="update-board-form__label">Description</label>
-    <input type="text" formControlName="description" class="update-board-form__input">
-    <label for="port" class="update-board-form__label">Port</label>
-    <input type="number" formControlName="port" class="update-board-form__input">
-    <div class="update-board-form__buttons-container">
-      <a [routerLink]="['../']" class="update-board-form__buttons-container__button">Return</a>
-      <input type="submit" value="Save" class="update-board-form__submit" [disabled]="updateBoardForm.invalid">
-    </div>
+    <form-control-text
+      formControlName="description"
+      [controlName]="'description'"
+      [control]="updateBoardForm.controls['description']"
+    >
+    </form-control-text>
+    <form-control-number
+      formControlName="port"
+      [controlName]="'port'"
+      [control]="updateBoardForm.controls['port']"
+    >
+    </form-control-number>
+    <button-submit [disabled]="updateBoardForm.invalid"></button-submit>
   </form>
 </div>

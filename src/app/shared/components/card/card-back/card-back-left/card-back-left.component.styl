@@ -1,17 +1,20 @@
 :host-context(.flipped-left)
   display flex
   flex 1
-  transition all 5s ease
+  transition all .5s ease
 
 .card__back-left
   color #FFF
   flex 0 1 0%
   max-width 0
   opacity 0
-  transition all 5s ease
+  transition all .5s ease
   
+.card__back-left__form
+  height calc(100% - 2.5rem)
+
 .isOpen
   flex 2 0 100%
   max-width 100%
   opacity 1
-  transition all 5s ease
+  transition all .5s ease

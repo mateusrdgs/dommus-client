@@ -29,7 +29,6 @@ export class ResidenceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topbarEmitter.emitNewRouteTitle('Residences');
     this.extractDataFromResolver();
   }
 
@@ -46,6 +45,7 @@ export class ResidenceComponent implements OnInit {
           this._residenceEmitter.enteredResidence.emit(_id);
           this.saveResidenceDataOnLocalStorage(_id, url);
           this.tryToConnectToLocalModule(url);
+          this._topbarEmitter.emitNewRouteTitle(this.residence.Description);
         }
       } else {
         console.log('error');

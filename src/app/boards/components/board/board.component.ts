@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
+
 import Board from './../../classes/board';
 
 @Component({
@@ -15,7 +17,8 @@ export class BoardComponent implements OnInit {
   chunksDigitalPins;
 
   constructor(
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _topBarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
@@ -31,6 +34,7 @@ export class BoardComponent implements OnInit {
             this.board = new Board(description, model, port, analogPins, digitalPins, _id);
             this.chunksAnalogPins = this.splitArrayIntoChunks(5, this.board.AnalogPins);
             this.chunksDigitalPins = this.splitArrayIntoChunks(10, this.board.DigitalPins);
+            this._topBarEmitter.emitNewRouteTitle(this.board.Description);
           } else {
             console.error(response);
           }

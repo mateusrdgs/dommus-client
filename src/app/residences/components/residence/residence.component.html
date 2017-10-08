@@ -3,27 +3,29 @@
   <button-update [routePath]="'residences'"></button-update>
 </div>
 <div class="residence-container" *ngIf="residence">
-  <h1 class="residence-container__title" [textContent]="residence?.description"></h1>
   <div class="residence-content">
-    <h2 class="residence-content__label">URL</h2>
-    <h3 class="residence-content__data" [textContent]="residence?.url"></h3>
+    <h2 class="residence-content__data" [textContent]="residence?.url"></h2>
     <div class="residence-list__container">
       <div class="residence-content__container">
-        <h2 class="residence-content__label">Rooms</h2>
+        <div class="residence-content__container-top">
+          <h2 class="residence-content__label">Rooms</h2>
+          <button-new [routePath]="'rooms'"></button-new>
+        </div>
         <ng-container *ngIf="residence?.rooms?.length else noRooms">
           <list [set]="residence?.rooms" [subroute]="'rooms'"></list>
         </ng-container>
         <ng-template #noRooms>
           <h3 class="residence-content__data">No rooms on this residence</h3>
         </ng-template>
-        <button-new [routePath]="'rooms'"></button-new>
       </div>
       <div class="residence-content__container">
-        <h2 class="residence-content__label">Boards</h2>
+        <div class="residence-content__container-top">
+          <h2 class="residence-content__label">Boards</h2>
+          <button-new [routePath]="'boards'"></button-new>
+        </div>
         <ng-container *ngIf="residence?.boards?.length else noBoards">
           <list [set]="residence?.boards" [subroute]="'boards'"></list>
         </ng-container>
-        <button-new [routePath]="'boards'"></button-new>
         <ng-template #noBoards>
           <h3 class="residence-content__data">No boards on this residence</h3>
         </ng-template>

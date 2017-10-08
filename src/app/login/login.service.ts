@@ -44,7 +44,7 @@ export class LoginService {
   handleError(error: Error): Promise<any> {
     return Promise.reject(error['_body'] || error.message || error)
                   .catch(err => {
-                    console.error(err);
+                    alert(err);
                   });
   }
 

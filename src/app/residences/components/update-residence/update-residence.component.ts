@@ -12,6 +12,8 @@ import { UrlCreatorService } from './../../../shared/services/url-creator/url-cr
 
 import Residence from './../../classes/residence';
 
+import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
+
 @Component({
   selector: 'update-residence',
   templateUrl: './update-residence.component.html',
@@ -29,7 +31,8 @@ export class UpdateResidenceComponent implements OnInit {
     private _urlCreatorService: UrlCreatorService,
     private _remoteService: RemoteService,
     private _residencesService: ResidencesService,
-    private _router: Router
+    private _router: Router,
+    private _topBarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class UpdateResidenceComponent implements OnInit {
             const { _id, description, url, rooms, boards } = response.json()['Residence'];
             this.residence = new Residence(description, url, _id, rooms, boards);
             this.createUpdateResidenceForm(this.residence);
+            this._topBarEmitter.emitNewRouteTitle(this.residence.Description);
           }
         });
   }
