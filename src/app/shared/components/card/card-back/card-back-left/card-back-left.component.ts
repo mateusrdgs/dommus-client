@@ -27,7 +27,6 @@ export class CardBackLeftComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.isOpen);
   }
 
 }

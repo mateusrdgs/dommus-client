@@ -22,7 +22,6 @@ export class TaskFormComponent implements OnInit {
 
   ngOnInit() {
     this.createTaskForm();
-    console.log(this._datePipe.transform(Date.now(), 'shortDate'));
   }
 
   createTaskForm() {

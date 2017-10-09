@@ -60,6 +60,7 @@ export class CardComponent implements OnInit {
         this.componentSubscription =
         this._socketIoService.listenToEvent(`data:${ this.component.id }`)
             .subscribe(data => {
+              console.log(data);
               this.component.position = data['id'] === this.component.id ? data['value'] : this.component.value;
             });
         break;

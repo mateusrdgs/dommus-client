@@ -45,6 +45,9 @@ import { FormControlDateComponent } from './components/form-control-date/form-co
 import { FormControlHourComponent } from './components/form-control-hour/form-control-hour.component';
 import { FormControlSwitchComponent } from './components/form-control-switch/form-control-switch.component';
 import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
+import { CardFrontRangeComponent } from './components/card/card-front/card-front-range/card-front-range.component';
+import { CardFrontIconComponent } from './components/card/card-front/card-front-icon/card-front-icon.component';
+import { CardFrontDataComponent } from './components/card/card-front/card-front-data/card-front-data.component';
 
 @NgModule({
   imports: [
@@ -77,7 +80,10 @@ import { ButtonDeleteComponent } from './components/button-delete/button-delete.
     FormControlDateComponent,
     FormControlHourComponent,
     FormControlSwitchComponent,
-    ButtonDeleteComponent
+    ButtonDeleteComponent,
+    CardFrontRangeComponent,
+    CardFrontIconComponent,
+    CardFrontDataComponent
   ],
   exports: [
     SideBarComponent,
