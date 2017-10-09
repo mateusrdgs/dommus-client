@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { BoardsService } from './../../../boards/services/boards.service';
 import { ComponentsService } from './../../services/components.service';
 import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
+import { RemoteService } from './../../../shared/services/remote/remote.service';
+import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
 
 import Switch from '../../classes/switch';
 import Thermometer from './../../classes/thermometer';
@@ -68,7 +70,9 @@ export class NewComponentComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _componentsService: ComponentsService,
     private _activatedRoute: ActivatedRoute,
-    private _socketIoService: SocketIoService
+    private _socketIoService: SocketIoService,
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
   ) { }
 
   getResidenceRouteParams() {
@@ -193,14 +197,34 @@ export class NewComponentComponent implements OnInit {
   }
 
   saveNewComponent(_idResidence: string, _idRoom: string, component: any) {
-    this._componentsService
-        .createComponent(_idResidence, _idRoom, component)
-        .then(response => {
-          if (response['_id']) {
-            this._socketIoService.emitMessage('create:Component', response);
-          }
+    this._activatedRoute.params
+        .subscribe(params => {
+          const { idResidence, idRoom } = params,
+                url = this._urlCreatorService.createUrl('components', 'new', { idResidence, idRoom });
+          this.createComponent(url, component);
         })
-        .catch(error => console.error(error));
+        .unsubscribe();
+  }
+
+  createComponent(url: string, component: any) {
+    this._remoteService
+        .postResources(url, component)
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status === 201) {
+            const { _id } = response.json()['Component'];
+            component.Id = _id;
+            this._socketIoService
+                .emitMessageWithReturn('create:Component', 'created:Component', component)
+                .subscribe(created => {
+                  if (created) {
+                    console.log('Created!');
+                  } else {
+                    console.error('Error!');
+                  }
+                }, error => console.error(error))
+                .unsubscribe();
+          }
+        }, error => console.error(error));
   }
 
   createControls(nextFormType) {

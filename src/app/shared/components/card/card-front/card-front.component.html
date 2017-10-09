@@ -1,4 +1,4 @@
-<div class="card__front" [class.isOn]="component?.isOn" [ngClass]="{
+<div class="card__front" [class.isOn]="component?.isOn" [class.detected-motion]="detectedMotion" [ngClass]="{
   'is-switch': component?.type === 1,
   'is-thermometer': component?.type === 2,
   'is-light': component?.type === 3,
@@ -8,6 +8,6 @@
 }">
   <card-front-icons [componentId]="component?.id">
   </card-front-icons>
-  <card-front-description [componentType]="component?.type" [componentDescription]="component?.description" [componentMinRange]="component?.minRange" [componentMaxRange]="component?.maxRange" [componentPosition]="component?.position">
+  <card-front-description [componentId]="component?.id" [componentType]="component?.type" [componentDescription]="component?.description" [componentMinRange]="component?.minRange" [componentMaxRange]="component?.maxRange" [componentPosition]="component?.position">
   </card-front-description>
 </div>

@@ -87,8 +87,22 @@ _global-transition = all .5s ease
 
 .is-motion
   background-color _motion-component
-  &.is-alert
+  &.detected-motion
+    animation blink .5s linear infinite
+    & .fa-rss
+      animation beating 1s linear infinite
+
+@keyframes blink
+  0%, 100%
+    background-color _motion-component
+  50%
     background-color _motion-component--alert
+
+@keyframes beating
+  0%, 100%
+    transform scale(1)
+  50%
+    transform scale(1.5)
 
 .is-sensor
   background-color _sensor-component

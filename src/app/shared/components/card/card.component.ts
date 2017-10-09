@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -15,8 +15,8 @@ export class CardComponent implements OnInit {
   @Input() component;
   private componentFlipSubscription: Subscription;
   private componentSubscription: Subscription;
-  //flippedTo: string;
-  flippedTo = 'left';
+  flippedTo: string;
+  detectedMotion = false;
 
   constructor(
     private _cardEmitter: CardEmitter,
@@ -68,7 +68,7 @@ export class CardComponent implements OnInit {
         this.componentSubscription =
         this._socketIoService.listenToEvent(`motion:${ this.component.id }`)
             .subscribe(data => {
-              this.component.position = data['id'] === this.component.id ? data['detectedMotion'] : this.component.detectedMotion;
+              this.detectedMotion = data['id'] === this.component.id ? data['detectedMotion'] : this.detectedMotion;
             });
         break;
       }
