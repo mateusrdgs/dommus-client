@@ -1,0 +1,24 @@
+<div class="card-front__container">
+  <card-front-container-description [description]="description">
+  </card-front-container-description>
+  <ng-container [ngSwitch]="type">
+    <ng-container *ngSwitchCase="2">
+      <card-front-container-data [data]="data" [type]="type">
+      </card-front-container-data>
+    </ng-container>
+    <ng-container *ngSwitchCase="3">
+      <card-front-container-data [data]="data" [type]="type">
+      </card-front-container-data>
+    </ng-container>
+    <ng-container *ngSwitchCase="5">
+      <card-front-container-data [data]="data">
+      </card-front-container-data>
+    </ng-container>
+    <ng-container *ngSwitchCase="6">
+      <card-front-container-range>
+      </card-front-container-range>
+    </ng-container>
+  </ng-container>
+  <card-front-container-icon [type]="type">
+  </card-front-container-icon>
+</div>

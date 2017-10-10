@@ -1,21 +1,10 @@
-:host
-  display flex
-  flex-direction column
-  flex 1
-
-.card__front-description
+:host, .card-front__container__range
   display flex
   flex 1
-  flex-direction column
-  font 700 2.5rem 'Exo 2', sans-serif
-  justify-content space-around
-  text-align center
 
-.card__range
-  display flex
+.card-front__container__range
   -webkit-appearance none
   background-color transparent
-  width 100%
   &::-webkit-slider-thumb
     -webkit-appearance none
     background-color #FFF
@@ -70,7 +59,3 @@
     color transparent
     cursor pointer
     width 100%
-
-@media screen and (min-width: 26rem)
-  .card__front-description
-    font-size 3.5rem

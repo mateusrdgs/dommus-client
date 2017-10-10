@@ -24,6 +24,7 @@ export class CardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.component);
     this.startFlipSubscription();
     this.startStateSubscription();
   }
@@ -51,7 +52,8 @@ export class CardComponent implements OnInit {
         this.componentSubscription =
           this._socketIoService.listenToEvent(`data:${ this.component.id }`)
             .subscribe(data => {
-              this.component.position = data['id'] === this.component.id ? data['position'] : this.component.position;
+              this.component.celsius = data['id'] === this.component.id ? data['celsius'] : this.component.celsius;
+              this.component.fahrenheit = data['id'] === this.component.id ? data['celsius'] : this.component.fahrenheit;
             });
         break;
       }

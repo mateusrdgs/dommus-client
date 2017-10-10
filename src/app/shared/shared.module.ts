@@ -24,7 +24,6 @@ import { CardBackLeftComponent } from './components/card/card-back/card-back-lef
 import { CardBackRightComponent } from './components/card/card-back/card-back-right/card-back-right.component';
 import { CardFrontComponent } from './components/card/card-front/card-front.component';
 import { CardFrontIconsComponent } from './components/card/card-front/card-front-icons/card-front-icons.component';
-import { CardFrontDescriptionComponent } from './components/card/card-front/card-front-description/card-front-description.component';
 import { MenuToggleComponent } from './components/top-bar/menu-toggle/menu-toggle.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SideBarComponent } from './components/side-bar/side-bar.component';
@@ -45,9 +44,11 @@ import { FormControlDateComponent } from './components/form-control-date/form-co
 import { FormControlHourComponent } from './components/form-control-hour/form-control-hour.component';
 import { FormControlSwitchComponent } from './components/form-control-switch/form-control-switch.component';
 import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
-import { CardFrontRangeComponent } from './components/card/card-front/card-front-range/card-front-range.component';
-import { CardFrontIconComponent } from './components/card/card-front/card-front-icon/card-front-icon.component';
-import { CardFrontDataComponent } from './components/card/card-front/card-front-data/card-front-data.component';
+import { CardFrontContainerComponent } from './components/card/card-front/card-front-container/card-front-container.component';
+import { CardFrontContainerDescriptionComponent } from './components/card/card-front/card-front-container/card-front-container-description/card-front-container-description.component';
+import { CardFrontContainerDataComponent } from './components/card/card-front/card-front-container/card-front-container-data/card-front-container-data.component';
+import { CardFrontContainerIconComponent } from './components/card/card-front/card-front-container/card-front-container-icon/card-front-container-icon.component';
+import { CardFrontContainerRangeComponent } from './components/card/card-front/card-front-container/card-front-container-range/card-front-container-range.component';
 
 @NgModule({
   imports: [
@@ -63,7 +64,6 @@ import { CardFrontDataComponent } from './components/card/card-front/card-front-
     CardComponent,
     CardFrontComponent,
     CardFrontIconsComponent,
-    CardFrontDescriptionComponent,
     CardBackComponent,
     CardBackLeftComponent,
     CardBackRightComponent,
@@ -81,9 +81,11 @@ import { CardFrontDataComponent } from './components/card/card-front/card-front-
     FormControlHourComponent,
     FormControlSwitchComponent,
     ButtonDeleteComponent,
-    CardFrontRangeComponent,
-    CardFrontIconComponent,
-    CardFrontDataComponent
+    CardFrontContainerComponent,
+    CardFrontContainerDescriptionComponent,
+    CardFrontContainerDataComponent,
+    CardFrontContainerIconComponent,
+    CardFrontContainerRangeComponent
   ],
   exports: [
     SideBarComponent,

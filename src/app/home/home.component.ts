@@ -44,6 +44,16 @@ export class HomeComponent implements OnInit {
             this._componentsSubscription = this.subscribeToEvent('get:Components');
             this.emitMessage('get:Components', true);
             this.connectedToLocalModule = true;
+          } else {
+            this._socketIoService
+                .connectToLocalModule(url)
+                .then(secondaryConnectionEstablished => {
+                  if (secondaryConnectionEstablished) {
+                    this._componentsSubscription = this.subscribeToEvent('get:Components');
+                    this.emitMessage('get:Components', true);
+                    this.connectedToLocalModule = true;
+                  }
+                });
           }
         });
   }

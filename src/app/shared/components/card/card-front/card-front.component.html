@@ -8,6 +8,5 @@
 }">
   <card-front-icons [componentId]="component?.id">
   </card-front-icons>
-  <card-front-description [componentId]="component?.id" [componentType]="component?.type" [componentDescription]="component?.description" [componentMinRange]="component?.minRange" [componentMaxRange]="component?.maxRange" [componentPosition]="component?.position">
-  </card-front-description>
+  <card-front-container [description]="component?.description" [type]="component.type" [data]="data"></card-front-container>
 </div>
