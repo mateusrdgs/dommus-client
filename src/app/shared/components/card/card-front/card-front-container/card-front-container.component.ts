@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'card-front-container',
@@ -10,10 +10,18 @@ export class CardFrontContainerComponent implements OnInit {
   @Input() data;
   @Input() description;
   @Input() type;
+  @Input() minRange;
+  @Input() maxRange;
+  @Input() position;
+  @Output() positionChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onPositionChange(event) {
+    this.positionChange.emit(event);
   }
 
 }

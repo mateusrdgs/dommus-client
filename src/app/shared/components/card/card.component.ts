@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
@@ -24,7 +24,6 @@ export class CardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.component);
     this.startFlipSubscription();
     this.startStateSubscription();
   }
@@ -52,8 +51,8 @@ export class CardComponent implements OnInit {
         this.componentSubscription =
           this._socketIoService.listenToEvent(`data:${ this.component.id }`)
             .subscribe(data => {
-              this.component.celsius = data['id'] === this.component.id ? data['celsius'] : this.component.celsius;
-              this.component.fahrenheit = data['id'] === this.component.id ? data['celsius'] : this.component.fahrenheit;
+              this.component.data = data['id'] === this.component.id ?
+                { celsius: data['celsius'], fahrenheit: data['fahrenheit'] } : this.component.data;
             });
         break;
       }
@@ -62,8 +61,8 @@ export class CardComponent implements OnInit {
         this.componentSubscription =
         this._socketIoService.listenToEvent(`data:${ this.component.id }`)
             .subscribe(data => {
-              console.log(data);
-              this.component.position = data['id'] === this.component.id ? data['value'] : this.component.value;
+              this.component.data = data['id'] === this.component.id ?
+                { value: data['value'] } : this.component.data;
             });
         break;
       }
@@ -71,7 +70,8 @@ export class CardComponent implements OnInit {
         this.componentSubscription =
         this._socketIoService.listenToEvent(`motion:${ this.component.id }`)
             .subscribe(data => {
-              this.detectedMotion = data['id'] === this.component.id ? data['detectedMotion'] : this.detectedMotion;
+              this.component.data = data['id'] === this.component.id ?
+                { detectedMotion: data['detectedMotion'] } : this.component.data;
             });
         break;
       }
@@ -103,6 +103,14 @@ export class CardComponent implements OnInit {
 
   componentClassIncludes(classList: string, searchString: string) {
     return classList !== undefined && classList.includes(searchString);
+  }
+
+  onPositionChange(event) {
+    this._socketIoService
+        .emitMessage(`state:Component`, {
+          id: this.component.id,
+          position: event.position
+    });
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'card-front',
@@ -8,27 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardFrontComponent implements OnInit {
 
   @Input() component;
-  @Input() detectedMotion;
-  data: any;
+  @Output() positionChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-    switch (this.component.type) {
-      case 2: {
-        this.data = {
-          celsius: this.component.celsius,
-          fahrenheit: this.component.fahrenheit
-        };
-        break;
-      }
-      case 3: {
-        this.data = {
-          value: this.component.value
-        };
-        break;
-      }
-    }
+  }
+
+  onPositionChange(event) {
+    this.positionChange.emit(event);
   }
 
 }

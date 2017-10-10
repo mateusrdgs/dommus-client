@@ -15,7 +15,11 @@
       </card-front-container-data>
     </ng-container>
     <ng-container *ngSwitchCase="6">
-      <card-front-container-range>
+      <card-front-container-range
+        [minRange]="minRange"
+        [maxRange]="maxRange"
+        [position]="position"
+        (positionChange)="onPositionChange($event)" >
       </card-front-container-range>
     </ng-container>
   </ng-container>
