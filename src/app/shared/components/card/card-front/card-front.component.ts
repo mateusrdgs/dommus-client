@@ -8,11 +8,21 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CardFrontComponent implements OnInit {
 
   @Input() component;
+  @Output() flippedTo: EventEmitter<string> = new EventEmitter();
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
   @Output() positionChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  flipTo(event) {
+    this.flippedTo.emit(event);
+  }
+
+  onStateChange(event) {
+    this.stateChange.emit(event);
   }
 
   onPositionChange(event) {

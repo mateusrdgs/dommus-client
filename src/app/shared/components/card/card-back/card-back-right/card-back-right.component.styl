@@ -1,18 +1,26 @@
-.card__back-right__icons
-  justify-content flex-end
+:host
+  display flex
+  flex 1
 
 :host-context(.flipped-right)
   display flex
   flex 1
   transition all .5s ease-in-out
 
+.card__back-right__icons
+  display flex
+  justify-content flex-end
+
 .card__back-right
   color #FFF
   flex 0 1 0%
   max-width 0
   opacity 0
-  transition all 3s linear
+  transition all .5s ease
   &.isOpen
     flex 2 0 100%
     max-width 100%
     opacity 1
+
+.fa-times
+  margin-left auto

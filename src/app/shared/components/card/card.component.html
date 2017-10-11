@@ -2,11 +2,19 @@
      [ngClass]=" {
       'flipped-right': flippedTo === 'right',
       'flipped-left': flippedTo === 'left'
-     }"
-    (click)="changeState($event)"
->
+     }">
   <div class="card__flipper">
-    <card-front [component]="component" (positionChange)="onPositionChange($event)"></card-front>
-    <card-back [componentIsOn]="component?.isOn" [componentType]="component?.type" [flippedTo]="flippedTo"></card-back>
+    <card-front
+      [component]="component"
+      (flippedTo)="flipTo($event)"
+      (positionChange)="onPositionChange($event)"
+      (stateChange)="onStateChange($event)">
+    </card-front>
+    <card-back
+      [isOn]="component?.isOn"
+      [type]="component?.type"
+      [side]="flippedTo"
+      (flippedTo)="flipTo($event)">
+    </card-back>
   </div>
 </div>

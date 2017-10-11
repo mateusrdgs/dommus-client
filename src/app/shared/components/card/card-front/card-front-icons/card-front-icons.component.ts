@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 import { CardEmitter } from './../../../../emitters/card.emitter';
 
@@ -9,7 +9,9 @@ import { CardEmitter } from './../../../../emitters/card.emitter';
 })
 export class CardFrontIconsComponent implements OnInit {
 
-  @Input() componentId = '';
+  @Input() id: string;
+  @Input() type: number;
+  @Output() flippedTo: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private _cardEmitter: CardEmitter
@@ -19,7 +21,7 @@ export class CardFrontIconsComponent implements OnInit {
   }
 
   flipTo(side) {
-    this._cardEmitter.cardEventEmitter.emit({ id: this.componentId, side });
+    this.flippedTo.emit(side);
   }
 
 }

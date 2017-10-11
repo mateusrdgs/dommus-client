@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { CardEmitter } from './../../emitters/card.emitter';
 import { SocketIoService } from './../../services/socket-io/socket-io.service';
 
 @Component({
@@ -16,25 +15,13 @@ export class CardComponent implements OnInit {
   private componentFlipSubscription: Subscription;
   private componentSubscription: Subscription;
   flippedTo: string;
-  detectedMotion = false;
 
   constructor(
-    private _cardEmitter: CardEmitter,
     private _socketIoService: SocketIoService
   ) { }
 
   ngOnInit() {
-    this.startFlipSubscription();
     this.startStateSubscription();
-  }
-
-  startFlipSubscription() {
-    this.componentFlipSubscription =
-      this._cardEmitter.cardEventEmitter
-          .subscribe(data => {
-            const { id, side } = data;
-            this.flippedTo = this.component['id'] === id ? side : '';
-          });
   }
 
   startStateSubscription() {
@@ -86,23 +73,16 @@ export class CardComponent implements OnInit {
     }
   }
 
-  changeState(event: Event) {
-    if (this.component.type === 1) {
-      const { target } = event,
-            classList = target['classList'][0],
-            containsDescription = this.componentClassIncludes(classList, 'description');
-      if (containsDescription) {
-            this._socketIoService.emitMessage('state:Component', {
-              id: this.component.id, isOn: !this.component.isOn
-            });
-      }
-    } else {
-      return false;
-    }
+  flipTo(event) {
+    this.flippedTo = event;
   }
 
-  componentClassIncludes(classList: string, searchString: string) {
-    return classList !== undefined && classList.includes(searchString);
+  onStateChange(event) {
+    this._socketIoService
+        .emitMessage(`state:Component`, {
+          id: this.component.id,
+          isOn: event.isOn
+        });
   }
 
   onPositionChange(event) {

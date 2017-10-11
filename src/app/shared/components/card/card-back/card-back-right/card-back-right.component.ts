@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CardEmitter } from './../../../../emitters/card.emitter';
 
@@ -7,23 +7,24 @@ import { CardEmitter } from './../../../../emitters/card.emitter';
   templateUrl: './card-back-right.component.html',
   styleUrls: [
     '../../card.component.styl',
-    '../card-back.component.styl',
     './card-back-right.component.styl'
   ]
 })
 export class CardBackRightComponent implements OnInit {
 
   @Input() isOpen: boolean;
+  @Output() flippedTo: EventEmitter<string> = new EventEmitter();
 
-    constructor(
-      private _cardEmitter: CardEmitter
-    ) { }
+  constructor(
 
-    unflipCard() {
-      this._cardEmitter.cardEventEmitter.emit('');
-    }
+  ) { }
 
-    ngOnInit() {
-    }
+  ngOnInit() {
+
+  }
+
+  flipTo(position) {
+    this.flippedTo.emit(position);
+  }
 
 }

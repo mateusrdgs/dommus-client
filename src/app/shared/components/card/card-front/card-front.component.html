@@ -1,12 +1,20 @@
-<div class="card__front" [class.isOn]="component?.isOn" [class.detected-motion]="component.data?.detectedMotion" [ngClass]="{
-  'is-switch': component?.type === 1,
-  'is-thermometer': component?.type === 2,
-  'is-light': component?.type === 3,
-  'is-motion': component?.type === 4,
-  'is-sensor': component?.type === 5,
-  'is-servo': component?.type === 6
-}">
-  <card-front-icons [componentId]="component?.id">
+<div class="card__front"
+  [class.isOn]="component?.isOn"
+  [class.detected-motion]="component.data?.detectedMotion"
+    [ngClass]="{
+      'is-switch': component?.type === 1,
+      'is-thermometer': component?.type === 2,
+      'is-light': component?.type === 3,
+      'is-motion': component?.type === 4,
+      'is-sensor': component?.type === 5,
+      'is-servo': component?.type === 6
+    }"
+>
+  <card-front-icons
+    [id]="component?.id"
+    [type]="component.type"
+    (flippedTo)="flipTo($event)"
+  >
   </card-front-icons>
   <card-front-container
     [description]="component?.description"
@@ -15,6 +23,7 @@
     [minRange]="component?.minRange"
     [maxRange]="component?.maxRange"
     [position]="component?.position"
+    (stateChange)="onStateChange($event)"
     (positionChange)="onPositionChange($event)"
   >
   </card-front-container>

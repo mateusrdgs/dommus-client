@@ -9,15 +9,24 @@ export class CardFrontContainerComponent implements OnInit {
 
   @Input() data;
   @Input() description;
-  @Input() type;
-  @Input() minRange;
+  @Input() isOn;
   @Input() maxRange;
+  @Input() minRange;
   @Input() position;
+  @Input() type;
+  @Output() stateChange: EventEmitter<any> = new EventEmitter();
   @Output() positionChange: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClick() {
+    if (this.type === 1) {
+      this.isOn = !this.isOn;
+      this.stateChange.emit({ isOn: this.isOn });
+    }
   }
 
   onPositionChange(event) {

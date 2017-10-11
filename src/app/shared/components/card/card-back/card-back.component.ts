@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'card-back',
@@ -10,14 +10,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CardBackComponent implements OnInit {
 
-  @Input() componentType: string;
-  @Input() flippedTo: string;
-  @Input() componentIsOn = '';
+  @Input() type: string;
+  @Input() side: string;
+  @Input() isOn: string;
+  @Output() flippedTo: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
 
+  }
+
+  flipTo(event) {
+    this.flippedTo.emit(event);
   }
 
 }

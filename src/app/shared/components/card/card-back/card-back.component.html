@@ -1,21 +1,22 @@
-<div class="card__back" [class.isOn]="componentIsOn" [ngClass]="{
-  'is-switch': componentType === 1,
-  'is-thermometer': componentType === 2,
-  'is-light': componentType === 3,
-  'is-motion': componentType === 4,
-  'is-sensor': componentType === 5,
-  'is-servo': componentType === 6
-}">
-  <!--<div class="card__back-left" [class.isOpen]="flippedTo === 'left'">
-    <div class="card__back-left__icons">
-      <i class="fa fa-times" aria-hidden="true" (click)="unflip()"></i>
-    </div>
-  </div>
-  <div class="card__back-right" [class.isOpen]="flippedTo === 'right'">
-    <div class="card__back-right__icons">
-      <i class="fa fa-times" aria-hidden="true" (click)="unflip()"></i>
-    </div>
-  </div>-->
-  <card-back-left [isOpen]="flippedTo === 'left'"></card-back-left>
-  <card-back-right [isOpen]="flippedTo === 'right'"></card-back-right>
+<div class="card__back"
+  [ngClass]="{
+    'is-switch': type === 1,
+    'is-thermometer': type === 2,
+    'is-light': type === 3,
+    'is-motion': type === 4,
+    'is-sensor': type === 5,
+    'is-servo': type === 6,
+    'isOn': isOn
+  }"
+>
+  <card-back-left
+    [isOpen]="side === 'left'"
+    (flippedTo)="flipTo($event)"
+  >
+  </card-back-left>
+  <card-back-right
+    [isOpen]="side === 'right'"
+    (flippedTo)="flipTo($event)"
+  >
+  </card-back-right>
 </div>
