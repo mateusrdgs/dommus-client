@@ -1,24 +1,31 @@
 :host
   display flex
-  flex 1
+  flex 0 0 0
+  overflow hidden
 
 :host-context(.flipped-left)
-  display flex
   flex 1
-  transition all .5s ease-in-out
 
 .card__back-left
   color #FFF
+  display flex
+  flex-direction column
   flex 0 1 0%
   max-width 0
   opacity 0
+  overflow hidden
   transition all .5s ease
-  
-.card__back-left__form
-  height calc(100% - 2.5rem)
 
 .isOpen
-  flex 2 0 100%
+  flex 1
   max-width 100%
   opacity 1
   transition all .5s ease
+  width 100%
+
+.card__back-left__icons,
+.card__back-left__form
+  display flex
+
+.card__back-left__form
+  height 100%

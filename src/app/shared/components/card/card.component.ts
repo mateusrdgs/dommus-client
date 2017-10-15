@@ -14,7 +14,7 @@ export class CardComponent implements OnInit {
   @Input() component;
   private componentFlipSubscription: Subscription;
   private componentSubscription: Subscription;
-  flippedTo: string;
+  flippedTo: boolean;
 
   constructor(
     private _socketIoService: SocketIoService
@@ -28,7 +28,7 @@ export class CardComponent implements OnInit {
     switch (this.component.type) {
       case 1: {
         this.componentSubscription =
-          this._socketIoService.listenToEvent(`state:Component`)
+          this._socketIoService.listenToEvent(`component:State`)
             .subscribe(data => {
               this.component.isOn = data['id'] === this.component.id ? data['isOn'] : this.component.isOn;
             });
@@ -64,7 +64,7 @@ export class CardComponent implements OnInit {
       }
       case 6: {
         this.componentSubscription =
-          this._socketIoService.listenToEvent(`state:Component`)
+          this._socketIoService.listenToEvent(`component:State`)
             .subscribe(data => {
               this.component.position = data['id'] === this.component.id ? data['position'] : this.component.position;
             });
@@ -79,7 +79,7 @@ export class CardComponent implements OnInit {
 
   onStateChange(event) {
     this._socketIoService
-        .emitMessage(`state:Component`, {
+        .emitMessage(`component:State`, {
           id: this.component.id,
           isOn: event.isOn
         });
@@ -87,7 +87,7 @@ export class CardComponent implements OnInit {
 
   onPositionChange(event) {
     this._socketIoService
-        .emitMessage(`state:Component`, {
+        .emitMessage(`component:State`, {
           id: this.component.id,
           position: event.position
     });

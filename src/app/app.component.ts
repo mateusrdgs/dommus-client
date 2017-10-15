@@ -119,7 +119,7 @@ export class AppComponent implements OnInit, OnDestroy {
   startSyncSubscription(idResidence: string) {
     this._syncSubscription =
       this._socketIoService
-          .listenToEvent('app:Sync')
+          .listenToEvent('sync:App')
           .subscribe((callback: any) => {
             this._syncService
                 .syncApps(idResidence)

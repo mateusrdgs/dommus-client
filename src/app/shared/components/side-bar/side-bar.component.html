@@ -7,7 +7,7 @@
       <a [routerLink]="'/residences'"
          [ngClass]="
          {
-          'active': isActive(['residences', idResidence, 'update']) || isActive(['residences', idResidence]) || isActive(['residences'])
+          'active': isActive(['residences', idResidence, 'update']) || isActive(['residences', idResidence]) || isActive(['residences', 'new']) || isActive(['residences'])
          }"
          class="sidebar-list__item-link">Residences <i class="fa fa-home"></i>
       </a>
