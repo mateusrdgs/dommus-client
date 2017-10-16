@@ -53,8 +53,8 @@ export class SocketIoService {
     return observable;
   }
 
-  emitMessage(messageName: string, data: any) {
-    return this._socket.emit(messageName, data);
+  emitMessage(messageName: string, data: any, callback?: any) {
+    return this._socket.emit(messageName, data, callback);
   }
 
   emitMessageWithReturn(messageToSend: string, messageToListen: string, data: any): Observable<any> {

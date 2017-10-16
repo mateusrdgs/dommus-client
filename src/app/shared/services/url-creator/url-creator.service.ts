@@ -16,7 +16,7 @@ export class UrlCreatorService {
 
   private getCurrentUrl() {
     const { protocol, port, hostname } = this._windowService.window().location;
-          return `${protocol}//${ '192.168.0.5' }:${'3000' || port}/api/`;
+          return `${protocol}//${ 'localhost' }:${'3000' || port}/api/`;
   }
 
   private getDataFromLocalStorage(tokenName: string, tokenValue: string) {

@@ -1,8 +1,11 @@
+import { Subject } from 'rxjs/Subject';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
+import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/takeUntil';
 
 import { RemoteService } from './../../../shared/services/remote/remote.service';
 import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
@@ -18,9 +21,10 @@ import Board from './../../classes/board';
 })
 export class UpdateBoardComponent implements OnInit {
 
-  private _idResidence: string;
   board: Board;
   updateBoardForm: FormGroup;
+  updateBoardSubscription: Subscription;
+
   boardsAllowed = [{
     value: 1,
     type: 'UNO'
@@ -91,20 +95,15 @@ export class UpdateBoardComponent implements OnInit {
               .subscribe(response => {
                 if (response.hasOwnProperty('status') && response.status === 200) {
                   this._socketIoService
-                      .emitMessageWithReturn('board:Update', 'board:Updated', board)
-                      .subscribe(updated => {
+                      .emitMessage('board:Update', board, (updated) => {
                         if (updated) {
-                          console.log('Updated!');
-                        } else {
-                          console.error('Error!');
+                          console.log(updated);
                         }
-                      }, error => console.error(error))
-                      .unsubscribe();
+                      });
                 }
               }, error => {
                 console.error(error);
-              })
-              .unsubscribe();
+              });
         }).unsubscribe();
   }
 

@@ -245,15 +245,11 @@ export class UpdateComponentComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status >= 200) {
             this._socketIoService
-                .emitMessageWithReturn('update:Component', 'updated:Component', component)
-                .subscribe(updated => {
+                .emitMessage('update:Component', component, (updated) => {
                   if (updated) {
-                    console.log('Updated!');
-                  } else {
-                    console.error('Error!');
+                    console.log(updated);
                   }
-                }, error => console.error(error))
-                .unsubscribe();
+                });
           }
         }, error => console.error(error));
   }

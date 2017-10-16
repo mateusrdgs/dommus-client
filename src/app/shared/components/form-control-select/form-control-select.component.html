@@ -18,7 +18,9 @@
     (keyup)="onChange($event)"
     (blur)="onTouched()"
   >
-    <option disabled selected class="form-control__select-option" [textContent]="defaultOption"></option>
+    <ng-container *ngIf="defaultOption">
+      <option disabled selected class="form-control__select-option" [textContent]="defaultOption"></option>
+    </ng-container>
     <option class="form-control__select-option" *ngFor="let item of items" [value]="item.Id || item.value" [textContent]="item.description || item.model || item.component"></option>
   </select>
   <span class="form-control__warning" *ngIf="control?.invalid && control?.touched">

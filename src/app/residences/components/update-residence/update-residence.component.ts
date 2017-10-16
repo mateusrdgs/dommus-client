@@ -75,10 +75,13 @@ export class UpdateResidenceComponent implements OnInit {
                 if (response.hasOwnProperty('status') && response.status === 200) {
                   console.log(response.json()['Residence']);
                 } else {
-                  console.log(response.json());
+                  throw response.json();
                 }
-              }).unsubscribe();
-        }).unsubscribe();
+              }, error => {
+                console.error(error);
+              });
+        })
+        .unsubscribe();
   }
 
 }

@@ -202,15 +202,11 @@ export class NewComponentComponent implements OnInit {
             const { _id } = response.json()['Component'];
             component.Id = _id;
             this._socketIoService
-                .emitMessageWithReturn('create:Component', 'created:Component', component)
-                .subscribe(created => {
+                .emitMessage('create:Component', component, (created) => {
                   if (created) {
-                    console.log('Created!');
-                  } else {
-                    console.error('Error!');
+                    console.log(created);
                   }
-                }, error => console.error(error))
-                .unsubscribe();
+                });
           }
         }, error => console.error(error));
   }
