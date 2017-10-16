@@ -18,6 +18,6 @@
       <label for="adminPin" class="update-user-form__label">Pin</label>
       <input type="number" formControlName="pin" class="update-user-form__input">
     </ng-container>
-    <button-submit></button-submit>
+    <button-submit [disabled]="updateUserForm.invalid"></button-submit>
   </form>
 </div>

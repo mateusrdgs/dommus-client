@@ -1,15 +1,19 @@
 <aside class="sidebar">
-  <ul class="sidebar-list">
-    <li class="sidebar-list__item">
-      <a [routerLink]="'/dashboard'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Dashboard <i class="fa fa-terminal"></i></a>
-    </li>
-    <li class="sidebar-list__item">
-      <a [routerLink]="'/residences'"
-         [ngClass]="
-         {
+  <div class="sidebar__container">
+    <ul class="sidebar-list">
+      <li class="sidebar-list__item">
+        <current-user></current-user>
+      </li>
+      <li class="sidebar-list__item">
+        <a [routerLink]="'/dashboard'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Dashboard <i class="fa fa-terminal"></i></a>
+      </li>
+      <li class="sidebar-list__item">
+        <a [routerLink]="'/residences'"
+        [ngClass]="
+        {
           'active': isActive(['residences', idResidence, 'update']) || isActive(['residences', idResidence]) || isActive(['residences', 'new']) || isActive(['residences'])
-         }"
-         class="sidebar-list__item-link">Residences <i class="fa fa-home"></i>
+        }"
+        class="sidebar-list__item-link">Residences <i class="fa fa-home"></i>
       </a>
     </li>
     <li class="sidebar-list__item">
@@ -25,4 +29,5 @@
       <a [routerLink]="'/users'" [routerLinkActive]="['active']" class="sidebar-list__item-link">Users <i class="fa fa-users"></i></a>
     </li>
   </ul>
+</div>
 </aside>

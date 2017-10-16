@@ -2,8 +2,11 @@
 <div class="new-user-container">
   <h1 class="new-user-container__title">Create a new user</h1>
   <form class="new-user-form" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
-    <label for="name" class="new-user-form__label">Name</label>
-    <input type="text" formControlName="name" class="new-user-form__input">
+    <form-control-text
+      formControlName="name"
+      [controlName]="'name'"
+      [control]="newUserForm.controls['name']"
+    ></form-control-text>
     <fieldset class="new-user-form__fieldset">
       <legend class="new-user-form__legend">Admin</legend>
       <label for="admin" class="new-user-form__label">No</label>
@@ -15,7 +18,6 @@
       <label for="adminPin" class="new-user-form__label">Pin</label>
       <input type="number" formControlName="pin" class="new-user-form__input">
     </ng-container>
-    <!--<input type="file">-->
-    <input type="submit" value="Create" [disabled]="newUserForm.invalid"  class="new-user-form__submit">
+    <button-submit [disabled]="newUserForm.invalid"></button-submit>
   </form>
 </div>

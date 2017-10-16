@@ -49,6 +49,7 @@ import { CardFrontContainerDescriptionComponent } from './components/card/card-f
 import { CardFrontContainerDataComponent } from './components/card/card-front/card-front-container/card-front-container-data/card-front-container-data.component';
 import { CardFrontContainerIconComponent } from './components/card/card-front/card-front-container/card-front-container-icon/card-front-container-icon.component';
 import { CardFrontContainerRangeComponent } from './components/card/card-front/card-front-container/card-front-container-range/card-front-container-range.component';
+import { CurrentUserComponent } from './components/current-user/current-user.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { CardFrontContainerRangeComponent } from './components/card/card-front/c
     CardFrontContainerDescriptionComponent,
     CardFrontContainerDataComponent,
     CardFrontContainerIconComponent,
-    CardFrontContainerRangeComponent
+    CardFrontContainerRangeComponent,
+    CurrentUserComponent
   ],
   exports: [
     SideBarComponent,
