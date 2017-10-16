@@ -65,17 +65,20 @@ export class UpdateResidenceComponent implements OnInit {
   }
 
   updateResidence(residence: Residence): void {
-    const idResidence = this._localStorageService.getTokenPropertyValue('currentResidence', 'id', false),
-          _url = this._urlCreatorService.createUrl('residences', 'id', { idResidence });
-    this._remoteService
-        .putResources(_url, residence)
-        .subscribe(response => {
-          if (response.status === 200) {
-            console.log(response.json()['Residence']);
-          } else {
-            console.log(response.json());
-          }
-        });
+    this._activatedRoute.params
+        .subscribe(params => {
+          const { idResidence } = params;
+          const url = this._urlCreatorService.createUrl('residences', 'id', { idResidence });
+          this._remoteService
+              .putResources(url, residence)
+              .subscribe(response => {
+                if (response.hasOwnProperty('status') && response.status === 200) {
+                  console.log(response.json()['Residence']);
+                } else {
+                  console.log(response.json());
+                }
+              }).unsubscribe();
+        }).unsubscribe();
   }
 
 }

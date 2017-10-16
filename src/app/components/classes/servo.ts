@@ -3,7 +3,6 @@ import Component from './component';
 export default class Servo extends Component {
 
   private digitalPin: number;
-  private rotation: number;
   private startAt: number;
   private range: [number] = [0, 0];
 
@@ -12,7 +11,6 @@ export default class Servo extends Component {
     description: string,
     type: number,
     digitalPin: number,
-    rotation: number,
     startAt: number,
     minRange: number,
     maxRange: number,
@@ -21,7 +19,6 @@ export default class Servo extends Component {
 
     super(idBoard, description, type, id);
     this.DigitalPin = digitalPin;
-    this.Rotation = rotation;
     this.StartAt = startAt;
     this.MinRange = minRange;
     this.MaxRange = maxRange;
@@ -33,14 +30,6 @@ export default class Servo extends Component {
 
   set DigitalPin(value: number) {
     this.digitalPin = value;
-  }
-
-  get Rotation(): number {
-    return this.rotation;
-  }
-
-  set Rotation(value: number) {
-    this.rotation = value;
   }
 
   get StartAt(): number {

@@ -4,8 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { BoardsService } from './../../../boards/services/boards.service';
-import { ComponentsService } from './../../services/components.service';
 import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
 import { RemoteService } from './../../../shared/services/remote/remote.service';
 import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
@@ -68,24 +66,14 @@ export class NewComponentComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _componentsService: ComponentsService,
     private _activatedRoute: ActivatedRoute,
     private _socketIoService: SocketIoService,
     private _remoteService: RemoteService,
     private _urlCreatorService: UrlCreatorService
   ) { }
 
-  getResidenceRouteParams() {
-    this.extractDataFromResolver();
-    this._activatedRoute.params.subscribe((params: any) => {
-      this._idResidence = params['idResidence'];
-      this._idRoom = params['idRoom'];
-    });
-  }
-
   ngOnInit() {
     this.extractDataFromResolver();
-    this.getResidenceRouteParams();
     this.createNewComponentForm(this.currentFormat);
     this.createControls(this.currentFormat);
     if (this.boards.length) {
@@ -163,40 +151,40 @@ export class NewComponentComponent implements OnInit {
   createSwitch(formValue) {
     const { description, component, board, digitalPin } = formValue;
     this._component = new Switch(board, description, digitalPin, 1);
-    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+    this.saveNewComponent(this._component);
   }
 
   createThermometer(formValue) {
     const { description, component, board, analogPin, frequency, controller } = formValue;
     this._component = new Thermometer(board, description, 2, controller, analogPin, frequency);
-    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+    this.saveNewComponent(this._component);
   }
 
   createLight(formValue) {
     const { description, component, board, analogPin, threshold, frequency, controller } = formValue;
     this._component = new Light(board, description, 3, controller, analogPin, frequency, threshold);
-    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+    this.saveNewComponent(this._component);
   }
 
   createMotion(formValue) {
     const { description, component, board, digitalPin } = formValue;
     this._component = new Motion(board, description, 4, digitalPin);
-    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+    this.saveNewComponent(this._component);
   }
 
   createSensor(formValue) {
     const { description, component, board, analogPin, frequency, controller, threshold } = this.newComponentForm.value;
     this._component = new Sensor(board, description, 5, analogPin, frequency, controller, threshold);
-    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+    this.saveNewComponent(this._component);
   }
 
   createServo(formValue) {
-    const { description, component, board, digitalPin, rotation, startAt, minRange, maxRange } = this.newComponentForm.value;
-    this._component = new Servo(board, description, 6, digitalPin, rotation, startAt, minRange, maxRange);
-    this.saveNewComponent(this._idResidence, this._idRoom, this._component);
+    const { description, component, board, digitalPin, startAt, minRange, maxRange } = this.newComponentForm.value;
+    this._component = new Servo(board, description, 6, digitalPin, startAt, minRange, maxRange);
+    this.saveNewComponent(this._component);
   }
 
-  saveNewComponent(_idResidence: string, _idRoom: string, component: any) {
+  saveNewComponent(component: any) {
     this._activatedRoute.params
         .subscribe(params => {
           const { idResidence, idRoom } = params,
@@ -230,6 +218,7 @@ export class NewComponentComponent implements OnInit {
   createControls(nextFormType) {
     switch (nextFormType) {
       case '1':
+      case '4':
           this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.boards[0]['digitalPins'])));
         break;
       case '2':
@@ -237,21 +226,13 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         break;
       case '3':
+      case '5':
         this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
       break;
-      case '4':
-          this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
-        break;
-      case '5':
-          this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
-          this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
-          this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
-        break;
       case '6':
           this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
-          this.newComponentForm.addControl('rotation', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('startAt', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('minRange', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('maxRange', new FormControl('', [Validators.required]));
@@ -259,12 +240,12 @@ export class NewComponentComponent implements OnInit {
       default:
         break;
     }
-    console.log(this.newComponentForm.controls);
   }
 
   removeControls(previousFormType) {
     switch (previousFormType) {
-      case '1': {
+      case '1':
+      case '4': {
           this.newComponentForm.removeControl('digitalPin');
         }
         break;
@@ -273,16 +254,7 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('frequency');
         }
         break;
-      case '3': {
-          this.newComponentForm.removeControl('analogPin');
-          this.newComponentForm.removeControl('frequency');
-          this.newComponentForm.removeControl('threshold');
-      }
-        break;
-      case '4': {
-          this.newComponentForm.removeControl('digitalPin');
-      }
-        break;
+      case '3':
       case '5': {
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');

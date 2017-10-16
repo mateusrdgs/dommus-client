@@ -17,7 +17,7 @@ import { SocketIoService } from './../socket-io/socket-io.service';
 export class RemoteService implements IRemote {
 
   private _headers: Headers;
-  private _options: object;
+  private _options: any;
   private _token: string;
 
   constructor(
@@ -42,15 +42,17 @@ export class RemoteService implements IRemote {
                      .catch((error: any) => Observable.throw(error.json()));
   }
 
-  postResources(url: string, object: any): Observable<any> {
-    return this._http.post(url, object, this._options)
+  postResources(url: string, body: any): Observable<any> {
+    return this._http.post(url, body, this._options)
                      .map((response: any) => response)
                      .catch((error: any) => Observable.throw(error.json()));
   }
 
-  putResources(url: string, object: any): Observable<any> {
-    return this._http.put(url, object, this._options)
-                     .map((response: any) => response)
+  putResources(url: string, body: any): Observable<any> {
+    return this._http.put(url, body, this._options)
+                     .map((response: any) => {
+                       return response;
+                     })
                      .catch((error: any) => Observable.throw(error.json()));
   }
 

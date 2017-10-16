@@ -8,8 +8,9 @@
       <h2 class="room-content__label">Components</h2>
       <button-new [routePath]="'components'"></button-new>
     </div>
-    <list [set]="room.components" [subroute]="'components'"></list>
-    <h3 class="room-content__data" *ngIf="room.components.length else noComponents"></h3>
+    <ng-container *ngIf="room?.components.length else noComponents">
+      <list [set]="room?.components" [subroute]="'components'"></list>
+    </ng-container>
     <ng-template #noComponents>
       <h3 class="room-content__data">No components on this room</h3>
     </ng-template>

@@ -4,10 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import Board from './../../classes/board';
-import { BoardsService } from './../../services/boards.service';
-
+import { RemoteService } from './../../../shared/services/remote/remote.service';
+import { SocketIoService } from './../../../shared/services/socket-io/socket-io.service';
 import { TopBarEmitter } from './../../../shared/emitters/top-bar.emitter';
+import { UrlCreatorService } from './../../../shared/services/url-creator/url-creator.service';
+
+import Board from './../../classes/board';
 
 @Component({
   selector: 'update-board',
@@ -30,9 +32,11 @@ export class UpdateBoardComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _boardsService: BoardsService,
     private _formBuilder: FormBuilder,
-    private _topBarEmitter: TopBarEmitter
+    private _remoteService: RemoteService,
+    private _socketIoService: SocketIoService,
+    private _topBarEmitter: TopBarEmitter,
+    private _urlCreatorService: UrlCreatorService,
   ) { }
 
   ngOnInit() {
@@ -67,14 +71,41 @@ export class UpdateBoardComponent implements OnInit {
   onSubmit() {
     if (this.updateBoardForm.valid) {
       const { description, port } = this.updateBoardForm.value;
-      this.board.Description = description;
-      this.board.Port = port;
-      this._boardsService
-          .updateBoard(this._idResidence, this.board)
-          .then((observable: Observable<any>) => {
-            observable.subscribe(response => console.log(response));
-          });
+      this.updateBoardProperties(this.board, description, port);
+      this.updateBoard(this.board);
     }
+  }
+
+  updateBoardProperties(board: Board, description: string, port: number) {
+    board.Description = description;
+    board.Port = port;
+  }
+
+  updateBoard(board: Board) {
+    this._activatedRoute.params
+        .subscribe(params => {
+          const { idResidence, idBoard } = params;
+          const url = this._urlCreatorService.createUrl('boards', 'id', { idResidence, idBoard });
+          this._remoteService
+              .putResources(url, board)
+              .subscribe(response => {
+                if (response.hasOwnProperty('status') && response.status === 200) {
+                  this._socketIoService
+                      .emitMessageWithReturn('board:Update', 'board:Updated', board)
+                      .subscribe(updated => {
+                        if (updated) {
+                          console.log('Updated!');
+                        } else {
+                          console.error('Error!');
+                        }
+                      }, error => console.error(error))
+                      .unsubscribe();
+                }
+              }, error => {
+                console.error(error);
+              })
+              .unsubscribe();
+        }).unsubscribe();
   }
 
 }

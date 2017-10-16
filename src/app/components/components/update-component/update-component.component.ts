@@ -89,8 +89,8 @@ export class UpdateComponentComponent implements OnInit {
           return new Sensor(idBoard, description, type, analogPin, frequency, '', threshold, _id);
         }
         case '6': {
-          const { description, digitalPin, rotation, startAt, minRange, maxRange, idBoard, _id } = component;
-          return new Servo(idBoard, description, type, digitalPin, rotation, startAt, minRange, maxRange, _id);
+          const { description, digitalPin, startAt, minRange, maxRange, idBoard, _id } = component;
+          return new Servo(idBoard, description, type, digitalPin, startAt, minRange, maxRange, _id);
         }
       };
   }
@@ -233,8 +233,8 @@ export class UpdateComponentComponent implements OnInit {
   }
 
   createServo(formValue) {
-    const { description, componentType, board, digitalPin, rotation, startAt, minRange, maxRange } = this.updateComponentForm.value,
-          updatedComponent = new Servo(board._id, description, 6, digitalPin, rotation, startAt, minRange, maxRange, this.component._id);
+    const { description, componentType, board, digitalPin, startAt, minRange, maxRange } = this.updateComponentForm.value,
+          updatedComponent = new Servo(board._id, description, 6, digitalPin, startAt, minRange, maxRange, this.component._id);
     this.updateComponent(updatedComponent);
   }
 

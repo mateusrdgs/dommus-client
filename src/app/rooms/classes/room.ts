@@ -1,21 +1,21 @@
 export default class Room {
 
-  private _id: string;
+  private id: string;
   private description: string;
-  private components: Array<any>;
+  private components: any[];
 
-  constructor(description: string, _id?: string, components?: Array<any>) {
-    this.Id = _id;
+  constructor(description: string, id?: string, components?: any[]) {
+    this.Id = id;
     this.Description = description;
     this.Components = components;
   }
 
   get Id(): string {
-    return this._id;
+    return this.id;
   }
 
   set Id(value: string) {
-    this._id = value;
+    this.id = value;
   }
 
   get Description(): string {

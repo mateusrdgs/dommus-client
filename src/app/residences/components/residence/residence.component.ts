@@ -9,6 +9,11 @@ import { SocketIoService } from './../../../shared/services/socket-io/socket-io.
 import Residence from './../../classes/residence';
 import Board from '../../../boards/classes/board';
 import Room from '../../../rooms/classes/room';
+import Switch from '../../../components/classes/switch';
+import Thermometer from '../../../components/classes/thermometer';
+import Light from '../../../components/classes/light';
+import Motion from '../../../components/classes/motion';
+import Servo from '../../../components/classes/servo';
 
 @Component({
   selector: 'residence',
@@ -38,7 +43,6 @@ export class ResidenceComponent implements OnInit {
     .subscribe(response => {
       if (response.status === 200) {
         const { description, url, _id, rooms, boards } = response.json()['Residence'];
-        console.log(rooms);
         this.residence = new Residence(description, url, _id, rooms, this.iterateOverBoards(boards));
         if (_id) {
           const token = { id: _id, url };
@@ -85,7 +89,56 @@ export class ResidenceComponent implements OnInit {
     });
   }
 
-  iterateOverComponents(components: any): Array<any> {
-    return components.map(component => component);
+  iterateOverComponents(components: any) {
+    return components.map(component => {
+      const { type } = component;
+      switch (component.type) {
+        case '1': {
+          return this.returnSwitch(component);
+        }
+        case '2': {
+          return this.returnLight(component);
+        }
+        case '3': {
+          return this.returnLight(component);
+        }
+        case '4': {
+          return this.returnMotion(component);
+        }
+        case '5': {
+          console.log(component);
+          break;
+        }
+        case '6': {
+          return this.returnServo(component);
+        }
+      }
+    });
+  }
+
+  returnSwitch(component: any): Switch {
+    const { _id, description, type, digitalPin, idBoard } = component;
+    return new Switch(idBoard, description, digitalPin, type, _id);
+  }
+
+  returnThermometer(component: any): Thermometer {
+    const { _id, description, type, analogPin, frequency, idBoard } = component;
+    return new Thermometer(idBoard, description, type, 'LM35', analogPin, frequency, _id);
+  }
+
+  returnLight(component: any): Light {
+    const { _id, description, type, analogPin, frequency, threshold, idBoard } = component;
+    return new Light(idBoard, description, type, 'DEFAULT', analogPin, frequency, threshold, _id);
+  }
+
+  returnMotion(component: any): Motion {
+    const { _id, description, type, digitalPin, idBoard } = component; {
+      return new Motion(idBoard, description, type, digitalPin, _id);
+    }
+  }
+
+  returnServo(component: any): Servo {
+    const { _id, description, type, digitalPin, startAt, range, idBoard } = component;
+    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], _id);
   }
 }

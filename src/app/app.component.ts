@@ -16,6 +16,15 @@ import { SyncService } from './shared/services/sync/sync.service';
 import { TitleService } from './shared/services/title/title.service';
 import { TopBarEmitter } from './shared/emitters/top-bar.emitter';
 
+import Room from './rooms/classes/room';
+import Switch from './components/classes/switch';
+import Thermometer from './components/classes/thermometer';
+import Light from './components/classes/light';
+import Motion from './components/classes/motion';
+import Servo from './components/classes/servo';
+import Board from './boards/classes/board';
+import Residence from './residences/classes/residence';
+
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
@@ -124,9 +133,82 @@ export class AppComponent implements OnInit, OnDestroy {
             this._syncService
                 .syncApps(idResidence)
                 .then(residence => {
+                  residence = this.iterateOverResidence(residence);
                   callback(residence);
                 });
         });
+  }
+
+  iterateOverResidence(residence: any): Residence {
+    const { description, url, rooms, boards, _id } = residence;
+    return new Residence(description, url, _id, this.iterateOverRooms(rooms), this.iterateOverBoards(boards));
+  }
+
+  iterateOverBoards(boards: any): Board[] {
+    return boards.map(board => {
+      const { _id, model, description, port, digitalPins, analogPins } = board;
+      return new Board(description, model, port, analogPins, digitalPins, _id);
+    });
+  }
+
+  iterateOverRooms(rooms: any): Room[] {
+    return rooms.map(room => {
+      const { description, _id, components } = room;
+      return new Room(description, _id, this.iterateOverComponents(components));
+    });
+  }
+
+  iterateOverComponents(components: any) {
+    return components.map(component => {
+      const { type } = component;
+      switch (component.type) {
+        case '1': {
+          return this.returnSwitch(component);
+        }
+        case '2': {
+          return this.returnLight(component);
+        }
+        case '3': {
+          return this.returnLight(component);
+        }
+        case '4': {
+          return this.returnMotion(component);
+        }
+        case '5': {
+          console.log(component);
+          break;
+        }
+        case '6': {
+          return this.returnServo(component);
+        }
+      }
+    });
+  }
+
+  returnSwitch(component: any): Switch {
+    const { _id, description, type, digitalPin, idBoard } = component;
+    return new Switch(idBoard, description, digitalPin, type, _id);
+  }
+
+  returnThermometer(component: any): Thermometer {
+    const { _id, description, type, analogPin, frequency, idBoard } = component;
+    return new Thermometer(idBoard, description, type, 'LM35', analogPin, frequency, _id);
+  }
+
+  returnLight(component: any): Light {
+    const { _id, description, type, analogPin, frequency, threshold, idBoard } = component;
+    return new Light(idBoard, description, type, 'DEFAULT', analogPin, frequency, threshold, _id);
+  }
+
+  returnMotion(component: any): Motion {
+    const { _id, description, type, digitalPin, idBoard } = component; {
+      return new Motion(idBoard, description, type, digitalPin, _id);
+    }
+  }
+
+  returnServo(component: any): Servo {
+    const { _id, description, type, digitalPin, startAt, range, idBoard } = component;
+    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], _id);
   }
 
   ngOnDestroy() {
