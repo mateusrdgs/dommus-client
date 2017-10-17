@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppGuard } from './shared/guards/app.guards.service';
 
-import { RouterOutletComponent } from './shared/components/router-outlet/router-outlet.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [
@@ -40,6 +39,7 @@ const routes: Routes = [
     }
   }
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from './../../services/auth/auth.service';
@@ -211,9 +214,9 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._topbarSubscription.unsubscribe();
-    this._socketIoSubscription.unsubscribe();
+    //this._socketIoSubscription.unsubscribe();
     this._sidebarSubscription.unsubscribe();
-    this._enteredResidenceSubscription.unsubscribe();
+    //this._enteredResidenceSubscription.unsubscribe();
     this._syncSubscription.unsubscribe();
     this._routeSubscription.unsubscribe();
   }

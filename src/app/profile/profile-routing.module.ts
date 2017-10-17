@@ -1,20 +1,30 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfileResolver } from './resolvers/profile.resolver.service';
+import { AccountRouterOutletComponent } from './../shared/components/account-router-outlet/account-router-outlet.component';
 
 import { ProfileComponent } from './components/profile/profile.component';
 
-const routes: Routes = [{
-  path: '',
-  component: ProfileComponent,
-  resolve: {
-    profile: ProfileResolver
-  },
-  data: {
-    title: 'Profile'
+import { ProfileResolver } from './resolvers/profile.resolver.service';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: AccountRouterOutletComponent,
+    children: [
+      {
+        path: '',
+        component: ProfileComponent,
+        resolve: {
+          profile: ProfileResolver
+        },
+        data: {
+          title: 'Profile'
+        }
+      }
+    ]
   }
-}];
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
