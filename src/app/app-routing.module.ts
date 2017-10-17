@@ -1,14 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UsersModule } from './users/users.module';
-import { ResidencesModule } from './residences/residences.module';
-import { ProfileModule } from './profile/profile.module';
-
 import { AppGuard } from './shared/guards/app.guards.service';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { RouterOutletComponent } from './shared/components/router-outlet/router-outlet.component';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [
@@ -17,23 +12,8 @@ const routes: Routes = [
     loadChildren: 'app/login/login.module#LoginModule'
   },
   {
-    path: 'dashboard',
-    loadChildren: 'app/home/home.module#HomeModule',
-    canActivate: [AppGuard],
-    canLoad: [AppGuard],
-    data: {
-      title: 'Dashboard'
-    }
-  },
-  {
     path: 'profile',
     loadChildren: 'app/profile/profile.module#ProfileModule',
-    canActivate: [AppGuard],
-    canLoad: [AppGuard]
-  },
-  {
-    path: 'residences',
-    loadChildren: 'app/residences/residences.module#ResidencesModule',
     canActivate: [AppGuard],
     canLoad: [AppGuard]
   },
@@ -45,8 +25,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+    loadChildren: 'app/home/home.module#HomeModule',
+    canActivate: [AppGuard],
+    canLoad: [AppGuard],
+    data: {
+      title: 'Dashboard'
+    }
   },
   {
     path: '**',
@@ -56,7 +40,6 @@ const routes: Routes = [
     }
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -1,9 +1,9 @@
 <aside class="sidebar">
   <div class="sidebar__container">
+    <div class="sidebar__current-user">
+      <current-user></current-user>
+    </div>
     <ul class="sidebar-list">
-      <li class="sidebar-list__item">
-        <current-user></current-user>
-      </li>
       <li class="sidebar-list__item">
         <a [routerLink]="'/dashboard'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Dashboard <i class="fa fa-terminal"></i></a>
       </li>

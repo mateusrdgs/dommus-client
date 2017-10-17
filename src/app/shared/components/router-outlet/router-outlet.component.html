@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <div class="menu__container" *ngIf="isUserLoggedIn">
+    <div class="topbar__container">
+      <top-bar></top-bar>
+    </div>
+    <div class="sidebar__container" [class.isSidebarOpen]="isSidebarOpen">
+      <side-bar></side-bar>
+    </div>
+  </div>
+  <div class="router-outlet__container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -50,6 +50,7 @@ import { CardFrontContainerDataComponent } from './components/card/card-front/ca
 import { CardFrontContainerIconComponent } from './components/card/card-front/card-front-container/card-front-container-icon/card-front-container-icon.component';
 import { CardFrontContainerRangeComponent } from './components/card/card-front/card-front-container/card-front-container-range/card-front-container-range.component';
 import { CurrentUserComponent } from './components/current-user/current-user.component';
+import { RouterOutletComponent } from './components/router-outlet/router-outlet.component';
 
 @NgModule({
   imports: [
@@ -87,7 +88,8 @@ import { CurrentUserComponent } from './components/current-user/current-user.com
     CardFrontContainerDataComponent,
     CardFrontContainerIconComponent,
     CardFrontContainerRangeComponent,
-    CurrentUserComponent
+    CurrentUserComponent,
+    RouterOutletComponent
   ],
   exports: [
     SideBarComponent,
