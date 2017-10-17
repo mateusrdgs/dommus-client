@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
-import { RouterOutletComponent } from './../shared/components/router-outlet/router-outlet.component';
+import { ApplicationRouterOutletComponent } from './../shared/components/application-router-outlet/application-router-outlet.component';
 
 import { AppGuard } from './../shared/guards/app.guards.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: RouterOutletComponent,
+    component: ApplicationRouterOutletComponent,
     children: [
       {
         path: 'dashboard',

@@ -1,3 +1,9 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+
+import { Subscription } from 'rxjs/Subscription';
+
+import { AuthService } from './../../services/auth/auth.service';
 import { TopBarEmitter } from './../../emitters/top-bar.emitter';
 import { TitleService } from './../../services/title/title.service';
 import { SyncService } from './../../services/sync/sync.service';
@@ -6,10 +12,8 @@ import { SocketIoService } from './../../services/socket-io/socket-io.service';
 import { SideBarService } from './../../services/side-bar/side-bar.service';
 import { ResidenceEmitter } from './../../emitters/residence.emitter';
 import { LocalStorageService } from './../../services/local-storage/local-storage.service';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { AuthService } from './../../services/auth/auth.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+
+
 import Thermometer from '../../../components/classes/thermometer';
 import Switch from '../../../components/classes/switch';
 import Light from '../../../components/classes/light';
@@ -20,11 +24,11 @@ import Board from '../../../boards/classes/board';
 import Room from '../../../rooms/classes/room';
 
 @Component({
-  selector: 'router-outlet-component',
-  templateUrl: './router-outlet.component.html',
-  styleUrls: ['./router-outlet.component.styl']
+  selector: 'application-router-outlet',
+  templateUrl: './application-router-outlet.component.html',
+  styleUrls: ['./application-router-outlet.component.styl']
 })
-export class RouterOutletComponent implements OnInit, OnDestroy {
+export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
   public isSidebarOpen = false;
   public isUserLoggedIn: boolean;
