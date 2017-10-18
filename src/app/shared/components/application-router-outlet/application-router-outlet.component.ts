@@ -218,7 +218,6 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
     if (this._syncSubscription) {
       this._syncSubscription.unsubscribe();
     }
-    this._syncSubscription.unsubscribe();
     this._routeSubscription.unsubscribe();
   }
 
