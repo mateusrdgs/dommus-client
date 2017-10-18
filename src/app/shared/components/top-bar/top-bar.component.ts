@@ -33,7 +33,7 @@ export class TopbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    //this.titleSubscription.unsubscribe();
+    this.titleSubscription.unsubscribe();
   }
 
 }

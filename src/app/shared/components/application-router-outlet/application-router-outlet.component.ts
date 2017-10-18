@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 import 'rxjs/add/operator/filter';
@@ -33,7 +33,7 @@ import Room from '../../../rooms/classes/room';
 })
 export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
-  public isSidebarOpen = false;
+  public isSidebarOpen = true;
   public isUserLoggedIn: boolean;
   private _routeSubscription: Subscription;
   private _idResidence: string;
@@ -45,6 +45,7 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
   constructor(
     private _authService: AuthService,
+    private _cdr: ChangeDetectorRef,
     private _localStorageService: LocalStorageService,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
@@ -214,9 +215,10 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._topbarSubscription.unsubscribe();
-    //this._socketIoSubscription.unsubscribe();
     this._sidebarSubscription.unsubscribe();
-    //this._enteredResidenceSubscription.unsubscribe();
+    if (this._syncSubscription) {
+      this._syncSubscription.unsubscribe();
+    }
     this._syncSubscription.unsubscribe();
     this._routeSubscription.unsubscribe();
   }

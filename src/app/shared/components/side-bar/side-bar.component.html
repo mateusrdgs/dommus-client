@@ -23,7 +23,10 @@
       <a [routerLink]="idResidence ? ['/residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [class.disabled]="!idResidence" class="sidebar-list__item-link">Boards <i class="fa fa-microchip"></i></a>
     </li>
     <li class="sidebar-list__item">
-      <a routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Tasks<i class="fa fa-tasks"></i></a>
+      <a routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Profile<i class="fa fa-user-circle"></i></a>
+    </li>
+    <li class="sidebar-list__item">
+      <a routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Users<i class="fa fa-users"></i></a>
     </li>
   </ul>
 </div>
