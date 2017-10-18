@@ -11,20 +11,8 @@ const routes: Routes = [
     loadChildren: 'app/login/login.module#LoginModule'
   },
   {
-    path: 'profile',
-    loadChildren: 'app/profile/profile.module#ProfileModule',
-    canActivate: [AppGuard],
-    canLoad: [AppGuard]
-  },
-  {
-    path: 'users',
-    loadChildren: 'app/users/users.module#UsersModule',
-    canActivate: [AppGuard],
-    canLoad: [AppGuard]
-  },
-  {
     path: '',
-    loadChildren: 'app/home/home.module#HomeModule',
+    loadChildren: 'app/application/application.module#ApplicationModule',
     canActivate: [AppGuard],
     canLoad: [AppGuard],
     data: {

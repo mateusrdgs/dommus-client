@@ -16,15 +16,14 @@ import { SideBarService } from './../../services/side-bar/side-bar.service';
 import { ResidenceEmitter } from './../../emitters/residence.emitter';
 import { LocalStorageService } from './../../services/local-storage/local-storage.service';
 
-
-import Thermometer from '../../../components/classes/thermometer';
-import Switch from '../../../components/classes/switch';
-import Light from '../../../components/classes/light';
-import Motion from '../../../components/classes/motion';
-import Servo from '../../../components/classes/servo';
-import Residence from '../../../residences/classes/residence';
-import Board from '../../../boards/classes/board';
-import Room from '../../../rooms/classes/room';
+import Thermometer from './../../../application/components/classes/thermometer';
+import Switch from '../../../application/components/classes/switch';
+import Light from '../../../application/components/classes/light';
+import Motion from '../../../application/components/classes/motion';
+import Servo from '../../../application/components/classes/servo';
+import Residence from '../../../application/residences/classes/residence';
+import Board from '../../../application/boards/classes/board';
+import Room from '../../../application/rooms/classes/room';
 
 @Component({
   selector: 'application-router-outlet',

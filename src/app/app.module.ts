@@ -5,8 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
-import { ResidencesModule } from './residences/residences.module';
-import { HomeModule } from './home/home.module';
+import { ResidencesModule } from './application/residences/residences.module';
 
 import { AppGuard } from './shared/guards/app.guards.service';
 
@@ -21,7 +20,6 @@ import { AppComponent } from './app.component';
     RouterModule,
     AppRoutingModule,
     LoginModule,
-    HomeModule,
     SharedModule.forRoot(),
     ResidencesModule
   ],
