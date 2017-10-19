@@ -52,6 +52,7 @@ import { CardFrontContainerRangeComponent } from './components/card/card-front/c
 import { CurrentUserComponent } from './components/current-user/current-user.component';
 import { AccountRouterOutletComponent } from './components/account-router-outlet/account-router-outlet.component';
 import { ApplicationRouterOutletComponent } from './components/application-router-outlet/application-router-outlet.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 @NgModule({
   imports: [
@@ -91,7 +92,8 @@ import { ApplicationRouterOutletComponent } from './components/application-route
     CardFrontContainerRangeComponent,
     CurrentUserComponent,
     AccountRouterOutletComponent,
-    ApplicationRouterOutletComponent
+    ApplicationRouterOutletComponent,
+    UsersListComponent
   ],
   exports: [
     SideBarComponent,
@@ -107,7 +109,8 @@ import { ApplicationRouterOutletComponent } from './components/application-route
     FormControlNumberComponent,
     FormControlDateComponent,
     FormControlHourComponent,
-    ListComponent
+    ListComponent,
+    UsersListComponent
   ]
 })
 export class SharedModule {

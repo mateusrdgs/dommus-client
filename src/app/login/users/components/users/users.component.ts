@@ -10,6 +10,7 @@ import { User } from '../../../../application/users/classes/user';
 export class UsersComponent implements OnInit {
 
   users: User[];
+  items = [];
 
   constructor(
     private _activatedRoute: ActivatedRoute
@@ -27,9 +28,16 @@ export class UsersComponent implements OnInit {
             const users = response.json()['Users'];
             this.users = this.iterateOverUsers(users);
             console.log(this.users);
+            this.createArrayOfItems(this.users);
           }
         })
         .unsubscribe();
+  }
+
+  createArrayOfItems(users: User[]): any {
+    for (let index = 0; index < 4; index++) {
+      this.items.push(users[index] || undefined);
+    }
   }
 
   iterateOverUsers(users: any): User[] {

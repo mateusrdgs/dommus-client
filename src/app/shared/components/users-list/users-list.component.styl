@@ -1,0 +1,46 @@
+:host
+  display flex
+  justify-content center
+  width 100%
+
+.users-list
+  display flex
+  flex-wrap wrap
+  list-style none
+  justify-content center
+  flex-wrap wrap
+  margin 0
+  padding 0
+  width 100%
+
+.users-list__item
+  background-color #353C3E
+  height 12.5rem
+  transition all .3s linear
+  width 12.5rem
+  &:hover
+    background-color #0A0A0A
+
+.users-list__item-link
+  align-items center
+  display flex
+  justify-content center
+  color #EEE
+  height 100%
+  width 100%
+  text-decoration none
+
+.users-list__item
+  margin-bottom 1rem
+
+@media screen and (min-width 27rem)
+  :host
+    max-height 27rem
+
+  .users-list
+    max-width 26rem
+    justify-content space-between
+
+@media screen and (min-width 56.25rem)
+  .users-list
+    max-width 53rem
