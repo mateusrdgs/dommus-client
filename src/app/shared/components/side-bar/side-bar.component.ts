@@ -30,7 +30,7 @@ export class SideBarComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit() {
     this.getIdAccount();
-    this.idResidence = this._localStorageService.getTokenPropertyValue('currentResidence', 'id', false);
+    this.idResidence = this._localStorageService.getTokenPropertyValue('Dommus_Residence', 'id', false);
     if (this.idResidence === '') {
       this.startResidenceSubscription();
     }
@@ -41,7 +41,7 @@ export class SideBarComponent implements OnInit, AfterContentInit {
   }
 
   getIdAccount() {
-    this._id = this._localStorageService.getTokenPropertyValue('Dommus', '_id', true);
+    this._id = this._localStorageService.getTokenPropertyValue('Dommus_Token', '_id', true);
   }
 
   startResidenceSubscription() {

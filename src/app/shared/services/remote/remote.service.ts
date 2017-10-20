@@ -30,7 +30,7 @@ export class RemoteService implements IRemote {
   }
 
   generateRemoteServiceOptions() {
-    this._token = this._localStorageService.getTokenValue('Dommus');
+    this._token = this._localStorageService.getTokenValue('Dommus_Token');
     this._headers = this._authService.createRequestHeaders();
     this._authService.createAuthorizationHeader(this._headers, this._token);
     this._options = this._authService.createRequestOptions(this._headers);

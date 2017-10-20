@@ -1,11 +1,11 @@
 <ul class="users-list">
   <li class="users-list__item" *ngFor="let item of set">
     <ng-container *ngIf="item else noUser">
-      <a href="" class="users-list__item-link" [textContent]="item?.Name"></a>
+      <a [routerLink]="['/', item?.Id, 'dashboard']" class="users-list__item-link" [textContent]="item?.Name"></a>
     </ng-container>
     <ng-template #noUser>
       <li class="users-list__item" class="users-list__item" >
-        <a href="" class="users-list__item-link" [textContent]="'Create new user'"></a>
+        <a [routerLink]="['new']" class="users-list__item-link" [textContent]="'Create a new user'"></a>
       </li>
     </ng-template>
   </li>

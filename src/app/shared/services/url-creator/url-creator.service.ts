@@ -41,7 +41,7 @@ export class UrlCreatorService {
         return `${ this.appendSuffixesToUrl(url, ['account/', 'login']) }`;
       }
       case 'id': {
-        const idAccount = this.getDataFromLocalStorage('Dommus', '_id');
+        const idAccount = this.getDataFromLocalStorage('Dommus_Token', '_id');
         return `${ this.appendSuffixesToUrl(url, ['account/', `${ idAccount }/`]) }`;
       }
     }

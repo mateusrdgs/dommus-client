@@ -17,6 +17,9 @@ import { TopBarEmitter } from './emitters/top-bar.emitter';
 import { SocketIoEmitter } from './emitters/socket-io.emitter';
 
 import { AppGuard } from './guards/app.guards.service';
+import { UserGuard } from './guards/user.guard';
+
+
 
 import { CardComponent } from './components/card/card.component';
 import { CardBackComponent } from './components/card/card-back/card-back.component';
@@ -110,6 +113,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
     FormControlDateComponent,
     FormControlHourComponent,
     ListComponent,
+    NotFoundComponent,
     UsersListComponent
   ]
 })
@@ -119,6 +123,7 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         AppGuard,
+        UserGuard,
         AuthService,
         LocalStorageService,
         SocketIoService,

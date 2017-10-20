@@ -62,14 +62,14 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isUserLoggedIn =
       this._authService
-          .isLoggedIn('Dommus');
+          .isLoggedIn('Dommus_Token');
 
     this.startRouteSubscription();
     this.startTopBarSubscription();
     this.startSideBarSubscription();
 
     if (this.isUserLoggedIn) {
-      const data = this._localStorageService.getDecodedToken('currentResidence');
+      const data = this._localStorageService.getDecodedToken('Dommus_Residence');
       if (data !== '') {
         this.connectToLocalModule(data);
       }

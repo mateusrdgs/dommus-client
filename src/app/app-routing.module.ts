@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppGuard } from './shared/guards/app.guards.service';
+import { UserGuard } from './shared/guards/user.guard';
 
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
@@ -11,9 +12,9 @@ const routes: Routes = [
     loadChildren: 'app/login/login.module#LoginModule'
   },
   {
-    path: '',
+    path: ':idUser',
     loadChildren: 'app/application/application.module#ApplicationModule',
-    canActivate: [AppGuard],
+    canActivate: [AppGuard, UserGuard],
     canLoad: [AppGuard],
     data: {
       title: 'Dashboard'
@@ -21,10 +22,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,
-    data: {
-      title: 'Not found'
-    }
+    redirectTo: 'login/users',
+    canActivate: [AppGuard]
   }
 ];
 

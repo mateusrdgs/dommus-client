@@ -21,7 +21,7 @@ export class LoginService {
               .toPromise()
               .then(response => {
                 if (response['status'] === 200) {
-                  this._localStorageService.saveToken('Dommus', response['_body']);
+                  this._localStorageService.saveToken('Dommus_Token', response['_body']);
                   return true;
                 }
               })
@@ -34,7 +34,7 @@ export class LoginService {
               .toPromise()
               .then(response => {
                 if (response['status'] === 200) {
-                  this._localStorageService.saveToken('Dommus', response['_body']);
+                  this._localStorageService.saveToken('Dommus_Token', response['_body']);
                   return true;
                 }
               })

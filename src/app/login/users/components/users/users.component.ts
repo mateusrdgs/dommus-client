@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../../application/users/classes/user';
 
 @Component({
-  selector: 'app-users',
+  selector: 'users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.styl']
 })

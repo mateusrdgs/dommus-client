@@ -61,7 +61,7 @@ export class ResidenceComponent implements OnInit {
   }
 
   saveResidenceDataOnLocalStorage(id: string, url: string) {
-    this._localStorageService.encodeAndSaveToken('currentResidence', JSON.stringify({ id, url }));
+    this._localStorageService.encodeAndSaveToken('Dommus_Residence', JSON.stringify({ id, url }));
   }
 
   tryToConnectToLocalModule(url: string) {

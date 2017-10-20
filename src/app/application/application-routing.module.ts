@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppGuard } from './../shared/guards/app.guards.service';
 
+import { NotFoundComponent } from './../shared/components/not-found/not-found.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -11,6 +13,13 @@ const routes: Routes = [
     canLoad: [AppGuard],
     data: {
       title: 'Dashboard'
+    }
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    data: {
+      title: 'Not found'
     }
   }
 ];

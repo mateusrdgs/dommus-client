@@ -50,10 +50,10 @@ export class LoginComponent implements OnInit {
   }
 
   redirectToHome() {
-    const isUserLoggedIn = this._authService.isLoggedIn('Dommus');
+    const isUserLoggedIn = this._authService.isLoggedIn('Dommus_Token');
     if (isUserLoggedIn) {
       this._topbarEmitter.stateEmitter.emit(isUserLoggedIn);
-      this._router.navigateByUrl('/dashboard');
+      this._router.navigate(['login', 'users']);
     }
   }
 }

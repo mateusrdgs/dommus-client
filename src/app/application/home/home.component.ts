@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('Dashboard');
     setTimeout(() => {
-      const residenceUrl = this._localStorageService.getTokenPropertyValue('currentResidence', 'url', false);
+      const residenceUrl = this._localStorageService.getTokenPropertyValue('Dommus_Residence', 'url', false);
       if (residenceUrl !== '') {
         this.connectToModule(residenceUrl);
       }
