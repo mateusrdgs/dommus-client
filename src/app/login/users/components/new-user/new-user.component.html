@@ -1,0 +1,29 @@
+<div class="new-user-container">
+  <button-back></button-back>
+  <h1 class="new-user-container__title">Create a new user</h1>
+  <form class="new-user-form" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
+    <form-control-text
+      formControlName="name"
+      [controlName]="'name'"
+      [control]="newUserForm.controls['name']"
+    ></form-control-text>
+    <form-control-radio-group
+      formControlName="isAdmin"
+      [control]="newUserForm.controls['isAdmin']"
+      [legend]="'Admin'"
+      [fields]="fields">
+    </form-control-radio-group>
+    <!--<fieldset class="new-user-form__fieldset">
+      <legend class="new-user-form__legend">Admin</legend>
+      <label for="admin" class="new-user-form__label">No</label>
+      <input type="radio" formControlName="isAdmin" value="false" (change)="onChange(0)" class="new-user-form__radio">
+      <label for="admin" class="new-user-form__label">Yes</label>
+      <input type="radio" formControlName="isAdmin" value="true" (change)="onChange(1)" class="new-user-form__radio">
+    </fieldset>
+    <ng-container *ngIf="isUserAdmin">
+      <label for="adminPin" class="new-user-form__label">Pin</label>
+      <input type="number" formControlName="pin" class="new-user-form__input">
+    </ng-container>-->
+    <button-submit [disabled]="newUserForm.invalid"></button-submit>
+  </form>
+</div>

@@ -19,8 +19,6 @@ import { SocketIoEmitter } from './emitters/socket-io.emitter';
 import { AppGuard } from './guards/app.guards.service';
 import { UserGuard } from './guards/user.guard';
 
-
-
 import { CardComponent } from './components/card/card.component';
 import { CardBackComponent } from './components/card/card-back/card-back.component';
 import { CardBackLeftComponent } from './components/card/card-back/card-back-left/card-back-left.component';
@@ -46,6 +44,7 @@ import { TaskFormComponent } from './components/card/card-back/card-back-left/ta
 import { FormControlDateComponent } from './components/form-control-date/form-control-date.component';
 import { FormControlHourComponent } from './components/form-control-hour/form-control-hour.component';
 import { FormControlSwitchComponent } from './components/form-control-switch/form-control-switch.component';
+import { FormControlRadioGroupComponent } from './components/form-control-radio-group/form-control-radio-group.component';
 import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
 import { CardFrontContainerComponent } from './components/card/card-front/card-front-container/card-front-container.component';
 import { CardFrontContainerDescriptionComponent } from './components/card/card-front/card-front-container/card-front-container-description/card-front-container-description.component';
@@ -96,7 +95,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
     CurrentUserComponent,
     AccountRouterOutletComponent,
     ApplicationRouterOutletComponent,
-    UsersListComponent
+    UsersListComponent,
+    FormControlRadioGroupComponent
   ],
   exports: [
     SideBarComponent,
@@ -112,6 +112,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
     FormControlNumberComponent,
     FormControlDateComponent,
     FormControlHourComponent,
+    FormControlRadioGroupComponent,
     ListComponent,
     NotFoundComponent,
     UsersListComponent

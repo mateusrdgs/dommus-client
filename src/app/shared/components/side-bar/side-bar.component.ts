@@ -16,6 +16,7 @@ export class SideBarComponent implements OnInit, AfterContentInit {
   private _enteredResidenceSubscription: Subscription;
   _id: string;
   idResidence: string;
+  idUser: string;
 
   constructor(
     private _localStorageService: LocalStorageService,
@@ -31,6 +32,7 @@ export class SideBarComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     this.getIdAccount();
     this.idResidence = this._localStorageService.getTokenPropertyValue('Dommus_Residence', 'id', false);
+    this.idUser = this._localStorageService.getTokenPropertyValue('Dommus_User', 'id', false);
     if (this.idResidence === '') {
       this.startResidenceSubscription();
     }

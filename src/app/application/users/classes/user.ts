@@ -1,6 +1,6 @@
 export class User {
 
-  private _id: string;
+  private id: string;
   private name: string;
   private isAdmin: boolean;
   private pin: number;
@@ -13,11 +13,11 @@ export class User {
   }
 
   get Id(): string {
-    return this._id;
+    return this.id;
   }
 
   set Id(value: string) {
-    this._id = value;
+    this.id = value;
   }
 
   get Name(): string {

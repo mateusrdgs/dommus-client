@@ -12,6 +12,7 @@ import { LoginService } from './login.service';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { UsersComponent } from './users/components/users/users.component';
 import { UsersResolver } from './users/resolvers/users.resolver';
+import { NewUserComponent } from './users/components/new-user/new-user.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { UsersResolver } from './users/resolvers/users.resolver';
   declarations: [
     LoginComponent,
     NewAccountComponent,
-    UsersComponent
+    UsersComponent,
+    NewUserComponent
   ],
   providers: [
     LoginService,

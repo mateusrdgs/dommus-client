@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { LocalStorageService } from './../../services/local-storage/local-storage.service';
+
 @Component({
   selector: 'current-user',
   templateUrl: './current-user.component.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CurrentUserComponent implements OnInit {
 
-  constructor() { }
+  name: string;
+
+  constructor(
+    private _localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit() {
+    this.name = this._localStorageService
+                    .getTokenPropertyValue('Dommus_User', 'name', false);
   }
 
 }

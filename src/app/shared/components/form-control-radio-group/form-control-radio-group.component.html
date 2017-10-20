@@ -1,0 +1,18 @@
+<div class="form-control">
+  <fieldset class="form-control__fieldset">
+    <legend class="form-control__legend" [textContent]="legend"></legend>
+    <ng-container *ngFor="let field of fields">
+      <label
+        class="form-control__label"
+        [textContent]="field?.label"
+      >
+      </label>
+      <input 
+        type="radio"
+        class="form-control__radio"
+        [checked]="field?.value === _value"
+        (change)="onChange(field?.value)"
+      >
+    </ng-container>
+  </fieldset>
+</div>
