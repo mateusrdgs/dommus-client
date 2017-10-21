@@ -7,6 +7,7 @@ import { NewAccountComponent } from './new-account/new-account.component';
 import { UsersComponent } from './users/components/users/users.component';
 import { NewUserComponent } from './users/components/new-user/new-user.component';
 
+import { AppGuard } from './../shared/guards/app.guards.service';
 import { UsersResolver } from './users/resolvers/users.resolver';
 
 const routes: Routes = [
@@ -27,12 +28,14 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
+    canActivate: [AppGuard],
     resolve: {
       users: UsersResolver
     }
   },
   {
     path: 'users/new',
+    canActivate: [AppGuard],
     component: NewUserComponent
   }
 ];

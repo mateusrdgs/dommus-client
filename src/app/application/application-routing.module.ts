@@ -10,10 +10,7 @@ const routes: Routes = [
     path: '',
     loadChildren: 'app/application/home/home.module#HomeModule',
     canActivate: [AppGuard],
-    canLoad: [AppGuard],
-    data: {
-      title: 'Dashboard'
-    }
+    canLoad: [AppGuard]
   },
   {
     path: '**',

@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 
-import { ResidencesService } from './../../../application/residences/services/residences.service';
+import { Observable } from 'rxjs/Observable';
+
+import { UrlCreatorService } from './../url-creator/url-creator.service';
+import { RemoteService } from './../remote/remote.service';
 
 @Injectable()
 export class SyncService {
 
   constructor(
-    private _residencesService: ResidencesService
+    private _urlCreatorService: UrlCreatorService,
+    private _remoteService: RemoteService
   ) { }
 
   syncApps(idResidence: string) {
-    return this._residencesService.getResidenceById(idResidence).then(residence => residence);
+    const url = this._urlCreatorService.createUrl('residences', 'id', { idResidence });
+    return this._remoteService
+               .getResources(url)
+               .map(response => response)
+               .catch(error => Observable.of(error));
   }
 
 }
