@@ -29,6 +29,9 @@ const routes: Routes = [
     path: 'users',
     component: UsersComponent,
     canActivate: [AppGuard],
+    data: {
+      title: 'Users'
+    },
     resolve: {
       users: UsersResolver
     }
@@ -36,7 +39,10 @@ const routes: Routes = [
   {
     path: 'users/new',
     canActivate: [AppGuard],
-    component: NewUserComponent
+    component: NewUserComponent,
+    data: {
+      title: 'New user'
+    },
   }
 ];
 

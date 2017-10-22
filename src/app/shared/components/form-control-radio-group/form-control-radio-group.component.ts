@@ -57,6 +57,9 @@ export class FormControlRadioGroupComponent implements ControlValueAccessor {
     if (value !== '' && (value !== null || value !== undefined)) {
       this._value = value;
       this.propagateChange(this._value);
+      if (this.control.untouched) {
+        this.control.markAsTouched();
+      }
     }
   }
 

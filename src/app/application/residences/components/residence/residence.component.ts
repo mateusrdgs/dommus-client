@@ -48,7 +48,6 @@ export class ResidenceComponent implements OnInit {
           const token = { id: _id, url };
           this._residenceEmitter.enteredResidence.emit(_id);
           this.saveResidenceDataOnLocalStorage(_id, url);
-          this.tryToConnectToLocalModule(url);
           this._topbarEmitter.emitNewRouteTitle(this.residence.Description);
         }
       } else {
@@ -62,17 +61,6 @@ export class ResidenceComponent implements OnInit {
 
   saveResidenceDataOnLocalStorage(id: string, url: string) {
     this._localStorageService.encodeAndSaveToken('Dommus_Residence', JSON.stringify({ id, url }));
-  }
-
-  tryToConnectToLocalModule(url: string) {
-    this._socketIoService
-        .checkLocalModuleConnectionState(url)
-        .then(connected => {
-          console.log(connected);
-        })
-        .catch(error => {
-          console.error(error);
-        });
   }
 
   iterateOverBoards(boards: any): Array<Board> {

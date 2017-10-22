@@ -1,10 +1,11 @@
 <div class="form-control">
-  <fieldset class="form-control__fieldset">
+  <fieldset class="form-control__fieldset" [class.touched]="control.touched">
     <legend class="form-control__legend" [textContent]="legend"></legend>
     <ng-container *ngFor="let field of fields">
       <label
         class="form-control__label"
         [textContent]="field?.label"
+        (click)="onChange(field?.value)"
       >
       </label>
       <input 

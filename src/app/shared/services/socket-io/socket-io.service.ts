@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -14,15 +15,20 @@ export class SocketIoService {
   private _socket;
 
   constructor(
-    private _socketIoEmitter: SocketIoEmitter
+    private _socketIoEmitter: SocketIoEmitter,
+    private _router: Router
   ) {
   }
 
-  connectToLocalModule(url: string) {
+  connectToLocalModule(url: string, idUser: string) {
     return new Promise((resolve, reject) => {
-      this._socket = io(url);
-      this._socket.on('connect_error', (error) => {
+
+      this._socket = io(url, { query: { idUser }} );
+      this._socket.on('connect_error', error => {
         reject(error);
+      });
+      this._socket.on('disconnect', () => {
+        reject(new Error('Disconnected'));
       });
       this._socket.on('connect', () => {
         this._connectionStarted = true;
@@ -31,10 +37,10 @@ export class SocketIoService {
     });
   }
 
-  checkLocalModuleConnectionState(url: string) {
+  checkLocalModuleConnectionState(url: string, idUser: string) {
     return new Promise((resolve, reject) => {
-      if (this._socket === undefined) {
-        resolve(this.connectToLocalModule(url));
+      if (this._socket === undefined || this._socket['disconnected']) {
+        resolve(this.connectToLocalModule(url, idUser));
       } else {
         resolve(this._socket['connected']);
       }

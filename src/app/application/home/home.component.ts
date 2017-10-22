@@ -29,33 +29,25 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('Dashboard');
     setTimeout(() => {
-      const residenceUrl = this._localStorageService.getTokenPropertyValue('Dommus_Residence', 'url', false);
-      if (residenceUrl !== '') {
-        this.connectToModule(residenceUrl);
+      const residenceUrl = this._localStorageService.getTokenPropertyValue('Dommus_Residence', 'url', false),
+            idUser = this._localStorageService.getTokenPropertyValue('Dommus_User', 'id', false);
+      if (residenceUrl !== '' && idUser !== '') {
+        this.connectToModule(residenceUrl, idUser);
       }
     }, 500);
   }
 
-  connectToModule(url: string) {
+  connectToModule(url: string, idUser: string) {
     this._socketIoService
-        .checkLocalModuleConnectionState(url)
+        .checkLocalModuleConnectionState(url, idUser)
         .then(connectionEstablished => {
           if (connectionEstablished) {
             this._componentsSubscription = this.subscribeToEvent('components:Get');
             this.emitMessage('components:Get', true);
             this.connectedToLocalModule = true;
-          } else {
-            this._socketIoService
-                .connectToLocalModule(url)
-                .then(secondaryConnectionEstablished => {
-                  if (secondaryConnectionEstablished) {
-                    this._componentsSubscription = this.subscribeToEvent('components:Get');
-                    this.emitMessage('components:Get', true);
-                    this.connectedToLocalModule = true;
-                  }
-                });
           }
-        });
+        })
+        .catch(error => console.error(error));
   }
 
   subscribeToEvent(eventName: string) {

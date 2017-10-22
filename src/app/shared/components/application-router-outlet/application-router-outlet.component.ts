@@ -34,7 +34,6 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
   public isSidebarOpen = false;
   public isUserLoggedIn: boolean;
-  private _routeSubscription: Subscription;
   private _idResidence: string;
   private _topbarSubscription: Subscription;
   private _enteredResidenceSubscription: Subscription;
@@ -53,7 +52,6 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
     private _socketIoEmitter: SocketIoEmitter,
     private _socketIoService: SocketIoService,
     private _syncService: SyncService,
-    private _titleService: TitleService,
     private _topbarEmitter: TopBarEmitter
   ) {
 
@@ -64,32 +62,16 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
       this._authService
           .isLoggedIn('Dommus_Token');
 
-    this.startRouteSubscription();
     this.startTopBarSubscription();
     this.startSideBarSubscription();
 
     if (this.isUserLoggedIn) {
-      const data = this._localStorageService.getDecodedToken('Dommus_Residence');
-      if (data !== '') {
-        this.connectToLocalModule(data);
+      const residenceToken = this._localStorageService.getDecodedToken('Dommus_Residence'),
+            userToken = this._localStorageService.getDecodedToken('Dommus_User');
+      if (residenceToken !== '' && userToken !== '') {
+        this.connectToLocalModule(residenceToken, userToken);
       }
     }
-  }
-
-  startRouteSubscription() {
-    this._routeSubscription =
-      this._router.events
-        .filter(event => event instanceof NavigationEnd)
-        .map(() => this._activatedRoute)
-        .map(route => {
-          while (route.firstChild) {
-            route = route.firstChild;
-          }
-          return route;
-        })
-        .filter(route => route.outlet === 'primary')
-        .mergeMap(route => route.data)
-        .subscribe(event => this._titleService.setTitle(event['title']));
   }
 
   startTopBarSubscription() {
@@ -101,13 +83,23 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
           });
   }
 
-  connectToLocalModule(data: any) {
-    const { id, url } = data;
+  connectToLocalModule(residenceToken: any, userToken) {
+    const { id, url } = residenceToken,
+          idUser  = userToken['id'];
     this._socketIoService
-        .checkLocalModuleConnectionState(url)
+        .checkLocalModuleConnectionState(url, idUser)
         .then(connectionEstablished => {
           if (connectionEstablished) {
             this.startEnteredResidenceSubscription(id);
+            this._socketIoSubscription =
+              this._socketIoService
+                  .listenToEvent('duplicated_connection')
+                  .subscribe(message => {
+                    if (message === 'User already connected!') {
+                      alert(message);
+                      this._router.navigate(['login', 'users']);
+                    }
+                  });
           }
         })
         .catch(err => console.log(err));
@@ -220,7 +212,7 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
     if (this._syncSubscription) {
       this._syncSubscription.unsubscribe();
     }
-    this._routeSubscription.unsubscribe();
+    this._socketIoSubscription.unsubscribe();
   }
 
 }
