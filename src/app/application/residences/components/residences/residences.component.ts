@@ -16,6 +16,12 @@ export class ResidencesComponent implements OnInit {
   residences: Residence[];
   message = 'Loading...';
 
+  items = [
+    { title: 'Slide 1' },
+    { title: 'Slide 2' },
+    { title: 'Slide 3' },
+  ]
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _topbarEmitter: TopBarEmitter

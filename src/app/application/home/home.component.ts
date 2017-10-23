@@ -26,6 +26,13 @@ export class HomeComponent implements OnInit {
     private _topbarEmitter: TopBarEmitter
   ) { }
 
+  items = [
+    { title: 'Slide 1' },
+    { title: 'Slide 2' },
+    { title: 'Slide 3' },
+  ];
+
+
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('Dashboard');
     setTimeout(() => {

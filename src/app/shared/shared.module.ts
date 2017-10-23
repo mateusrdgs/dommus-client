@@ -55,6 +55,8 @@ import { CurrentUserComponent } from './components/current-user/current-user.com
 import { AccountRouterOutletComponent } from './components/account-router-outlet/account-router-outlet.component';
 import { ApplicationRouterOutletComponent } from './components/application-router-outlet/application-router-outlet.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { CarouselComponent, CarouselItemElement } from './components/carousel/carousel.component';
+import { CarouselItemDirective } from './directives/carousel-item.directive';
 
 @NgModule({
   imports: [
@@ -96,7 +98,10 @@ import { UsersListComponent } from './components/users-list/users-list.component
     AccountRouterOutletComponent,
     ApplicationRouterOutletComponent,
     UsersListComponent,
-    FormControlRadioGroupComponent
+    FormControlRadioGroupComponent,
+    CarouselComponent,
+    CarouselItemElement,
+    CarouselItemDirective
   ],
   exports: [
     SideBarComponent,
@@ -115,7 +120,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
     FormControlRadioGroupComponent,
     ListComponent,
     NotFoundComponent,
-    UsersListComponent
+    UsersListComponent,
+    CarouselComponent
   ]
 })
 export class SharedModule {
