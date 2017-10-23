@@ -1,36 +1,41 @@
-_box-shadow = 0 .3rem 2rem #FFF
-_box-shadow--hover = 0 .3rem 2rem #999
+_box-shadow = 0 .8rem 1.5rem #CCC
+_box-shadow--hover = 0 .8rem 1.5rem #BBB
 
 :host
+  align-items center
   display flex
   justify-content center
   width 100%
 
 .users-list
+  align-content space-between
   display flex
   flex-wrap wrap
+  justify-content space-between
   list-style none
-  justify-content center
-  flex-wrap wrap
+  height 17rem
   margin 0
   padding 0
-  width 100%
+  transition all .3s linear
+  width 17rem
 
 .users-list__item
-  background-color #353C3E
+  background linear-gradient(to right, #353C3E 50%, #444C4F 50%)
+  background-size 200% 100%
+  background-position left bottom
   box-shadow _box-shadow
-  height 12.5rem
+  height 8rem
   transition all .3s linear
-  width 12.5rem
+  width 8rem
   &:hover
-    background-color #0A0A0A
+    background-position right bottom
     box-shadow _box-shadow--hover
 
 .users-list__item-link
   align-items center
   color #EEE
   display flex
-  font 300 2rem 'Exo 2', sans-serif
+  font 300 1.5rem 'Exo 2', sans-serif
   height 100%
   justify-content center
   padding 0 1rem
@@ -38,17 +43,16 @@ _box-shadow--hover = 0 .3rem 2rem #999
   text-decoration none
   width 100%
 
-.users-list__item
-  margin-bottom 1rem
-
-@media screen and (min-width 27rem)
-  :host
-    max-height 27rem
-
+@media screen and (min-width 32rem)
   .users-list
-    max-width 26rem
-    justify-content space-between
+    height 21rem
+    width 21rem
+
+  .users-list__item
+    height 10rem
+    width 10rem
 
 @media screen and (min-width 56.25rem)
   .users-list
-    max-width 53rem
+    height 10rem
+    width 45rem
