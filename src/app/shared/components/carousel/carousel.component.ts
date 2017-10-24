@@ -1,17 +1,8 @@
 // tslint:disable-next-line:max-line-length
-import { AfterViewInit, AnimationPlayer, Component, ContentChildren, Directive, ElementRef, Input, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { AnimationBuilder, AnimationFactory, animate, style } from '@angular/animations';
+import { Component, AfterViewInit, ContentChildren, QueryList, ViewChildren, Input, ViewChild, ElementRef, Directive } from '@angular/core';
+import { AnimationFactory, AnimationPlayer, animate, style, AnimationBuilder } from '@angular/animations';
 
-import { CarouselItemDirective } from './../../directives/carousel-item.directive';
-
-@Directive({
-  selector: '.carousel-item'
-})
-
-// tslint:disable-next-line:directive-class-suffix
-export class CarouselItemElement {
-
-}
+import { CarouselItemElementDirective } from './../../directives/carousel-item-element.directive';
 
 @Component({
   selector: 'carousel',
@@ -20,56 +11,63 @@ export class CarouselItemElement {
 })
 export class CarouselComponent implements AfterViewInit {
 
-  @ContentChildren(CarouselItemDirective) items: QueryList<CarouselItemDirective>;
-  @ViewChildren(CarouselItemElement, { read: ElementRef }) private itemsElements: QueryList<ElementRef>;
+  @ViewChildren(CarouselItemElementDirective, { read: ElementRef }) private itemsElements: QueryList<ElementRef>;
   @ViewChild('carousel') private carousel: ElementRef;
   @Input() timing = '250ms ease-in';
   @Input() showControls = true;
+  @Input() items: any[];
   private player: AnimationPlayer;
   private itemWidth: number;
   private currentSlide = 0;
   carouselWrapperStyle = {};
 
   constructor(
-    private _animationBuilder: AnimationBuilder
+    private builder: AnimationBuilder
   ) { }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      this.itemWidth = 300; this.itemsElements.first.nativeElement.getBoundingClientRect().width;
-      this.carouselWrapperStyle = {
-        width: `300px`
-      };
-    });
+    this.itemWidth = this.itemsElements.first.nativeElement.getBoundingClientRect().width;
+    this.carouselWrapperStyle = {
+      width: `${this.itemWidth}px`
+    };
   }
 
-  prev() {
-    if (this.currentSlide === 0) {
-      return;
-    }
-
-    this.currentSlide = ((this.currentSlide - 1) + this.items.length) % this.items.length;
-    const offset = this.currentSlide * this.itemWidth;
-
-    /*const animation: AnimationFactory = this._animationBuilder.build([
-      animate(this.timing, style({ transform: `translateX(-${ offset })px` }))
+  private buildAnimation( offset ) {
+    return this.builder.build([
+      animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
     ]);
-
-    this.player = animation.create(this.carousel.nativeElement);
-    this.player.play();*/
   }
 
   next() {
     if (this.currentSlide + 1 === this.items.length) {
+      this.currentSlide = 0;
+      const offset = this.currentSlide * this.itemWidth;
+      const myAnimation: AnimationFactory = this.buildAnimation(offset);
+      this.player = myAnimation.create(this.carousel.nativeElement);
+      this.player.play();
       return;
     }
     this.currentSlide = (this.currentSlide + 1) % this.items.length;
     const offset = this.currentSlide * this.itemWidth;
-    /*      animation: AnimationFactory = this._animationBuilder.build([
-            animate(this.timing, style({ transform: `translateX(-${ offset })px`}))
-          ]);
-    this.player = animation.create(this.carousel.nativeElement);
-    this.player.play();*/
+    const myAnimation: AnimationFactory = this.buildAnimation(offset);
+    this.player = myAnimation.create(this.carousel.nativeElement);
+    this.player.play();
+  }
+
+  prev() {
+    if (this.currentSlide === 0) {
+      this.currentSlide = this.itemsElements.length - 1;
+      const offset = this.currentSlide * this.itemWidth;
+      const myAnimation: AnimationFactory = this.buildAnimation(offset);
+      this.player = myAnimation.create(this.carousel.nativeElement);
+      this.player.play();
+      return;
+    }
+    this.currentSlide = ((this.currentSlide - 1) + this.items.length) % this.items.length;
+    const offset = this.currentSlide * this.itemWidth;
+    const myAnimation: AnimationFactory = this.buildAnimation(offset);
+    this.player = myAnimation.create(this.carousel.nativeElement);
+    this.player.play();
   }
 
 }

@@ -3,16 +3,8 @@
   <button-new></button-new>
 </div>
 <div class="residences-container">
-  <list [set]="residences" *ngIf="residences else noResidences"></list>
+  <carousel *ngIf="residences?.length else noResidences" [items]="residences"></carousel>
   <ng-template #noResidences>
     <h1 class="residences-container__warning" [textContent]="message"></h1>
   </ng-template>
 </div>
-
-<carousel>
-    <ng-container *ngFor="let item of items;">
-      <ng-container *carouselItem>
-        <div class="item">{{item.title}}</div>
-      </ng-container>
-    </ng-container>
-  </carousel>
