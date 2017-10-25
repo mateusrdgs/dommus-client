@@ -32,7 +32,7 @@ import Room from '../../../application/rooms/classes/room';
 })
 export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 
-  public isSidebarOpen = true;
+  public isSidebarOpen = false;
   public isUserLoggedIn: boolean;
   private _idResidence: string;
   private _topbarSubscription: Subscription;

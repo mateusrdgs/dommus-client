@@ -1,22 +1,90 @@
-ul
+:host
+  display flex
+  flex-direction column
+  align-items center
+  overflow hidden
+  width 100%
+
+.carousel__wrapper
+  overflow hidden
+  width 100%
+
+.carousel__inner
+  display flex
   list-style none
   margin 0
   padding 0
-  width 6000px
+  width 400rem
 
-.carousel-wrapper 
-  overflow hidden
-
-.carousel-inner 
-  display flex
-
-.carousel-item
-  padding 0
-  width 256px
-  height 256px
-  background-color crimson
-  color #fff
+.carousel__item-link,
+.carousel__item-link__description,
+.carousel__item-link__subdescription,
+button[class^="carousel__controls"]
   text-align center
-
-h1
+  transition all .4s ease-out
   word-wrap break-word
+
+.carousel__item-link
+  align-items center
+  background-color #353C3E
+  color #fff
+  display flex
+  flex-direction column
+  height 15rem
+  justify-content flex-start
+  padding 0
+  overflow hidden
+  text-decoration none
+  &:hover
+    cursor pointer
+  &:hover .carousel__item-link__description
+    transform scale(1.1)
+  &:hover .carousel__item-link__subdescription
+    transform translate3d(0, 2rem, 0)
+
+.carousel__item-link__description
+  font 400 2.5rem 'Exo 2', sans-serif
+
+.carousel__item-link__subdescription
+  font 300 1.2rem 'Mada', sans-serif
+  transform translate3d(0, 10rem, 0)
+
+.item-width
+  transition all .4s ease-in
+  width 16.25rem
+
+.carousel__controls
+  margin-top 2rem
+
+.fa
+  transition all .4s ease-in
+
+.carousel__controls__left,
+.carousel__controls__right
+  border none
+  background-color #353C3E
+  font-size 2rem
+  color #EEE
+  padding .3rem 2rem
+  transition all .4s ease-in
+  outline none
+  &:first-child:hover .fa
+    transform translateX(-.4rem)
+  &:last-child:hover .fa
+    transform translateX(.4rem)
+
+@media screen and (min-width 26.56rem)
+  .item-width
+    width 24rem
+
+@media screen and (min-width 48rem)
+  .item-width
+    width 46rem
+
+@media screen and (min-width 56.25rem)
+  .item-width
+    width 54rem
+
+@media screen and (min-width 75rem)
+  .item-width
+    width 70rem

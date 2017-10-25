@@ -3,7 +3,7 @@
   <button-new></button-new>
 </div>
 <div class="boards-container">
-  <list [set]="boards" *ngIf="boards else noBoards"></list>
+  <carousel *ngIf="boards?.length else noBoards" [items]="boards" [showControls]="boards?.length > 1"></carousel>
 </div>
 <ng-template #noBoards>
   <h1 class="boards-container__warning" [textContent]="message"></h1>
