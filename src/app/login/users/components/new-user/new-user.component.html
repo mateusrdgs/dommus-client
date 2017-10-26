@@ -22,12 +22,12 @@
     <button-submit [disabled]="newUserForm.invalid"></button-submit>
     <modal [headerTitle]="'Confirm account password'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
       <ng-container *modalBody>
-        <form-control-password
+        <form-control-password *ngIf="isAdmin && openModal"
           formControlName="password"
           [controlName]="'password'"
           [control]="newUserForm.controls['password']"
         ></form-control-password>
-        <button-submit [disabled]="newUserForm.invalid"></button-submit>
+        <button-submit [disabled]="newUserForm.invalid" (click)="onSubmit()"></button-submit>
       </ng-container>
     </modal>
   </form>

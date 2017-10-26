@@ -13,6 +13,11 @@
         </span>
       </a>
     </li>
+    <li class="carousel__item">
+      <a [routerLink]=" routePath ? [routePath, 'new'] : ['new']" class="carousel__item-link carousel__item-link-new" [class.item-width]="'true'">
+        <h1 class="carousel__item-link__description" [textContent]="'Create a new residence'"></h1>
+      </a>
+    </li>
   </ul>
 </section>
 <div class="carousel__controls" *ngIf="showControls">

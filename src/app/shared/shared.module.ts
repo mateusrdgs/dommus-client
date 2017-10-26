@@ -60,6 +60,7 @@ import { CarouselItemElementDirective } from './directives/carousel-item-element
 import { ModalComponent } from './components/modal/modal.component';
 import { ModalBodyDirective } from './directives/modal-body.directive';
 import { FormControlPasswordComponent } from './components/form-control-password/form-control-password.component';
+import { PreventBubblingDirective } from './directives/prevent-bubbling.directive';
 
 @NgModule({
   imports: [
@@ -106,7 +107,8 @@ import { FormControlPasswordComponent } from './components/form-control-password
     CarouselItemElementDirective,
     ModalComponent,
     ModalBodyDirective,
-    FormControlPasswordComponent
+    FormControlPasswordComponent,
+    PreventBubblingDirective
   ],
   exports: [
     SideBarComponent,
@@ -130,7 +132,8 @@ import { FormControlPasswordComponent } from './components/form-control-password
     CarouselItemElementDirective,
     ModalComponent,
     ModalBodyDirective,
-    FormControlPasswordComponent
+    FormControlPasswordComponent,
+    PreventBubblingDirective
   ]
 })
 export class SharedModule {

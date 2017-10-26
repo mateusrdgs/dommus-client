@@ -45,9 +45,13 @@ export class NewUserComponent implements OnInit {
   onSubmit() {
     if (this.newUserForm.valid) {
       const { name, isAdmin } = this.newUserForm.value;
-      if (isAdmin) {
+      if (isAdmin && !this.openModal) {
         this.newUserForm.addControl('password', new FormControl('', [Validators.required]));
         this.openModal = true;
+      } else if (isAdmin && this.openModal) {
+        const { pin, password } = this.newUserForm.value,
+        body = { name, isAdmin, pin, password };
+        this.createNewUser(body);
       }
     }
   }
@@ -66,7 +70,11 @@ export class NewUserComponent implements OnInit {
     this.isAdmin = !this.isAdmin;
   }
 
-  private createNewUser(newUser: User) {
-
+  private createNewUser(body: any) {
+    const url = this._urlCreatorService.createUrl('users', 'new');
+    this._remoteService
+        .postResources(url, body)
+        .map(response => response.json()['User'])
+        .subscribe(response => response);
   }
 }

@@ -14,7 +14,7 @@ export class CardComponent implements OnInit {
   @Input() component;
   private componentFlipSubscription: Subscription;
   private componentSubscription: Subscription;
-  flippedTo: boolean;
+  flippedTo: string = 'left';
 
   constructor(
     private _socketIoService: SocketIoService
