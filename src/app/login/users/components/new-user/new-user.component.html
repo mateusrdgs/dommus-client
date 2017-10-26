@@ -11,19 +11,24 @@
       formControlName="isAdmin"
       [control]="newUserForm.controls['isAdmin']"
       [legend]="'Admin'"
-      [fields]="fields">
-    </form-control-radio-group>
-    <!--<fieldset class="new-user-form__fieldset">
-      <legend class="new-user-form__legend">Admin</legend>
-      <label for="admin" class="new-user-form__label">No</label>
-      <input type="radio" formControlName="isAdmin" value="false" (change)="onChange(0)" class="new-user-form__radio">
-      <label for="admin" class="new-user-form__label">Yes</label>
-      <input type="radio" formControlName="isAdmin" value="true" (change)="onChange(1)" class="new-user-form__radio">
-    </fieldset>
-    <ng-container *ngIf="isUserAdmin">
-      <label for="adminPin" class="new-user-form__label">Pin</label>
-      <input type="number" formControlName="pin" class="new-user-form__input">
-    </ng-container>-->
+      [fields]="fields"
+      (change)="onChange()"
+    ></form-control-radio-group>
+    <form-control-password *ngIf="isAdmin"
+      formControlName="pin"
+      [controlName]="'pin'"
+      [control]="newUserForm.controls['pin']"
+    ></form-control-password>
     <button-submit [disabled]="newUserForm.invalid"></button-submit>
+    <modal [headerTitle]="'Confirm account password'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
+      <ng-container *modalBody>
+        <form-control-password
+          formControlName="password"
+          [controlName]="'password'"
+          [control]="newUserForm.controls['password']"
+        ></form-control-password>
+        <button-submit [disabled]="newUserForm.invalid"></button-submit>
+      </ng-container>
+    </modal>
   </form>
 </div>

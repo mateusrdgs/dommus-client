@@ -57,6 +57,9 @@ import { ApplicationRouterOutletComponent } from './components/application-route
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CarouselItemElementDirective } from './directives/carousel-item-element.directive';
+import { ModalComponent } from './components/modal/modal.component';
+import { ModalBodyDirective } from './directives/modal-body.directive';
+import { FormControlPasswordComponent } from './components/form-control-password/form-control-password.component';
 
 @NgModule({
   imports: [
@@ -100,7 +103,10 @@ import { CarouselItemElementDirective } from './directives/carousel-item-element
     UsersListComponent,
     FormControlRadioGroupComponent,
     CarouselComponent,
-    CarouselItemElementDirective
+    CarouselItemElementDirective,
+    ModalComponent,
+    ModalBodyDirective,
+    FormControlPasswordComponent
   ],
   exports: [
     SideBarComponent,
@@ -121,7 +127,10 @@ import { CarouselItemElementDirective } from './directives/carousel-item-element
     NotFoundComponent,
     UsersListComponent,
     CarouselComponent,
-    CarouselItemElementDirective
+    CarouselItemElementDirective,
+    ModalComponent,
+    ModalBodyDirective,
+    FormControlPasswordComponent
   ]
 })
 export class SharedModule {

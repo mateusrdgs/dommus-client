@@ -1,0 +1,13 @@
+<div class="modal__wrapper" [class.modal--open]="openModal" (click)="onCloseModal($event)">
+  <div class="modal__container">
+    <div class="modal__header">
+      <span class="modal__header-title" [textContent]="headerTitle"></span>
+      <span class="modal__header-close">
+        <i class="fa fa-times"(click)="onCloseModal($event)"></i>
+      </span>
+    </div>
+    <div class="modal__body">
+      <ng-container [ngTemplateOutlet]="item._templateRef"></ng-container>
+    </div>
+  </div>
+</div>

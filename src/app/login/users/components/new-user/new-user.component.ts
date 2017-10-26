@@ -14,8 +14,9 @@ import { User } from './../../../../application/users/classes/user';
 export class NewUserComponent implements OnInit {
 
   newUserForm: FormGroup;
+  openModal: boolean;
+  isAdmin: boolean;
   private _newUser: User;
-  isUserAdmin = false;
   fields =
   [
     {
@@ -43,28 +44,26 @@ export class NewUserComponent implements OnInit {
 
   onSubmit() {
     if (this.newUserForm.valid) {
-      const { name, isAdmin, pin } = this.newUserForm.value;
-      this._newUser = new User(name, isAdmin, '', pin);
-      this.createNewUser(this._newUser);
+      const { name, isAdmin } = this.newUserForm.value;
+      if (isAdmin) {
+        this.newUserForm.addControl('password', new FormControl('', [Validators.required]));
+        this.openModal = true;
+      }
     }
   }
 
-  onChange(value) {
-    if (value) {
-      this.isUserAdmin = true;
-      this.generateAdminPinField();
+  onCloseModal(openModal) {
+    this.openModal = openModal;
+    this.newUserForm.removeControl('password');
+  }
+
+  onChange() {
+    if (this.isAdmin) {
+      this.newUserForm.removeControl('pin');
     } else {
-      this.isUserAdmin = false;
-      this.removeAdminPinField();
+      this.newUserForm.addControl('pin', new FormControl('', [Validators.required]));
     }
-  }
-
-  generateAdminPinField() {
-    this.newUserForm.addControl('pin', new FormControl('', [Validators.required]));
-  }
-
-  removeAdminPinField() {
-    this.newUserForm.removeControl('pin');
+    this.isAdmin = !this.isAdmin;
   }
 
   private createNewUser(newUser: User) {

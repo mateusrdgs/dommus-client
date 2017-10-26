@@ -1,0 +1,63 @@
+.modal__wrapper
+  align-items center
+  background-color rgba(0, 0, 0, 0.4)
+  display none
+  justify-content center
+  left 0
+  height 100%
+  overflow auto
+  position fixed
+  top 0
+  width 100%
+  z-index 1
+
+.modal--open
+  display flex
+
+.modal__container
+  background-color #EEE
+  display flex
+  flex-direction column
+  height 20rem
+  transition all .4s ease-in
+  width 90%
+  z-index 2
+
+.modal__header
+  align-items center
+  display flex
+  background-color #353C3E
+  color #EEE
+  justify-content space-between
+  height 4rem
+  padding 1rem
+  width 100%
+
+.modal__header-close
+  font-size 1.5rem
+  transition all .4s ease-in
+  &:hover
+    cursor pointer
+    transform rotate(90deg)
+    transform-origin center center
+
+.modal__body
+  display flex
+  flex-direction column
+  justify-content space-between
+  height 100%
+  padding 1rem
+  width 100%
+
+.button-submit
+  margin 0
+  padding 0
+
+@media screen and (min-width 48rem)
+  .modal__container
+    width 75%
+    height 20rem
+
+@media screen and (min-width 56rem)
+  .modal__container
+    width 50%

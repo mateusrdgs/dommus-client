@@ -11,9 +11,7 @@
           <h2 class="residence-content__label">Rooms</h2>
           <button-new [routePath]="'rooms'"></button-new>
         </div>
-        <ng-container *ngIf="residence?.rooms?.length else noRooms">
-          <list [set]="residence?.rooms" [subroute]="'rooms'"></list>
-        </ng-container>
+        <carousel *ngIf="residence?.rooms?.length else noRooms" [items]="residence?.rooms" [showControls]="residence?.rooms?.length > 1"></carousel>
         <ng-template #noRooms>
           <h3 class="residence-content__data">No rooms on this residence</h3>
         </ng-template>
@@ -23,9 +21,7 @@
           <h2 class="residence-content__label">Boards</h2>
           <button-new [routePath]="'boards'"></button-new>
         </div>
-        <ng-container *ngIf="residence?.boards?.length else noBoards">
-          <list [set]="residence?.boards" [subroute]="'boards'"></list>
-        </ng-container>
+        <carousel *ngIf="residence?.boards?.length else noRooms" [items]="residence?.boards" [showControls]="residence?.boards?.length > 1"></carousel>
         <ng-template #noBoards>
           <h3 class="residence-content__data">No boards on this residence</h3>
         </ng-template>
