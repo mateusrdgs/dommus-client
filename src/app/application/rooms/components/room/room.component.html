@@ -2,15 +2,6 @@
   <button-back></button-back>
   <button-update [routePath]="'rooms'"></button-update>
 </div>
-<div class="room-container" *ngIf="room">
-  <div class="room-content__container">
-    <div class="room-content__container-top">
-      <h2 class="room-content__label">Components</h2>
-      <button-new [routePath]="'components'"></button-new>
-    </div>
-    <carousel *ngIf="room?.components?.length else noRooms" [items]="room?.components" [showControls]="room?.components?.length > 1"></carousel>
-    <ng-template #noComponents>
-      <h3 class="room-content__data">No components on this room</h3>
-    </ng-template>
-  </div>
+<div class="room-container">
+  <carousel *ngIf="room?.components?.length" [childRoute]="'components'" [items]="room?.components" [showControls]="room?.components?.length > 1"></carousel>  
 </div>

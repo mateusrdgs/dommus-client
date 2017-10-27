@@ -36,7 +36,10 @@ export class RoomComponent implements OnInit {
       if (response.hasOwnProperty('status') && response.status === 200) {
         const room = response.json()['Room'],
               { description, _id, components } = room;
-        this.room = new Room(description, _id, components);
+        this.room = new Room(description, _id,
+          this.iterateOverComponents(components).concat([
+              { isntItem: true, routePath: 'components', description: 'Create a new component' },
+          ]));
         this._topBarEmitter.emitNewRouteTitle(description);
       } else {
         console.error(response);

@@ -2,30 +2,11 @@
   <button-back></button-back>
   <button-update [routePath]="'residences'"></button-update>
 </div>
-<div class="residence-container" *ngIf="residence">
-  <div class="residence-content">
-    <h2 class="residence-content__data" [textContent]="residence?.url"></h2>
-    <div class="residence-list__container">
-      <div class="residence-content__container">
-        <div class="residence-content__container-top">
-          <h2 class="residence-content__label">Rooms</h2>
-          <button-new [routePath]="'rooms'"></button-new>
-        </div>
-        <carousel *ngIf="residence?.rooms?.length else noRooms" [items]="residence?.rooms" [showControls]="residence?.rooms?.length > 1"></carousel>
-        <ng-template #noRooms>
-          <h3 class="residence-content__data">No rooms on this residence</h3>
-        </ng-template>
-      </div>
-      <div class="residence-content__container">
-        <div class="residence-content__container-top">
-          <h2 class="residence-content__label">Boards</h2>
-          <button-new [routePath]="'boards'"></button-new>
-        </div>
-        <carousel *ngIf="residence?.boards?.length else noRooms" [items]="residence?.boards" [showControls]="residence?.boards?.length > 1"></carousel>
-        <ng-template #noBoards>
-          <h3 class="residence-content__data">No boards on this residence</h3>
-        </ng-template>
-      </div>
-    </div>
+<div class="residence__container" *ngIf="residence">
+  <div class="residence__container-item">
+    <carousel *ngIf="residence?.rooms?.length" [childRoute]="'rooms'" [items]="residence?.rooms" [showControls]="residence?.rooms?.length > 1"></carousel>
+  </div>
+  <div class="residence__container-item">
+    <carousel *ngIf="residence?.boards?.length" [childRoute]="'boards'" [items]="residence?.boards" [showControls]="residence?.boards?.length > 1"></carousel>
   </div>
 </div>

@@ -1,10 +1,15 @@
 <div class="home">
   <ng-container *ngIf="connectedToLocalModule else notConnected">
-    <ng-container *ngFor="let component of components">
-      <card [component]="component"></card>
+    <ng-container *ngIf="components?.length else noComponents">
+      <ng-container *ngFor="let component of components">
+        <card [component]="component"></card>
+      </ng-container>
     </ng-container>
+    <ng-template #noComponents>
+      <h1>To see your components, you need to create them</h1>
+    </ng-template>
   </ng-container>
   <ng-template #notConnected>
-    <h1>To see your components, you should first create them</h1>
+    <h1>Loading</h1>
   </ng-template>
 </div>

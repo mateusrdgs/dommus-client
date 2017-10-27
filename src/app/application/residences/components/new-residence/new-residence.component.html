@@ -1,6 +1,7 @@
-<button-back></button-back>
-<div class="new-residence-container">
-  <h1 class="new-residence-container__title">Create a new residence</h1>
+<div class="button-container">
+  <button-back></button-back>
+</div>
+<div class="new-residence__container">
   <form [formGroup]="newResidenceForm" class="new-residence-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"

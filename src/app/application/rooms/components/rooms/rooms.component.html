@@ -1,10 +1,6 @@
 <div class="button-container">
   <button-back></button-back>
-  <button-new></button-new>
 </div>
 <div class="rooms-container">
-  <carousel *ngIf="rooms?.length else noRooms" [items]="rooms" [showControls]="rooms?.length > 1"></carousel>
-  <ng-template #noRooms>
-    <h1 class="rooms-container__warning" [textContent]="message"></h1>
-  </ng-template>
+  <carousel *ngIf="rooms?.length" [items]="rooms" [showControls]="rooms?.length > 1"></carousel>
 </div>

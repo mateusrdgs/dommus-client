@@ -43,7 +43,11 @@ export class ResidenceComponent implements OnInit {
     .subscribe(response => {
       if (response.status === 200) {
         const { description, url, _id, rooms, boards } = response.json()['Residence'];
-        this.residence = new Residence(description, url, _id, rooms, this.iterateOverBoards(boards));
+        this.residence = new Residence(description, url, _id,
+            this.iterateOverRooms(rooms)
+                .concat([{ isntItem: true, routePath: 'rooms', description: 'Create a new room' }]),
+            this.iterateOverBoards(boards)
+                .concat([{ isntItem: true, routePath: 'boards', description: 'Create a new board' }]));
         if (_id) {
           const token = { id: _id, url };
           this._residenceEmitter.enteredResidence.emit(_id);
@@ -63,21 +67,21 @@ export class ResidenceComponent implements OnInit {
     this._localStorageService.encodeAndSaveToken('Dommus_Residence', JSON.stringify({ id, url }));
   }
 
-  iterateOverBoards(boards: any): Array<Board> {
+  iterateOverBoards(boards: any): any[] {
     return boards.map(board => {
       const { _id, port, model, digitalPins, description, analogPins } = board;
       return new Board(description, model, port, analogPins, digitalPins, _id);
     });
   }
 
-  iterateOverRooms(rooms: any): Array<Room> {
+  iterateOverRooms(rooms: any): any[] {
     return rooms.map(room => {
       const { _id, description, components } = room;
       return new Room(description, _id, components);
     });
   }
 
-  iterateOverComponents(components: any) {
+  iterateOverComponents(components: any): any[] {
     return components.map(component => {
       const { type } = component;
       switch (component.type) {

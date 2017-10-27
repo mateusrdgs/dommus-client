@@ -32,13 +32,16 @@ export class ResidencesComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const residences = response.json()['Residences'];
-            this.residences = this.iterateOverResidences(residences).concat([{ isntItem: true, routePath: '', description: 'Create a new room' }]);
+            this.residences = this.iterateOverResidences(residences)
+                                  .concat([{ isntItem: true, routePath: '', description: 'Create a new residence' }]);
           } else {
-            if (response.hasOwnProperty('Message')) {
-              this.message = response['Message'];
-            }
+            this.residences =
+              this.iterateOverResidences([])
+                  .concat([{ isntItem: true, routePath: '', description: 'Create a new residence' }]);
           }
-        }, error => console.error(error));
+        }, error => {
+          console.error(error);
+        });
   }
 
   iterateOverResidences(residences: any): any {

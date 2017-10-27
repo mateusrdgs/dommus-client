@@ -7,7 +7,7 @@
         </a>
       </ng-container>
       <ng-template #isItem>
-        <a [routerLink]="[subroute ? subroute : './', item?._id || item?.id]" class="carousel__item-link" [class.item-width]="'true'">
+        <a [routerLink]="[childRoute ? childRoute : './', item?._id || item?.id]" class="carousel__item-link" [class.item-width]="'true'">
         <h1 class="carousel__item-link__description" [textContent]="item?.description"></h1>
         <span class="carousel__item-link__subdescription"
           [textContent]="

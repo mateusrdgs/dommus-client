@@ -22,8 +22,11 @@ export class SocketIoService {
 
   connectToLocalModule(url: string, idUser: string) {
     return new Promise((resolve, reject) => {
-
-      this._socket = io(url, { query: { idUser }} );
+      this._socket = io(url, {
+        reconnectionAttempts: 5,
+        reconnectionDelay: 10000,
+        query: { idUser }
+      } );
       this._socket.on('connect_error', error => {
         reject(error);
       });
@@ -40,7 +43,14 @@ export class SocketIoService {
   checkLocalModuleConnectionState(url: string, idUser: string) {
     return new Promise((resolve, reject) => {
       if (this._socket === undefined || this._socket['disconnected']) {
-        resolve(this.connectToLocalModule(url, idUser));
+        resolve(
+          this.connectToLocalModule(url, idUser)
+              .then(() => {
+                resolve(this._socket['connected'])
+              })
+              .catch(error => {
+                reject(error);
+              }));
       } else {
         resolve(this._socket['connected']);
       }

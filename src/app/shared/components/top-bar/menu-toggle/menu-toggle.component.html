@@ -1,7 +1,6 @@
-<div [ngClass]="
+<div class="menu-toggle" [ngClass]="
   {
-    'menu-toggle--open': isMenuOpen,
-    'menu-toggle': !isMenuOpen
+    'isMenuOpen': isMenuOpen
   }
   "
   (click)="toggleMenu()">

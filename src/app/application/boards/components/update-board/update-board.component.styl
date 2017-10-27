@@ -1,43 +1,12 @@
+:host
+  display flex
+  height 100%
+  flex-direction column
+  padding 2rem
+  width 100%
+
 .button-container
   display flex
-  flex-direction row
   justify-content space-between
-
-.update-board-container
-  margin auto
-  overflow auto
+  margin-bottom 2rem
   width 100%
-
-.update-board-container__title
-  margin 1rem 0
-
-.update-board-form
-  display flex
-  flex-direction column
-  font-size 1rem
-
-.update-board-form__input
-  margin .5rem 0 1rem 0
-
-.update-board-form__input
-  font-size 1.5rem
-
-.update-board-form__buttons-container
-  display flex
-  flex-direction column
-  width 100%
-
-[class$="button"],
-[class$="submit"]
-  padding 1rem 0
-  margin .5rem 0 1rem 0
-  width 100%
-
-@media screen and (min-width: 580px)
-  .update-board-form__buttons-container
-    flex-direction row
-    justify-content space-between
-
-  [class$="button"],
-  [class$="submit"]
-    width 40%

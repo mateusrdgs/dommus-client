@@ -31,16 +31,16 @@ export class BoardsComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const boards = response.json()['Boards'];
-            this.boards = this.iterateOverBoards(boards);
+            this.boards = this.iterateOverBoards(boards).concat([{ isntItem: true, routePath: '', description: 'Create a new board' }]);
           } else {
-            if (response.hasOwnProperty('Message')) {
-              this.message = response['Message'];
-            }
+            this.boards =
+              this.iterateOverBoards([])
+                  .concat([{ isntItem: true, routePath: '', description: 'Create a new board' }]);
           }
         });
   }
 
-  iterateOverBoards(boards: Array<any>): Array<Board> {
+  iterateOverBoards(boards: any[]): any {
     return boards.map(board => {
       const { _id, model, description, port, digitalPins, analogPins } = board;
       return new Board(description, model, port, analogPins, digitalPins, _id);

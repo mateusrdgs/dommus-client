@@ -1,10 +1,6 @@
 <div class="button-container">
   <button-back></button-back>
-  <button-new></button-new>
 </div>
 <div class="residences-container">
-  <carousel *ngIf="residences?.length else noResidences" [items]="residences" [showControls]="residences?.length > 1"></carousel>
-  <ng-template #noResidences>
-    <h1 class="residences-container__warning" [textContent]="message"></h1>
-  </ng-template>
+  <carousel *ngIf="residences?.length" [items]="residences" [showControls]="residences?.length > 1"></carousel>
 </div>

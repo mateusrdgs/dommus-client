@@ -102,7 +102,7 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
                   });
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => alert(err));
   }
 
   startSideBarSubscription() {
@@ -212,7 +212,9 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
     if (this._syncSubscription) {
       this._syncSubscription.unsubscribe();
     }
-    this._socketIoSubscription.unsubscribe();
+    if (this._socketIoSubscription) {
+      this._socketIoSubscription.unsubscribe();
+    }
   }
 
 }
