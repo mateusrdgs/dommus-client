@@ -31,7 +31,7 @@ export class RoomsComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const rooms = response.json()['Rooms'];
-            this.rooms = this.iterateOverRooms(rooms);
+            this.rooms = this.iterateOverRooms(rooms).concat([{ isntItem: true, routePath: '', description: 'Create a new room' }]);
           } else {
             if (response.hasOwnProperty('Message')) {
               this.message = response['Message'];
@@ -42,11 +42,10 @@ export class RoomsComponent implements OnInit {
         });
   }
 
-  iterateOverRooms(rooms: Array<any>): Array<Room> {
+  iterateOverRooms(rooms: Array<any>): any {
     return rooms.map(room => {
       const { description, _id, components } = room;
       return new Room(description, _id, components);
     });
   }
-
 }
