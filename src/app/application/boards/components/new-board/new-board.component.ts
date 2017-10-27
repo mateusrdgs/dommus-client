@@ -66,7 +66,7 @@ export class NewBoardComponent implements OnInit {
             const { _id } = response.json()['Board'];
             board.Id = _id;
             this._socketIoService
-                .emitMessage('create:Board', (created) => {
+                .emitMessage('board:Create', board, (created) => {
                   if (created) {
                     console.log(created);
                   }

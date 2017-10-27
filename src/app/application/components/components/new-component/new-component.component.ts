@@ -202,7 +202,7 @@ export class NewComponentComponent implements OnInit {
             const { _id } = response.json()['Component'];
             component.Id = _id;
             this._socketIoService
-                .emitMessage('create:Component', component, (created) => {
+                .emitMessage('component:Create', component, (created) => {
                   if (created) {
                     console.log(created);
                   }
