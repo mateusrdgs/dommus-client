@@ -11,6 +11,7 @@
       (stateChange)="onStateChange($event)">
     </card-front>
     <card-back
+      [id]="component?.id"
       [isOn]="component?.isOn"
       [type]="component?.type"
       [side]="flippedTo"

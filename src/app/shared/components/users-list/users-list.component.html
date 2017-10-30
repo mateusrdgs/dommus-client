@@ -4,9 +4,7 @@
       <a [routerLink]="['/', item?.Id, 'dashboard']" class="users-list__item-link" [textContent]="item?.Name"></a>
     </ng-container>
     <ng-template #noUser>
-      <li class="users-list__item" class="users-list__item" >
-        <a [routerLink]="['new']" class="users-list__item-link" [textContent]="'New user'"></a>
-      </li>
+      <a [routerLink]="['new']" class="users-list__item-link" [textContent]="'New user'"></a>
     </ng-template>
   </li>
 </ul>

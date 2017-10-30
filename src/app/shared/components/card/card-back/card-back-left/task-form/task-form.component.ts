@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,13 +12,15 @@ import { SocketIoService } from './../../../../../services/socket-io/socket-io.s
 })
 export class TaskFormComponent implements OnInit {
 
-  taskForm: FormGroup;
+  @Input() id: string;
 
   constructor(
     private _datePipe: DatePipe,
     private _formBuilder: FormBuilder,
     private _socketIoService: SocketIoService
   ) { }
+
+  taskForm: FormGroup;
 
   ngOnInit() {
     this.createTaskForm();
@@ -33,7 +35,6 @@ export class TaskFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const _id = '59f334db70afde1063a2fdd4';
     if (this.taskForm.valid) {
       const { date, hour, state } = this.taskForm.value,
             [day, month, year] = date.replace(/-/g, '/').split('/').reverse(),
@@ -41,8 +42,12 @@ export class TaskFormComponent implements OnInit {
             shortDateNow = this._datePipe.transform(new Date(), 'shortDate'),
             formattedHours = this.convert12HoursTo24Hours(this._datePipe.transform(new Date(), 'mediumTime')),
             now = this.extractDate(`${shortDateNow},${formattedHours}`),
-            milliseconds = datetime.getTime() - now.getTime();
-      this._socketIoService.emitMessage('create:Task', { _id, state, milliseconds });
+            milliseconds = datetime.getTime() - now.getTime(),
+            data = { id: this.id, state, milliseconds };
+      this._socketIoService
+          .emitMessage('task:Create', data, (created) => {
+            console.log(created);
+          });
     }
   }
 

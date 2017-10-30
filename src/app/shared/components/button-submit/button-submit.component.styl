@@ -8,12 +8,15 @@
   .button-submit
     margin 0
 
-:host-context(.task-form)
+:host-context(.task-form) .button-submit,
+:host-context(.isOn) .button-submit
+  box-shadow none
+  border-radius .3rem
+  height 3.5rem
+
+:host-context(.isOn)
   .button-submit
     background-color #CE5E4C
-    box-shadow none
-    border-radius .3rem
-    height 3.5rem
 
 .button-submit
   align-items center
@@ -26,6 +29,7 @@
   height 5rem
   justify-content center
   margin 1rem 0
+  outline none
   text-decoration none
   transition all .5s linear
   &:hover

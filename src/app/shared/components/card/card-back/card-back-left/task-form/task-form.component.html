@@ -13,5 +13,5 @@
     formControlName="state"
     [controlName]="'Value'"
   ></form-control-switch>
-  <button-submit></button-submit>
+  <button-submit [disabled]="taskForm.invalid"></button-submit>
 </form>

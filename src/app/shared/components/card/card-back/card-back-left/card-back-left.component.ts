@@ -13,6 +13,7 @@ import { CardEmitter } from './../../../../emitters/card.emitter';
 })
 export class CardBackLeftComponent implements OnInit {
 
+  @Input() id: string;
   @Input() isOpen: boolean;
   @Output() flippedTo: EventEmitter<string> = new EventEmitter();
 

@@ -20,16 +20,14 @@ _box-shadow--hover = 0 .8rem 1.5rem #BBB
   width 17rem
 
 .users-list__item
-  background linear-gradient(to right, #353C3E 50%, #444C4F 50%)
-  background-size 200% 100%
-  background-position left bottom
+  background-color #353C3E
   box-shadow _box-shadow
   height 8rem
+  opacity .8
   transition all .3s linear
   width 8rem
   &:hover
-    background-position right bottom
-    box-shadow _box-shadow--hover
+    opacity 1
 
 .users-list__item-link
   align-items center
@@ -41,6 +39,7 @@ _box-shadow--hover = 0 .8rem 1.5rem #BBB
   padding 0 1rem
   text-align center
   text-decoration none
+  transition all .3s linear
   width 100%
 
 @media screen and (min-width 32rem)

@@ -12,13 +12,13 @@ import { SocketIoService } from './../../services/socket-io/socket-io.service';
 export class CardComponent implements OnInit {
 
   @Input() component;
-  private componentFlipSubscription: Subscription;
-  private componentSubscription: Subscription;
-  flippedTo: string = 'left';
 
   constructor(
     private _socketIoService: SocketIoService
   ) { }
+
+  private componentSubscription: Subscription;
+  public flippedTo: string;
 
   ngOnInit() {
     this.startStateSubscription();
