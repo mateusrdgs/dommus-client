@@ -1,11 +1,22 @@
 <div class="login-container">
   <h1 class="login__text">Login</h1>
   <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
-    <label for="email" class="login-form__label">Email</label>
-    <input type="text" formControlName="email" class="login-form__input">
-    <label for="password" class="login-form__label">Password</label>
-    <input type="password" formControlName="password" class="login-form__input">
-    <input type="submit" value="Login" class="login-form__submit" [disabled]="loginForm.invalid">
+    <form-control-text
+      formControlName="email"
+      [controlName]="'email'"
+      [control]="loginForm.controls['email']"
+      [placeholder]="'Digite seu email'"
+    >
+    </form-control-text>
+    <form-control-password
+      formControlName="password"
+      [controlName]="'password'"
+      [control]="loginForm.controls['password']"
+      [placeholder]="'Digite sua senha'"
+    >
+    </form-control-password>
+    <button-submit [disabled]="loginForm.invalid">
+    </button-submit>
   </form>
   <a [routerLink]="['new-account']">Create a new account</a>
 </div>

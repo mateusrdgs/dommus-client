@@ -37,6 +37,12 @@ const routes: Routes = [
         canLoad: [AppGuard]
       },
       {
+        path: 'tasks',
+        loadChildren: 'app/application/tasks/tasks.module#TasksModule',
+        canActivate: [AppGuard],
+        canLoad: [AppGuard]
+      },
+      {
         path: '',
         redirectTo: '/dashboard',
         pathMatch: 'full'

@@ -1,16 +1,42 @@
 <div class="new-account-container">
   <h1 class="new-account__title">Create new account</h1>
   <form [formGroup]="accountForm" class="account-form" (ngSubmit)="onSubmit()">
-    <label for="name" class="account-form__label">Name</label>
-    <input type="text" formControlName="name" class="account-form__input">
-    <label for="email" class="account-form__label">Email</label>
-    <input type="text" formControlName="email" class="account-form__input">
-    <label for="password" class="account-form__label">Password</label>
-    <input type="password" formControlName="password" class="account-form__input">
-    <label for="confirmPassword" class="account-form__label">Confirm password</label>
-    <input type="password" formControlName="confirmPassword" class="account-form__input">
-    <label for="pin" class="account-form__label">Pin</label>
-    <input type="password" formControlName="pin" inputmode="numeric" class="account-form__input">
-    <input type="submit" class="account-form__submit" value="Create account" [disabled]="accountForm.invalid">
+    <form-control-text
+      formControlName="name"
+      [controlName]="'nome'"
+      [control]="accountForm.controls['name']"
+      [placeholder]="'Digite seu nome'"
+    >
+    </form-control-text>
+    <form-control-text
+      formControlName="email"
+      [controlName]="'email'"
+      [control]="accountForm.controls['email']"
+      [placeholder]="'Digite seu email'"
+    >
+    </form-control-text>
+    <form-control-password
+      formControlName="password"
+      [controlName]="'senha'"
+      [control]="accountForm.controls['password']"
+      [placeholder]="'Digite sua senha'"
+    >
+    </form-control-password>
+    <form-control-password
+      formControlName="confirmPassword"
+      [controlName]="'confirmar senha'"
+      [control]="accountForm.controls['confirmPassword']"
+      [placeholder]="'Confirme a sua senha'"
+    >
+    </form-control-password>
+    <form-control-password
+      formControlName="pin"
+      [controlName]="'pin'"
+      [control]="accountForm.controls['pin']"
+      [placeholder]="'Digite o seu pin (somente números)'"
+    >
+    </form-control-password>
+    <button-submit [disabled]="accountForm.invalid">
+    </button-submit>
   </form>
 </div>

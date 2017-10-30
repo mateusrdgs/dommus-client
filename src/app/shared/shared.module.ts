@@ -61,6 +61,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ModalBodyDirective } from './directives/modal-body.directive';
 import { FormControlPasswordComponent } from './components/form-control-password/form-control-password.component';
 import { PreventBubblingDirective } from './directives/prevent-bubbling.directive';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   imports: [
@@ -108,7 +109,8 @@ import { PreventBubblingDirective } from './directives/prevent-bubbling.directiv
     ModalComponent,
     ModalBodyDirective,
     FormControlPasswordComponent,
-    PreventBubblingDirective
+    PreventBubblingDirective,
+    TableComponent
   ],
   exports: [
     SideBarComponent,

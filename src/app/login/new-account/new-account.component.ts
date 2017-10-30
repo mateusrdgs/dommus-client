@@ -31,13 +31,6 @@ export class NewAccountComponent implements OnInit {
       confirmPassword: ['', Validators.required],
       pin: ['', Validators.pattern('[0-9]*')]
     });
-
-    this.accountFormSubscription =
-      this.accountForm.valueChanges
-      .subscribe(() => {
-        this.accountFormValid = this.accountForm.valid;
-      });
-
   }
 
   onSubmit() {
