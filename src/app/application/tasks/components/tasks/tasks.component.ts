@@ -9,6 +9,8 @@ import { SocketIoService } from './../../../../shared/services/socket-io/socket-
 })
 export class TasksComponent implements OnInit {
 
+   tasks
+
   constructor(
     private _socketIoService: SocketIoService
   ) { }
