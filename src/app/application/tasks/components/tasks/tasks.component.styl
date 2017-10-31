@@ -1,0 +1,54 @@
+:host
+  display flex
+  height 100%
+  padding 2rem
+  width 100%
+
+.table__head__item,
+.table__body__row__item
+  text-align left
+
+@media screen and (max-width 425px)
+  .table__container
+    display flex
+    height 100%
+    width 100%
+
+  .table
+    display flex
+    width 100%
+
+  .table__head,
+  .table__body
+    display flex
+    width 100%
+
+  .table__head
+    flex-direction column
+    max-width 7rem
+
+  .table__head__item
+    border-right .2rem solid #444
+    text-align left
+
+  .table__head__item:not(:last-child)
+    border-bottom .1rem solid #444
+
+  .table__head__item
+    padding .5rem 0 .5rem 0
+
+  .table__body__row__item
+    padding .5rem 1rem .5rem .5rem
+  
+  .table__body__row:not(:first-child) .table__body__row__item
+    padding-left 0rem
+
+  .table__body__row__item:not(:last-child)
+    border-bottom .1rem solid #444
+
+  .table__body
+    overflow-x scroll
+
+  .table__body__row
+    display flex
+    flex-direction column
