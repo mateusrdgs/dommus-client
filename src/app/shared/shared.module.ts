@@ -62,6 +62,7 @@ import { ModalBodyDirective } from './directives/modal-body.directive';
 import { FormControlPasswordComponent } from './components/form-control-password/form-control-password.component';
 import { PreventBubblingDirective } from './directives/prevent-bubbling.directive';
 import { TableComponent } from './components/table/table.component';
+import { KeysPipe } from './pipes/keys/keys.pipe';
 
 @NgModule({
   imports: [
@@ -110,7 +111,8 @@ import { TableComponent } from './components/table/table.component';
     ModalBodyDirective,
     FormControlPasswordComponent,
     PreventBubblingDirective,
-    TableComponent
+    TableComponent,
+    KeysPipe
   ],
   exports: [
     SideBarComponent,
@@ -135,7 +137,8 @@ import { TableComponent } from './components/table/table.component';
     ModalComponent,
     ModalBodyDirective,
     FormControlPasswordComponent,
-    PreventBubblingDirective
+    PreventBubblingDirective,
+    TableComponent
   ]
 })
 export class SharedModule {
@@ -158,7 +161,8 @@ export class SharedModule {
         RemoteService,
         WindowService,
         UrlCreatorService,
-        CapitalizePipe
+        CapitalizePipe,
+        KeysPipe
       ]
     };
   }

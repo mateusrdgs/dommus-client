@@ -12,19 +12,28 @@ import Task from '../../class/task';
 })
 export class TasksComponent implements OnInit {
 
-   tasks: Task[];
-
   constructor(
     private _socketIoService: SocketIoService,
     private _topbarEmitter: TopBarEmitter
   ) { }
 
+  headers = ['Id', 'Data', 'Estado/Posição', 'Componente', 'Status'];
+  tasks: Task[];
+
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('Tasks');
     this._socketIoService
         .emitMessage('tasks:Get', null, (tasks) => {
-          console.log(tasks);
+          this.tasks = this.iterateOverTasks(tasks);
+          console.log(this.tasks);
         });
+  }
+
+  iterateOverTasks(tasks): Task[] {
+    return tasks.map(task => {
+      const { id, milliseconds, state, position, status, target } = task;
+      return new Task(target, milliseconds, (state ? state : position), target, status);
+    });
   }
 
 }

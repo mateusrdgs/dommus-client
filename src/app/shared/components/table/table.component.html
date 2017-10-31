@@ -1,3 +1,10 @@
-<p>
-  table works!
-</p>
+<table class="table">
+  <thead class="table__head">
+    <th class="table__head__item" *ngFor="let header of headers" [textContent]="header"></th>
+  </thead>
+  <tbody class="table__body">
+    <tr class="table__body__row" *ngFor="let row of rows">
+      <td class="table__body__row__item" *ngFor="let key of row | keys" [textContent]="row[key]"></td>
+    </tr>
+  </tbody>
+</table>

@@ -2,15 +2,19 @@ export default class Task {
 
   private id: string;
   private target: string;
-  private state: boolean;
-  private position: number;
+  private value: any;
   private milliseconds: number;
+  private status: boolean;
 
   constructor(
     target: string, milliseconds: number,
-    state?: boolean, position?: number,
-    id?: string) {
-
+    value: any, id?: string,
+    status?: boolean) {
+      this.Target = target;
+      this.Milliseconds = milliseconds;
+      this.Value = value;
+      this.Id = id;
+      this.Status =  status;
   }
 
   get Id(): string {
@@ -29,20 +33,12 @@ export default class Task {
     this.target =  target;
   }
 
-  get State(): boolean {
-    return this.state;
+  get Value(): any {
+    return this.value;
   }
 
-  set State(state: boolean) {
-    this.state = state;
-  }
-
-  get Position(): number {
-    return this.position;
-  }
-
-  set Position(position: number) {
-    this.position = position;
+  set Value(value: any) {
+    this.value = value;
   }
 
   get Milliseconds(): number {
@@ -51,6 +47,14 @@ export default class Task {
 
   set Milliseconds(milliseconds: number) {
     this.milliseconds = milliseconds;
+  }
+
+  get Status(): boolean {
+    return this.status;
+  }
+
+  set Status(status: boolean) {
+    this.status = status;
   }
 
 }
