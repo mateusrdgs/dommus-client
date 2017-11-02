@@ -16,11 +16,11 @@ import { SideBarService } from './../../services/side-bar/side-bar.service';
 import { ResidenceEmitter } from './../../emitters/residence.emitter';
 import { LocalStorageService } from './../../services/local-storage/local-storage.service';
 
-import Thermometer from './../../../application/components/classes/thermometer';
-import Switch from '../../../application/components/classes/switch';
-import Light from '../../../application/components/classes/light';
-import Motion from '../../../application/components/classes/motion';
-import Servo from '../../../application/components/classes/servo';
+import Thermometer from './../../../shared/classes/thermometer';
+import Switch from '../../../shared/classes/switch';
+import Light from '../../../shared/classes/light';
+import Motion from '../../../shared/classes/motion';
+import Servo from '../../../shared/classes/servo';
 import Residence from '../../../application/residences/classes/residence';
 import Board from '../../../application/boards/classes/board';
 import Room from '../../../application/rooms/classes/room';

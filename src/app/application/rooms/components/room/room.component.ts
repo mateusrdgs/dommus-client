@@ -5,11 +5,11 @@ import Room from './../../classes/room';
 
 import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
-import Switch from '../../../components/classes/switch';
-import Thermometer from '../../../components/classes/thermometer';
-import Light from '../../../components/classes/light';
-import Motion from '../../../components/classes/motion';
-import Servo from '../../../components/classes/servo';
+import Switch from '../../../../shared/classes/switch';
+import Thermometer from '../../../../shared/classes/thermometer';
+import Light from '../../../../shared/classes/light';
+import Motion from '../../../../shared/classes/motion';
+import Servo from '../../../../shared/classes/servo';
 
 @Component({
   selector: 'room',

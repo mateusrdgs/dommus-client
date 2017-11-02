@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import Switch from '../../classes/switch';
-import Light from '../../classes/light';
-import Sensor from '../../classes/sensor';
-import Motion from '../../classes/motion';
-import Thermometer from '../../classes/thermometer';
-import Servo from '../../classes/servo';
+import Switch from '../../../../shared/classes/switch';
+import Light from '../../../../shared/classes/light';
+import Sensor from '../../../../shared/classes/sensor';
+import Motion from '../../../../shared/classes/motion';
+import Thermometer from '../../../../shared/classes/thermometer';
+import Servo from '../../../../shared/classes/servo';
 
 @Component({
   selector: 'component',

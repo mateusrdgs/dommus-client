@@ -3,26 +3,20 @@ export default class Task {
   private id: string;
   private target: string;
   private value: any;
+  private date: Date;
   private milliseconds: number;
   private status: boolean;
 
   constructor(
-    target: string, milliseconds: number,
-    value: any, id?: string,
-    status?: boolean) {
+    target: string, date: Date,
+    milliseconds: number, value: any,
+    id?: string, status?: boolean) {
       this.Target = target;
+      this.Date = date;
       this.Milliseconds = milliseconds;
       this.Value = value;
       this.Id = id;
       this.Status =  status;
-  }
-
-  get Id(): string {
-    return this.id;
-  }
-
-  set Id(id: string) {
-    this.id =  id;
   }
 
   get Target(): string {
@@ -33,6 +27,18 @@ export default class Task {
     this.target =  target;
   }
 
+  set Date(date: Date) {
+    this.date = date;
+  }
+
+  get Date(): Date {
+    return this.Date;
+  }
+
+  set Milliseconds(milliseconds: number) {
+    this.milliseconds = milliseconds;
+  }
+
   get Value(): any {
     return this.value;
   }
@@ -41,12 +47,16 @@ export default class Task {
     this.value = value;
   }
 
-  get Milliseconds(): number {
-    return this.milliseconds;
+  get Id(): string {
+    return this.id;
   }
 
-  set Milliseconds(milliseconds: number) {
-    this.milliseconds = milliseconds;
+  set Id(id: string) {
+    this.id =  id;
+  }
+
+  get Milliseconds(): number {
+    return this.milliseconds;
   }
 
   get Status(): boolean {

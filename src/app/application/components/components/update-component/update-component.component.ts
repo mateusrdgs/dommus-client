@@ -12,12 +12,12 @@ import { UrlCreatorService } from './../../../../shared/services/url-creator/url
 import { validateSet } from '../../validators/setValidator';
 import { availableOrEqualValidator } from '../../validators/availableOrEqualValidator';
 
-import Switch from '../../classes/switch';
-import Thermometer from './../../classes/thermometer';
-import Light from '../../classes/light';
-import Motion from '../../classes/motion';
-import Sensor from '../../classes/sensor';
-import Servo from '../../classes/servo';
+import Switch from '../../../../shared/classes/switch';
+import Thermometer from '../../../../shared/classes/thermometer';
+import Light from '../../../../shared/classes/light';
+import Motion from '../../../../shared/classes/motion';
+import Sensor from '../../../../shared/classes/sensor';
+import Servo from '../../../../shared/classes/servo';
 import Board from '../../../boards/classes/board';
 
 @Component({

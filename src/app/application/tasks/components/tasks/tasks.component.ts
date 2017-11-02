@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from './../../../../shared/services/socket-io/socket-io.service';
 import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
-import Task from '../../class/task';
+import Task from '../../../../shared/classes/task';
+
 
 @Component({
   selector: 'tasks',
@@ -25,14 +26,13 @@ export class TasksComponent implements OnInit {
     this._socketIoService
         .emitMessage('tasks:Get', null, (tasks) => {
           this.tasks = this.iterateOverTasks(tasks);
-          console.log(this.tasks);
         });
   }
 
   iterateOverTasks(tasks): Task[] {
     return tasks.map(task => {
-      const { id, milliseconds, state, position, status, target } = task;
-      return new Task(target, milliseconds, (state ? state : position), target, status);
+      const { target, date, milliseconds, value, id, status } = task;
+      return new Task(target, date, milliseconds, value, id, status);
     });
   }
 

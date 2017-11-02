@@ -9,11 +9,11 @@ import { SocketIoService } from './../../../../shared/services/socket-io/socket-
 import Residence from './../../classes/residence';
 import Board from '../../../boards/classes/board';
 import Room from '../../../rooms/classes/room';
-import Switch from '../../../components/classes/switch';
-import Thermometer from '../../../components/classes/thermometer';
-import Light from '../../../components/classes/light';
-import Motion from '../../../components/classes/motion';
-import Servo from '../../../components/classes/servo';
+import Switch from '../../../../shared/classes/switch';
+import Thermometer from '../../../../shared/classes/thermometer';
+import Light from '../../../../shared/classes/light';
+import Motion from '../../../../shared/classes/motion';
+import Servo from '../../../../shared/classes/servo';
 
 @Component({
   selector: 'residence',
