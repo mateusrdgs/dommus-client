@@ -1,17 +1,17 @@
 export default class Task {
 
   private id: string;
-  private target: string;
+  private component: any;
   private value: any;
   private date: Date;
   private milliseconds: number;
   private status: boolean;
 
   constructor(
-    target: string, date: Date,
+    component: any, date: Date,
     milliseconds: number, value: any,
     id?: string, status?: boolean) {
-      this.Target = target;
+      this.Component = component;
       this.Date = date;
       this.Milliseconds = milliseconds;
       this.Value = value;
@@ -19,12 +19,12 @@ export default class Task {
       this.Status =  status;
   }
 
-  get Target(): string {
-    return this.target;
+  get Component(): any {
+    return this.component;
   }
 
-  set Target(target: string) {
-    this.target =  target;
+  set Component(component: any) {
+    this.component =  component;
   }
 
   set Date(date: Date) {
@@ -32,7 +32,7 @@ export default class Task {
   }
 
   get Date(): Date {
-    return this.Date;
+    return this.date;
   }
 
   set Milliseconds(milliseconds: number) {
@@ -45,6 +45,10 @@ export default class Task {
 
   set Value(value: any) {
     this.value = value;
+  }
+
+  get ValueDescription(): any {
+    return typeof this.value === 'boolean' ? (this.value ? 'Ligado' : 'Desligado') : `${this.value}º`;
   }
 
   get Id(): string {
@@ -65,6 +69,10 @@ export default class Task {
 
   set Status(status: boolean) {
     this.status = status;
+  }
+
+  get StatusDescription(): string {
+    return this.status ? 'Completado' : 'Não completado';
   }
 
 }

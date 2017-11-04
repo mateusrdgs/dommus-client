@@ -18,21 +18,25 @@ export class TasksComponent implements OnInit {
     private _topbarEmitter: TopBarEmitter
   ) { }
 
-  headers = ['Id', 'Data', 'Estado/Posição', 'Componente', 'Status'];
-  tasks: Task[];
+  headers = ['Id', 'Data', 'Valor', 'Componente', 'Status'];
+  tasks: any;
 
   ngOnInit() {
     this._topbarEmitter.emitNewRouteTitle('Tasks');
     this._socketIoService
         .emitMessage('tasks:Get', null, (tasks) => {
-          this.tasks = this.iterateOverTasks(tasks);
+          this.tasks = this.iterateOverTasks(tasks)
+                           .map(task => {
+                             const { Id, Date, ValueDescription, Component, StatusDescription } = task;
+                             return { Id, Date, ValueDescription, Component: Component['description'], StatusDescription };
+                            });
         });
   }
 
   iterateOverTasks(tasks): Task[] {
     return tasks.map(task => {
-      const { target, date, milliseconds, value, id, status } = task;
-      return new Task(target, date, milliseconds, value, id, status);
+      const { component, date, milliseconds, value, id, status } = task;
+      return new Task(component, date, milliseconds, value, id, status);
     });
   }
 

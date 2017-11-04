@@ -4,46 +4,56 @@
   padding 2rem
   width 100%
 
-.table__head__item,
+.table
+  display flex
+  flex-direction column
+  width 100%
+
+.table__head
+  display flex
+  width 100%
+  padding-bottom .1rem
+
+.table__head__item
+  background-color #353C3E
+  color #EEE
+  flex 1
+  font 600 .9rem 'Exo 2', sans-serif
+  padding 1rem
+  justify-content center
+
+.table__head__item:first-child,
+.table__body__row__item:first-child,
+.table__head__item:last-child,
+.table__body__row__item:last-child
+  display none
+
+.table__body
+  display flex
+  flex-direction column
+
+.table__body__row
+  display flex
+
+.table__body__row:nth-child(odd)
+  background-color #FFF
+
 .table__body__row__item
-  text-align left
+  display flex
+  flex 1
+  font 600 .9rem 'Mada', sans-serif
+  justify-content center
+  padding 1rem
+  word-break break-all
 
-@media screen and (max-width 425px)
-  .table
-    display flex
-    width 100%
-
-  .table__head,
-  .table__body
-    display flex
-    width 100%
-
-  .table__head
-    flex-direction column
-    max-width 7.5rem
-
-  .table__head__item
-    border-right .2rem solid #444
-    text-align left
-
-  .table__head__item:not(:last-child)
-    border-bottom .1rem solid #444
-
-  .table__head__item
-    padding .5rem 0 .5rem 0
-
+@media screen and (min-width 26rem)
+  .table__head__item,
   .table__body__row__item
-    padding .5rem 1rem .5rem .5rem
-  
-  .table__body__row:not(:first-child) .table__body__row__item
-    padding-left 0rem
+    font-size 1rem
 
-  .table__body__row__item:not(:last-child)
-    border-bottom .1rem solid #444
-
-  .table__body
-    overflow-x scroll
-
-  .table__body__row
+@media screen and (min-width 48rem)
+  .table__head__item:first-child,
+  .table__body__row__item:first-child,
+  .table__head__item:last-child,
+  .table__body__row__item:last-child
     display flex
-    flex-direction column

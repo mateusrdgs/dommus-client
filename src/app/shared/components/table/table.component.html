@@ -3,8 +3,13 @@
     <th class="table__head__item" *ngFor="let header of headers" [textContent]="header"></th>
   </thead>
   <tbody class="table__body">
-    <tr class="table__body__row" *ngFor="let row of rows">
-      <td class="table__body__row__item" *ngFor="let key of row | keys" [textContent]="row[key]"></td>
-    </tr>
+    <ng-container *ngIf="rows?.length else noRows">
+      <tr class="table__body__row" *ngFor="let row of rows">
+        <td class="table__body__row__item" *ngFor="let key of row | keys" [textContent]="row[key]"></td>
+      </tr>
+    </ng-container>
+    <ng-template #noRows>
+      No data to display
+    </ng-template>
   </tbody>
 </table>
