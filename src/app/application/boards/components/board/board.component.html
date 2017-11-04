@@ -3,7 +3,6 @@
   <button-update [routePath]="'boards'"></button-update>
 </div>
 <div class="board-container" *ngIf="board">
-  <h1 class="board-container__title" [textContent]="board?.description"></h1>
   <div class="board-content">
     <div class="board-content__model-container" [ngSwitch]="board?.model">
       <h2 class="board-content__label">Model</h2>

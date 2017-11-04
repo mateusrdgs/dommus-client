@@ -3,7 +3,6 @@
   <button-delete></button-delete>
 </div>
 <div class="update-component-container" *ngIf="component">
-  <h1 class="update-component-container__title" [textContent]="'Update ' + component.description"></h1>
   <form [formGroup]="updateComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
       <form-control-text
         formControlName="description"

@@ -26,6 +26,7 @@ export class CardFrontComponent implements OnInit {
   }
 
   onPositionChange(event) {
+    console.log(this.component.minRange);
     this.positionChange.emit(event);
   }
 

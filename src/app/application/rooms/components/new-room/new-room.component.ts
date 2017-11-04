@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { RemoteService } from './../../../../shared/services/remote/remote.service';
+import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import { UrlCreatorService } from './../../../../shared/services/url-creator/url-creator.service';
 
 import Room from '../../classes/room';
@@ -21,10 +22,12 @@ export class NewRoomComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _remoteService: RemoteService,
+    private _topBarEmitter: TopBarEmitter,
     private _urlCreatorService: UrlCreatorService
   ) { }
 
   ngOnInit() {
+    this._topBarEmitter.emitNewRouteTitle('Create a new room');
     this.startNewRoomForm();
   }
 

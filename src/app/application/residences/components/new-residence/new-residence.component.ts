@@ -26,7 +26,7 @@ export class NewResidenceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topBarEmitter.emitNewRouteTitle('Create residence');
+    this._topBarEmitter.emitNewRouteTitle('Create a new residence');
     this.startNewResidenceForm();
   }
 

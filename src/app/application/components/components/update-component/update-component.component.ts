@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { ComponentsService } from './../../services/components.service';
 import { RemoteService } from './../../../../shared/services/remote/remote.service';
+import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import { SocketIoService } from './../../../../shared/services/socket-io/socket-io.service';
 import { UrlCreatorService } from './../../../../shared/services/url-creator/url-creator.service';
 
@@ -38,6 +39,7 @@ export class UpdateComponentComponent implements OnInit {
     private _componentsService: ComponentsService,
     private _formBuilder: FormBuilder,
     private _urlCreator: UrlCreatorService,
+    private _topBarEmitter: TopBarEmitter,
     private _remoteService: RemoteService,
     private _socketIoService: SocketIoService
   ) { }
@@ -53,16 +55,17 @@ export class UpdateComponentComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
             this.component = this.extractDataFromRawComponent(response.json()['Component']);
+            this._topBarEmitter.emitNewRouteTitle(`Update ${this.component.Description}`);
           }
+          this._activatedRoute.data
+              .map(resp => resp['boards'])
+              .subscribe(resp => {
+                if (resp.hasOwnProperty('status') && resp.status === 200) {
+                  this.boards = this.iterateOverBoards( resp.json()['Boards']);
+                }
+              });
+          this.startUpdateComponentForm(this.boards, this.component);
         });
-    this._activatedRoute.data
-        .map(response => response['boards'])
-        .subscribe(response => {
-          if (response.hasOwnProperty('status') && response.status === 200) {
-            this.boards = this.iterateOverBoards( response.json()['Boards']);
-          }
-        });
-    this.startUpdateComponentForm(this.boards, this.component);
   }
 
   extractDataFromRawComponent(component: any) {

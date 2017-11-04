@@ -1,3 +1,4 @@
+import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -31,10 +32,12 @@ export class NewBoardComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _urlCreatorService: UrlCreatorService,
     private _socketIoService: SocketIoService,
+    private _topBarEmitter: TopBarEmitter,
     private _remoteService: RemoteService
   ) { }
 
   ngOnInit() {
+    this._topBarEmitter.emitNewRouteTitle('Create a new board');
     this.startNewBoardForm();
   }
 

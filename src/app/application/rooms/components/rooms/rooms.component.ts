@@ -32,7 +32,6 @@ export class RoomsComponent implements OnInit {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const rooms = response.json()['Rooms'];
             this.rooms = this.iterateOverRooms(rooms).concat([{ isntItem: true, routePath: '', description: 'Create a new room' }]);
-            console.log(this.rooms);
           } else {
             this.rooms =
               this.iterateOverRooms([])

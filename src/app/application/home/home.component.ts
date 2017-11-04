@@ -8,6 +8,12 @@ import { LocalStorageService } from './../../shared/services/local-storage/local
 import { SocketIoService } from './../../shared/services/socket-io/socket-io.service';
 import { TopBarEmitter } from './../../shared/emitters/top-bar.emitter';
 
+import Switch from '../../shared/classes/switch';
+import Thermometer from '../../shared/classes/thermometer';
+import Light from '../../shared/classes/light';
+import Motion from '../../shared/classes/motion';
+import Servo from '../../shared/classes/servo';
+
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -57,9 +63,62 @@ export class HomeComponent implements OnInit {
         if (eventName === 'changed:Component') {
           console.log(data);
         } else {
-          this.components = data;
+          this.components = this.iterateOverComponents(data);
         }
       });
+  }
+
+  iterateOverComponents(components: any): any[] {
+    return components.map(component => {
+      const { type } = component;
+      switch (component.type) {
+        case 1: {
+          return this.returnSwitch(component);
+        }
+        case 2: {
+          return this.returnLight(component);
+        }
+        case 3: {
+          return this.returnLight(component);
+        }
+        case 4: {
+          return this.returnMotion(component);
+        }
+        case 5: {
+          console.log(component);
+          break;
+        }
+        case 6: {
+          return this.returnServo(component);
+        }
+      }
+    });
+  }
+
+  returnSwitch(component: any): Switch {
+    const { id, description, type, digitalPin, idBoard, isOn } = component;
+    return new Switch(idBoard, description, digitalPin, type, id, isOn);
+  }
+
+  returnThermometer(component: any): Thermometer {
+    const { id, description, type, analogPin, frequency, idBoard } = component;
+    return new Thermometer(idBoard, description, type, 'LM35', analogPin, frequency, id);
+  }
+
+  returnLight(component: any): Light {
+    const { id, description, type, analogPin, frequency, threshold, idBoard } = component;
+    return new Light(idBoard, description, type, 'DEFAULT', analogPin, frequency, threshold, id);
+  }
+
+  returnMotion(component: any): Motion {
+    const { id, description, type, digitalPin, idBoard } = component; {
+      return new Motion(idBoard, description, type, digitalPin, id);
+    }
+  }
+
+  returnServo(component: any): Servo {
+    const { id, description, type, digitalPin, startAt, range, idBoard } = component;
+    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], id);
   }
 
   emitMessage(eventName: string, eventData: any) {

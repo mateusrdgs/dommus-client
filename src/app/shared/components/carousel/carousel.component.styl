@@ -1,7 +1,8 @@
 :host
+  align-items center
   display flex
   flex-direction column
-  align-items center
+  position relative
   overflow hidden
   width 100%
 
@@ -15,7 +16,6 @@
   list-style none
   margin 0
   padding 0
-  width 400rem
 
 .carousel__item-link,
 .carousel__item-link__description,
@@ -24,6 +24,11 @@ button[class^="carousel__controls"]
   text-align center
   transition all .4s ease-out
   word-wrap break-word
+
+.carousel__item
+  min-width 255px
+  padding 0 .5rem
+  width 100%
 
 .carousel__item-link
   align-items center
@@ -44,10 +49,10 @@ button[class^="carousel__controls"]
     transform translate3d(0, 2rem, 0)
 
 .carousel__item-link-new
-  background-color #3BC391
+  background-color #66CC99
 
 .carousel__item-link__description
-  font 400 2.5rem 'Exo 2', sans-serif
+  font 400 2rem 'Exo 2', sans-serif
 
 .carousel__item-link__subdescription
   font 300 1.2rem 'Mada', sans-serif
@@ -57,9 +62,6 @@ button[class^="carousel__controls"]
   transition all .4s ease-in
   width 16.25rem
 
-.carousel__controls
-  margin-top 2rem
-
 .fa
   transition all .4s ease-in
 
@@ -67,33 +69,26 @@ button[class^="carousel__controls"]
 .carousel__controls__right
   border none
   border-radius .2rem
-  background-color #353C3E
-  font-size 2rem
-  color #EEE
-  padding .3rem 2rem
-  transition all .4s ease-in
+  background-color transparent
+  color #FFF
+  font-size 1.5rem
+  opacity .5
   outline none
-  &:first-child:hover .fa
-    transform translateX(-.4rem)
-  &:last-child:hover .fa
-    transform translateX(.4rem)
+  padding .5rem 2rem
+  position absolute
+  transform translateY(-50%)
+  transition all .4s ease-in
+  top 60%
+  &:hover
+    opacity 1
 
-@media screen and (min-width 26.56rem)
-  .item-width
-    width 24rem
+.carousel__controls__left
+  left .5rem
 
-@media screen and (min-width 48rem)
-  .item-width
-    width 46rem
+.carousel__controls__right
+  right .5rem 
 
-@media screen and (min-width 37.5rem)
-  .item-width
-    width 33.5rem
-
-@media screen and (min-width 56.25rem)
-  .item-width
-    width 54rem
-
-@media screen and (min-width 75rem)
-  .item-width
-    width 70rem
+@media screen and (min-width: 31rem)
+  .carousel__controls__left,
+  .carousel__controls__right
+    top 50%

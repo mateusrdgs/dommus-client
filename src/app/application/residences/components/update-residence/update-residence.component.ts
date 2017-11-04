@@ -42,7 +42,7 @@ export class UpdateResidenceComponent implements OnInit {
             const { _id, description, url, rooms, boards } = response.json()['Residence'];
             this.residence = new Residence(description, url, _id, rooms, boards);
             this.createUpdateResidenceForm(this.residence);
-            this._topBarEmitter.emitNewRouteTitle(this.residence.Description);
+            this._topBarEmitter.emitNewRouteTitle(`Update ${this.residence.Description}`);
           }
         });
   }

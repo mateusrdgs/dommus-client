@@ -3,10 +3,12 @@
   <button-update [routePath]="'residences'"></button-update>
 </div>
 <div class="residence__container" *ngIf="residence">
-  <div class="residence__container-item">
-    <carousel *ngIf="residence?.rooms?.length" [childRoute]="'rooms'" [items]="residence?.rooms" [showControls]="residence?.rooms?.length > 1"></carousel>
-  </div>
-  <div class="residence__container-item">
-    <carousel *ngIf="residence?.boards?.length" [childRoute]="'boards'" [items]="residence?.boards" [showControls]="residence?.boards?.length > 1"></carousel>
+  <div class="residence__container-carousel">
+    <div class="residence__container-carousel__item">
+      <carousel *ngIf="residence?.rooms?.length" [childRoute]="'rooms'" [items]="residence?.rooms" [showControls]="residence?.rooms?.length > 1"></carousel>
+    </div>
+    <div class="residence__container-carousel__item">
+      <carousel *ngIf="residence?.boards?.length" [childRoute]="'boards'" [items]="residence?.boards" [showControls]="residence?.boards?.length > 1"></carousel>
+    </div>
   </div>
 </div>

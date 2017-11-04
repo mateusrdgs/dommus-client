@@ -1,3 +1,4 @@
+import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -21,17 +22,23 @@ export class UpdateRoomComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _urlCreatorService: UrlCreatorService,
     private _remoteService: RemoteService,
+    private _topBarEmitter: TopBarEmitter,
     private _formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.extractDataFromResolver();
+  }
+
+  extractDataFromResolver() {
     this._activatedRoute.data
         .map(response => response['room'])
         .subscribe(response => {
           if (response.status === 200) {
             const { _id, description, components } = response.json()['Room'];
-            this.room = new Room(description, _id, components);
-            this.startUpdateRoomForm(this.room);
+              this.room = new Room(description, _id, components);
+              this._topBarEmitter.emitNewRouteTitle(`Update ${this.room.Description}`);
+              this.startUpdateRoomForm(this.room);
           }
         });
   }

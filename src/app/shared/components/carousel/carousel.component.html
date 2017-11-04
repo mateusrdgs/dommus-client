@@ -1,13 +1,15 @@
-<section class="carousel__wrapper" [class.item-width]="'true'">
+<section class="carousel__wrapper">
   <ul class="carousel__inner" #carousel>
     <li class="carousel__item" *ngFor="let item of items">
       <ng-container *ngIf="item?.isntItem else isItem">
-        <a [routerLink]="item?.routePath ? [item?.routePath, 'new'] : ['new']" class="carousel__item-link carousel__item-link-new" [class.item-width]="'true'">
-          <h1 class="carousel__item-link__description" [textContent]="item?.description"></h1>
+        <a [routerLink]="item?.routePath ? [item?.routePath, 'new'] : ['new']" class="carousel__item-link carousel__item-link-new">
+          <h1 class="carousel__item-link__description" [textContent]="item?.description">
+          </h1>
+          
         </a>
       </ng-container>
       <ng-template #isItem>
-        <a [routerLink]="[childRoute ? childRoute : './', item?._id || item?.id]" class="carousel__item-link" [class.item-width]="'true'">
+        <a [routerLink]="[childRoute ? childRoute : './', item?._id || item?.id]" class="carousel__item-link">
         <h1 class="carousel__item-link__description" [textContent]="item?.description"></h1>
         <span class="carousel__item-link__subdescription"
           [textContent]="
@@ -22,11 +24,9 @@
     </li>
   </ul>
 </section>
-<div class="carousel__controls" *ngIf="showControls">
-  <button class="carousel__controls__left" (click)="prev()">
-    <i class="fa fa-chevron-left"></i>
-  </button>
-  <button class="carousel__controls__right" (click)="next()">
-    <i class="fa fa-chevron-right"></i>
-  </button>
-</div>
+<button class="carousel__controls__left" (click)="prev()">
+  <i class="fa fa-chevron-left"></i>
+</button>
+<button class="carousel__controls__right" (click)="next()">
+  <i class="fa fa-chevron-right"></i>
+</button>

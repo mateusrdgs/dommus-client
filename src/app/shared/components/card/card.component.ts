@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterContentChecked } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 
