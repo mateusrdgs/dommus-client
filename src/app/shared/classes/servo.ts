@@ -5,6 +5,8 @@ export default class Servo extends Component {
   private digitalPin: number;
   private startAt: number;
   private range: [number] = [0, 0];
+  private command: string;
+  private position: number;
 
   constructor(
     idBoard: string,
@@ -14,14 +16,15 @@ export default class Servo extends Component {
     startAt: number,
     minRange: number,
     maxRange: number,
+    command: string,
     id?: string
   ) {
-
     super(idBoard, description, type, id);
     this.DigitalPin = digitalPin;
     this.StartAt = startAt;
     this.MinRange = minRange;
     this.MaxRange = maxRange;
+    this.Command = command;
   }
 
   get DigitalPin(): number {
@@ -54,6 +57,14 @@ export default class Servo extends Component {
 
   set MaxRange(value: number) {
     this.range[1] = value;
+  }
+
+  get Command(): string {
+    return this.command;
+  }
+
+  set Command(command: string) {
+    this.command = command;
   }
 
   get Range(): [number] {

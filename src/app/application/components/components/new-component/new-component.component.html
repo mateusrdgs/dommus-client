@@ -1,6 +1,7 @@
-<button-back></button-back>
+<div class="button-container">
+  <button-back></button-back>
+</div>
 <div class="new-component-container">
-  <h1 class="new-component-container__title">New component</h1>
   <form [formGroup]="newComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
@@ -32,6 +33,18 @@
           [control]="newComponentForm.controls['digitalPin']"
         >
         </form-control-number>
+        <form-control-text
+          formControlName="commandOn"
+          [controlName]="'command on'"
+          [control]="newComponentForm.controls['commandOn']"
+        >
+        </form-control-text>
+        <form-control-text
+          formControlName="commandOff"
+          [controlName]="'command off'"
+          [control]="newComponentForm.controls['commandOff']"
+        >
+        </form-control-text>
       </ng-container>
       <ng-container *ngSwitchCase="2">
         <form-control-number
@@ -120,6 +133,12 @@
           [control]="newComponentForm.controls['maxRange']"
         >
         </form-control-number>
+        <form-control-text
+          formControlName="command"
+          [controlName]="'command'"
+          [control]="newComponentForm.controls['command']"
+        >
+        </form-control-text>
       </ng-container>
     </div>
     <button-submit [disabled]="newComponentForm.invalid"></button-submit>

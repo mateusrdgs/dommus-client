@@ -65,6 +65,7 @@ import { TableComponent } from './components/table/table.component';
 import { KeysPipe } from './pipes/keys/keys.pipe';
 import { SpeechRecognitionComponent } from './components/speech-recognition/speech-recognition.component';
 import { LongPressDirective } from './directives/long-press.directive';
+import { SpeechRecognitionService } from './services/speech-recognition/speech-recognition.service';
 
 @NgModule({
   imports: [
@@ -167,6 +168,7 @@ export class SharedModule {
         RemoteService,
         WindowService,
         UrlCreatorService,
+        SpeechRecognitionService,
         CapitalizePipe,
         KeysPipe
       ]

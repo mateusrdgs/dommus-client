@@ -45,6 +45,7 @@ export class UpdateComponentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this._topBarEmitter.emitNewRouteTitle('Update component');
     this.extractRouteParams();
     this.extractDataFromResolver();
   }
@@ -72,8 +73,8 @@ export class UpdateComponentComponent implements OnInit {
     const { type } = component;
       switch (type) {
         case '1': {
-          const { description, digitalPin, idBoard, _id } = component;
-          return new Switch(idBoard, description, digitalPin, type, _id);
+          const { description, digitalPin, idBoard, _id, command } = component;
+          return new Switch(idBoard, description, digitalPin, command, type, _id);
         }
         case '2': {
           const { description, analogPin, frequency, idBoard, _id } = component;
@@ -92,8 +93,8 @@ export class UpdateComponentComponent implements OnInit {
           return new Sensor(idBoard, description, type, analogPin, frequency, '', threshold, _id);
         }
         case '6': {
-          const { description, digitalPin, startAt, minRange, maxRange, idBoard, _id } = component;
-          return new Servo(idBoard, description, type, digitalPin, startAt, minRange, maxRange, _id);
+          const { description, digitalPin, startAt, minRange, maxRange, idBoard, _id, command } = component;
+          return new Servo(idBoard, description, type, digitalPin, startAt, minRange, maxRange, command, _id);
         }
       };
   }
@@ -108,10 +109,8 @@ export class UpdateComponentComponent implements OnInit {
   extractRouteParams() {
     this._activatedRoute.params
         .subscribe(params => {
-          const idResidence = params;
-          const idRoom = params;
-          this.routeParams = { idResidence, idRoom };
-    });
+          this.routeParams = params;
+    }   );
   }
 
   startUpdateComponentForm(boards: any, component: any): void {
@@ -127,13 +126,14 @@ export class UpdateComponentComponent implements OnInit {
   createControls(board: any, component: any): void {
     const { type } = component;
     switch (type) {
-      case '1':
-      case '4': {
+      case '1': {
           this.updateComponentForm
               .addControl('digitalPin',
                 new FormControl(
                   component.digitalPin, [availableOrEqualValidator(component.digitalPin, board['digitalPins'])]
               ));
+          this.updateComponentForm.addControl('commandOn', new FormControl(component.command[0], [Validators.required]));
+          this.updateComponentForm.addControl('commandOff', new FormControl(component.command[1], [Validators.required]));
         break;
       }
       case '2': {
@@ -156,6 +156,14 @@ export class UpdateComponentComponent implements OnInit {
           this.updateComponentForm.addControl('threshold', new FormControl(component.threshold, [Validators.required]));
         break;
       }
+      case '4': {
+        this.updateComponentForm
+            .addControl('digitalPin',
+              new FormControl(
+                component.digitalPin, [availableOrEqualValidator(component.digitalPin, board['digitalPins'])]
+            ));
+        break;
+      }
       case '6': {
           this.updateComponentForm
               .addControl('digitalPin',
@@ -166,6 +174,7 @@ export class UpdateComponentComponent implements OnInit {
           this.updateComponentForm.addControl('startAt', new FormControl(component.startAt, [Validators.required]));
           this.updateComponentForm.addControl('minRange', new FormControl(component.range[0], [Validators.required]));
           this.updateComponentForm.addControl('maxRange', new FormControl(component.range[1], [Validators.required]));
+          this.updateComponentForm.addControl('command', new FormControl(component.command, [Validators.required]));
         break;
       }
     }
@@ -206,38 +215,38 @@ export class UpdateComponentComponent implements OnInit {
   }
 
   createSwitch(formValue) {
-    const { description, componentType, board, digitalPin } = formValue,
-          updatedComponent = new Switch(board._id, description, digitalPin, 1, this.component._id);
+    const { description, componentType, board, digitalPin, commandOn, commandOff } = formValue,
+          updatedComponent = new Switch(board.id, description, digitalPin, [commandOn, commandOff], 1, this.component.id);
     this.updateComponent(updatedComponent);
   }
 
   createThermometer(formValue) {
     const { description, componentType, board, analogPin, frequency, controller } = formValue,
-          updatedComponent = new Thermometer(board._id, description, 2, controller, analogPin, frequency, this.component._id);
+          updatedComponent = new Thermometer(board.id, description, 2, controller, analogPin, frequency, this.component.id);
     this.updateComponent(updatedComponent);
   }
 
   createLight(formValue) {
     const { description, componentType, board, analogPin, threshold, frequency, controller } = formValue,
-          updatedComponent = new Light(board._id, description, 3, controller, analogPin, frequency, threshold, this.component._id);
+          updatedComponent = new Light(board.id, description, 3, controller, analogPin, frequency, threshold, this.component.id);
     this.updateComponent(updatedComponent);
   }
 
   createMotion(formValue) {
     const { description, componentType, board, digitalPin } = formValue,
-          updatedComponent = new Motion(board._id, description, 4, digitalPin);
+          updatedComponent = new Motion(board.id, description, 4, digitalPin);
     this.updateComponent(updatedComponent);
   }
 
   createSensor(formValue) {
     const { description, componentType, board, analogPin, frequency, controller, threshold } = this.updateComponentForm.value,
-          updatedComponent = new Sensor(board._id, description, 5, analogPin, frequency, controller, threshold, this.component._id);
+          updatedComponent = new Sensor(board.id, description, 5, analogPin, frequency, controller, threshold, this.component.id);
     this.updateComponent(updatedComponent);
   }
 
   createServo(formValue) {
-    const { description, componentType, board, digitalPin, startAt, minRange, maxRange } = this.updateComponentForm.value,
-          updatedComponent = new Servo(board._id, description, 6, digitalPin, startAt, minRange, maxRange, this.component._id);
+    const { description, componentType, board, digitalPin, startAt, minRange, maxRange, command } = this.updateComponentForm.value,
+          updatedComponent = new Servo(board.id, description, 6, digitalPin, startAt, minRange, maxRange, command, this.component.id);
     this.updateComponent(updatedComponent);
   }
 
@@ -248,7 +257,7 @@ export class UpdateComponentComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status >= 200) {
             this._socketIoService
-                .emitMessage('update:Component', component, (updated) => {
+                .emitMessage('component:Update', component, (updated) => {
                   if (updated) {
                     console.log(updated);
                   }

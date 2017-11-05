@@ -1,8 +1,14 @@
-<button class="speech__recognition"
+<button *ngIf="compatible" class="speech__recognition" [class.recording]="recording"
   long-press
   (onLongPress)="longPress($event)"
   (onLongPressing)="longPressing($event)"
   (onLongPressEnd)="longPressEnd($event)"
   >
-  <i class="fa fa-microphone"></i>
+  <i class="fa"
+  [ngClass]="
+    {
+      'fa-microphone': recording,
+      'fa-microphone-slash': !recording
+    }
+  "></i>
 </button>

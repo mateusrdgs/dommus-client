@@ -181,8 +181,8 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
   }
 
   returnSwitch(component: any): Switch {
-    const { _id, description, type, digitalPin, idBoard } = component;
-    return new Switch(idBoard, description, digitalPin, type, _id);
+    const { _id, description, type, digitalPin, idBoard, command } = component;
+    return new Switch(idBoard, description, digitalPin, command, type, _id);
   }
 
   returnThermometer(component: any): Thermometer {
@@ -202,8 +202,8 @@ export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
   }
 
   returnServo(component: any): Servo {
-    const { _id, description, type, digitalPin, startAt, range, idBoard } = component;
-    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], _id);
+    const { _id, description, type, digitalPin, startAt, range, idBoard, command } = component;
+    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], command, _id);
   }
 
   ngOnDestroy() {

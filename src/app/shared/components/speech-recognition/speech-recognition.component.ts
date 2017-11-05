@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { WindowService } from './../../services/window/window.service';
+import { SocketIoService } from './../../services/socket-io/socket-io.service';
+import { SpeechRecognitionService } from './../../services/speech-recognition/speech-recognition.service';
 
 @Component({
   selector: 'speech-recognition',
@@ -9,31 +10,47 @@ import { WindowService } from './../../services/window/window.service';
 })
 export class SpeechRecognitionComponent implements OnInit {
 
-  private recognition: any;
+  private compatible: boolean;
+  public recording: boolean;
 
   constructor(
-    private _windowService: WindowService
+    private _socketIoService: SocketIoService,
+    private _speechRecognitionService: SpeechRecognitionService
   ) { }
 
   ngOnInit() {
-    const Recognition =
-      this._windowService.window()['SpeechRecognition'] ||
-      this._windowService.window()['webkitSpeechRecognition'] ||
-      this._windowService.window()['mozSpeechRecognition'] ||
-      this._windowService.window()['msSpeechRecognition'];
-    this.recognition = new Recognition();
+    this.confirmCompatibility();
+  }
+
+  confirmCompatibility() {
+    this.compatible = this._speechRecognitionService.confirmCompatibility();
   }
 
   longPress(event) {
-    console.log(event);
+    this.toggleRecording();
+    this._speechRecognitionService
+        .record()
+        .subscribe(value => {
+          this._socketIoService.emitMessage('component:StateVoice', value);
+        }, error => {
+          this.toggleRecording();
+          console.error(error);
+        }, () => {
+          this.toggleRecording();
+          console.log('Record finished!');
+        });
+  }
+
+  toggleRecording() {
+    this.recording = !this.recording;
   }
 
   longPressing(event) {
-    console.log(event);
+
   }
 
   longPressEnd(event) {
-    console.log(event);
+    this._speechRecognitionService.stopRecording();
   }
 
 }

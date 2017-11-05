@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
+import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import { SocketIoService } from './../../../../shared/services/socket-io/socket-io.service';
 import { RemoteService } from './../../../../shared/services/remote/remote.service';
 import { UrlCreatorService } from './../../../../shared/services/url-creator/url-creator.service';
@@ -68,11 +69,13 @@ export class NewComponentComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _activatedRoute: ActivatedRoute,
     private _socketIoService: SocketIoService,
+    private _topBarEmitter: TopBarEmitter,
     private _remoteService: RemoteService,
     private _urlCreatorService: UrlCreatorService
   ) { }
 
   ngOnInit() {
+    this._topBarEmitter.emitNewRouteTitle('Create a new component');
     this.extractDataFromResolver();
     this.createNewComponentForm(this.currentFormat);
     this.createControls(this.currentFormat);
@@ -149,8 +152,8 @@ export class NewComponentComponent implements OnInit {
   }
 
   createSwitch(formValue) {
-    const { description, component, board, digitalPin } = formValue;
-    this._component = new Switch(board, description, digitalPin, 1);
+    const { description, component, board, digitalPin, commandOn, commandOff } = formValue;
+    this._component = new Switch(board, description, digitalPin, [commandOn, commandOff], 1);
     this.saveNewComponent(this._component);
   }
 
@@ -179,8 +182,8 @@ export class NewComponentComponent implements OnInit {
   }
 
   createServo(formValue) {
-    const { description, component, board, digitalPin, startAt, minRange, maxRange } = this.newComponentForm.value;
-    this._component = new Servo(board, description, 6, digitalPin, startAt, minRange, maxRange);
+    const { description, component, board, digitalPin, startAt, minRange, maxRange, command } = this.newComponentForm.value;
+    this._component = new Servo(board, description, 6, digitalPin, startAt, minRange, maxRange, command);
     this.saveNewComponent(this._component);
   }
 
@@ -214,8 +217,9 @@ export class NewComponentComponent implements OnInit {
   createControls(nextFormType) {
     switch (nextFormType) {
       case '1':
-      case '4':
           this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.boards[0]['digitalPins'])));
+          this.newComponentForm.addControl('commandOn', new FormControl('', Validators.required));
+          this.newComponentForm.addControl('commandOff', new FormControl('', Validators.required));
         break;
       case '2':
           this.newComponentForm.addControl('analogPin', new FormControl('', [Validators.required]));
@@ -227,11 +231,15 @@ export class NewComponentComponent implements OnInit {
         this.newComponentForm.addControl('frequency', new FormControl('', [Validators.required]));
         this.newComponentForm.addControl('threshold', new FormControl('', [Validators.required]));
       break;
+      case '4':
+        this.newComponentForm.addControl('digitalPin', new FormControl('', validateSet(this.boards[0]['digitalPins'])));
+      break;
       case '6':
           this.newComponentForm.addControl('digitalPin', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('startAt', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('minRange', new FormControl('', [Validators.required]));
           this.newComponentForm.addControl('maxRange', new FormControl('', [Validators.required]));
+          this.newComponentForm.addControl('command', new FormControl('', [Validators.required]));
         break;
       default:
         break;
@@ -240,11 +248,12 @@ export class NewComponentComponent implements OnInit {
 
   removeControls(previousFormType) {
     switch (previousFormType) {
-      case '1':
-      case '4': {
-          this.newComponentForm.removeControl('digitalPin');
-        }
-        break;
+      case '1': {
+        this.newComponentForm.removeControl('digitalPin');
+        this.newComponentForm.removeControl('commandOn');
+        this.newComponentForm.removeControl('commandOff');
+      }
+      break;
       case '2': {
           this.newComponentForm.removeControl('analogPin');
           this.newComponentForm.removeControl('frequency');
@@ -257,12 +266,17 @@ export class NewComponentComponent implements OnInit {
           this.newComponentForm.removeControl('threshold');
       }
         break;
+      case '4': {
+        this.newComponentForm.removeControl('digitalPin');
+      }
+      break;
       case '6': {
           this.newComponentForm.removeControl('digitalPin');
           this.newComponentForm.removeControl('rotation');
           this.newComponentForm.removeControl('startAt');
           this.newComponentForm.removeControl('minRange');
           this.newComponentForm.removeControl('maxRange');
+          this.newComponentForm.removeControl('command');
       }
         break;
       default:

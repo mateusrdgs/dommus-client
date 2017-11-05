@@ -96,8 +96,8 @@ export class HomeComponent implements OnInit {
   }
 
   returnSwitch(component: any): Switch {
-    const { id, description, type, digitalPin, idBoard, isOn } = component;
-    return new Switch(idBoard, description, digitalPin, type, id, isOn);
+    const { id, description, type, digitalPin, idBoard, isOn, command } = component;
+    return new Switch(idBoard, description, digitalPin, command, type, id, isOn);
   }
 
   returnThermometer(component: any): Thermometer {
@@ -117,8 +117,8 @@ export class HomeComponent implements OnInit {
   }
 
   returnServo(component: any): Servo {
-    const { id, description, type, digitalPin, startAt, range, idBoard } = component;
-    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], id);
+    const { id, description, type, digitalPin, startAt, range, idBoard, command } = component;
+    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], command, id);
   }
 
   emitMessage(eventName: string, eventData: any) {

@@ -25,6 +25,18 @@
             [control]="updateComponentForm.controls['digitalPin']"
           >
           </form-control-number>
+          <form-control-text
+            formControlName="commandOn"
+            [controlName]="'command on'"
+            [control]="updateComponentForm.controls['commandOn']"
+          >
+          </form-control-text>
+          <form-control-text
+            formControlName="commandOff"
+            [controlName]="'command off'"
+            [control]="updateComponentForm.controls['commandOff']"
+          >
+          </form-control-text>
         </ng-container>
         <ng-container *ngSwitchCase="2">
           <form-control-number
@@ -119,6 +131,12 @@
             [control]="updateComponentForm.controls['maxRange']"
           >
           </form-control-number>
+          <form-control-text
+            formControlName="command"
+            [controlName]="'command'"
+            [control]="updateComponentForm.controls['command']"
+          >
+          </form-control-text>
         </ng-container>
       </div>
       <button-submit [disabled]="updateComponentForm.invalid"></button-submit>
