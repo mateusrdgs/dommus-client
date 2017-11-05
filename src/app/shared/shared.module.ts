@@ -63,6 +63,8 @@ import { FormControlPasswordComponent } from './components/form-control-password
 import { PreventBubblingDirective } from './directives/prevent-bubbling.directive';
 import { TableComponent } from './components/table/table.component';
 import { KeysPipe } from './pipes/keys/keys.pipe';
+import { SpeechRecognitionComponent } from './components/speech-recognition/speech-recognition.component';
+import { LongPressDirective } from './directives/long-press.directive';
 
 @NgModule({
   imports: [
@@ -112,7 +114,9 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     FormControlPasswordComponent,
     PreventBubblingDirective,
     TableComponent,
-    KeysPipe
+    KeysPipe,
+    SpeechRecognitionComponent,
+    LongPressDirective
   ],
   exports: [
     SideBarComponent,
@@ -138,7 +142,9 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
     ModalBodyDirective,
     FormControlPasswordComponent,
     PreventBubblingDirective,
-    TableComponent
+    TableComponent,
+    SpeechRecognitionComponent,
+    LongPressDirective
   ]
 })
 export class SharedModule {
