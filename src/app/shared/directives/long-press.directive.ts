@@ -27,6 +27,7 @@ export class LongPressDirective {
   }
 
   @HostListener('mousedown', ['$event'])
+  @HostListener('touchstart', ['$event'])
   onMouseDown(event) {
     if (event.which !== 1) {
       return;
@@ -45,6 +46,7 @@ export class LongPressDirective {
   }
 
   @HostListener('mousemove', ['$event'])
+  @HostListener('touchmove', ['$event'])
   onMouseMove(event) {
     if (this.pressing && this.longPressing) {
       const xThres = (event.clientX - this.mouseX) > 10;
@@ -72,6 +74,7 @@ export class LongPressDirective {
   }
 
   @HostListener('mouseup')
+  @HostListener('touchend')
   onMouseUp() {
     this.endPress();
   }
