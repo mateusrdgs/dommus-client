@@ -32,7 +32,7 @@ export class SpeechRecognitionService {
   }
 
   confirmCompatibility() {
-    return this.recognition instanceof this.Recognition;
+    return this.Recognition ? this.recognition instanceof this.Recognition : false;
   }
 
   configureRecognition() {
