@@ -37,7 +37,7 @@ export class NewBoardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topBarEmitter.emitNewRouteTitle('Create a new board');
+    this._topBarEmitter.emitNewRouteTitle('Cadastrar nova placa');
     this.startNewBoardForm();
   }
 

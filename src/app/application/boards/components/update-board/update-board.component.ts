@@ -55,7 +55,7 @@ export class UpdateBoardComponent implements OnInit {
             const board = response.json()['Board'];
             this.board = this.iterateOverProperties(board);
             this.startUpdateBoardForm(this.board);
-            this._topBarEmitter.emitNewRouteTitle(`Update ${this.board.Description}`);
+            this._topBarEmitter.emitNewRouteTitle(`Atualizar ${this.board.Description}`);
           }
         });
   }

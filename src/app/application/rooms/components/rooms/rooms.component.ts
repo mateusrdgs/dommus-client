@@ -21,7 +21,7 @@ export class RoomsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topbarEmitter.emitNewRouteTitle('Rooms');
+    this._topbarEmitter.emitNewRouteTitle('Dependências');
     this.extractDataFromResolver();
   }
 
@@ -31,11 +31,11 @@ export class RoomsComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const rooms = response.json()['Rooms'];
-            this.rooms = this.iterateOverRooms(rooms).concat([{ isntItem: true, routePath: '', description: 'Create a new room' }]);
+            this.rooms = this.iterateOverRooms(rooms).concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova dependência' }]);
           } else {
             this.rooms =
               this.iterateOverRooms([])
-                  .concat([{ isntItem: true, routePath: '', description: 'Create a new room' }]);
+                  .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova dependência' }]);
           }
         }, error => {
           console.log(error);

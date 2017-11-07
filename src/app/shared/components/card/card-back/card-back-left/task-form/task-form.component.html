@@ -1,17 +1,17 @@
 <form class="task-form" [formGroup]="taskForm" (submit)="onSubmit()">
   <form-control-date
     formControlName="date"
-    [controlName]="'Date'"
+    [controlName]="'Data'"
     [control]="taskForm.controls['date']"
   ></form-control-date>
   <form-control-hour
     formControlName="hour"
-    [controlName]="'Hour'"
+    [controlName]="'Hora'"
     [control]="taskForm.controls['hour']"
   ></form-control-hour>
   <form-control-switch
     formControlName="state"
-    [controlName]="'Value'"
+    [controlName]="'Valor'"
   ></form-control-switch>
   <button-submit [disabled]="taskForm.invalid"></button-submit>
 </form>

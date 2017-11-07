@@ -5,26 +5,29 @@
   <form [formGroup]="newBoardForm" class="new-board-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="newBoardForm.controls['description']"
-      [placeholder]="'Enter with your board description'"
+      [placeholder]="'Descrição da placa'"
     >
     </form-control-text>
     <form-control-select
       formControlName="model"
-      [controlName]="'board'"
+      [controlName]="'placa'"
       [control]="newBoardForm.controls['model']"
-      [defaultOption]="'Choose the board'"
+      [defaultOption]="'Escolha o modelo da placa'"
       [items]="boards"
     >
     </form-control-select>
-    <form-control-text
+    <form-control-number
       formControlName="port"
-      [controlName]="'port'"
+      [controlName]="'porta'"
       [control]="newBoardForm.controls['port']"
-      [placeholder]="'Enter your board port on your network'"
+      [placeholder]="'Porta da placa na sua rede local'"
     >
-    </form-control-text>
-  <button-submit [disabled]="newBoardForm.invalid"></button-submit>
+    </form-control-number>
+  <button-submit
+    [text]="'Cadastrar'"
+    [disabled]="newBoardForm.invalid">
+  </button-submit>
   </form>
 </div>

@@ -24,9 +24,11 @@
     </li>
   </ul>
 </section>
-<button class="carousel__controls__left" (click)="prev()">
-  <i class="fa fa-chevron-left"></i>
-</button>
-<button class="carousel__controls__right" (click)="next()">
-  <i class="fa fa-chevron-right"></i>
-</button>
+<ng-container *ngIf="showControls">
+  <button class="carousel__controls__left" (click)="prev()">
+    <i class="fa fa-chevron-left"></i>
+  </button>
+  <button class="carousel__controls__right" (click)="next()">
+    <i class="fa fa-chevron-right"></i>
+  </button>
+</ng-container>

@@ -72,7 +72,7 @@ export default class Task {
   }
 
   get StatusDescription(): string {
-    return this.status ? 'Completado' : 'Não completado';
+    return this.status ? 'Executada' : 'Não executada';
   }
 
 }

@@ -1,16 +1,17 @@
+<button-back></button-back>
 <div class="new-user-container">
-  <button-back></button-back>
-  <h1 class="new-user-container__title">Create a new user</h1>
+  <h1 class="new-user-container__title">Cadastrar novo usuário</h1>
   <form class="new-user-form" [formGroup]="newUserForm" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="name"
-      [controlName]="'name'"
+      [controlName]="'nome'"
       [control]="newUserForm.controls['name']"
+      [placeholder]="'Digite o nome do novo usuário'"
     ></form-control-text>
     <form-control-radio-group
       formControlName="isAdmin"
       [control]="newUserForm.controls['isAdmin']"
-      [legend]="'Admin'"
+      [legend]="'Administrador?'"
       [fields]="fields"
       (change)="onChange()"
     ></form-control-radio-group>
@@ -18,16 +19,24 @@
       formControlName="pin"
       [controlName]="'pin'"
       [control]="newUserForm.controls['pin']"
+      [placeholder]="'Digite o pin do novo usuário'"
     ></form-control-password>
-    <button-submit [disabled]="newUserForm.invalid"></button-submit>
-    <modal [headerTitle]="'Confirm account password'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
+    <button-submit
+      [text]="'Cadastrar'"
+      [disabled]="newUserForm.invalid"
+    ></button-submit>
+    <modal [headerTitle]="'Confirmar senha do administrador'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
       <ng-container *modalBody>
-        <form-control-password *ngIf="isAdmin && openModal"
+        <form-control-password class="password" *ngIf="isAdmin && openModal"
           formControlName="password"
           [controlName]="'password'"
           [control]="newUserForm.controls['password']"
         ></form-control-password>
-        <button-submit [disabled]="newUserForm.invalid" (click)="onSubmit()"></button-submit>
+        <button-submit
+          [text]="'Cadastrar'"
+          [disabled]="newUserForm.invalid" (click)="onSubmit()"
+        >
+        </button-submit>
       </ng-container>
     </modal>
   </form>

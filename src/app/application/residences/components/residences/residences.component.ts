@@ -22,7 +22,7 @@ export class ResidencesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topbarEmitter.emitNewRouteTitle('Residences');
+    this._topbarEmitter.emitNewRouteTitle('Residências');
     this.extractDataFromResolver();
   }
 
@@ -33,11 +33,11 @@ export class ResidencesComponent implements OnInit {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const residences = response.json()['Residences'];
             this.residences = this.iterateOverResidences(residences)
-                                  .concat([{ isntItem: true, routePath: '', description: 'Create a new residence' }]);
+                                  .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova residência' }]);
           } else {
             this.residences =
               this.iterateOverResidences([])
-                  .concat([{ isntItem: true, routePath: '', description: 'Create a new residence' }]);
+                  .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova residência' }]);
           }
         }, error => {
           console.error(error);

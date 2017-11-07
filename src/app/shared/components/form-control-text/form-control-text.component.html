@@ -4,7 +4,8 @@
       {
         'label-email': controlName === 'email',
         'label-link': controlName === 'url',
-        'label-input': controlName === 'description' || controlName === 'nome'
+        'label-input': controlName === 'descrição' || controlName === 'nome',
+        'label-voice': controlName === 'comando - Ligar' || controlName === 'comando - Desligar' || controlName === 'comando'
       }"
     [textContent]="controlName | capitalize"
   >

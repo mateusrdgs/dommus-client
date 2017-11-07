@@ -41,27 +41,23 @@ export class NewComponentComponent implements OnInit {
   components = [
     {
       value: 1,
-      component: 'Switch'
+      component: 'Interruptor'
     },
     {
       value: 2,
-      component: 'Thermometer'
+      component: 'Termômetro'
     },
     {
       value: 3,
-      component: 'Light'
+      component: 'Luminosidade'
     },
     {
       value: 4,
-      component: 'Motion'
-    },
-    {
-      value: 5,
-      component: 'Sensor'
+      component: 'Movimento'
     },
     {
       value: 6,
-      component: 'Servo'
+      component: 'Servo motor'
     }
   ];
 
@@ -75,7 +71,7 @@ export class NewComponentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topBarEmitter.emitNewRouteTitle('Create a new component');
+    this._topBarEmitter.emitNewRouteTitle('Cadastrar novo componente');
     this.extractDataFromResolver();
     this.createNewComponentForm(this.currentFormat);
     this.createControls(this.currentFormat);

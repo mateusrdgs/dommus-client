@@ -5,10 +5,14 @@
   <form class="new-room-form" [formGroup]="newRoomForm" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="newRoomForm.controls['description']"
+      [placeholder]="'Descrição da dependência'"
     >
     </form-control-text>
-    <button-submit [disabled]="newRoomForm.invalid"></button-submit>
+    <button-submit
+      [text]="'Cadastrar'"
+      [disabled]="newRoomForm.invalid"
+    ></button-submit>
   </form>
 </div>

@@ -6,7 +6,7 @@
   <form [formGroup]="updateResidenceForm" class="update-residence-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="updateResidenceForm.controls['description']"
     >
     </form-control-text>
@@ -16,6 +16,9 @@
       [control]="updateResidenceForm.controls['url']"
     >
     </form-control-text>
-    <button-submit [disabled]="updateResidenceForm.invalid"></button-submit>
+    <button-submit
+      [text]="'Salvar'"
+      [disabled]="updateResidenceForm.invalid"
+     ></button-submit>
   </form>
 </div>

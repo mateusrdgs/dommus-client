@@ -29,7 +29,7 @@ export class NewAccountComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      pin: ['', Validators.pattern('[0-9]*')]
+      pin: ['', [Validators.required, Validators.pattern('[0-9]*')]]
     });
   }
 

@@ -1,8 +1,12 @@
 :host
   display flex
   height 100%
-  flex-direction column
   padding 2rem
+  width 100%
+
+.new-account-container
+  display flex
+  flex-direction column
   width 100%
 
 .button-container
@@ -10,3 +14,12 @@
   justify-content space-between
   margin-bottom 2rem
   width 100%
+
+.new-account__title
+  font-family 'Exo 2', sans-serif
+  font-size 3rem
+  text-align center
+
+@media screen and (min-width 56rem)
+  :host
+    padding 0 20rem

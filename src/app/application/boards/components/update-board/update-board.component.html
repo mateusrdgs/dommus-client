@@ -6,16 +6,18 @@
   <form [formGroup]="updateBoardForm" class="update-board-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="updateBoardForm.controls['description']"
     >
     </form-control-text>
     <form-control-number
       formControlName="port"
-      [controlName]="'port'"
+      [controlName]="'porta'"
       [control]="updateBoardForm.controls['port']"
     >
     </form-control-number>
-    <button-submit [disabled]="updateBoardForm.invalid"></button-submit>
+    <button-submit
+     [text]="'Salvar'"
+     [disabled]="updateBoardForm.invalid"></button-submit>
   </form>
 </div>

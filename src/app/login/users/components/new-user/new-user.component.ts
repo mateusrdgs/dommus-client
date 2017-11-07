@@ -20,11 +20,11 @@ export class NewUserComponent implements OnInit {
   fields =
   [
     {
-      label: 'No',
+      label: 'Não',
       value: false
     },
     {
-      label: 'Yes',
+      label: 'Sim',
       value: true
     }
   ];

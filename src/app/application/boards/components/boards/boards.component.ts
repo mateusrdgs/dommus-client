@@ -21,7 +21,7 @@ export class BoardsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topBarEmitter.emitNewRouteTitle('Boards');
+    this._topBarEmitter.emitNewRouteTitle('Placas');
     this.extractDataFromResolver();
   }
 
@@ -31,11 +31,11 @@ export class BoardsComponent implements OnInit {
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const boards = response.json()['Boards'];
-            this.boards = this.iterateOverBoards(boards).concat([{ isntItem: true, routePath: '', description: 'Create a new board' }]);
+            this.boards = this.iterateOverBoards(boards).concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova placa' }]);
           } else {
             this.boards =
               this.iterateOverBoards([])
-                  .concat([{ isntItem: true, routePath: '', description: 'Create a new board' }]);
+                  .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova placa' }]);
           }
         });
   }

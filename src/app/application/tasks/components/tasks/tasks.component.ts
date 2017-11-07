@@ -22,7 +22,7 @@ export class TasksComponent implements OnInit {
   tasks: any;
 
   ngOnInit() {
-    this._topbarEmitter.emitNewRouteTitle('Tasks');
+    this._topbarEmitter.emitNewRouteTitle('Tarefas');
     this._socketIoService
         .emitMessage('tasks:Get', null, (tasks) => {
           this.tasks = this.iterateOverTasks(tasks)

@@ -38,7 +38,7 @@ export class RoomComponent implements OnInit {
               { description, _id, components } = room;
         this.room = new Room(description, _id,
           this.iterateOverComponents(components).concat([
-              { isntItem: true, routePath: 'components', description: 'Create a new component' },
+              { isntItem: true, routePath: 'components', description: 'Cadastrar novo componente' },
           ]));
         this._topBarEmitter.emitNewRouteTitle(description);
       } else {

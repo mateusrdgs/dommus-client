@@ -5,10 +5,13 @@
   <form class="update-room-form" [formGroup]="updateRoomForm" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="updateRoomForm.controls['description']"
     >
     </form-control-text>
-    <button-submit [disabled]="updateRoomForm.invalid"></button-submit>
+    <button-submit
+      [text]="'Salvar'"
+      [disabled]="updateRoomForm.invalid"
+    ></button-submit>
   </form>
 </div>

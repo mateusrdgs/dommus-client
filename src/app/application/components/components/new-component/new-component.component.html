@@ -5,23 +5,24 @@
   <form [formGroup]="newComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="newComponentForm.controls['description']"
+      [placeholder]="'Descrição do componente'"
     >
     </form-control-text>
     <form-control-select
     formControlName="board"
-      [controlName]="'board'"
+      [controlName]="'placa'"
       [control]="newComponentForm.controls['board']"
-      [defaultOption]="'Choose the board'"
+      [defaultOption]="'Escolha a placa'"
       [items]="boards"
     >
     </form-control-select>
     <form-control-select (change)="onChange()"
       formControlName="component"
-      [controlName]="'component'"
+      [controlName]="'componente'"
       [control]="newComponentForm.controls['component']"
-      [defaultOption]="'Choose the component'"
+      [defaultOption]="'Escolha o componente'"
       [items]="components"
     >
     </form-control-select>
@@ -29,118 +30,136 @@
       <ng-container *ngSwitchCase="1">
         <form-control-number
           formControlName="digitalPin"
-          [controlName]="'Digital Pin'"
+          [controlName]="'Pino digital'"
           [control]="newComponentForm.controls['digitalPin']"
+          [placeholder]="'Digite o pino digital em que o componente está conectado'"
         >
         </form-control-number>
         <form-control-text
           formControlName="commandOn"
-          [controlName]="'command on'"
+          [controlName]="'comando - Ligar'"
           [control]="newComponentForm.controls['commandOn']"
+          [placeholder]="'Digite o comando para ligar o interruptor'"
         >
         </form-control-text>
         <form-control-text
           formControlName="commandOff"
-          [controlName]="'command off'"
+          [controlName]="'comando - Desligar'"
           [control]="newComponentForm.controls['commandOff']"
+          [placeholder]="'Digite o comando para desligar o interruptor'"
         >
         </form-control-text>
       </ng-container>
       <ng-container *ngSwitchCase="2">
         <form-control-number
           formControlName="analogPin"
-          [controlName]="'Analog Pin'"
+          [controlName]="'Pino analógico'"
           [control]="newComponentForm.controls['analogPin']"
+          [placeholder]="'Digite o pino analógico em que o componente está conectado'"
         >
         </form-control-number>
         <form-control-number
           formControlName="frequency"
-          [controlName]="'Frequency'"
+          [controlName]="'Frequência'"
           [control]="newComponentForm.controls['frequency']"
+          [placeholder]="'Digite a frequência de verificação da temperatura (milissegundos)'"
         >
         </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="3">
         <form-control-number
           formControlName="analogPin"
-          [controlName]="'Analog Pin'"
+          [controlName]="'Pino analógico'"
           [control]="newComponentForm.controls['analogPin']"
+          [placeholder]="'Digite o pino analógico em que o componente está conectado'"
         >
         </form-control-number>
         <form-control-number
           formControlName="frequency"
-          [controlName]="'Frequency'"
+          [controlName]="'Frequência'"
           [control]="newComponentForm.controls['frequency']"
+          [placeholder]="'Digite a frequência de verificação da luminosidade (milissegundos)'"
         >
         </form-control-number>
         <form-control-number
           formControlName="threshold"
-          [controlName]="'Threshold'"
+          [controlName]="'Limite'"
           [control]="newComponentForm.controls['threshold']"
+          [placeholder]="'Digite o limite de variação da luminosidade'"
         >
         </form-control-number>
       </ng-container>
       <ng-container *ngSwitchCase="4">
         <form-control-number
           formControlName="digitalPin"
-          [controlName]="'Digital Pin'"
+          [controlName]="'Pino digital'"
           [control]="newComponentForm.controls['digitalPin']"
+          [placeholder]="'Digite o pino digital em que o componente está conectado'"
         >
         </form-control-number>
       </ng-container>
-      <ng-container *ngSwitchCase="5">
+      <!--<ng-container *ngSwitchCase="5">
         <form-control-number
           formControlName="analogPin"
-          [controlName]="'Analog Pin'"
+          [controlName]="'Pino analógico'"
           [control]="newComponentForm.controls['analogPin']"
         >
         </form-control-number>
         <form-control-number
           formControlName="frequency"
-          [controlName]="'Frequency'"
+          [controlName]="'Frequência'"
           [control]="newComponentForm.controls['frequency']"
         >
         </form-control-number>
         <form-control-number
           formControlName="threshold"
-          [controlName]="'Threshold'"
+          [controlName]="'Limite'"
           [control]="newComponentForm.controls['threshold']"
         >
         </form-control-number>
-      </ng-container>
+      </ng-container>-->
       <ng-container *ngSwitchCase="6">
           <form-control-number
           formControlName="digitalPin"
-          [controlName]="'Digital Pin'"
+          [controlName]="'Pino digital'"
           [control]="newComponentForm.controls['digitalPin']"
+          [placeholder]="'Digite o pino digital em que o componente está conectado'"
         >
         </form-control-number>
         <form-control-number
           formControlName="startAt"
-          [controlName]="'Start at'"
+          [controlName]="'Iniciar em'"
           [control]="newComponentForm.controls['startAt']"
+          [placeholder]="'Digite a angulação em que o servo deve iniciar (graus)'"
         >
         </form-control-number>
         <form-control-number
           formControlName="minRange"
-          [controlName]="'Minimum range'"
+          [controlName]="'Rotação inicial'"
           [control]="newComponentForm.controls['minRange']"
+          [placeholder]="'Digite a angulação inicial do servo (graus)'"
         >
         </form-control-number>
         <form-control-number
           formControlName="maxRange"
-          [controlName]="'Maximum range'"
+          [controlName]="'Rotação máxima'"
           [control]="newComponentForm.controls['maxRange']"
+          [placeholder]="'Digite a angulação máxima do servo (graus)'"
         >
         </form-control-number>
         <form-control-text
           formControlName="command"
-          [controlName]="'command'"
+          [controlName]="'comando'"
           [control]="newComponentForm.controls['command']"
+          [placeholder]="'Digite o comando para interagir com o servo'"
         >
         </form-control-text>
       </ng-container>
     </div>
-    <button-submit [disabled]="newComponentForm.invalid"></button-submit>
+    <button-submit
+      [text]="'Cadastrar'"
+      [disabled]="newComponentForm.invalid"
+    >
+    </button-submit>
   </form>
 </div>

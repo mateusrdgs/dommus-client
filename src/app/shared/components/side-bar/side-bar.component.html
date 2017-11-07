@@ -13,17 +13,17 @@
         {
           'active': isActive([idUser, 'residences', idResidence, 'update']) || isActive([idUser, 'residences', idResidence]) || isActive([idUser, 'residences', 'new']) || isActive([idUser, 'residences'])
         }"
-        class="sidebar-list__item-link">Residences <i class="fa fa-home"></i>
+        class="sidebar-list__item-link">Residências <i class="fa fa-home"></i>
       </a>
     </li>
     <li class="sidebar-list__item">
-      <a [routerLink]="idResidence ? ['residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']"  [class.disabled]="!idResidence" class="sidebar-list__item-link">Rooms <i class="fa fa-television"></i></a>
+      <a [routerLink]="idResidence ? ['residences', idResidence, 'rooms'] : null" [routerLinkActive]="['active']"  [class.disabled]="!idResidence" class="sidebar-list__item-link">Dependências <i class="fa fa-television"></i></a>
     </li>
     <li class="sidebar-list__item">
-      <a [routerLink]="idResidence ? ['residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [class.disabled]="!idResidence" class="sidebar-list__item-link">Boards <i class="fa fa-microchip"></i></a>
+      <a [routerLink]="idResidence ? ['residences', idResidence, 'boards'] : null" [routerLinkActive]="['active']" [class.disabled]="!idResidence" class="sidebar-list__item-link">Placas <i class="fa fa-microchip"></i></a>
     </li>
     <li class="sidebar-list__item">
-      <a [routerLink]="['tasks']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" class="sidebar-list__item-link">Tasks<i class="fa fa-tasks"></i></a>
+      <a [routerLink]=" idResidence ? ['tasks'] : null" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" [class.disabled]="!idResidence" class="sidebar-list__item-link">Tarefas<i class="fa fa-tasks"></i></a>
     </li>
     <!--<li class="sidebar-list__item">
       <a [routerLink]="['users']" [routerLinkActive]="['active']" class="sidebar-list__item-link">Users<i class="fa fa-users"></i></a>

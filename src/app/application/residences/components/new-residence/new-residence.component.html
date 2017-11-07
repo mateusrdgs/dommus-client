@@ -5,16 +5,21 @@
   <form [formGroup]="newResidenceForm" class="new-residence-form" (ngSubmit)="onSubmit()">
     <form-control-text
       formControlName="description"
-      [controlName]="'description'"
+      [controlName]="'descrição'"
       [control]="newResidenceForm.controls['description']"
+      [placeholder]="'Descrição da residência'"
     >
     </form-control-text>
     <form-control-text
       formControlName="url"
       [controlName]="'url'"
       [control]="newResidenceForm.controls['url']"
+      [placeholder]="'Url da residência'"
     >
     </form-control-text>
-    <button-submit [disabled]="newResidenceForm.invalid"></button-submit>
+    <button-submit
+      [text]="'Cadastrar'"
+      [disabled]="newResidenceForm.invalid"
+    ></button-submit>
   </form>
 </div>

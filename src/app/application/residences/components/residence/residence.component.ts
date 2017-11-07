@@ -45,9 +45,9 @@ export class ResidenceComponent implements OnInit {
         const { description, url, _id, rooms, boards } = response.json()['Residence'];
         this.residence = new Residence(description, url, _id,
             this.iterateOverRooms(rooms)
-                .concat([{ isntItem: true, routePath: 'rooms', description: 'Create a new room' }]),
+                .concat([{ isntItem: true, routePath: 'rooms', description: 'Cadastrar nova dependência' }]),
             this.iterateOverBoards(boards)
-                .concat([{ isntItem: true, routePath: 'boards', description: 'Create a new board' }]));
+                .concat([{ isntItem: true, routePath: 'boards', description: 'Cadastrar nova placa' }]));
         if (_id) {
           const token = { id: _id, url };
           this._residenceEmitter.enteredResidence.emit(_id);

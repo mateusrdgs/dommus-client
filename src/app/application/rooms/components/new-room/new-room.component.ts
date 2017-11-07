@@ -27,7 +27,7 @@ export class NewRoomComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._topBarEmitter.emitNewRouteTitle('Create a new room');
+    this._topBarEmitter.emitNewRouteTitle('Cadastrar nova dependência');
     this.startNewRoomForm();
   }
 
