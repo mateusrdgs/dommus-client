@@ -94,7 +94,7 @@ export class UpdateComponentComponent implements OnInit {
         }
         case '6': {
           const { description, digitalPin, startAt, minRange, maxRange, idBoard, _id, command } = component;
-          return new Servo(idBoard, description, type, digitalPin, startAt, minRange, maxRange, command, _id);
+          return new Servo(idBoard, description, type, digitalPin, startAt, minRange, maxRange, [command], _id);
         }
       };
   }

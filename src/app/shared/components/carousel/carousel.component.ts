@@ -40,7 +40,6 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   next() {
-    this.getCurrentItemWidth();
     if (this.currentSlide + 1 === this.items.length) {
       this.currentSlide = 0;
       const offset = 0;
@@ -57,7 +56,6 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   prev() {
-    this.getCurrentItemWidth();
     if (this.currentSlide === 0) {
       this.currentSlide = this.itemsElements.length - 1;
       const offset = this.currentSlide * (100 / this.itemsElements.length);
@@ -66,15 +64,11 @@ export class CarouselComponent implements AfterViewInit {
       this.player.play();
       return;
     }
-    this.currentSlide = ((this.currentSlide - 1) + this.items.length) % this.items.length;
-    const offset = this.currentSlide * this.itemsElements.length;
+    this.currentSlide = this.currentSlide - 1;
+    const offset = this.currentSlide * (100 / this.itemsElements.length);
     const myAnimation: AnimationFactory = this.buildAnimation(offset);
     this.player = myAnimation.create(this.carousel.nativeElement);
     this.player.play();
-  }
-
-  getCurrentItemWidth() {
-    this.itemWidth = this.itemsElements.first.nativeElement.getBoundingClientRect().width;
   }
 
 }

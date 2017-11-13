@@ -179,7 +179,7 @@ export class NewComponentComponent implements OnInit {
 
   createServo(formValue) {
     const { description, component, board, digitalPin, startAt, minRange, maxRange, command } = this.newComponentForm.value;
-    this._component = new Servo(board, description, 6, digitalPin, startAt, minRange, maxRange, command);
+    this._component = new Servo(board, description, 6, digitalPin, startAt, minRange, maxRange, [command]);
     this.saveNewComponent(this._component);
   }
 

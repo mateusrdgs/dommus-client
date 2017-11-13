@@ -5,7 +5,7 @@ export default class Servo extends Component {
   private digitalPin: number;
   private startAt: number;
   private range: [number] = [0, 0];
-  private command: string;
+  private command: string[];
   private position: number;
 
   constructor(
@@ -16,7 +16,7 @@ export default class Servo extends Component {
     startAt: number,
     minRange: number,
     maxRange: number,
-    command: string,
+    command: string[],
     id?: string
   ) {
     super(idBoard, description, type, id);
@@ -59,11 +59,11 @@ export default class Servo extends Component {
     this.range[1] = value;
   }
 
-  get Command(): string {
+  get Command(): string[] {
     return this.command;
   }
 
-  set Command(command: string) {
+  set Command(command: string[]) {
     this.command = command;
   }
 
