@@ -17,6 +17,8 @@ import Board from './../../classes/board';
 export class NewBoardComponent implements OnInit {
 
   newBoardForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
 
   boards = [{
     value: 1,
@@ -71,10 +73,21 @@ export class NewBoardComponent implements OnInit {
             this._socketIoService
                 .emitMessage('board:Create', board, (created) => {
                   if (created) {
-                    console.log(created);
+                    const warningMessage = `Placa ${board.Description} criada com sucesso!`;
+                    this.onOpenModal(warningMessage);
                   }
                 });
           }
         }, error => console.error(error));
+  }
+
+  onOpenModal(warningMessage: string) {
+    this.warningMessage = warningMessage;
+    this.openModal = true;
+  }
+
+  onCloseModal(event) {
+    this.warningMessage = '';
+    this.openModal = event;
   }
 }

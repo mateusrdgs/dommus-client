@@ -25,9 +25,9 @@
       [text]="'Cadastrar'"
       [disabled]="newUserForm.invalid"
     ></button-submit>
-    <modal [headerTitle]="'Confirmar senha do administrador'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
+    <modal [headerTitle]="'Confirmar senha do administrador'" [openModal]="'openModal'" (closeModal)="onCloseModal($event)">
       <ng-container *modalBody>
-        <form-control-password class="password" *ngIf="isAdmin && openModal"
+        <form-control-password class="password" *ngIf="'isAdmin' && 'openModal'"
           formControlName="password"
           [controlName]="'password'"
           [control]="newUserForm.controls['password']"

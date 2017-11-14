@@ -1,6 +1,6 @@
 .modal__wrapper
   align-items center
-  background-color rgba(0, 0, 0, 0.4)
+  background-color rgba(0, 0, 0, 0.8)
   display none
   justify-content center
   left 0
@@ -9,7 +9,7 @@
   position fixed
   top 0
   width 100%
-  z-index 1
+  z-index 12
 
 .modal--open
   display flex
@@ -25,9 +25,10 @@
 
 .modal__header
   align-items center
-  display flex
-  background-color #353C3E
+  background-color #0A0A0A
   color #EEE
+  display flex
+  font 1.2rem 'Mada', sans-serif
   justify-content space-between
   height 4rem
   padding 1rem
@@ -35,16 +36,15 @@
 
 .modal__header-close
   font-size 1.5rem
-  transition all .4s ease-in
+  transition all .3s ease-in
   &:hover
     cursor pointer
-    transform rotate(90deg)
-    transform-origin center center
+    transform scale(1.1)
 
 .modal__body
   display flex
   flex-direction column
-  justify-content space-between
+  justify-content space-around
   height 100%
   padding 1rem
   width 100%
@@ -54,6 +54,9 @@
   padding 0
 
 @media screen and (min-width 48rem)
+  .modal__header
+    font-size 1.5rem
+
   .modal__container
     width 75%
     height 20rem

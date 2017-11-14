@@ -17,6 +17,8 @@ export class NewRoomComponent implements OnInit {
 
   room: Room;
   newRoomForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -55,9 +57,21 @@ export class NewRoomComponent implements OnInit {
         .postResources(url, room)
         .subscribe(response => {
           if (response.status === 201) {
-            console.log(response.json()['Room']);
+            //console.log(response.json()['Room']);
+            const warningMessage = `${room.Description} cadastrado com sucesso!`;
+            this.onOpenModal(warningMessage);
           }
         }, error => console.error(error));
+  }
+
+  onOpenModal(warningMessage: string) {
+    this.warningMessage = warningMessage;
+    this.openModal = true;
+  }
+
+  onCloseModal(event) {
+    this.warningMessage = '';
+    this.openModal = event;
   }
 
 }

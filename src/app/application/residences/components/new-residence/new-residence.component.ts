@@ -16,6 +16,8 @@ import Residence from './../../classes/residence';
 export class NewResidenceComponent implements OnInit {
 
   newResidenceForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -51,9 +53,21 @@ export class NewResidenceComponent implements OnInit {
         .postResources(url, residence)
         .subscribe(response => {
           if (response.status === 201) {
-            console.log(response.json()['Residence']);
+            const message = `${residence.Description} cadastrado com sucesso!`;
+            this.onOpenModal(message);
           }
         }, error => console.error(error));
   }
+
+  onOpenModal(message: string) {
+    this.openModal = true;
+    this.warningMessage = message;
+  }
+
+  onCloseModal(event) {
+    this.openModal = event;
+  }
+
+
 
 }

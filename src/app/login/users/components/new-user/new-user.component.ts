@@ -38,7 +38,7 @@ export class NewUserComponent implements OnInit {
   ngOnInit() {
     this.newUserForm = this._formBuilder.group({
       name: ['', Validators.required],
-      isAdmin: [false, Validators.required]
+      isAdmin: [true, Validators.required]
     });
   }
 
