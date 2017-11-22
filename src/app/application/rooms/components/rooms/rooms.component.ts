@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
+import { AuthService } from './../../../../shared/services/auth/auth.service';
 
 import Room from './../../classes/room';
 
@@ -17,6 +18,7 @@ export class RoomsComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService,
     private _topbarEmitter: TopBarEmitter
   ) { }
 
@@ -29,13 +31,23 @@ export class RoomsComponent implements OnInit {
     this._activatedRoute.data
         .map(response => response['rooms'])
         .subscribe(response => {
+          const userIsAdmin = this._authService.checkUserPermission('Dommus_User');
           if (response.hasOwnProperty('status') && response.status === 200) {
             const rooms = response.json()['Rooms'];
-            this.rooms = this.iterateOverRooms(rooms).concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova dependência' }]);
+            if (userIsAdmin) {
+              this.rooms = this.iterateOverRooms(rooms)
+                               .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova dependência' }]);
+            } else {
+              this.rooms = this.iterateOverRooms(rooms);
+            }
           } else {
-            this.rooms =
+            if (userIsAdmin) {
+              this.rooms =
               this.iterateOverRooms([])
                   .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova dependência' }]);
+            } else {
+              this.iterateOverRooms([]);
+            }
           }
         }, error => {
           console.log(error);

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { AuthService } from './../../../../shared/services/auth/auth.service';
+
 import Room from './../../classes/room';
 
 import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
@@ -22,6 +24,7 @@ export class RoomComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService,
     private _topBarEmitter: TopBarEmitter
   ) { }
 
@@ -33,13 +36,18 @@ export class RoomComponent implements OnInit {
     this._activatedRoute.data
     .map(response => response['room'])
     .subscribe(response => {
+      const userIsAdmin = this._authService.checkUserPermission('Dommus_User');
       if (response.hasOwnProperty('status') && response.status === 200) {
         const room = response.json()['Room'],
               { description, _id, components } = room;
-        this.room = new Room(description, _id,
-          this.iterateOverComponents(components).concat([
-              { isntItem: true, routePath: 'components', description: 'Cadastrar novo componente' },
-          ]));
+        if (userIsAdmin) {
+          this.room = new Room(description, _id,
+            this.iterateOverComponents(components).concat([
+                { isntItem: true, routePath: 'components', description: 'Cadastrar novo componente' },
+            ]));
+        } else {
+          this.room = new Room(description, _id, this.iterateOverComponents(components));
+        }
         this._topBarEmitter.emitNewRouteTitle(description);
       } else {
         console.error(response);

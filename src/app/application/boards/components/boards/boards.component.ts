@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { AuthService } from './../../../../shared/services/auth/auth.service';
+
 import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
 import Board from '../../classes/board';
@@ -17,6 +19,7 @@ export class BoardsComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService,
     private _topBarEmitter: TopBarEmitter
   ) { }
 
@@ -29,13 +32,25 @@ export class BoardsComponent implements OnInit {
     this._activatedRoute.data
         .map(response => response['boards'])
         .subscribe(response => {
+          const userIsAdmin = this._authService.checkUserPermission('Dommus_User');
           if (response.hasOwnProperty('status') && response.status === 200) {
             const boards = response.json()['Boards'];
-            this.boards = this.iterateOverBoards(boards).concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova placa' }]);
-          } else {
-            this.boards =
-              this.iterateOverBoards([])
+            if (userIsAdmin) {
+              this.boards =
+                this.iterateOverBoards(boards)
                   .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova placa' }]);
+            } else {
+              this.boards =
+                this.iterateOverBoards(boards);
+            }
+          } else {
+            if (userIsAdmin) {
+              this.boards =
+                this.iterateOverBoards([])
+                      .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova placa' }]);
+              } else {
+                this.boards = this.iterateOverBoards([]);
+              }
           }
         });
   }

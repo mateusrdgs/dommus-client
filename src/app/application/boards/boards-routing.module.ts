@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { UserPermissionGuard } from './../../shared/guards/user-permission.guard';
+
 import { BoardsResolver } from './resolvers/boards.resolver.service';
 import { BoardResolver } from './resolvers/board.resolver.service';
 
@@ -25,7 +27,9 @@ const routes: Routes = [
     component: NewBoardComponent,
     data: {
       title: 'New board'
-    }
+    },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard]
   },
   {
     path: ':idBoard',
@@ -45,7 +49,9 @@ const routes: Routes = [
     },
     data: {
       title: 'Update board'
-    }
+    },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard]
   }
 ];
 

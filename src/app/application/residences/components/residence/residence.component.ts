@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { AuthService } from './../../../../shared/services/auth/auth.service';
 import { LocalStorageService } from './../../../../shared/services/local-storage/local-storage.service';
 import { ResidenceEmitter } from './../../../../shared/emitters/residence.emitter';
 import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
@@ -27,6 +28,7 @@ export class ResidenceComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService,
     private _localStorageService: LocalStorageService,
     private _residenceEmitter: ResidenceEmitter,
     private _socketIoService: SocketIoService,
@@ -41,13 +43,20 @@ export class ResidenceComponent implements OnInit {
     this._activatedRoute.data
     .map(response => response['residence'])
     .subscribe(response => {
-      if (response.status === 200) {
+      const userIsAdmin = this._authService.checkUserPermission('Dommus_User');
+      if (response.hasOwnProperty('status') && response.status === 200) {
         const { description, url, _id, rooms, boards } = response.json()['Residence'];
-        this.residence = new Residence(description, url, _id,
+        if (userIsAdmin) {
+          this.residence = new Residence(description, url, _id,
             this.iterateOverRooms(rooms)
                 .concat([{ isntItem: true, routePath: 'rooms', description: 'Cadastrar nova dependência' }]),
             this.iterateOverBoards(boards)
                 .concat([{ isntItem: true, routePath: 'boards', description: 'Cadastrar nova placa' }]));
+        } else {
+          this.residence = new Residence(description, url, _id,
+            this.iterateOverRooms(rooms),
+            this.iterateOverBoards(boards));
+        }
         if (_id) {
           const token = { id: _id, url };
           this._residenceEmitter.enteredResidence.emit(_id);

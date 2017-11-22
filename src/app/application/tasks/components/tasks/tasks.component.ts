@@ -33,7 +33,7 @@ export class TasksComponent implements OnInit {
         });
   }
 
-  iterateOverTasks(tasks): Task[] {
+  iterateOverTasks(tasks = []): Task[] {
     return tasks.map(task => {
       const { component, date, milliseconds, value, id, status } = task;
       return new Task(component, date, milliseconds, value, id, status);

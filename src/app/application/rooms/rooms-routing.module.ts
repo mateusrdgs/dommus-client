@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { UserPermissionGuard } from './../../shared/guards/user-permission.guard';
+
 import { RoomsResolver } from './resolvers/rooms.resolver.service';
 import { RoomResolver } from './resolvers/room.resolver.service';
 
@@ -25,7 +27,9 @@ const routes: Routes = [
     component: NewRoomComponent,
     data: {
       title: 'New room'
-    }
+    },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard]
   },
   {
     path: ':idRoom',
@@ -45,7 +49,9 @@ const routes: Routes = [
     },
     data: {
       title: 'Update room'
-    }
+    },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard]
   },
   {
     path: ':idRoom/components',

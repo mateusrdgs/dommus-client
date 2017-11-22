@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
+
+import { UserPermissionGuard } from './../../shared/guards/user-permission.guard';
 
 import { NewComponentGuard } from './guards/new-component.guard.service';
 import { BoardsResolver } from './../boards/resolvers/boards.resolver.service';
@@ -24,10 +26,11 @@ const routes: Routes = [
     resolve: {
       boards: BoardsResolver
     },
-    canActivate: [NewComponentGuard],
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard, NewComponentGuard],
     data: {
       title: 'New component'
-    }
+    },
   },
   {
     path: ':idComponent',
@@ -46,6 +49,8 @@ const routes: Routes = [
       component: ComponentResolver,
       boards: BoardsResolver
     },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard, NewComponentGuard],
     data: {
       title: 'Update component'
     }
