@@ -15,8 +15,6 @@ export class NewAccountComponent implements OnInit {
 
   account: Account;
   accountForm: FormGroup;
-  accountFormValid: Boolean = false;
-  accountFormSubscription: Subscription;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -29,12 +27,12 @@ export class NewAccountComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      pin: ['', [Validators.required, Validators.pattern('[0-9]*')]]
+      pin: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    if (this.accountFormValid) {
+    if (this.accountForm.valid) {
       this.account = this.accountForm.value;
       this._newAccountService.createNewAccount(this.account);
     }

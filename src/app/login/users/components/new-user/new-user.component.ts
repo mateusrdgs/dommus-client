@@ -38,7 +38,7 @@ export class NewUserComponent implements OnInit {
   ngOnInit() {
     this.newUserForm = this._formBuilder.group({
       name: ['', Validators.required],
-      isAdmin: [true, Validators.required]
+      isAdmin: [false, Validators.required]
     });
   }
 
@@ -46,11 +46,18 @@ export class NewUserComponent implements OnInit {
     if (this.newUserForm.valid) {
       const { name, isAdmin } = this.newUserForm.value;
       if (isAdmin && !this.openModal) {
-        this.newUserForm.addControl('password', new FormControl('', [Validators.required]));
+        this.newUserForm.addControl('adminPin', new FormControl('', [Validators.required]));
         this.openModal = true;
       } else if (isAdmin && this.openModal) {
-        const { pin, password } = this.newUserForm.value,
-        body = { name, isAdmin, pin, password };
+        const { pin, adminPin } = this.newUserForm.value,
+        body = { name, isAdmin, pin, adminPin: adminPin };
+        this.createNewUser(body);
+      } else if (!isAdmin && !this.openModal) {
+        this.newUserForm.addControl('adminPin', new FormControl('', [Validators.required]));
+        this.openModal = true;
+      } else {
+        const { adminPin } = this.newUserForm.value,
+              body = { name, isAdmin, adminPin };
         this.createNewUser(body);
       }
     }
@@ -58,7 +65,7 @@ export class NewUserComponent implements OnInit {
 
   onCloseModal(openModal) {
     this.openModal = openModal;
-    this.newUserForm.removeControl('password');
+    this.newUserForm.removeControl('adminPin');
   }
 
   onChange() {

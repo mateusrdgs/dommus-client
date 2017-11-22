@@ -1,6 +1,6 @@
 <div class="login-container">
   <h1 class="login__text">DOMMUS</h1>
-  <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm" class="login-form" (submit)="onSubmit()">
     <form-control-text
       formControlName="email"
       [controlName]="'email'"
