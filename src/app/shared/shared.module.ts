@@ -18,6 +18,7 @@ import { SocketIoEmitter } from './emitters/socket-io.emitter';
 
 import { AppGuard } from './guards/app.guards.service';
 import { UserGuard } from './guards/user.guard';
+import { UserPermissionGuard } from './guards/user-permission.guard';
 
 import { CardComponent } from './components/card/card.component';
 import { CardBackComponent } from './components/card/card-back/card-back.component';
@@ -155,6 +156,7 @@ export class SharedModule {
       providers: [
         AppGuard,
         UserGuard,
+        UserPermissionGuard,
         AuthService,
         LocalStorageService,
         SocketIoService,

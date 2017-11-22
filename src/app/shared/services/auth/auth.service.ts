@@ -18,6 +18,10 @@ export class AuthService {
     }
   }
 
+  checkUserPermission(tokenName: string) {
+    return  this._localStorageService.getTokenPropertyValue(tokenName, 'isAdmin', false) === 'true';
+  }
+
   logoutAccount(tokenName: string) {
     this._localStorageService.removeToken(tokenName);
   }

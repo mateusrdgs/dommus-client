@@ -2,8 +2,11 @@ import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import 'rxjs/add/operator/catch';
+
+import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
+import { AuthService } from './../../../../shared/services/auth/auth.service';
+
 import Residence from './../../classes/residence';
 
 @Component({
@@ -18,6 +21,7 @@ export class ResidencesComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService,
     private _topbarEmitter: TopBarEmitter
   ) { }
 
@@ -30,14 +34,23 @@ export class ResidencesComponent implements OnInit {
     this._activatedRoute.data
         .map(response => response['residences'])
         .subscribe(response => {
+          const userIsAdmin = this._authService.checkUserPermission('Dommus_User');
           if (response.hasOwnProperty('status') && response.status === 200) {
             const residences = response.json()['Residences'];
-            this.residences = this.iterateOverResidences(residences)
-                                  .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova residência' }]);
+            if (userIsAdmin) {
+              this.residences = this.iterateOverResidences(residences)
+                                    .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova residência' }]);
+            } else {
+              this.residences = this.iterateOverResidences(residences);
+            }
           } else {
-            this.residences =
+            if (userIsAdmin) {
+              this.residences =
               this.iterateOverResidences([])
                   .concat([{ isntItem: true, routePath: '', description: 'Cadastrar nova residência' }]);
+            } else {
+              this.residences = this.iterateOverResidences([]);
+            }
           }
         }, error => {
           console.error(error);

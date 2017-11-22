@@ -1,7 +1,9 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppGuard } from './../../shared/guards/app.guards.service';
+import { UserPermissionGuard } from './../../shared/guards/user-permission.guard';
 import { ResidencesResolver } from './resolvers/residences.resolver.service';
 import { ResidenceResolver } from './resolvers/residence.resolver.service';
 
@@ -26,7 +28,9 @@ const routes: Routes = [
     component: NewResidenceComponent,
     data: {
       title: 'New residence'
-    }
+    },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard]
   },
   {
     path: ':idResidence',
@@ -46,7 +50,9 @@ const routes: Routes = [
     },
     data: {
       title: 'Update residence'
-    }
+    },
+    canLoad: [UserPermissionGuard],
+    canActivate: [UserPermissionGuard]
   },
   {
     path: ':idResidence/rooms',
