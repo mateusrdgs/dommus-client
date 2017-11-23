@@ -20,9 +20,6 @@ import Residence from './../../classes/residence';
 })
 export class UpdateResidenceComponent implements OnInit {
 
-  residence: Residence;
-  updateResidenceForm: FormGroup;
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
@@ -33,6 +30,12 @@ export class UpdateResidenceComponent implements OnInit {
     private _router: Router,
     private _topBarEmitter: TopBarEmitter
   ) { }
+
+  residence: Residence;
+  updateResidenceForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
 
   ngOnInit() {
     this._activatedRoute.data
@@ -72,7 +75,8 @@ export class UpdateResidenceComponent implements OnInit {
               .putResources(url, residence)
               .subscribe(response => {
                 if (response.hasOwnProperty('status') && response.status === 200) {
-                  console.log(response.json()['Residence']);
+                  const message = `${residence.Description} atualizado com sucesso!`;
+                  this.onOpenModal(message);
                 } else {
                   throw response.json();
                 }
@@ -81,6 +85,15 @@ export class UpdateResidenceComponent implements OnInit {
               });
         })
         .unsubscribe();
+  }
+
+  onOpenModal(message: string) {
+    this.openModal = true;
+    this.warningMessage = message;
+  }
+
+  onCloseModal(event) {
+    this.openModal = event;
   }
 
 }

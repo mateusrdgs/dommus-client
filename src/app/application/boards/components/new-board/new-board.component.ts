@@ -16,19 +16,6 @@ import Board from './../../classes/board';
 })
 export class NewBoardComponent implements OnInit {
 
-  newBoardForm: FormGroup;
-  warningMessage: string;
-  openModal: boolean;
-
-  boards = [{
-    value: 1,
-    model: 'UNO'
-  },
-  {
-    value: 2,
-    model: 'MEGA'
-  }];
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
@@ -37,6 +24,19 @@ export class NewBoardComponent implements OnInit {
     private _topBarEmitter: TopBarEmitter,
     private _remoteService: RemoteService
   ) { }
+
+  newBoardForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
+  boards = [{
+    value: 1,
+    model: 'UNO'
+  },
+  {
+    value: 2,
+    model: 'MEGA'
+  }];
 
   ngOnInit() {
     this._topBarEmitter.emitNewRouteTitle('Cadastrar nova placa');
@@ -73,7 +73,7 @@ export class NewBoardComponent implements OnInit {
             this._socketIoService
                 .emitMessage('board:Create', board, (created) => {
                   if (created) {
-                    const warningMessage = `Placa ${board.Description} criada com sucesso!`;
+                    const warningMessage = `Placa '${board.Description}' criada com sucesso!`;
                     this.onOpenModal(warningMessage);
                   }
                 });

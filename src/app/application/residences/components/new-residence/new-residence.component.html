@@ -23,7 +23,7 @@
     ></button-submit>
   </form>
 </div>
-<modal [headerTitle]="'Aviso'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
+<modal [headerTitle]="headerTitle" [openModal]="openModal" (closeModal)="onCloseModal($event)">
   <ng-container *modalBody>
     <span class="warning__message"
       [textContent]="warningMessage"

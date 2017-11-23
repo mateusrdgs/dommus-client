@@ -15,9 +15,6 @@ import { UrlCreatorService } from './../../../../shared/services/url-creator/url
 })
 export class UpdateRoomComponent implements OnInit {
 
-  room: Room;
-  updateRoomForm: FormGroup;
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _urlCreatorService: UrlCreatorService,
@@ -25,6 +22,12 @@ export class UpdateRoomComponent implements OnInit {
     private _topBarEmitter: TopBarEmitter,
     private _formBuilder: FormBuilder
   ) { }
+
+  room: Room;
+  updateRoomForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
 
   ngOnInit() {
     this.extractDataFromResolver();
@@ -37,7 +40,7 @@ export class UpdateRoomComponent implements OnInit {
           if (response.status === 200) {
             const { _id, description, components } = response.json()['Room'];
               this.room = new Room(description, _id, components);
-              this._topBarEmitter.emitNewRouteTitle(`Update ${this.room.Description}`);
+              this._topBarEmitter.emitNewRouteTitle(`Atualizar ${this.room.Description}`);
               this.startUpdateRoomForm(this.room);
           }
         });
@@ -68,8 +71,20 @@ updateRoom(url: string, room: Room) {
         .putResources(url, room)
         .subscribe(response => {
           if (response.status === 200) {
-            console.log(response.json()['Room']);
+            const warningMessage = `${room.Description} atualizado com sucesso!`;
+            this.onOpenModal(warningMessage);
           }
         }, error => console.error(error));
   }
+
+  onOpenModal(warningMessage: string) {
+    this.warningMessage = warningMessage;
+    this.openModal = true;
+  }
+
+  onCloseModal(event) {
+    this.warningMessage = '';
+    this.openModal = event;
+  }
+
 }

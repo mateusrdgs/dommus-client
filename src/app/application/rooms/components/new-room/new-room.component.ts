@@ -15,11 +15,6 @@ import Room from '../../classes/room';
 })
 export class NewRoomComponent implements OnInit {
 
-  room: Room;
-  newRoomForm: FormGroup;
-  warningMessage: string;
-  openModal: boolean;
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
@@ -27,6 +22,12 @@ export class NewRoomComponent implements OnInit {
     private _topBarEmitter: TopBarEmitter,
     private _urlCreatorService: UrlCreatorService
   ) { }
+
+  room: Room;
+  newRoomForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
 
   ngOnInit() {
     this._topBarEmitter.emitNewRouteTitle('Cadastrar nova dependência');
@@ -57,7 +58,6 @@ export class NewRoomComponent implements OnInit {
         .postResources(url, room)
         .subscribe(response => {
           if (response.status === 201) {
-            //console.log(response.json()['Room']);
             const warningMessage = `${room.Description} cadastrado com sucesso!`;
             this.onOpenModal(warningMessage);
           }

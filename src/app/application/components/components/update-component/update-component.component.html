@@ -142,3 +142,11 @@
       <button-submit [disabled]="updateComponentForm.invalid"></button-submit>
     </form>
 </div>
+<modal [headerTitle]="headerTitle" [openModal]="openModal" (closeModal)="onCloseModal($event)">
+  <ng-container *modalBody>
+    <span class="warning__message"
+      [textContent]="warningMessage"
+    >
+    </span>
+  </ng-container>
+</modal>

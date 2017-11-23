@@ -15,10 +15,6 @@ import Residence from './../../classes/residence';
 })
 export class NewResidenceComponent implements OnInit {
 
-  newResidenceForm: FormGroup;
-  warningMessage: string;
-  openModal: boolean;
-
   constructor(
     private _formBuilder: FormBuilder,
     private _residencesService: ResidencesService,
@@ -26,6 +22,11 @@ export class NewResidenceComponent implements OnInit {
     private _topBarEmitter: TopBarEmitter,
     private _urlCreatorService: UrlCreatorService
   ) { }
+
+  newResidenceForm: FormGroup;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
 
   ngOnInit() {
     this._topBarEmitter.emitNewRouteTitle('Cadastrar nova residência');

@@ -21,9 +21,21 @@ import Board from './../../classes/board';
 })
 export class UpdateBoardComponent implements OnInit {
 
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder,
+    private _remoteService: RemoteService,
+    private _socketIoService: SocketIoService,
+    private _topBarEmitter: TopBarEmitter,
+    private _urlCreatorService: UrlCreatorService,
+  ) { }
+
   board: Board;
   updateBoardForm: FormGroup;
   updateBoardSubscription: Subscription;
+  headerTitle = 'Aviso';
+  warningMessage: string;
+  openModal: boolean;
 
   boardsAllowed = [{
     value: 1,
@@ -33,15 +45,6 @@ export class UpdateBoardComponent implements OnInit {
     value: 2,
     type: 'MEGA'
   }];
-
-  constructor(
-    private _activatedRoute: ActivatedRoute,
-    private _formBuilder: FormBuilder,
-    private _remoteService: RemoteService,
-    private _socketIoService: SocketIoService,
-    private _topBarEmitter: TopBarEmitter,
-    private _urlCreatorService: UrlCreatorService,
-  ) { }
 
   ngOnInit() {
     this.extractDataFromResolver();
@@ -97,7 +100,8 @@ export class UpdateBoardComponent implements OnInit {
                   this._socketIoService
                       .emitMessage('board:Update', board, (updated) => {
                         if (updated) {
-                          console.log(updated);
+                          const message = `${board.Description} atualizada com sucesso!`;
+                          this.onOpenModal(message);
                         }
                       });
                 }
@@ -105,6 +109,16 @@ export class UpdateBoardComponent implements OnInit {
                 console.error(error);
               });
         }).unsubscribe();
+  }
+
+  onOpenModal(warningMessage: string) {
+    this.warningMessage = warningMessage;
+    this.openModal = true;
+  }
+
+  onCloseModal(event) {
+    this.warningMessage = '';
+    this.openModal = event;
   }
 
 }

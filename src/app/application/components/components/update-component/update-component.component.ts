@@ -29,10 +29,6 @@ import Board from '../../../boards/classes/board';
 export class UpdateComponentComponent implements OnInit {
 
   private _routeSubscription: Subscription;
-  routeParams: any;
-  updateComponentForm: FormGroup;
-  component: any;
-  boards: any;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -43,6 +39,14 @@ export class UpdateComponentComponent implements OnInit {
     private _remoteService: RemoteService,
     private _socketIoService: SocketIoService
   ) { }
+
+  routeParams: any;
+  updateComponentForm: FormGroup;
+  component: any;
+  boards: any;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
 
   ngOnInit() {
     this._topBarEmitter.emitNewRouteTitle('Update component');
@@ -259,11 +263,22 @@ export class UpdateComponentComponent implements OnInit {
             this._socketIoService
                 .emitMessage('component:Update', component, (updated) => {
                   if (updated) {
-                    console.log(updated);
+                    const message = `${component.Description} atualizado com sucesso!`;
+                    this.onOpenModal(message);
                   }
                 });
           }
         }, error => console.error(error));
+  }
+
+  onOpenModal(warningMessage: string) {
+    this.warningMessage = warningMessage;
+    this.openModal = true;
+  }
+
+  onCloseModal(event) {
+    this.warningMessage = '';
+    this.openModal = event;
   }
 
 }

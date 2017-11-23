@@ -32,12 +32,22 @@ export class NewComponentComponent implements OnInit {
   private _idRoom: string;
   private _component;
 
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _activatedRoute: ActivatedRoute,
+    private _socketIoService: SocketIoService,
+    private _topBarEmitter: TopBarEmitter,
+    private _remoteService: RemoteService,
+    private _urlCreatorService: UrlCreatorService
+  ) { }
+
   newComponentForm: FormGroup;
   firstBoardName: string;
+  warningMessage: string;
+  openModal: boolean;
+  headerTitle = 'Aviso';
   boards: Array<Board>;
-
   currentFormat = '0';
-
   components = [
     {
       value: 1,
@@ -60,15 +70,6 @@ export class NewComponentComponent implements OnInit {
       component: 'Servo motor'
     }
   ];
-
-  constructor(
-    private _formBuilder: FormBuilder,
-    private _activatedRoute: ActivatedRoute,
-    private _socketIoService: SocketIoService,
-    private _topBarEmitter: TopBarEmitter,
-    private _remoteService: RemoteService,
-    private _urlCreatorService: UrlCreatorService
-  ) { }
 
   ngOnInit() {
     this._topBarEmitter.emitNewRouteTitle('Cadastrar novo componente');
@@ -203,7 +204,7 @@ export class NewComponentComponent implements OnInit {
             this._socketIoService
                 .emitMessage('component:Create', component, (created) => {
                   if (created) {
-                    console.log(created);
+                    const message = `${component.Description} criado com sucesso!`;
                   }
                 });
           }
@@ -279,4 +280,15 @@ export class NewComponentComponent implements OnInit {
         break;
     }
   }
+
+  onOpenModal(warningMessage: string) {
+    this.warningMessage = warningMessage;
+    this.openModal = true;
+  }
+
+  onCloseModal(event) {
+    this.warningMessage = '';
+    this.openModal = event;
+  }
+
 }
