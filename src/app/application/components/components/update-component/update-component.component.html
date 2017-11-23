@@ -6,13 +6,13 @@
   <form [formGroup]="updateComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">
       <form-control-text
         formControlName="description"
-        [controlName]="'description'"
+        [controlName]="'descrição'"
         [control]="updateComponentForm.controls['description']"
       >
       </form-control-text>
       <form-control-select
       formControlName="board"
-        [controlName]="'board'"
+        [controlName]="'placa'"
         [control]="updateComponentForm.controls['board']"
         [items]="boards"
       >
@@ -21,19 +21,19 @@
         <ng-container *ngSwitchCase="1">
           <form-control-number
             formControlName="digitalPin"
-            [controlName]="'Digital Pin'"
+            [controlName]="'digital pin'"
             [control]="updateComponentForm.controls['digitalPin']"
           >
           </form-control-number>
           <form-control-text
             formControlName="commandOn"
-            [controlName]="'command on'"
+            [controlName]="'comando - Ligar'"
             [control]="updateComponentForm.controls['commandOn']"
           >
           </form-control-text>
           <form-control-text
             formControlName="commandOff"
-            [controlName]="'command off'"
+            [controlName]="'comando - Desligar'"
             [control]="updateComponentForm.controls['commandOff']"
           >
           </form-control-text>
@@ -41,13 +41,13 @@
         <ng-container *ngSwitchCase="2">
           <form-control-number
             formControlName="analogPin"
-            [controlName]="'Analog Pin'"
+            [controlName]="'pino analógico'"
             [control]="updateComponentForm.controls['analogPin']"
           >
           </form-control-number>
           <form-control-number
             formControlName="frequency"
-            [controlName]="'Frequency'"
+            [controlName]="'frequência'"
             [control]="updateComponentForm.controls['frequency']"
           >
           </form-control-number>
@@ -55,19 +55,19 @@
         <ng-container *ngSwitchCase="3">
           <form-control-number
             formControlName="analogPin"
-            [controlName]="'Analog Pin'"
+            [controlName]="'pino analógico'"
             [control]="updateComponentForm.controls['analogPin']"
           >
           </form-control-number>
           <form-control-number
             formControlName="frequency"
-            [controlName]="'Frequency'"
+            [controlName]="'frequência'"
             [control]="updateComponentForm.controls['frequency']"
           >
           </form-control-number>
           <form-control-number
             formControlName="threshold"
-            [controlName]="'Threshold'"
+            [controlName]="'limite'"
             [control]="updateComponentForm.controls['threshold']"
           >
           </form-control-number>
@@ -75,7 +75,7 @@
         <ng-container *ngSwitchCase="4">
           <form-control-number
             formControlName="digitalPin"
-            [controlName]="'Digital Pin'"
+            [controlName]="'pino digital'"
             [control]="updateComponentForm.controls['digitalPin']"
           >
           </form-control-number>
@@ -83,19 +83,19 @@
         <ng-container *ngSwitchCase="5">
           <form-control-number
             formControlName="analogPin"
-            [controlName]="'Analog Pin'"
+            [controlName]="'pino analógico'"
             [control]="updateComponentForm.controls['analogPin']"
           >
           </form-control-number>
           <form-control-number
             formControlName="frequency"
-            [controlName]="'Frequency'"
+            [controlName]="'frequência'"
             [control]="updateComponentForm.controls['frequency']"
           >
           </form-control-number>
           <form-control-number
             formControlName="threshold"
-            [controlName]="'Threshold'"
+            [controlName]="'limite'"
             [control]="updateComponentForm.controls['threshold']"
           >
           </form-control-number>
@@ -103,37 +103,37 @@
         <ng-container *ngSwitchCase="6">
             <form-control-number
             formControlName="digitalPin"
-            [controlName]="'Digital Pin'"
+            [controlName]="'pino digital'"
             [control]="updateComponentForm.controls['digitalPin']"
           >
           </form-control-number>
           <form-control-number
             formControlName="rotation"
-            [controlName]="'Rotation'"
+            [controlName]="'rotação'"
             [control]="updateComponentForm.controls['rotation']"
           >
           </form-control-number>
           <form-control-number
             formControlName="startAt"
-            [controlName]="'Start at'"
+            [controlName]="'iniciar em'"
             [control]="updateComponentForm.controls['startAt']"
           >
           </form-control-number>
           <form-control-number
             formControlName="minRange"
-            [controlName]="'Minimum range'"
+            [controlName]="'rotação mínima'"
             [control]="updateComponentForm.controls['minRange']"
           >
           </form-control-number>
           <form-control-number
             formControlName="maxRange"
-            [controlName]="'Maximum range'"
+            [controlName]="'rotação máxima'"
             [control]="updateComponentForm.controls['maxRange']"
           >
           </form-control-number>
           <form-control-text
             formControlName="command"
-            [controlName]="'command'"
+            [controlName]="'comando'"
             [control]="updateComponentForm.controls['command']"
           >
           </form-control-text>

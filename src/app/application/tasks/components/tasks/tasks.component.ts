@@ -5,7 +5,6 @@ import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
 import Task from '../../../../shared/classes/task';
 
-
 @Component({
   selector: 'tasks',
   templateUrl: './tasks.component.html',
