@@ -9,10 +9,14 @@ import { AuthService } from './../../../../shared/services/auth/auth.service';
 
 import Residence from './../../classes/residence';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'residences',
   templateUrl: './residences.component.html',
-  styleUrls: ['./residences.component.styl']
+  styleUrls: ['./residences.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class ResidencesComponent implements OnInit {
 

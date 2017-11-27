@@ -5,10 +5,14 @@ import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
 import Task from '../../../../shared/classes/task';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.styl']
+  styleUrls: ['./tasks.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class TasksComponent implements OnInit {
 

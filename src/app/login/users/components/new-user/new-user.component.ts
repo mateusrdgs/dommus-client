@@ -6,10 +6,14 @@ import { UrlCreatorService } from './../../../../shared/services/url-creator/url
 
 import { User } from './../../../../application/users/classes/user';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'new-user',
   templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.styl']
+  styleUrls: ['./new-user.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class NewUserComponent implements OnInit {
 

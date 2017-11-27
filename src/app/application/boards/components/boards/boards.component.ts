@@ -7,10 +7,14 @@ import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
 import Board from '../../classes/board';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'boards',
   templateUrl: './boards.component.html',
-  styleUrls: ['./boards.component.styl']
+  styleUrls: ['./boards.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class BoardsComponent implements OnInit {
 

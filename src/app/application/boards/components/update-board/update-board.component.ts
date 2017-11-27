@@ -14,10 +14,14 @@ import { UrlCreatorService } from './../../../../shared/services/url-creator/url
 
 import Board from './../../classes/board';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'update-board',
   templateUrl: './update-board.component.html',
-  styleUrls: ['./update-board.component.styl']
+  styleUrls: ['./update-board.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class UpdateBoardComponent implements OnInit {
 

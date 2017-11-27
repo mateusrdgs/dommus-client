@@ -25,10 +25,14 @@ import Residence from '../../../application/residences/classes/residence';
 import Board from '../../../application/boards/classes/board';
 import Room from '../../../application/rooms/classes/room';
 
+import { routeAnimation } from './../../animations/route.animation';
+
 @Component({
   selector: 'application-router-outlet',
   templateUrl: './application-router-outlet.component.html',
-  styleUrls: ['./application-router-outlet.component.styl']
+  styleUrls: ['./application-router-outlet.component.styl'],
+  animations: [routeAnimation],
+  host: { '[@routeAnimation]': '' }
 })
 export class ApplicationRouterOutletComponent implements OnInit, OnDestroy {
 

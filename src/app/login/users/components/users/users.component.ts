@@ -2,10 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../../../../application/users/classes/user';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.styl']
+  styleUrls: ['./users.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class UsersComponent implements OnInit {
 

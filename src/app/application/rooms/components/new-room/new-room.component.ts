@@ -8,10 +8,14 @@ import { UrlCreatorService } from './../../../../shared/services/url-creator/url
 
 import Room from '../../classes/room';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'new-room',
   templateUrl: './new-room.component.html',
-  styleUrls: ['./new-room.component.styl']
+  styleUrls: ['./new-room.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class NewRoomComponent implements OnInit {
 

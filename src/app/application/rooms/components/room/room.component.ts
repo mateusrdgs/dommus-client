@@ -13,10 +13,14 @@ import Light from '../../../../shared/classes/light';
 import Motion from '../../../../shared/classes/motion';
 import Servo from '../../../../shared/classes/servo';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.styl']
+  styleUrls: ['./room.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class RoomComponent implements OnInit {
 

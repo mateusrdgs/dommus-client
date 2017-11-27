@@ -13,10 +13,14 @@ import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 
 import Residence from './../../classes/residence';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'update-residence',
   templateUrl: './update-residence.component.html',
-  styleUrls: ['./update-residence.component.styl']
+  styleUrls: ['./update-residence.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class UpdateResidenceComponent implements OnInit {
 

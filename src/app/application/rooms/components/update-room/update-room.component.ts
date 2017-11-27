@@ -8,10 +8,14 @@ import Room from '../../classes/room';
 import { RemoteService } from './../../../../shared/services/remote/remote.service';
 import { UrlCreatorService } from './../../../../shared/services/url-creator/url-creator.service';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'update-room',
   templateUrl: './update-room.component.html',
-  styleUrls: ['./update-room.component.styl']
+  styleUrls: ['./update-room.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class UpdateRoomComponent implements OnInit {
 

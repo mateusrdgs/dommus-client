@@ -9,10 +9,14 @@ import { UrlCreatorService } from './../../../../shared/services/url-creator/url
 
 import Board from './../../classes/board';
 
+import { viewAnimation } from '../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'new-board',
   templateUrl: './new-board.component.html',
-  styleUrls: ['./new-board.component.styl']
+  styleUrls: ['./new-board.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class NewBoardComponent implements OnInit {
 

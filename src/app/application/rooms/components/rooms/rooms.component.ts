@@ -5,11 +5,14 @@ import { TopBarEmitter } from './../../../../shared/emitters/top-bar.emitter';
 import { AuthService } from './../../../../shared/services/auth/auth.service';
 
 import Room from './../../classes/room';
+import { viewAnimation } from '../../../../shared/animations/view.animation';
 
 @Component({
   selector: 'rooms',
   templateUrl: './rooms.component.html',
-  styleUrls: ['./rooms.component.styl']
+  styleUrls: ['./rooms.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class RoomsComponent implements OnInit {
 

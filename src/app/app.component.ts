@@ -5,11 +5,14 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { TitleService } from './shared/services/title/title.service';
 import { TopBarEmitter } from './shared/emitters/top-bar.emitter';
+import { routeAnimation } from './shared/animations/route.animation';
 
 @Component({
   selector: 'root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.styl']
+  styleUrls: ['./app.component.styl'],
+  animations: [routeAnimation],
+  host: { '[@routeAnimation]': '' }
 })
 export class AppComponent implements OnInit, OnDestroy {
 
