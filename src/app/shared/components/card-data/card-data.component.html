@@ -1,0 +1,11 @@
+<div class="card-data">
+  <header class="card-data__header">
+    <h1 class="card-data__header__title" [textContent]="title"></h1>
+  </header>
+  <section class="card-data__body">
+    <div class="card-data__body__data" *ngFor="let property of properties">
+      <h2 class="card-data__body__data__title" [textContent]="property?.property"></h2>
+      <span class="card-data__body__data__value" [textContent]="property?.value"></span>
+    </div>
+  </section>
+</div>

@@ -68,6 +68,7 @@ import { KeysPipe } from './pipes/keys/keys.pipe';
 import { SpeechRecognitionComponent } from './components/speech-recognition/speech-recognition.component';
 import { LongPressDirective } from './directives/long-press.directive';
 import { SpeechRecognitionService } from './services/speech-recognition/speech-recognition.service';
+import { CardDataComponent } from './components/card-data/card-data.component';
 
 @NgModule({
   imports: [
@@ -119,7 +120,8 @@ import { SpeechRecognitionService } from './services/speech-recognition/speech-r
     TableComponent,
     KeysPipe,
     SpeechRecognitionComponent,
-    LongPressDirective
+    LongPressDirective,
+    CardDataComponent
   ],
   exports: [
     SideBarComponent,
@@ -147,7 +149,8 @@ import { SpeechRecognitionService } from './services/speech-recognition/speech-r
     PreventBubblingDirective,
     TableComponent,
     SpeechRecognitionComponent,
-    LongPressDirective
+    LongPressDirective,
+    CardDataComponent
   ]
 })
 export class SharedModule {

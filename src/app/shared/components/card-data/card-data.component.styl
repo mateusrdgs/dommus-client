@@ -1,0 +1,52 @@
+:host, .card-data
+  display flex
+  flex-direction column
+  margin auto
+  transition all .4s linear
+
+:host
+  width 100%
+  max-width 16rem
+  &:hover
+    cursor default
+
+.card-data
+  width 100%
+
+.card-data__header,
+.card-data__body
+  align-items center
+  display flex
+  flex-direction column
+  justify-content center
+
+.card-data__header
+  background-color #353C3E
+
+.card-data__header__title
+  color #FFF
+  font-family 'Exo 2', sans-serif
+
+.card-data__body
+  background-color #FFF
+
+.card-data__body__data
+  border-left 0 solid #FFF
+  border-right 0 solid #FFF
+  display flex
+  flex 2 0 100%
+  flex-direction column
+  padding-bottom 1.245rem
+  transition all .3s linear
+  width 100%
+  &:hover
+    border-left .5rem solid #F27935
+    border-right .5rem solid #F27935
+
+.card-data__body__data__title,
+.card-data__body__data__value
+  text-align center
+
+@media screen and (min-width: 26rem)
+  :host, .card-data
+    max-width 25rem

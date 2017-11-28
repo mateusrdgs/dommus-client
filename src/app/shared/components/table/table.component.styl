@@ -8,11 +8,12 @@
   display flex
   flex-direction column
   width 100%
+  &:hover
+    cursor default
 
 .table__head
   display flex
   width 100%
-  padding-bottom .1rem
 
 .table__head__item
   background-color #353C3E
@@ -34,9 +35,16 @@
 
 .table__body__row
   display flex
+  transition all .3s linear
+  border-left 0 solid #EEE
+  border-right 0 solid #EEE
+  &:hover
+    border-left .5rem solid #F27935
+    border-right .5rem solid #F27935
 
 .table__body__row:nth-child(odd)
   background-color #FFF
+  
 
 .table__body__row__item
   display flex

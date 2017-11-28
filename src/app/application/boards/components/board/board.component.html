@@ -3,7 +3,7 @@
   <button-update [routePath]="'boards'"></button-update>
 </div>
 <div class="board-container" *ngIf="board">
-  <div class="board-content">
+  <!--<div class="board-content">
     <div class="box">
       <div class="board-content__model-container" [ngSwitch]="board?.model">
         <h2 class="board-content__label">Model</h2>
@@ -35,5 +35,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
+  <card-data
+    [title]="title"
+    [properties]="mapBoardProperties(board)"
+  >
+  </card-data>
 </div>
