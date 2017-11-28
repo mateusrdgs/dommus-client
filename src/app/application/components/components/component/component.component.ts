@@ -8,10 +8,14 @@ import Motion from '../../../../shared/classes/motion';
 import Thermometer from '../../../../shared/classes/thermometer';
 import Servo from '../../../../shared/classes/servo';
 
+import { viewAnimation } from './../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'component',
   templateUrl: './component.component.html',
-  styleUrls: ['./component.component.styl']
+  styleUrls: ['./component.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class ComponentComponent implements OnInit {
 

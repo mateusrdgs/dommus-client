@@ -55,14 +55,14 @@ export class NewUserComponent implements OnInit {
       } else if (isAdmin && this.openModal) {
         const { pin, adminPin } = this.newUserForm.value,
         body = { name, isAdmin, pin, adminPin: adminPin };
-        this.createNewUser(body);
+        //this.createNewUser(body);
       } else if (!isAdmin && !this.openModal) {
         this.newUserForm.addControl('adminPin', new FormControl('', [Validators.required]));
         this.openModal = true;
       } else {
         const { adminPin } = this.newUserForm.value,
               body = { name, isAdmin, adminPin };
-        this.createNewUser(body);
+        //this.createNewUser(body);
       }
     }
   }
