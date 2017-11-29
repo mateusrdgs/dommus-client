@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { TopBarEmitter } from '../../../../shared/emitters/top-bar.emitter';
+
 import Switch from '../../../../shared/classes/switch';
 import Light from '../../../../shared/classes/light';
 import Sensor from '../../../../shared/classes/sensor';
@@ -22,7 +24,8 @@ export class ComponentComponent implements OnInit {
   component: any;
 
   constructor(
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _topbarEmitter: TopBarEmitter
   ) { }
 
   ngOnInit() {
@@ -35,8 +38,12 @@ export class ComponentComponent implements OnInit {
         .map(response => response['component'])
         .subscribe(response => {
           if (response.hasOwnProperty('status') && response.status === 200) {
-            this.component = response.json()['Component'];
-            this.iterateOverComponent(this.component);
+            const component = response.json()['Component'];
+            this.component =
+              this.mapComponentProperties(
+                this.iterateOverComponent(component)
+              );
+            this._topbarEmitter.emitNewRouteTitle(this.component[1].value);
           }
         });
   }
@@ -47,7 +54,7 @@ export class ComponentComponent implements OnInit {
         return this.returnSwitch(component);
       }
       case '2': {
-        return this.returnLight(component);
+        return this.returnThermometer(component);
       }
       case '3': {
         return this.returnLight(component);
@@ -66,8 +73,8 @@ export class ComponentComponent implements OnInit {
   }
 
   returnSwitch(component: any): Switch {
-    const { _id, description, type, digitalPin, idBoard } = component;
-    return new Switch(idBoard, description, digitalPin, type, _id);
+    const { _id, description, type, digitalPin, command, idBoard } = component;
+    return new Switch(idBoard, description, digitalPin, command, type, _id);
   }
 
   returnThermometer(component: any): Thermometer {
@@ -87,8 +94,150 @@ export class ComponentComponent implements OnInit {
   }
 
   returnServo(component: any): Servo {
-    const { _id, description, type, digitalPin, startAt, range, idBoard } = component;
-    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], _id);
+    const { _id, description, type, digitalPin, startAt, range, command, idBoard } = component;
+    return new Servo(idBoard, description, type, digitalPin, startAt, range[0], range[1], command, _id);
+  }
+
+  mapComponentProperties(component: any) {
+    switch (component.constructor) {
+      case Switch: {
+        return this.returnMappedSwitch(component);
+      }
+      case Thermometer: {
+        return this.returnMappedThermometer(component);
+      }
+      case Light: {
+        return this.returnMappedLight(component);
+      }
+      case Motion: {
+        return this.returnMappedMotion(component);
+      }
+      case Servo: {
+        return this.returnMappedMotion(component);
+      }
+    }
+  }
+
+  returnMappedSwitch(component: Switch): any {
+    const { Id, Description, DigitalPin, Command } = component;
+    return [
+      {
+        property: 'Id',
+        value: Id
+      },
+      {
+        property: 'Descrição',
+        value: Description
+      },
+      {
+        property: 'Pino digital',
+        value: DigitalPin
+      },
+      {
+        property: 'Comando - Ligar',
+        value: Command[0]
+      },
+      {
+        property: 'Comando - Desligar',
+        value: Command[1]
+      }
+    ];
+  }
+
+  returnMappedThermometer(component: Thermometer) {
+    const { Id, Description, AnalogPin, Frequency } = component;
+    return [
+      {
+        property: 'Id',
+        value: Id
+      },
+      {
+        property: 'Description',
+        value: Id
+      },
+      {
+        property: 'Pino analógico',
+        value: Id
+      },
+      {
+        property: 'Frequência (ms)',
+        value: Frequency
+      }
+    ];
+  }
+
+  returnMappedLight(component: Light) {
+    const { Id, Description, AnalogPin, Frequency, Threshold, IdBoard } = component;
+    return [
+      {
+        property: 'Id',
+        value: Id
+      },
+      {
+        property: 'Description',
+        value: Id
+      },
+      {
+        property: 'Pino analógico',
+        value: Id
+      },
+      {
+        property: 'Frequência (ms)',
+        value: Frequency
+      },
+      {
+        property: 'Limite de variação',
+        value: Threshold
+      }
+    ];
+  }
+
+  returnMappedMotion(component: Motion): any {
+    const { Id, Description, DigitalPin } = component;
+    return [
+      {
+        property: 'Id',
+        value: Id
+      },
+      {
+        property: 'Descrição',
+        value: Description
+      },
+      {
+        property: 'Pino digital',
+        value: DigitalPin
+      }
+    ];
+  }
+
+  returnMappedServo(component: Servo): any {
+    const { Id, Description, Type, DigitalPin, StartAt, Range, IdBoard, Command } = component;
+    return [
+      {
+        property: 'Id',
+        value: Id
+      },
+      {
+        property: 'Descrição',
+        value: Description
+      },
+      {
+        property: 'Pino digital',
+        value: Id
+      },
+      {
+        property: 'Inicia em',
+        value: Id
+      },
+      {
+        property: 'Range',
+        value: Id
+      },
+      {
+        property: 'Comando',
+        value: Command[0]
+      }
+    ];
   }
 
 }

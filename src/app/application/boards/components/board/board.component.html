@@ -3,39 +3,6 @@
   <button-update [routePath]="'boards'"></button-update>
 </div>
 <div class="board-container" *ngIf="board">
-  <!--<div class="board-content">
-    <div class="box">
-      <div class="board-content__model-container" [ngSwitch]="board?.model">
-        <h2 class="board-content__label">Model</h2>
-        <h3 class="board-content__data" *ngSwitchCase="1">UNO</h3>
-        <h3 class="board-content__data" *ngSwitchCase="2">MEGA</h3>
-      </div>
-      <h2 class="board-content__label">Port</h2>
-      <h3 class="board-content__data" [textContent]="board?.port"></h3>
-      <div class="board-content__pins-container">
-        <div class="board-content__container__content">
-          <h2 class="board-content__container__title">Analog pins</h2>
-          <ul class="board-content__list">
-            <li class="board-content__list__item" *ngFor="let chunk of chunksAnalogPins">
-              <ul class="board-content__list__item__list">
-                <li class="board-content__list__item__list__item" *ngFor="let pin of chunk" [textContent]="pin"></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="board-content__container__content">
-          <h2 class="board-content__container__title">Digital pins</h2>
-          <ul class="board-content__list">
-            <li class="board-content__list__item" *ngFor="let chunk of chunksDigitalPins">
-              <ul class="board-content__list__item__list">
-                <li class="board-content__list__item__list__item" *ngFor="let pin of chunk" [textContent]="pin"></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>-->
   <card-data
     [title]="title"
     [properties]="mapBoardProperties(board)"

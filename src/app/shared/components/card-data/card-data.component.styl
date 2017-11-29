@@ -5,8 +5,8 @@
   transition all .4s linear
 
 :host
-  width 100%
   max-width 16rem
+  width 100%
   &:hover
     cursor default
 
@@ -26,6 +26,7 @@
 .card-data__header__title
   color #FFF
   font-family 'Exo 2', sans-serif
+  text-align center
 
 .card-data__body
   background-color #FFF
@@ -46,6 +47,9 @@
 .card-data__body__data__title,
 .card-data__body__data__value
   text-align center
+
+.card-data__body__data__title
+  margin 1.245rem 0 .5rem 0
 
 @media screen and (min-width: 26rem)
   :host, .card-data

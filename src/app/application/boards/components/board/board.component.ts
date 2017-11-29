@@ -67,11 +67,11 @@ export class BoardComponent implements OnInit {
         value: board.Port
       },
       {
-        property: 'Pinos analógicos',
+        property: 'Pinos analógicos disponíveis',
         value: board.AnalogPins
       },
       {
-        property: 'Pinos digitais',
+        property: 'Pinos digitais disponíveis',
         value: board.DigitalPins
       }
     ];

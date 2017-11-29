@@ -3,29 +3,9 @@
   <button-update [routePath]="'boards'"></button-update>
 </div>
 <div class="component-container" *ngIf="component">
-  <h1 class="component-container__title" [textContent]="component?.description"></h1>
-  <div class="component-content__data-container" [ngSwitch]="component?.type">
-    <ng-container *ngSwitchCase="1">
-      <h2 class="component-content__label">Digital Pin</h2>
-      <h3 class="component-content__data" [textContent]="component?.digitalPin"></h3>
-    </ng-container>
-    <ng-container *ngSwitchCase="2">
-      <h2 class="component-content__label">Analog Pin</h2>
-      <h3 class="component-content__data" [textContent]="component?.analogPin"></h3>
-      <h2 class="component-content__label">Frequency</h2>
-      <h3 class="component-content__data" [textContent]="component?.frequency"></h3>
-    </ng-container>
-    <ng-container *ngSwitchCase="3">
-      <h2 class="component-content__label">Digital Pin</h2>
-      <h3 class="component-content__data" [textContent]="component?.digitalPin"></h3>
-      <h2 class="component-content__label">Rotation</h2>
-      <h3 class="component-content__data" [textContent]="component?.rotation"></h3>
-      <h2 class="component-content__label">Minimum range</h2>
-      <h3 class="component-content__data" [textContent]="component?.minRange"></h3>
-      <h2 class="component-content__label">Maximum range</h2>
-      <h3 class="component-content__data" [textContent]="component?.maxRange"></h3>
-    </ng-container>
-  </div>
-  <h2 class="component-content__label">Board</h2>
-  <h3 class="component-content__data" [textContent]="component?.idBoard"></h3>
+  <card-data
+    [title]="'Dados do componente'"
+    [properties]="component"
+  >
+  </card-data>
 </div>
