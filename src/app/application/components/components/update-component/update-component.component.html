@@ -1,6 +1,6 @@
 <div class="button-container">
   <button-back></button-back>
-  <button-delete></button-delete>
+  <button-delete (click)="onDeleteComponent()"></button-delete>
 </div>
 <div class="update-component-container" *ngIf="component">
   <form [formGroup]="updateComponentForm" class="new-component-form" (ngSubmit)="onSubmit()">

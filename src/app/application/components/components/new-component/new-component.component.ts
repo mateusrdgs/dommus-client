@@ -20,10 +20,14 @@ import Board from '../../../boards/classes/board';
 
 import { validateSet } from '../../validators/setValidator';
 
+import { viewAnimation } from './../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'new-component',
   templateUrl: './new-component.component.html',
-  styleUrls: ['./new-component.component.styl']
+  styleUrls: ['./new-component.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class NewComponentComponent implements OnInit {
 

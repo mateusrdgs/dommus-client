@@ -21,10 +21,14 @@ import Sensor from '../../../../shared/classes/sensor';
 import Servo from '../../../../shared/classes/servo';
 import Board from '../../../boards/classes/board';
 
+import { viewAnimation } from './../../../../shared/animations/view.animation';
+
 @Component({
   selector: 'update-component',
   templateUrl: './update-component.component.html',
-  styleUrls: ['./update-component.component.styl']
+  styleUrls: ['./update-component.component.styl'],
+  animations: [viewAnimation],
+  host: { '[@viewAnimation]': '' }
 })
 export class UpdateComponentComponent implements OnInit {
 
@@ -279,6 +283,21 @@ export class UpdateComponentComponent implements OnInit {
   onCloseModal(event) {
     this.warningMessage = '';
     this.openModal = event;
+  }
+
+  onDeleteComponent() {
+    const url = this._urlCreator.createUrl('components', 'id', this.routeParams);
+    this._remoteService
+        .deleteResources(url)
+        .subscribe(response => {
+          if (response.hasOwnProperty('status') && response.status === 200) {
+            const { Id } = this.component;
+            this._socketIoService
+                .emitMessage('component:Delete', { id: Id }, (deleted) => {
+                  console.log(deleted);
+                });
+          }
+        });
   }
 
 }
