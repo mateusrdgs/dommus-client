@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   private _componentsSubscription: Subscription;
   protected components: any;
-  protected connectedToLocalModule = false;
+  public connectedToLocalModule = false;
 
   constructor(
     private _authService: AuthService,

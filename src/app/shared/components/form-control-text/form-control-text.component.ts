@@ -24,7 +24,7 @@ export class FormControlTextComponent implements ControlValueAccessor {
   @Input() control: FormControl;
   @Input() placeholder = 'Enter here...';
   private _self = this;
-  private _value: string;
+  public _value: string;
 
   constructor() { }
 
@@ -54,11 +54,11 @@ export class FormControlTextComponent implements ControlValueAccessor {
 
   private propagateTouch = (_: any) => {};
 
-  private onTouched() {
+  public onTouched() {
     this.propagateTouch(null);
   }
 
-  private onChange(event) {
+  public onChange(event) {
     this._value = event.target.value;
     this.propagateChange(this._value);
   }

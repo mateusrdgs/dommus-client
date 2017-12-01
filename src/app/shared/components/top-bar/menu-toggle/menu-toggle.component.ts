@@ -9,7 +9,7 @@ import { SideBarService } from './../../../services/side-bar/side-bar.service';
 })
 export class MenuToggleComponent implements OnInit {
 
-  private isMenuOpen = false;
+  public isMenuOpen = false;
 
   constructor(
     private _sidebarService: SideBarService

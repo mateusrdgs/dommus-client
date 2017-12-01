@@ -23,7 +23,7 @@ export class FormControlSwitchComponent {
   @Input() controlName: string;
   @Input() control: FormControl;
   private _self = this;
-  private _value: boolean;
+  public _value: boolean;
 
   constructor() { }
 
@@ -53,11 +53,11 @@ export class FormControlSwitchComponent {
 
   private propagateTouch = (_: any) => {};
 
-  private onTouched() {
+  public onTouched() {
     this.propagateTouch(null);
   }
 
-  private onChange(event) {
+  public onChange(event) {
     const { checked } = event.target;
     if (checked !== '' && (checked !== null || checked !== undefined)) {
       this._value = checked;

@@ -11,7 +11,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CardBackComponent implements OnInit {
 
   @Input() id: string;
-  @Input() type: string;
+  @Input() type: number;
   @Input() side: string;
   @Input() isOn: string;
   @Output() flippedTo: EventEmitter<string> = new EventEmitter();

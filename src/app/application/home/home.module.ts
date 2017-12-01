@@ -6,12 +6,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from './../../shared/shared.module';
 
 import { HomeComponent } from './home.component';
-import { SwitchComponent } from './switch/switch.component';
-import { ThermometerComponent } from './thermometer/thermometer.component';
-import { LightComponent } from './light/light.component';
-import { MotionComponent } from './motion/motion.component';
-import { SensorComponent } from './sensor/sensor.component';
-import { ServoComponent } from './servo/servo.component';
 
 @NgModule({
   imports: [
@@ -22,13 +16,7 @@ import { ServoComponent } from './servo/servo.component';
   ],
   exports: [],
   declarations: [
-    HomeComponent,
-    SwitchComponent,
-    ThermometerComponent,
-    LightComponent,
-    MotionComponent,
-    SensorComponent,
-    ServoComponent
+    HomeComponent
   ],
   providers: [],
 })

@@ -10,7 +10,7 @@ import { SpeechRecognitionService } from './../../services/speech-recognition/sp
 })
 export class SpeechRecognitionComponent implements OnInit {
 
-  private compatible: boolean;
+  public compatible: boolean;
   public recording: boolean;
 
   constructor(

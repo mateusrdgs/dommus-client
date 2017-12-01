@@ -26,7 +26,7 @@ export class FormControlSelectComponent implements ControlValueAccessor {
   @Input() defaultOption: string;
   @Input() items: Array<any>;
   private _self = this;
-  private _value: string;
+  public _value: string;
 
   constructor() { }
 
@@ -56,11 +56,11 @@ export class FormControlSelectComponent implements ControlValueAccessor {
 
   private propagateTouch = (_: any) => {};
 
-  private onTouched() {
+  public onTouched() {
     this.propagateTouch(null);
   }
 
-  private onChange(event) {
+  public onChange(event) {
     if (event.target.selectedIndex > 0) {
       this._value = event.target.value;
       this.propagateChange(this._value);

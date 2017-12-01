@@ -24,7 +24,7 @@ import { viewAnimation } from '../../../../shared/animations/view.animation';
 })
 export class RoomComponent implements OnInit {
 
-  room: Room;
+  public room: Room;
 
   constructor(
     private _activatedRoute: ActivatedRoute,

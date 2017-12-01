@@ -19,7 +19,7 @@ export class FormControlRadioGroupComponent implements ControlValueAccessor {
   @Input() legend: string;
   @Input() fields: any[];
   private _self = this;
-  _value: any;
+  public _value: any;
 
   constructor() { }
 
@@ -49,11 +49,11 @@ export class FormControlRadioGroupComponent implements ControlValueAccessor {
 
   private propagateTouch = (_: any) => {};
 
-  private onTouched() {
+  public onTouched() {
     this.propagateTouch(null);
   }
 
-  private onChange(value) {
+  public onChange(value) {
     if (value !== '' && (value !== null || value !== undefined)) {
       this._value = value;
       this.propagateChange(this._value);

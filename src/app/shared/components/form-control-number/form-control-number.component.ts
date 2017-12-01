@@ -24,7 +24,7 @@ export class FormControlNumberComponent implements ControlValueAccessor {
   @Input() control: FormControl;
   @Input() placeholder = 'Enter here...';
   private _self = this;
-  private _value: number;
+  public _value: number;
 
   constructor() { }
 
@@ -54,11 +54,11 @@ export class FormControlNumberComponent implements ControlValueAccessor {
 
   private propagateTouch = (_: any) => {};
 
-  private onTouched() {
+  public onTouched() {
     this.propagateTouch(null);
   }
 
-  private onChange(event) {
+  public onChange(event) {
     const { value } = event.target;
     if (value !== '' && (value !== null || value !== undefined)) {
       this._value = parseInt(event.target.value, 10);
