@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../../../application/users/classes/user';
 
+import { AuthService } from '../../../../shared/services/auth/auth.service';
+import { LocalStorageService } from './../../../../shared/services/local-storage/local-storage.service';
 import { RemoteService } from './../../../../shared/services/remote/remote.service';
 import { UrlCreatorService } from '../../../../shared/services/url-creator/url-creator.service';
 
 import { UserEmitter } from '../../../../shared/emitters/user.emitter';
+
+import { User } from '../../../../application/users/classes/user';
 
 import { viewAnimation } from '../../../../shared/animations/view.animation';
 
@@ -27,7 +30,9 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _authService: AuthService,
     private _formBuilder: FormBuilder,
+    private _localStorageService: LocalStorageService,
     private _urlCreatorService: UrlCreatorService,
     private _userEmitter: UserEmitter,
     private _router: Router,
@@ -85,7 +90,10 @@ export class UsersComponent implements OnInit {
           .postResources(url, { pin })
           .map(response => response.json()['isValid'])
           .subscribe(response => {
-            this._userEmitter.emitCorrectPassword(response);
+            const decoded = this._localStorageService.getDecodedToken('Dommus_User'),
+                  user = JSON.stringify(Object.assign(decoded, { passwordCorrect: response }));
+            this._localStorageService.encodeAndSaveToken('Dommus_User', user);
+            this._userEmitter.emitCorrectPassword(true);
           });
     }
   }
@@ -93,8 +101,13 @@ export class UsersComponent implements OnInit {
   onAdminChosen(event) {
     const { idUser, isAdmin } = event;
     if (isAdmin) {
-      this.openModal = true;
-      this.idUser = idUser;
+      const passwordCorrect = this._authService.checkAdminPasswordCorrect('Dommus_User');
+      if (passwordCorrect) {
+        this._userEmitter.emitCorrectPassword(true);
+      } else {
+        this.openModal = true;
+        this.idUser = idUser;
+      }
     } else {
       this._userEmitter.emitCorrectPassword(true);
     }

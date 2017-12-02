@@ -2,6 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot,  CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
+import { AuthService } from '../services/auth/auth.service';
 import { LocalStorageService } from './../services/local-storage/local-storage.service';
 import { RemoteService } from './../services/remote/remote.service';
 import { UrlCreatorService } from './../services/url-creator/url-creator.service';
@@ -12,6 +13,7 @@ import { User } from './../../application/users/classes/user';
 export class UserGuard implements CanActivate {
 
   constructor(
+    private _authService: AuthService,
     private _localStorageService: LocalStorageService,
     private _urlCreatorService: UrlCreatorService,
     private _remoteService: RemoteService,
@@ -28,7 +30,19 @@ export class UserGuard implements CanActivate {
                .map(response => {
                   if (response.hasOwnProperty('status') && response.status === 200) {
                     const usr = response.json()['User'],
-                          user = this.createNewUser(usr);
+                          user = this.createNewUser(usr),
+                          passwordCorrect =
+                            this._authService.checkUserPermission('Dommus_User') ?
+                            this._authService.checkAdminPasswordCorrect('Dommus_User') : false;
+                    if (passwordCorrect) {
+                      Object.assign(user, {
+                        passwordCorrect
+                      });
+                    } else {
+                      Object.assign(user, {
+                        passwordCorrect: false
+                      });
+                    }
                     this._localStorageService
                         .encodeAndSaveToken('Dommus_User', JSON.stringify(user));
                     return true;

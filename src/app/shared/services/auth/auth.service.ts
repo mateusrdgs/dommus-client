@@ -19,7 +19,12 @@ export class AuthService {
   }
 
   checkUserPermission(tokenName: string) {
-    return  this._localStorageService.getTokenPropertyValue(tokenName, 'isAdmin', false) === 'true';
+    return this._localStorageService.getTokenPropertyValue(tokenName, 'isAdmin', false) === 'true';
+  }
+
+  checkAdminPasswordCorrect(tokenName: string) {
+    const teste = this._localStorageService.getTokenPropertyValue(tokenName, 'passwordCorrect', false);
+    return teste;
   }
 
   logoutAccount(tokenName: string) {

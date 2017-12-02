@@ -29,6 +29,9 @@ export class DashboardGuard implements CanActivate, CanLoad {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
       if (this._authService.checkUserPermission('Dommus_User')) {
+        if (this._authService.checkAdminPasswordCorrect('Dommus_User')) {
+          return true;
+        }
         return Observable.create(observer => {
                 this._userEmitter
                     .userCanEnter

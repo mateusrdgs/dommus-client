@@ -65,7 +65,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._routeSubscription.unsubscribe();
-    //this._localStorageService.removeToken('Dommus_User');
   }
 
 }
