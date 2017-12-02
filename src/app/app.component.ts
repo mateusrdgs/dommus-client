@@ -1,3 +1,4 @@
+import { LocalStorageService } from './shared/services/local-storage/local-storage.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
+    private _localStorageService: LocalStorageService,
     private _router: Router,
     private _titleService: TitleService,
     private _topbarEmitter: TopBarEmitter
@@ -63,6 +65,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._routeSubscription.unsubscribe();
+    //this._localStorageService.removeToken('Dommus_User');
   }
 
 }

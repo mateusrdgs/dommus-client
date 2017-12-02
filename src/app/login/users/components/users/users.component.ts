@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../../../application/users/classes/user';
+
+import { RemoteService } from './../../../../shared/services/remote/remote.service';
+import { UrlCreatorService } from '../../../../shared/services/url-creator/url-creator.service';
+
+import { UserEmitter } from '../../../../shared/emitters/user.emitter';
 
 import { viewAnimation } from '../../../../shared/animations/view.animation';
 
@@ -13,14 +19,23 @@ import { viewAnimation } from '../../../../shared/animations/view.animation';
 })
 export class UsersComponent implements OnInit {
 
+  userPinForm: FormGroup;
+  openModal: boolean;
   users: User[];
+  idUser: string;
   items = [];
 
   constructor(
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder,
+    private _urlCreatorService: UrlCreatorService,
+    private _userEmitter: UserEmitter,
+    private _router: Router,
+    private _remoteService: RemoteService
   ) { }
 
   ngOnInit() {
+    this.startUserPinForm();
     this.extractDataFromResolver();
   }
 
@@ -31,7 +46,6 @@ export class UsersComponent implements OnInit {
           if (response.hasOwnProperty('status') && response.status === 200) {
             const users = response.json()['Users'];
             this.users = this.iterateOverUsers(users);
-            console.log(this.users);
             this.createArrayOfItems(this.users);
           }
         })
@@ -50,6 +64,39 @@ export class UsersComponent implements OnInit {
         const { _id, name, isAdmin } = user;
         return new User(name, isAdmin === 'true', _id);
       });
+    }
+  }
+
+  startUserPinForm() {
+    this.userPinForm = this._formBuilder.group({
+      pin: ['', Validators.required]
+    });
+  }
+
+  onCloseModal(event) {
+    this.openModal = event;
+  }
+
+  onSubmit() {
+    if (this.userPinForm.valid) {
+      const { pin } = this.userPinForm.value,
+            url = `${this._urlCreatorService.createUrl('users', 'id', { idUser: this.idUser })}validate`;
+      this._remoteService
+          .postResources(url, { pin })
+          .map(response => response.json()['isValid'])
+          .subscribe(response => {
+            this._userEmitter.emitCorrectPassword(response);
+          });
+    }
+  }
+
+  onAdminChosen(event) {
+    const { idUser, isAdmin } = event;
+    if (isAdmin) {
+      this.openModal = true;
+      this.idUser = idUser;
+    } else {
+      this._userEmitter.emitCorrectPassword(true);
     }
   }
 

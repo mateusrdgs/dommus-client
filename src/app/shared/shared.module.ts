@@ -1,3 +1,4 @@
+import { UserEmitter } from './emitters/user.emitter';
 import { viewAnimation } from './animations/view.animation';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,6 +19,7 @@ import { TopBarEmitter } from './emitters/top-bar.emitter';
 import { SocketIoEmitter } from './emitters/socket-io.emitter';
 
 import { AppGuard } from './guards/app.guards.service';
+import { DashboardGuard } from './guards/dashboard.guard';
 import { UserGuard } from './guards/user.guard';
 import { UserPermissionGuard } from './guards/user-permission.guard';
 
@@ -159,6 +161,7 @@ export class SharedModule {
       ngModule: SharedModule,
       providers: [
         AppGuard,
+        DashboardGuard,
         UserGuard,
         UserPermissionGuard,
         AuthService,
@@ -171,6 +174,7 @@ export class SharedModule {
         CardEmitter,
         ResidenceEmitter,
         SocketIoEmitter,
+        UserEmitter,
         RemoteService,
         WindowService,
         UrlCreatorService,

@@ -1,5 +1,5 @@
 import { viewAnimation } from './../../animations/view.animation';
-import { Component, Input, OnInit, AfterContentInit } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, Output, AfterContentInit } from '@angular/core';
 
 @Component({
   selector: 'users-list',
@@ -11,10 +11,16 @@ import { Component, Input, OnInit, AfterContentInit } from '@angular/core';
 export class UsersListComponent implements OnInit {
 
   @Input() set: any[];
+  @Output() adminChosen: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onUserChosen(idUser) {
+    const [ isAdmin ] = this.set.filter(user => user).filter(user => idUser === user.Id).map(user => user.IsAdmin);
+    this.adminChosen.emit({ isAdmin, idUser});
   }
 
 }

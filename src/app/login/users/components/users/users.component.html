@@ -1,4 +1,24 @@
 <div class="users-list__container">
-  <users-list [set]="items">
+  <users-list
+    [set]="items"
+    (adminChosen)="onAdminChosen($event)"
+  >
   </users-list>
 </div>
+<modal [headerTitle]="'Confirmar pin do usuário'" [openModal]="openModal" (closeModal)="onCloseModal($event)">
+  <form [formGroup]="userPinForm" (submit)="onSubmit()">
+  <ng-container *modalBody>
+      <form-control-password class="password" *ngIf="openModal"
+        formControlName="pin"
+        [controlName]="'Pin'"
+        [control]="userPinForm.controls['pin']"
+        [placeholder]="'Digite o pin deste usuário'"
+      ></form-control-password>
+      <button-submit
+        [text]="'Confirmar'"
+        [disabled]="userPinForm.invalid" (click)="onSubmit()"
+      >
+      </button-submit>
+    </ng-container>
+  </form>
+</modal>
